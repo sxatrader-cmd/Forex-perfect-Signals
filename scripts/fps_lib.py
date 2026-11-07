@@ -25,9 +25,10 @@ DATA = ROOT / "data"
 
 BAGHDAD = timezone(timedelta(hours=3))
 USER_AGENT = (
-    "ForexPerfectSignal/1.0 "
+    "964FX/1.0 "
     "(educational static site; +https://sxatrader-cmd.github.io/Forex-perfect-Signals/)"
 )
+UPDATE_GAP = timedelta(hours=4)
 FF_URL = "https://nfs.faireconomy.media/ff_calendar_thisweek.json"
 TV_URL = "https://economic-calendar.tradingview.com/events"
 
@@ -1235,6 +1236,7 @@ def evaluate_pair(
         "currentPrice": entry,
         "floatingPips": 0.0,
         "reasons": reasons,
+        "updates": [],
         "sources": list(fund.sources),
         "indicators": {
             "ema20": snapshot["ema20"],
@@ -1331,6 +1333,148 @@ def load_events_from_disk() -> list[dict]:
     payload = load_json(DATA / "news.json") or {}
     events = payload.get("events")
     return events if isinstance(events, list) else []
+
+
+def baghdad_stamp(dt: datetime) -> str:
+    return dt.astimezone(BAGHDAD).strftime("%Y-%m-%d %H:%M")
+
+
+def progress_to_tp(direction: str, entry: float, tp: float, price: float) -> float:
+    span = (tp - entry) if direction == "BUY" else (entry - tp)
+    if span == 0:
+        return 0.0
+    moved = (price - entry) if direction == "BUY" else (entry - price)
+    return round(moved / span * 100, 1)
+
+
+def distance_to_sl_pips(pair: str, price: float, sl: float) -> float:
+    return round(abs(price - sl) / pip_size(pair), 1)
+
+
+def due_for_update(signal: dict, now: datetime) -> bool:
+    updates = signal.get("updates") or []
+    last_raw = updates[-1]["at"] if updates else signal.get("issuedAt")
+    if not last_raw:
+        return True
+    return now - parse_dt(str(last_raw)) >= UPDATE_GAP
+
+
+def _next_high(pair: str, events: list[dict], now: datetime) -> dict | None:
+    currencies = {pair[:3], pair[3:]}
+    best = None
+    best_hours = None
+    for event in events:
+        if event.get("impact") != "High" or event.get("currency") not in currencies:
+            continue
+        try:
+            moment = parse_dt(str(event["time"]))
+        except (TypeError, ValueError):
+            continue
+        hours = (moment - now).total_seconds() / 3600
+        if hours < 0:
+            continue
+        if best_hours is None or hours < best_hours:
+            best = event
+            best_hours = hours
+    if best is None or best_hours is None:
+        return None
+    return {**best, "hours": best_hours}
+
+
+def build_progress_update(signal: dict, price: float, now: datetime, rsi_value: float | None, events: list[dict]) -> dict:
+    """A 4-hour note. It describes the open plan and does not propose a new trade."""
+    pair = signal["pair"]
+    direction = signal["direction"]
+    entry = float(signal["entry"])
+    sl = float(signal["sl"])
+    tp = float(signal["tp"])
+    px = round_px(pair, price)
+    pips = floating_pips(pair, direction, entry, px)
+    progress = progress_to_tp(direction, entry, tp, px)
+    sl_pips = distance_to_sl_pips(pair, px, sl)
+    ema50 = (signal.get("indicators") or {}).get("ema50")
+    if ema50 is not None:
+        above = px >= float(ema50)
+        if direction == "BUY":
+            en_ema = (
+                f"Price {fmt_px(pair, px)} is {'still above' if above else 'now under'} "
+                f"the daily EMA50 saved at entry ({fmt_px(pair, float(ema50))})."
+            )
+            ar_ema = (
+                f"السعر {fmt_px(pair, px)} {'ما زال فوق' if above else 'أصبح تحت'} "
+                f"متوسط 50 اليومي المحفوظ عند الدخول ({fmt_px(pair, float(ema50))})."
+            )
+        else:
+            below = px <= float(ema50)
+            en_ema = (
+                f"Price {fmt_px(pair, px)} is {'still below' if below else 'now above'} "
+                f"the daily EMA50 saved at entry ({fmt_px(pair, float(ema50))})."
+            )
+            ar_ema = (
+                f"السعر {fmt_px(pair, px)} {'ما زال تحت' if below else 'أصبح فوق'} "
+                f"متوسط 50 اليومي المحفوظ عند الدخول ({fmt_px(pair, float(ema50))})."
+            )
+    else:
+        en_ema = f"Price is {fmt_px(pair, px)}."
+        ar_ema = f"السعر {fmt_px(pair, px)}."
+    if rsi_value is not None and math.isfinite(rsi_value):
+        en_rsi = f" 1-hour RSI is {fmt_num(rsi_value, 1)}."
+        ar_rsi = f" مؤشر RSI على الساعة {fmt_num(rsi_value, 1)}."
+    else:
+        en_rsi = ""
+        ar_rsi = ""
+    upcoming = _next_high(pair, events, now)
+    if upcoming:
+        en_news = (
+            f" Next high-impact release: {upcoming['currency']} {upcoming['title']} "
+            f"in {fmt_num(upcoming['hours'], 1)} hours."
+        )
+        ar_news = (
+            f" أقرب خبر عالي التأثير: {upcoming['currency']} {upcoming['title']} "
+            f"بعد {fmt_num(upcoming['hours'], 1)} ساعة."
+        )
+    else:
+        en_news = " No high-impact event for these currencies is listed in the current weekly file."
+        ar_news = " لا خبر عالي التأثير لعملتي الزوج في ملف الأسبوع الحالي."
+    en_plan = " The original plan is unchanged: target and stop stay where they were set."
+    ar_plan = " الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
+    return {
+        "at": iso_z(now),
+        "baghdad": baghdad_stamp(now),
+        "price": px,
+        "floatingPips": pips,
+        "progressToTp": progress,
+        "distanceToSlPips": sl_pips,
+        "comment": {
+            "en": (
+                f"{en_ema} Floating {fmt_num(pips, 1, signed=True)} pips, "
+                f"{fmt_num(progress, 1)}% of the way to the target, "
+                f"{fmt_num(sl_pips, 1)} pips from the stop.{en_rsi}{en_news}{en_plan}"
+            ),
+            "ar": (
+                f"{ar_ema} النقاط العائمة {fmt_num(pips, 1, signed=True)}، "
+                f"أي {fmt_num(progress, 1)}% من المسافة إلى الهدف، "
+                f"و{fmt_num(sl_pips, 1)} نقطة عن الإيقاف.{ar_rsi}{ar_news}{ar_plan}"
+            ),
+        },
+    }
+
+
+def merge_closed(existing: list[dict], new_items: list[dict]) -> list[dict]:
+    """Append newly closed signals. An id that is already archived is left untouched."""
+    seen = {item.get("id") for item in existing}
+    merged = list(existing)
+    for item in new_items:
+        if item.get("id") in seen:
+            continue
+        merged.append(item)
+        seen.add(item.get("id"))
+    return merged
+
+
+def duration_hours(issued_at: str, closed_at: str) -> float:
+    delta = parse_dt(closed_at) - parse_dt(issued_at)
+    return round(delta.total_seconds() / 3600, 2)
 
 
 def issuance_block(pair: str, open_signals: list[dict], history: list[dict], now: datetime) -> str | None:

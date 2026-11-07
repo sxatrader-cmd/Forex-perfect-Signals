@@ -1,5 +1,6 @@
 "use client";
 
+import { faq } from "@/lib/faq";
 import { useI18n } from "@/lib/i18n";
 import { signalsData } from "@/lib/market-data";
 
@@ -74,6 +75,15 @@ export function MethodView() {
           <p className="mt-2 text-sm leading-7 text-muted-foreground">{section.body}</p>
         </article>
       ))}
+      <section className="space-y-3">
+        <h2 className="text-xl font-semibold">{lang === "ar" ? "أسئلة" : "Questions"}</h2>
+        {faq[lang].map((item) => (
+          <article key={item.q} className="rounded-2xl border border-border bg-card/70 p-5">
+            <h3 className="font-semibold">{item.q}</h3>
+            <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.a}</p>
+          </article>
+        ))}
+      </section>
       <p className="text-xs leading-6 text-muted-foreground">
         {signalsData.sources.prices.detail} {failed ? `${t.failedFeeds}: ${failed}.` : ""}
       </p>

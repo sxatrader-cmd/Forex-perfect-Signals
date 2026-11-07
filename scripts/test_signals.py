@@ -14,15 +14,19 @@ from fps_lib import (
     Bar,
     actual_is_compatible,
     atr,
+    build_progress_update,
     build_reasons,
+    due_for_update,
     ema,
     empty_fundamentals,
     evaluate_pair,
     floating_pips,
+    iso_z,
     issuance_block,
     jaccard,
     macd,
     match_actual,
+    merge_closed,
     parse_number,
     resolve_exit,
     rsi,
@@ -266,6 +270,49 @@ def test_reason_copy_contains_fundamentals() -> None:
             fail(f"missing {needle} in fundamentals reason")
 
 
+def test_four_hour_updates_and_immutable_archive() -> None:
+    issued = datetime(2026, 11, 4, 12, tzinfo=timezone.utc)
+    signal = {
+        "id": "EURUSD-20261104-BUY",
+        "pair": "EURUSD",
+        "direction": "BUY",
+        "entry": 1.10000,
+        "sl": 1.09000,
+        "tp": 1.12000,
+        "issuedAt": iso_z(issued),
+        "updates": [],
+        "indicators": {"ema50": 1.08000},
+    }
+    if due_for_update(signal, issued + timedelta(hours=3, minutes=59)):
+        fail("an update must wait four hours")
+    later = issued + timedelta(hours=4)
+    if not due_for_update(signal, later):
+        fail("an update is due at four hours")
+    note = build_progress_update(signal, 1.10500, later, 48.2, [])
+    if note["price"] != 1.105 or note["floatingPips"] != 50.0:
+        fail(f"update math {note}")
+    if note["progressToTp"] != 25.0:
+        fail(f"progress {note['progressToTp']}")
+    if "1.08000" not in note["comment"]["en"] or "1.08000" not in note["comment"]["ar"]:
+        fail("comment must cite the saved EMA50")
+    if "original plan" not in note["comment"]["en"].lower() and "unchanged" not in note["comment"]["en"].lower():
+        fail("comment must keep the original plan")
+    if "48.2" not in note["comment"]["en"]:
+        fail("rsi missing")
+    archived = [{"id": "EURUSD-20261104-BUY", "result": "TP", "pips": 40, "reasons": [{"en": "a", "ar": "ب"}]}]
+    merged = merge_closed(
+        archived,
+        [
+            {"id": "EURUSD-20261104-BUY", "result": "SL", "pips": -20},
+            {"id": "GBPUSD-20261105-SELL", "result": "SL", "pips": -12},
+        ],
+    )
+    if merged[0]["result"] != "TP" or merged[0]["pips"] != 40 or merged[0]["reasons"][0]["en"] != "a":
+        fail("archived result was edited")
+    if len(merged) != 2 or merged[1]["id"] != "GBPUSD-20261105-SELL":
+        fail("new archive row missing")
+
+
 if __name__ == "__main__":
     test_ema_rsi_macd()
     test_exit_rules()
@@ -273,4 +320,5 @@ if __name__ == "__main__":
     test_issuance_limits()
     test_clear_setup_has_six_reasons()
     test_reason_copy_contains_fundamentals()
+    test_four_hour_updates_and_immutable_archive()
     print("all signal tests passed")

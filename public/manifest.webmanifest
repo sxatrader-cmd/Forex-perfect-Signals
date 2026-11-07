@@ -1,0 +1,20 @@
+{
+  "name": "964FX",
+  "short_name": "964FX",
+  "description": "توصيات فوركس عراقية. Iraqi forex signals.",
+  "start_url": "https://sxatrader-cmd.github.io/Forex-perfect-Signals/ar/",
+  "scope": "https://sxatrader-cmd.github.io/Forex-perfect-Signals/",
+  "lang": "ar",
+  "dir": "rtl",
+  "display": "standalone",
+  "background_color": "#07090c",
+  "theme_color": "#22c55e",
+  "icons": [
+    {
+      "src": "https://sxatrader-cmd.github.io/Forex-perfect-Signals/logo-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { UpdatesTimeline } from "@/components/updates-timeline";
 import { formatPips, formatPrice, formatWhen, pairLabel } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import type { Signal } from "@/lib/types";
@@ -81,6 +82,7 @@ export function SignalCard({ signal, compact = false }: { signal: Signal; compac
             <p className="text-xs text-muted-foreground">
               {t.sources}: {signal.sources.join(" · ")}
             </p>
+            <UpdatesTimeline updates={signal.updates ?? []} pair={signal.pair} />
           </>
         )}
       </CardContent>

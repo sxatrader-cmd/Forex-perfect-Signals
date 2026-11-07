@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BrokerLink } from "@/components/broker-link";
+import { PartnerBadge } from "@/components/partner-banners";
+import { PriceWidget } from "@/components/price-widget";
 import { SignalCard } from "@/components/signal-card";
 import { Ticker } from "@/components/ticker";
 import { Badge } from "@/components/ui/badge";
@@ -44,7 +46,7 @@ export function HomeView() {
             <p className="mt-4 max-w-xl text-sm leading-7 text-foreground">{t.heroRule}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <BrokerLink>{t.openAccount}</BrokerLink>
-              <Link href="/signals" className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 px-4")}>
+              <Link href={`/${lang}/signals`} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 px-4")}>
                 {t.viewSignals}
               </Link>
             </div>
@@ -175,7 +177,7 @@ export function HomeView() {
               </div>
             </div>
           )}
-          <Link href="/signals" className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "mt-4 h-11 px-4")}>
+          <Link href={`/${lang}/signals`} className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "mt-4 h-11 px-4")}>
             {t.viewSignals}
           </Link>
         </section>
@@ -193,11 +195,15 @@ export function HomeView() {
           </ol>
         </section>
 
+        <section>
+          <PriceWidget />
+        </section>
         <section className="overflow-hidden rounded-3xl border border-primary/30 bg-primary/10 px-6 py-10 sm:px-10">
           <h2 className="max-w-xl text-3xl font-semibold tracking-tight">{t.ctaTitle}</h2>
           <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">{t.ctaBody}</p>
-          <div className="mt-6">
+          <div className="mt-6 flex flex-col items-start gap-4">
             <BrokerLink>{t.startTrading}</BrokerLink>
+            <PartnerBadge />
           </div>
         </section>
       </div>

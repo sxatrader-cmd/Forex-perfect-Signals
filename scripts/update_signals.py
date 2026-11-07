@@ -28,16 +28,22 @@ from fps_lib import (
     evaluate_pair,
     fetch_headlines,
     fetch_pair_bars,
+    build_progress_update,
+    due_for_update,
+    duration_hours,
     fetch_yahoo,
     floating_pips,
     iso_z,
     issuance_block,
+    last_valid,
     load_events_from_disk,
     load_json,
     market_closed,
+    merge_closed,
     parse_dt,
     resolve_exit,
     round_px,
+    rsi,
     scan_row,
     score_headlines,
     utc_now,
@@ -79,9 +85,21 @@ def track(open_signals: list[dict], now: datetime) -> tuple[list[dict], list[dic
         ready = int(signal.get("entryReadyTs") or parse_dt(signal["issuedAt"]).timestamp())
         outcome = resolve_exit(signal["direction"], ready, signal["sl"], signal["tp"], bars)
         price, as_of = quote_from_bars(pair, bars)
+        rsi_now = last_valid(rsi([bar.close for bar in bars]))
+        events = load_events_from_disk()
+
+        def with_update(base: dict, mark: float) -> dict:
+            if not due_for_update(base, now):
+                return base
+            note = build_progress_update(base, mark, now, rsi_now, events)
+            cloned = dict(base)
+            cloned["updates"] = [*(base.get("updates") or []), note]
+            print(f"UPDATE {pair} {note['baghdad']} {note['floatingPips']} pips {note['progressToTp']}% to TP")
+            return cloned
+
         if outcome:
             result, close_price, closed_at = outcome
-            done = dict(signal)
+            done = with_update(signal, close_price)
             done["status"] = "closed"
             done["result"] = result
             done["closePrice"] = close_price
@@ -90,17 +108,23 @@ def track(open_signals: list[dict], now: datetime) -> tuple[list[dict], list[dic
             done["priceAsOf"] = closed_at
             done["pips"] = floating_pips(pair, signal["direction"], signal["entry"], close_price)
             done["floatingPips"] = done["pips"]
+            done["durationHours"] = duration_hours(signal["issuedAt"], closed_at)
             closed.append(done)
             changed = True
             print(f"CLOSE {pair} {result} {done['pips']} pips at {closed_at}")
             continue
         pips = floating_pips(pair, signal["direction"], signal["entry"], price)
-        if signal.get("currentPrice") != price or signal.get("floatingPips") != pips or signal.get("priceAsOf") != as_of:
-            updated = dict(signal)
-            updated["currentPrice"] = price
-            updated["floatingPips"] = pips
-            updated["priceAsOf"] = as_of
-            still.append(updated)
+        refreshed = with_update(signal, price)
+        price_changed = (
+            signal.get("currentPrice") != price
+            or signal.get("floatingPips") != pips
+            or signal.get("priceAsOf") != as_of
+        )
+        if price_changed or refreshed is not signal and refreshed.get("updates") != signal.get("updates"):
+            refreshed["currentPrice"] = price
+            refreshed["floatingPips"] = pips
+            refreshed["priceAsOf"] = as_of
+            still.append(refreshed)
             changed = True
             print(f"MARK {pair} {price} floating {pips} pips")
         else:
@@ -155,12 +179,7 @@ def main() -> int:
         return 0
 
     open_signals, newly_closed, tracked = track(open_signals, now)
-    known_ids = {item.get("id") for item in history}
-    for item in newly_closed:
-        if item.get("id") not in known_ids:
-            history.append(item)
-            known_ids.add(item.get("id"))
-    history.sort(key=lambda item: item.get("closedAt") or "", reverse=True)
+    history = merge_closed(history, newly_closed)
 
     if issue:
         fund = build_fundamentals(now)

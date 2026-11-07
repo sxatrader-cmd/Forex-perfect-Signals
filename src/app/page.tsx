@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { HomeView } from "@/components/home-view";
+import { SiteShell } from "@/components/site-shell";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Forex Perfect Signal",
-  description:
-    "إشارات تعليمية يومية لأزواج العملات الرئيسية من سيف التميمي، وسيط معرّف لدى IC Markets. Educational daily studies of the major pairs.",
-};
+export const metadata = pageMeta("ar", "home");
 
-export default function HomePage() {
-  return <HomeView />;
+export default function RootHome() {
+  return (
+    <SiteShell lang="ar">
+      <HomeView />
+    </SiteShell>
+  );
 }

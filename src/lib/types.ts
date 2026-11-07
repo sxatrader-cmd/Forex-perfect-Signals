@@ -1,5 +1,15 @@
 export type Reason = { en: string; ar: string };
 
+export type SignalUpdate = {
+  at: string;
+  baghdad: string;
+  price: number;
+  floatingPips: number;
+  progressToTp: number;
+  distanceToSlPips: number;
+  comment: Reason;
+};
+
 export type Direction = "BUY" | "SELL";
 
 export type Signal = {
@@ -18,6 +28,7 @@ export type Signal = {
   currentPrice: number;
   floatingPips: number;
   reasons: Reason[];
+  updates?: SignalUpdate[];
   sources: string[];
   indicators: {
     ema20: number | null;
@@ -35,6 +46,7 @@ export type Signal = {
   pips?: number;
   closePrice?: number;
   closedAt?: string;
+  durationHours?: number;
 };
 
 export type ScanRow = {

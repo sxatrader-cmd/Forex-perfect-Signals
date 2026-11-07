@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { SponsoredGif } from "@/components/partner-banners";
 import { Badge } from "@/components/ui/badge";
 import { baghdadDay, formatWhen } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
@@ -53,7 +54,8 @@ export function NewsView() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6">
+    <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <div className="flex min-w-0 flex-col gap-6">
       <header>
         <p className="text-sm font-semibold text-primary">{t.ib}</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t.newsTitle}</h1>
@@ -123,6 +125,10 @@ export function NewsView() {
         ))
       )}
       <p className="text-xs leading-6 text-muted-foreground">{t.newsFootnote}</p>
+    </div>
+    <aside className="flex justify-center lg:justify-start">
+      <SponsoredGif />
+    </aside>
     </div>
   );
 }

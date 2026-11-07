@@ -1,15 +1,15 @@
 "use client";
 
-import { createContext, useContext, useEffect, useSyncExternalStore, type ReactNode } from "react";
+import { createContext, useContext, type ReactNode } from "react";
 
 export type Lang = "ar" | "en";
 
 const copy = {
   ar: {
-    brand: "Forex Perfect Signal",
+    brand: "964FX",
     ib: "وسيط معرّف لدى IC Markets",
     ibExact: "Introducing Broker for IC Markets",
-    nav: { home: "الرئيسية", signals: "الإشارات", news: "الأخبار", method: "المنهج" },
+    nav: { home: "الرئيسية", signals: "الإشارات", news: "الأخبار", archive: "الأرشيف", method: "المنهج" },
     openAccount: "افتح حساباً",
     startTrading: "ابدأ التداول",
     viewSignals: "شاهد الإشارات",
@@ -18,7 +18,7 @@ const copy = {
     langLabel: "اللغة",
     heroTitle: "لا إشارة بلا شرط مكتمل.",
     heroLede:
-      "Forex Perfect Signal مكتب تحليل تعليمي يديره سيف التميمي. كل يوم نراجع سبعة أزواج رئيسية، وننشر صفقة واحدة فقط إذا اكتمل الاتجاه والزخم وحدّ المخاطرة. إذا لم يتضح الشرط، نترك الزوج.",
+      "964FX مكتب تحليل تعليمي من العراق يديره سيف التميمي، وسيط معرّف لدى IC Markets. ننشر توصيات فوركس يومية لسبعة أزواج عندما يكتمل الشرط، ونتخطى الزوج إذا لم يتضح.",
     heroRule: "صفقة مفتوحة واحدة لكل زوج، وتبقى حتى الهدف أو الإيقاف.",
     clockLabel: "توقيت بغداد",
     marketOpen: "السوق مفتوح",
@@ -151,12 +151,33 @@ const copy = {
     scanPrice: "آخر سعر",
     rsiShort: "RSI 4س",
     failedFeeds: "خلاصات تعذر جلبها",
+    livePrices: "أسعار مباشرة",
+    livePricesBy: "أسعار مباشرة مقدمة من IC Markets",
+    partnerBadge: "شريك لدى IC Markets",
+    sponsored: "إعلان",
+    archiveTitle: "الأرشيف",
+    archiveLede: "كل إشارة أُغلقت تبقى هنا مع أسبابها وتحديثاتها ونتيجتها. لا نمسح نتيجة ولا نعدّلها.",
+    archiveEmpty: "لا إشارات مغلقة بعد. عند لمس الهدف أو الإيقاف تُنقل الإشارة إلى هنا بكامل سجلها.",
+    updatesTitle: "تحديثات كل 4 ساعات",
+    updatesEmpty: "لا تحديث مسجّل بعد. يُضاف تحديث زمني كل أربع ساعات ما دامت الإشارة مفتوحة.",
+    filterPair: "الزوج",
+    filterResult: "النتيجة",
+    filterMonth: "الشهر",
+    all: "الكل",
+    statCount: "عدد الإشارات",
+    avgR: "متوسط R",
+    duration: "المدة",
+    hours: "ساعة",
+    toTarget: "نحو الهدف",
+    fromStop: "عن الإيقاف",
+    pairPage: "صفحة الزوج",
+    permanent: "صفحة دائمة",
   },
   en: {
-    brand: "Forex Perfect Signal",
+    brand: "964FX",
     ib: "Introducing Broker for IC Markets",
     ibExact: "وسيط معرّف لدى IC Markets",
-    nav: { home: "Home", signals: "Signals", news: "News", method: "Method" },
+    nav: { home: "Home", signals: "Signals", news: "News", archive: "Archive", method: "Method" },
     openAccount: "Open account",
     startTrading: "Start trading",
     viewSignals: "View signals",
@@ -165,7 +186,7 @@ const copy = {
     langLabel: "Language",
     heroTitle: "No signal unless the setup is complete.",
     heroLede:
-      "Forex Perfect Signal is Saif Altamimi's educational desk. Each day we review seven majors and publish one trade only when trend, momentum, and risk all line up. If they do not, the pair is left alone.",
+      "964FX is an educational forex desk from Iraq, run by Saif Altamimi, an Introducing Broker for IC Markets. We publish a daily signal on a major pair only when the setup is complete.",
     heroRule: "One open signal per pair. It stays until target or stop.",
     clockLabel: "Baghdad time",
     marketOpen: "Market open",
@@ -298,61 +319,38 @@ const copy = {
     scanPrice: "Last price",
     rsiShort: "4H RSI",
     failedFeeds: "Feeds that did not load",
+    livePrices: "Live prices",
+    livePricesBy: "Live prices powered by IC Markets",
+    partnerBadge: "Official partner of IC Markets",
+    sponsored: "Sponsored",
+    archiveTitle: "Archive",
+    archiveLede: "Every closed signal stays here with its reasons, four-hour updates, and result. Results are not deleted or edited.",
+    archiveEmpty: "No closed signals yet. When price hits the target or the stop, the signal moves here with its full record.",
+    updatesTitle: "Updates every 4 hours",
+    updatesEmpty: "No update yet. A timestamped note is added every four hours while the signal is open.",
+    filterPair: "Pair",
+    filterResult: "Result",
+    filterMonth: "Month",
+    all: "All",
+    statCount: "Total signals",
+    avgR: "Average R",
+    duration: "Duration",
+    hours: "h",
+    toTarget: "to target",
+    fromStop: "from stop",
+    pairPage: "Pair page",
+    permanent: "Permanent page",
   },
 } as const;
 
 export type Copy = (typeof copy)[Lang];
 
-type Ctx = {
-  lang: Lang;
-  t: Copy;
-  setLang: (lang: Lang) => void;
-  toggle: () => void;
-};
-
-const listeners = new Set<() => void>();
-
-function readLang(): Lang {
-  const stored = window.localStorage.getItem("fps-lang");
-  return stored === "en" ? "en" : "ar";
-}
-
-function subscribeLang(listener: () => void) {
-  listeners.add(listener);
-  return () => listeners.delete(listener);
-}
-
-function emitLang() {
-  listeners.forEach((listener) => listener());
-}
+type Ctx = { lang: Lang; t: Copy };
 
 const I18nContext = createContext<Ctx | null>(null);
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-  const lang = useSyncExternalStore(subscribeLang, readLang, (): Lang => "ar");
-
-  useEffect(() => {
-    document.documentElement.lang = lang === "ar" ? "ar" : "en";
-    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-  }, [lang]);
-
-  function setLang(next: Lang) {
-    window.localStorage.setItem("fps-lang", next);
-    emitLang();
-  }
-
-  return (
-    <I18nContext.Provider
-      value={{
-        lang,
-        t: copy[lang],
-        setLang,
-        toggle: () => setLang(lang === "ar" ? "en" : "ar"),
-      }}
-    >
-      {children}
-    </I18nContext.Provider>
-  );
+export function I18nProvider({ lang, children }: { lang: Lang; children: ReactNode }) {
+  return <I18nContext.Provider value={{ lang, t: copy[lang] }}>{children}</I18nContext.Provider>;
 }
 
 export function useI18n() {

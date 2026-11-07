@@ -1,6 +1,8 @@
 "use client";
 
 import { Disclaimer } from "@/components/disclaimer";
+import { SponsoredGif } from "@/components/partner-banners";
+import { PriceWidget } from "@/components/price-widget";
 import { SignalCard } from "@/components/signal-card";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -21,7 +23,8 @@ export function SignalsView() {
   const floating = signalsData.open.reduce((sum, signal) => sum + signal.floatingPips, 0);
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6">
+    <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <div className="flex min-w-0 flex-col gap-8">
       <header>
         <p className="text-sm font-semibold text-primary">{t.ib}</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t.signalsTitle}</h1>
@@ -124,6 +127,14 @@ export function SignalsView() {
         {signalsData.sources.prices.detail} {signalsData.sources.actuals.detail}
         {signalsData.sources.headlines.failed.length ? ` ${t.failedFeeds}: ${signalsData.sources.headlines.failed.map((item) => item.source).join(", ")}.` : ""}
       </p>
+      <p>
+        <a href={`/${lang}/archive`} className="text-sm text-primary underline-offset-4 hover:underline">{t.archiveTitle}</a>
+      </p>
+    </div>
+    <aside className="flex flex-col items-center gap-8">
+      <PriceWidget />
+      <SponsoredGif />
+    </aside>
     </div>
   );
 }

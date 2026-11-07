@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sxatrader-cmd.github.io/Forex-perfect-Signals/sitemap.xml

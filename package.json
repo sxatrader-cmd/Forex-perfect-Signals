@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 4317",
-    "build": "next build",
+    "build": "python3 scripts/generate_seo.py && next build && python3 scripts/stamp_html_lang.py",
     "start": "next start -H 0.0.0.0 -p 4317",
     "lint": "eslint",
     "news": "python3 scripts/fetch_news.py",
