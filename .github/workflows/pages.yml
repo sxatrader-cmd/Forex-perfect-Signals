@@ -1,0 +1,102 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # News poll. GitHub may start this later than the clock time.
+    - cron: "*/5 * * * *"
+    # Hourly signal tracking, offset from the news minutes.
+    - cron: "7 * * * *"
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: Issue a new daily signal now if a pair has no open trade
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      sha: ${{ steps.meta.outputs.sha }}
+      deploy: ${{ steps.meta.outputs.deploy }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test signal rules
+        run: python scripts/test_signals.py
+      - name: Update economic calendar
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '*/5 * * * *'
+        run: python scripts/fetch_news.py
+      - name: Update signals
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '7 * * * *'
+        env:
+          FORCE_ISSUE: ${{ github.event.inputs.issue == 'true' && '1' || '0' }}
+        run: python scripts/update_signals.py
+      - name: Commit data and decide deploy
+        id: meta
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          changed=false
+          if ! git diff --quiet -- data; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data
+            if git diff --cached --quiet -- data/news.json && ! git diff --cached --quiet -- data/signals.json data/history.json; then
+              msg="data: update signals"
+            elif ! git diff --cached --quiet -- data/news.json && git diff --cached --quiet -- data/signals.json data/history.json; then
+              msg="data: update economic calendar"
+            else
+              msg="data: update calendar and signals"
+            fi
+            git commit -m "$msg"
+            git push origin HEAD:main
+            changed=true
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          if [ "$EVENT_NAME" = "push" ] || [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$changed" = "true" ]; then
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: prepare
+    if: needs.prepare.outputs.deploy == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /Forex-perfect-Signals
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+      - id: deployment
+        uses: actions/deploy-pages@v4

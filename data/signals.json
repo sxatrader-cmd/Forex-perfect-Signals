@@ -1,0 +1,165 @@
+{
+  "lastIssueDate": "2026-11-07",
+  "sources": {
+    "prices": {
+      "provider": "Yahoo Finance chart API",
+      "ok": true,
+      "detail": "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. This is the endpoint yfinance reads. 7 of 7 pairs loaded."
+    },
+    "calendar": {
+      "provider": "Forex Factory",
+      "ok": true,
+      "detail": "data/news.json from nfs.faireconomy.media/ff_calendar_thisweek.json"
+    },
+    "actuals": {
+      "provider": "TradingView",
+      "ok": true,
+      "detail": "Matched onto Forex Factory rows. The public Forex Factory file has no actual field."
+    },
+    "headlines": {
+      "used": [
+        "ForexLive",
+        "Investing.com Forex",
+        "Investing.com Economy",
+        "Investing.com Opinion",
+        "ActionForex"
+      ],
+      "failed": [
+        {
+          "source": "FXStreet",
+          "error": "HTTP 403 for https://www.fxstreet.com/rss/news"
+        }
+      ]
+    }
+  },
+  "scan": [
+    {
+      "pair": "EURUSD",
+      "decision": "skip",
+      "block": "extension",
+      "summary": {
+        "en": "Distance from 4H EMA20 is 1.96× ATR; the allowed band is 0.15–1.15× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 1.96× ATR، والنطاق المعتمد 0.15–1.15× ATR."
+      },
+      "price": 1.11433,
+      "priceAsOf": "2026-11-06T23:00:00Z",
+      "dailyTrend": "sell",
+      "ema20": 1.12183,
+      "ema50": 1.13119,
+      "ema200": 1.14653,
+      "rsi4h": 33.9,
+      "macdHist4h": -0.001257,
+      "atr4h": 0.002652
+    },
+    {
+      "pair": "GBPUSD",
+      "decision": "skip",
+      "block": "flat",
+      "summary": {
+        "en": "Daily EMA20 and EMA50 are only 0.00011 apart, under 0.08× daily ATR 0.00650.",
+        "ar": "الفرق بين متوسط 20 ومتوسط 50 ضيق (0.00011) وأقل من 0.08× ATR اليومي 0.00650."
+      },
+      "price": 1.33558,
+      "priceAsOf": "2026-11-06T23:00:00Z",
+      "dailyTrend": "sell",
+      "ema20": 1.33675,
+      "ema50": 1.33686,
+      "ema200": 1.33858,
+      "rsi4h": 33.5,
+      "macdHist4h": -0.001661,
+      "atr4h": 0.002836
+    },
+    {
+      "pair": "USDJPY",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily EMAs are mixed: EMA20 157.920, EMA50 157.989, EMA200 157.814.",
+        "ar": "المتوسطات اليومية غير مصطفة: 20 عند 157.920، و50 عند 157.989، و200 عند 157.814."
+      },
+      "price": 158.425,
+      "priceAsOf": "2026-11-06T23:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 157.92,
+      "ema50": 157.989,
+      "ema200": 157.814,
+      "rsi4h": 55.7,
+      "macdHist4h": 0.026715,
+      "atr4h": 0.470671
+    },
+    {
+      "pair": "USDCHF",
+      "decision": "skip",
+      "block": "price-side",
+      "summary": {
+        "en": "Bullish stack, but price 0.82001 is not above daily EMA20 0.82307.",
+        "ar": "الاصطفاف صاعد، لكن السعر 0.82001 ليس فوق متوسط 20 اليومي 0.82307."
+      },
+      "price": 0.82001,
+      "priceAsOf": "2026-11-06T23:00:00Z",
+      "dailyTrend": "buy",
+      "ema20": 0.82307,
+      "ema50": 0.82156,
+      "ema200": 0.81009,
+      "rsi4h": 53.8,
+      "macdHist4h": 0.000788,
+      "atr4h": 0.00288
+    },
+    {
+      "pair": "AUDUSD",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily EMAs are mixed: EMA20 0.69901, EMA50 0.70210, EMA200 0.69824.",
+        "ar": "المتوسطات اليومية غير مصطفة: 20 عند 0.69901، و50 عند 0.70210، و200 عند 0.69824."
+      },
+      "price": 0.68681,
+      "priceAsOf": "2026-11-06T23:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 0.69901,
+      "ema50": 0.7021,
+      "ema200": 0.69824,
+      "rsi4h": 20.2,
+      "macdHist4h": -0.001155,
+      "atr4h": 0.002276
+    },
+    {
+      "pair": "USDCAD",
+      "decision": "skip",
+      "block": "flat",
+      "summary": {
+        "en": "Daily EMA20 and EMA50 are only 0.00041 apart, under 0.08× daily ATR 0.00684.",
+        "ar": "الفرق بين متوسط 20 ومتوسط 50 ضيق (0.00041) وأقل من 0.08× ATR اليومي 0.00684."
+      },
+      "price": 1.4128,
+      "priceAsOf": "2026-11-06T23:00:00Z",
+      "dailyTrend": "buy",
+      "ema20": 1.40556,
+      "ema50": 1.40515,
+      "ema200": 1.39635,
+      "rsi4h": 78.7,
+      "macdHist4h": 0.001777,
+      "atr4h": 0.003316
+    },
+    {
+      "pair": "NZDUSD",
+      "decision": "skip",
+      "block": "extension",
+      "summary": {
+        "en": "Distance from 4H EMA20 is 2.33× ATR; the allowed band is 0.15–1.15× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.33× ATR، والنطاق المعتمد 0.15–1.15× ATR."
+      },
+      "price": 0.55475,
+      "priceAsOf": "2026-11-06T23:00:00Z",
+      "dailyTrend": "sell",
+      "ema20": 0.56337,
+      "ema50": 0.56875,
+      "ema200": 0.57813,
+      "rsi4h": 30.7,
+      "macdHist4h": -0.000746,
+      "atr4h": 0.001819
+    }
+  ],
+  "open": [],
+  "updatedAt": "2026-11-07T07:41:27Z"
+}
