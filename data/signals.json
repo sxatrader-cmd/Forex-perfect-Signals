@@ -1,5 +1,5 @@
 {
-  "lastIssueDate": "2026-11-08",
+  "lastIssueDate": "2026-11-09",
   "sources": {
     "prices": {
       "provider": "Yahoo Finance chart API",
@@ -13,7 +13,7 @@
     },
     "actuals": {
       "provider": "TradingView",
-      "ok": true,
+      "ok": false,
       "detail": "Matched onto Forex Factory rows. The public Forex Factory file has no actual field."
     },
     "headlines": {
@@ -161,5 +161,5 @@
     }
   ],
   "open": [],
-  "updatedAt": "2026-11-07T23:37:03Z"
+  "updatedAt": "2026-11-08T22:49:09Z"
 }
