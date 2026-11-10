@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T04:07:38Z",
+  "updatedAt": "2026-11-10T12:38:46Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 13,
+      "matched": 15,
       "error": null
     }
   },
@@ -288,8 +288,8 @@
       "impact": "Low",
       "forecast": "47.1",
       "previous": "47.0",
-      "actual": "",
-      "actualSource": null
+      "actual": "46.1",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|mpc-member-breeden-speaks|2026-11-10T08:30:00Z",
@@ -314,28 +314,6 @@
       "actualSource": null
     },
     {
-      "id": "CNY|m2-money-supply-y-y|2026-11-10T09:03:00Z",
-      "title": "M2 Money Supply y/y",
-      "currency": "CNY",
-      "time": "2026-11-10T09:03:00Z",
-      "impact": "Low",
-      "forecast": "7.2%",
-      "previous": "7.2%",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "CNY|new-loans|2026-11-10T09:03:00Z",
-      "title": "New Loans",
-      "currency": "CNY",
-      "time": "2026-11-10T09:03:00Z",
-      "impact": "Low",
-      "forecast": "80B",
-      "previous": "1080B",
-      "actual": "",
-      "actualSource": null
-    },
-    {
       "id": "ALL|g7-meetings|2026-11-10T09:45:00Z",
       "title": "G7 Meetings",
       "currency": "ALL",
@@ -347,6 +325,17 @@
       "actualSource": null
     },
     {
+      "id": "GBP|30-y-bond-auction|2026-11-10T10:02:00Z",
+      "title": "30-y Bond Auction",
+      "currency": "GBP",
+      "time": "2026-11-10T10:02:00Z",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "5.52|3.8",
+      "actual": "",
+      "actualSource": null
+    },
+    {
       "id": "USD|nfib-small-business-index|2026-11-10T11:00:00Z",
       "title": "NFIB Small Business Index",
       "currency": "USD",
@@ -354,19 +343,8 @@
       "impact": "Low",
       "forecast": "98.0",
       "previous": "97.9",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "GBP|30-y-bond-auction|2026-11-10T11:32:00Z",
-      "title": "30-y Bond Auction",
-      "currency": "GBP",
-      "time": "2026-11-10T11:32:00Z",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "5.52|3.8",
-      "actual": "",
-      "actualSource": null
+      "actual": "97.8",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|mpc-member-lombardelli-speaks|2026-11-10T12:30:00Z",
@@ -585,6 +563,28 @@
       "impact": "Low",
       "forecast": "0.7%",
       "previous": "-1.3%",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "CNY|m2-money-supply-y-y|2026-11-11T09:03:00Z",
+      "title": "M2 Money Supply y/y",
+      "currency": "CNY",
+      "time": "2026-11-11T09:03:00Z",
+      "impact": "Low",
+      "forecast": "7.2%",
+      "previous": "7.2%",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "CNY|new-loans|2026-11-11T09:03:00Z",
+      "title": "New Loans",
+      "currency": "CNY",
+      "time": "2026-11-11T09:03:00Z",
+      "impact": "Low",
+      "forecast": "80B",
+      "previous": "1080B",
       "actual": "",
       "actualSource": null
     },
