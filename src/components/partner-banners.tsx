@@ -16,12 +16,11 @@ export function PartnerBadge() {
 }
 
 export function SponsoredGif() {
-  const { t } = useI18n();
   return (
-    <aside className="mx-auto w-fit max-w-full">
-      <p className="mb-2 text-center text-[11px] tracking-wide text-muted-foreground uppercase">{t.sponsored}</p>
+    <aside className="mx-auto inline-block w-fit max-w-full text-center">
+      <p className="mb-2 text-center text-[11px] text-muted-foreground">Sponsored / إعلان</p>
       <a href={HREF} target="_blank" rel="sponsored noopener" className="inline-block max-w-full">
-        <img src={GIF} width={336} height={280} alt={t.partnerBadge} className="h-auto w-full max-w-[336px]" />
+        <img src={GIF} width={336} height={280} alt="IC Markets" className="mx-auto h-auto w-[336px] max-w-full" />
       </a>
     </aside>
   );

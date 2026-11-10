@@ -23,7 +23,7 @@ export function SignalsView() {
   const floating = signalsData.open.reduce((sum, signal) => sum + signal.floatingPips, 0);
 
   return (
-    <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+    <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,1fr)_360px]">
     <div className="flex min-w-0 flex-col gap-8">
       <header>
         <p className="text-sm font-semibold text-primary">{t.ib}</p>
