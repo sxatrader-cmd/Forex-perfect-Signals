@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T12:38:46Z",
+  "updatedAt": "2026-11-10T20:00:35Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 15,
+      "matched": 19,
       "error": null
     }
   },
@@ -358,26 +358,26 @@
       "actualSource": null
     },
     {
+      "id": "USD|adp-weekly-employment-change|2026-11-10T13:14:00Z",
+      "title": "ADP Weekly Employment Change",
+      "currency": "USD",
+      "time": "2026-11-10T13:14:00Z",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "16.8K",
+      "actual": "19750",
+      "actualSource": "TradingView"
+    },
+    {
       "id": "USD|adp-weekly-employment-change|2026-11-10T13:15:00Z",
       "title": "ADP Weekly Employment Change",
       "currency": "USD",
       "time": "2026-11-10T13:15:00Z",
       "impact": "Low",
       "forecast": "",
-      "previous": "",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "USD|adp-weekly-employment-change|2026-11-10T13:16:00Z",
-      "title": "ADP Weekly Employment Change",
-      "currency": "USD",
-      "time": "2026-11-10T13:16:00Z",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "16.8K",
-      "actual": "",
-      "actualSource": null
+      "previous": "19.5K",
+      "actual": "19750",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|cpi-m-m|2026-11-10T13:30:00Z",
@@ -387,8 +387,8 @@
       "impact": "High",
       "forecast": "0.3%",
       "previous": "0.6%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.4%",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|core-cpi-m-m|2026-11-10T13:30:00Z",
@@ -398,8 +398,8 @@
       "impact": "High",
       "forecast": "0.2%",
       "previous": "0.3%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.3%",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|fomc-member-logan-speaks|2026-11-10T15:50:00Z",
