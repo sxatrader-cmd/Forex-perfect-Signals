@@ -35,39 +35,39 @@
   "scan": [
     {
       "pair": "EURUSD",
-      "decision": "skip",
-      "block": "no-stack",
+      "decision": "signal",
+      "block": null,
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 1.13050 versus EMA200 1.14667, 4H EMA20 1.12059 versus EMA50 1.12015, MACD histogram 0.000577.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.13050 مقابل متوسط 200 1.14667، ومتوسط 20 على 4 ساعات 1.12059 مقابل متوسط 50 1.12015، وهيستوغرام MACD 0.000577."
+        "en": "New SELL signal at 1.11694, stop 1.12011, target 1.11061.",
+        "ar": "إشارة بيع جديدة عند 1.11694، الإيقاف 1.12011، الهدف 1.11061."
       },
-      "price": 1.12208,
-      "priceAsOf": "2026-11-10T12:00:00Z",
-      "dailyTrend": "mixed",
-      "ema20": 1.12192,
-      "ema50": 1.1305,
-      "ema200": 1.14667,
-      "rsi4h": 54.8,
-      "macdHist4h": 0.000577,
-      "atr4h": 0.002402
+      "price": 1.11694,
+      "priceAsOf": "2026-11-10T20:00:00Z",
+      "dailyTrend": "sell",
+      "ema20": 1.12143,
+      "ema50": 1.1303,
+      "ema200": 1.14662,
+      "rsi4h": 42.7,
+      "macdHist4h": -0.000107,
+      "atr4h": 0.002638
     },
     {
       "pair": "GBPUSD",
       "decision": "skip",
-      "block": "event-risk",
+      "block": "no-stack",
       "summary": {
-        "en": "High-impact USD Core Inflation Rate MoM is 0.9 hours away. No new signal inside 8 hours of a high-impact release.",
-        "ar": "خبر عالي التأثير USD Core Inflation Rate MoM بعد 0.9 ساعة. لا تُفتح إشارة خلال 8 ساعات من خبر عالي التأثير."
+        "en": "Daily and 4H trends disagree. Daily EMA50 1.33705 versus EMA200 1.33912, 4H EMA20 1.34078 versus EMA50 1.34048, MACD histogram -0.000578.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.33705 مقابل متوسط 200 1.33912، ومتوسط 20 على 4 ساعات 1.34078 مقابل متوسط 50 1.34048، وهيستوغرام MACD -0.000578."
       },
-      "price": 1.34259,
-      "priceAsOf": "2026-11-10T12:00:00Z",
-      "dailyTrend": "buy",
-      "ema20": 1.33794,
-      "ema50": 1.33736,
-      "ema200": 1.33919,
-      "rsi4h": 51.3,
-      "macdHist4h": 0.000389,
-      "atr4h": 0.002615
+      "price": 1.33486,
+      "priceAsOf": "2026-11-10T20:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 1.3372,
+      "ema50": 1.33705,
+      "ema200": 1.33912,
+      "rsi4h": 38.1,
+      "macdHist4h": -0.000578,
+      "atr4h": 0.003153
     },
     {
       "pair": "USDJPY",
@@ -92,36 +92,36 @@
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 0.82145 versus EMA200 0.80977, 4H EMA20 0.81909 versus EMA50 0.82015, MACD histogram 0.000290.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.82145 مقابل متوسط 200 0.80977، ومتوسط 20 على 4 ساعات 0.81909 مقابل متوسط 50 0.82015، وهيستوغرام MACD 0.000290."
+        "en": "Daily and 4H trends disagree. Daily EMA50 0.82161 versus EMA200 0.80981, 4H EMA20 0.82025 versus EMA50 0.82056, MACD histogram 0.000767.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.82161 مقابل متوسط 200 0.80981، ومتوسط 20 على 4 ساعات 0.82025 مقابل متوسط 50 0.82056، وهيستوغرام MACD 0.000767."
       },
-      "price": 0.82097,
-      "priceAsOf": "2026-11-10T12:00:00Z",
+      "price": 0.82497,
+      "priceAsOf": "2026-11-10T20:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 0.82256,
-      "ema50": 0.82145,
-      "ema200": 0.80977,
-      "rsi4h": 54.7,
-      "macdHist4h": 0.00029,
-      "atr4h": 0.002723
+      "ema20": 0.82294,
+      "ema50": 0.82161,
+      "ema200": 0.80981,
+      "rsi4h": 61.2,
+      "macdHist4h": 0.000767,
+      "atr4h": 0.002893
     },
     {
       "pair": "AUDUSD",
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 0.70130 versus EMA200 0.69842, 4H EMA20 0.69238 versus EMA50 0.69574, MACD histogram 0.000611.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.70130 مقابل متوسط 200 0.69842، ومتوسط 20 على 4 ساعات 0.69238 مقابل متوسط 50 0.69574، وهيستوغرام MACD 0.000611."
+        "en": "Daily and 4H trends disagree. Daily EMA50 0.70112 versus EMA200 0.69838, 4H EMA20 0.69130 versus EMA50 0.69502, MACD histogram 0.000078.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.70112 مقابل متوسط 200 0.69838، ومتوسط 20 على 4 ساعات 0.69130 مقابل متوسط 50 0.69502، وهيستوغرام MACD 0.000078."
       },
-      "price": 0.69132,
-      "priceAsOf": "2026-11-10T12:00:00Z",
+      "price": 0.68686,
+      "priceAsOf": "2026-11-10T20:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 0.69769,
-      "ema50": 0.7013,
-      "ema200": 0.69842,
-      "rsi4h": 42.3,
-      "macdHist4h": 0.000611,
-      "atr4h": 0.002003
+      "ema20": 0.69727,
+      "ema50": 0.70112,
+      "ema200": 0.69838,
+      "rsi4h": 33.5,
+      "macdHist4h": 7.8e-05,
+      "atr4h": 0.002279
     },
     {
       "pair": "USDCAD",
@@ -146,20 +146,87 @@
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 0.56832 versus EMA200 0.57813, 4H EMA20 0.56108 versus EMA50 0.56177, MACD histogram 0.000846.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.56832 مقابل متوسط 200 0.57813، ومتوسط 20 على 4 ساعات 0.56108 مقابل متوسط 50 0.56177، وهيستوغرام MACD 0.000846."
+        "en": "Daily and 4H trends disagree. Daily EMA50 0.56821 versus EMA200 0.57811, 4H EMA20 0.56089 versus EMA50 0.56164, MACD histogram 0.000347.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.56821 مقابل متوسط 200 0.57811، ومتوسط 20 على 4 ساعات 0.56089 مقابل متوسط 50 0.56164، وهيستوغرام MACD 0.000347."
       },
-      "price": 0.56329,
-      "priceAsOf": "2026-11-10T12:00:00Z",
+      "price": 0.56051,
+      "priceAsOf": "2026-11-10T20:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 0.56337,
-      "ema50": 0.56832,
-      "ema200": 0.57813,
-      "rsi4h": 58.0,
-      "macdHist4h": 0.000846,
-      "atr4h": 0.001846
+      "ema20": 0.56311,
+      "ema50": 0.56821,
+      "ema200": 0.57811,
+      "rsi4h": 48.6,
+      "macdHist4h": 0.000347,
+      "atr4h": 0.001989
     }
   ],
-  "open": [],
-  "updatedAt": "2026-11-10T12:38:53Z"
+  "open": [
+    {
+      "id": "EURUSD-20261110-SELL",
+      "pair": "EURUSD",
+      "direction": "SELL",
+      "entry": 1.11694,
+      "sl": 1.12011,
+      "tp": 1.11061,
+      "rr": 2.0,
+      "atr": 0.002638,
+      "issuedAt": "2026-11-10T20:30:43Z",
+      "priceAsOf": "2026-11-10T20:00:00Z",
+      "status": "open",
+      "currentPrice": 1.11694,
+      "floatingPips": 0.0,
+      "reasons": [
+        {
+          "en": "4-hour trend is bearish: EMA20 1.11987 versus EMA50 1.11988, ADX 18.4. Daily bias EMA50 1.13030 is below EMA200 1.14662 and EMA20 1.12143 is below EMA50. Last price 1.11694 is below daily EMA20.",
+          "ar": "اتجاه 4 ساعات هابط: متوسط 20 عند 1.11987 مقابل متوسط 50 عند 1.11988، وADX 18.4. الميل اليومي: متوسط 50 عند 1.13030 تحت متوسط 200 عند 1.14662، ومتوسط 20 عند 1.12143 تحت متوسط 50. آخر سعر 1.11694 تحت متوسط 20 اليومي."
+        },
+        {
+          "en": "4H RSI(14) is 42.7, inside the SELL band 35–60. The band excludes overbought and oversold extremes.",
+          "ar": "مؤشر RSI(14) على 4 ساعات يساوي 42.7 داخل نطاق هابط المعتمد 35–60. هذا النطاق يستبعد مناطق التشبع."
+        },
+        {
+          "en": "4H MACD line is -0.000174, signal line -0.000067, histogram -0.000107. The histogram agrees with the bearish direction.",
+          "ar": "خط MACD على 4 ساعات -0.000174، وخط الإشارة -0.000067، والهيستوغرام -0.000107. إشارة الهيستوغرام توافق الاتجاه هابط."
+        },
+        {
+          "en": "The nearest 4H swing resistance is 1.11719, 2.5 pips above the entry. The stop is placed beyond it. 4H ATR(14) is 0.00264 (26.4 pips). Stop 31.7 pips, target 63.3 pips, reward-to-risk 1:2.00.",
+          "ar": "أقرب مقاومة تأرجح على 4 ساعات عند 1.11719، أي 2.5 نقطة فوق الدخول، ووُضع الإيقاف بعدها. ATR(14) على 4 ساعات يساوي 0.00264 (26.4 نقطة). الإيقاف 31.7 نقطة، والهدف 63.3 نقطة، والعائد إلى المخاطرة 1:2.00."
+        },
+        {
+          "en": "Policy rates: EUR 2.65% versus USD 4.00% (gap -1.35 points). Change over the last 120 days: EUR +25 bp, USD +25 bp. That gap and its change agree with the SELL.",
+          "ar": "أسعار السياسة: EUR 2.65% مقابل USD 4.00% (الفارق -1.35 نقطة مئوية). التغير خلال 120 يوماً: EUR +25 نقطة أساس، وUSD +25 نقطة أساس. الفارق وتغيره يوافقان اتجاه الصفقة."
+        },
+        {
+          "en": "High-impact surprise sum over the last 8 trading days: EUR +1.18 from 3 prints, USD +1.99 from 8. That favours the SELL. Largest comparable print: EUR GDP Growth Rate QoQ Flash actual 0.4 versus forecast 0.2 (signed surprise +1.00). Headline tone EUR n/a from 0 scored headlines, USD +0.83 from 12. Next high-impact event: USD Existing Home Sales in 42.5 hours.  Sample headline (ActionForex): Fed’s Waller Backs December Hike, Says 50bps Should Be Considered if Inflation Stays Hot. Sources: Yahoo Finance, Forex Factory, TradingView, ForexLive, Investing.com Forex, Investing.com Economy, Investing.com Opinion, ActionForex.",
+          "ar": "مجموع مفاجآت الأخبار عالية التأثير خلال آخر 8 أيام تداول: EUR +1.18 من 3 قراءة، وUSD +1.99 من 8. هذا يرجح اتجاه الصفقة. أكبر مفاجأة قابلة للمقارنة: EUR GDP Growth Rate QoQ Flash الفعلي 0.4 مقابل التوقع 0.2 (المفاجأة +1.00). مزاج العناوين: EUR n/a من 0 عنواناً، وUSD +0.83 من 12. أقرب خبر عالي التأثير: USD Existing Home Sales بعد 42.5 ساعة.  عنوان مستخدم (ActionForex): Fed’s Waller Backs December Hike, Says 50bps Should Be Considered if Inflation Stays Hot. المصادر: Yahoo Finance, Forex Factory, TradingView, ForexLive, Investing.com Forex, Investing.com Economy, Investing.com Opinion, ActionForex."
+        }
+      ],
+      "updates": [],
+      "sources": [
+        "Yahoo Finance",
+        "Forex Factory",
+        "TradingView",
+        "ForexLive",
+        "Investing.com Forex",
+        "Investing.com Economy",
+        "Investing.com Opinion",
+        "ActionForex"
+      ],
+      "indicators": {
+        "ema20": 1.12143,
+        "ema50": 1.1303,
+        "ema200": 1.14662,
+        "rsi4h": 42.7,
+        "macd4h": -0.000174,
+        "macdSignal4h": -6.7e-05,
+        "macdHist4h": -0.000107,
+        "atr4h": 0.002638,
+        "adx4h": 18.4,
+        "atrDaily": 0.006614,
+        "swing": 1.11719
+      },
+      "entryReadyTs": 1794340800
+    }
+  ],
+  "updatedAt": "2026-11-10T20:30:48Z"
 }
