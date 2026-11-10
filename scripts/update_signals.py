@@ -22,6 +22,7 @@ from fps_lib import (
     DATA,
     ISSUE_HOUR_UTC,
     PAIRS,
+    NO_ISSUE_PAIRS,
     Decision,
     FetchError,
     Fundamentals,
@@ -193,6 +194,17 @@ def main() -> int:
         decisions: list[Decision] = []
         priced = 0
         for pair in PAIRS:
+            if pair in NO_ISSUE_PAIRS:
+                decisions.append(
+                    skip_decision(
+                        pair,
+                        "disabled",
+                        "New signals on this pair are switched off after weak backtest results.",
+                        "توصيات هذا الزوج متوقفة بعد نتائج ضعيفة في الاختبار التاريخي.",
+                    )
+                )
+                print(f"PAIR {pair} SKIP disabled")
+                continue
             block = issuance_block(pair, open_signals, history, now)
             if block == "open":
                 current = next(item for item in open_signals if item["pair"] == pair)
@@ -258,11 +270,11 @@ def main() -> int:
         state["sources"] = {
             "prices": {
                 "provider": "Yahoo Finance chart API",
-                "ok": priced == len(PAIRS),
+                "ok": priced == len(PAIRS) - len(NO_ISSUE_PAIRS),
                 "detail": (
                     "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. "
                     "This is the endpoint yfinance reads. "
-                    f"{priced} of {len(PAIRS)} pairs loaded."
+                    f"{priced} of {len(PAIRS) - len(NO_ISSUE_PAIRS)} issuing pairs loaded."
                 ),
             },
             "calendar": {

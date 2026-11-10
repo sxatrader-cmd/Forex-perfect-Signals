@@ -42,6 +42,10 @@ PAIRS = [
     "NZDUSD",
 ]
 
+# Pairs tracked and shown but not issued new signals (owner decision 2026-11-10:
+# USDJPY and USDCAD lost every holdout trade in both backtests).
+NO_ISSUE_PAIRS = {"USDJPY", "USDCAD"}
+
 # A new signal needs every one of these. They are mirrored on the method page.
 RSI_BUY = (40.0, 65.0)
 RSI_SELL = (35.0, 60.0)
