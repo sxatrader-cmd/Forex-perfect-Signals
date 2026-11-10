@@ -25,7 +25,7 @@ const sections = {
     },
     {
       title: "الخبر والعناوين",
-      body: "لا إشارة جديدة إذا كان لعملة الزوج خبر عالي التأثير خلال 8 ساعات. مفاجأة التقويم هي الفرق بين الفعلي والتوقع بعد تصنيف مؤشرات البطالة كعكسية. مزاج العناوين يُجمع من خلاصات عامة، ويمنع الصفقة فقط إذا عارضها بقوة (فرق 0.85 أو أكثر) مع عنوانين مُقيَّمين على الأقل لكل عملة. السوق المغلق لا يستقبل إشارة جديدة حتى لو اكتمل الفني.",
+      body: "بعد اكتمال الفني يجب أن يرجح مجموع مفاجآت الأخبار عالية التأثير (الفعلي مقابل التوقع) خلال آخر 8 أيام تداول العملة المشتراة. فارق سعر السياسة وتغيره خلال 120 يوماً يُذكران في أسباب الإشارة، ولا يمنعان الصفقة: على عينة التدريب كان اشتراطهما معاً يقطع الإشارات دون أن يحسّن النتيجة. لا إشارة جديدة إذا كان لعملة الزوج خبر عالي التأثير خلال 8 ساعات. مؤشرات البطالة تُقرأ بعكس الإشارة. مزاج العناوين يمنع الصفقة فقط إذا عارضها بقوة (فرق 0.85 أو أكثر). السوق المغلق لا يستقبل إشارة جديدة.",
     },
     {
       title: "المصادر",
@@ -51,7 +51,7 @@ const sections = {
     },
     {
       title: "News and headlines",
-      body: "No new signal if either currency has a high-impact release inside 8 hours. A calendar surprise is actual versus forecast, with unemployment-style releases treated as inverse. Headline tone comes from public RSS feeds and blocks a trade only when it strongly opposes it (an edge of 0.85 or more) and each currency has at least two scored headlines. A closed market does not receive a new signal even if the technical checks pass.",
+      body: "After the technical checks, the sum of high-impact surprises (actual versus forecast) over the last 8 trading days must favour the bought currency. The policy-rate gap and its 120-day change are cited in the reasons and do not block the trade: requiring them as well cut the training sample without improving it. No new signal if either currency has a high-impact release inside 8 hours. Unemployment-style releases are read in reverse. Headline tone blocks a trade only when it strongly opposes it (an edge of 0.85 or more) and each currency has at least two scored headlines. A closed market does not receive a new signal even if the other checks pass.",
     },
     {
       title: "Sources",

@@ -5,7 +5,9 @@ Uses evaluate_pair, the same stop/target geometry, one open signal per pair,
 and one new signal per pair per Baghdad day at the live issue hour. Each closed trade
 pays the spread (1 pip on EUR, GBP, JPY, AUD; 1.5 on NZD, CAD, CHF). The
 first 70% of decision days is in-sample. The last 30% is reported separately
-and is not used to pick parameters.
+and is not used to pick parameters. The technical rules were already scored on this
+holdout once. The fundamental gate (news surprise, not the rate path) was chosen
+only on the in-sample window after that, so this holdout is a second look.
 
 Trades still open at a period boundary are marked at the last completed hour
 so the next period starts flat. Forex Factory history is not available for
@@ -24,9 +26,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fps_lib import (  # noqa: E402
     PAIRS,
     Bar,
+    apply_macro,
     empty_fundamentals,
     evaluate_pair,
     fetch_yahoo,
+    load_macro_tables,
     market_closed,
     pip_size,
     reconcile_daily,
@@ -109,7 +113,7 @@ def _view(bars: dict[str, list[Bar]], ts: int) -> tuple[list[Bar], list[Bar], li
     return reconcile_daily(daily, h4), h4, h1
 
 
-def replay(history: dict, days: list[datetime], boundary: datetime, label: str) -> list[dict]:
+def replay(history: dict, days: list[datetime], boundary: datetime, label: str, fund_for=None) -> list[dict]:
     """Replay one period. Open trades are marked at `boundary` and do not cross it."""
     if not days:
         return []
@@ -123,7 +127,8 @@ def replay(history: dict, days: list[datetime], boundary: datetime, label: str) 
                 continue
             ts = int(day.timestamp())
             daily, h4, h1 = _view(bars, ts)
-            decision = evaluate_pair(pair, daily, h4, h1, empty_fundamentals(day), day, market_open=True)
+            fund = empty_fundamentals(day) if fund_for is None else fund_for(day)
+            decision = evaluate_pair(pair, daily, h4, h1, fund, day, market_open=True)
             signal = decision.signal
             if not signal:
                 continue
@@ -187,13 +192,15 @@ def summarize(trades: list[dict]) -> dict:
     if not trades:
         return {
             "n": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "avg_rr": 0.0,
-            "net_pips": 0.0, "net_r": 0.0, "profit_factor": 0.0,
+            "net_pips": 0.0, "net_r": 0.0, "profit_factor": 0.0, "profit_factor_r": 0.0,
             "max_streak": 0, "max_dd_r": 0.0,
         }
     wins = [trade for trade in trades if trade["net_pips"] > 0]
     losses = [trade for trade in trades if trade["net_pips"] <= 0]
     gain = sum(trade["net_pips"] for trade in wins)
     pain = abs(sum(trade["net_pips"] for trade in losses))
+    gain_r = sum(trade["net_r"] for trade in wins)
+    pain_r = abs(sum(trade["net_r"] for trade in losses))
     streak = worst = 0
     equity = peak = 0.0
     drawdown = 0.0
@@ -216,13 +223,14 @@ def summarize(trades: list[dict]) -> dict:
         "net_pips": sum(trade["net_pips"] for trade in trades),
         "net_r": sum(trade["net_r"] for trade in trades),
         "profit_factor": (gain / pain) if pain else float("inf"),
+        "profit_factor_r": (gain_r / pain_r) if pain_r else float("inf"),
         "max_streak": worst,
         "max_dd_r": drawdown,
     }
 
 
 def render(title: str, trades: list[dict], weeks: float) -> str:
-    lines = [title, "pair      n   wins  loss   win%   avgRR    net pips    net R     PF   streak   maxDD R"]
+    lines = [title, "pair      n   wins  loss   win%   avgRR    net pips    net R    PFpips    PFr  streak   maxDD R"]
     groups = [pair for pair in PAIRS if any(trade["pair"] == pair for trade in trades)]
     for pair in groups + ["ALL"]:
         subset = trades if pair == "ALL" else [trade for trade in trades if trade["pair"] == pair]
@@ -231,7 +239,8 @@ def render(title: str, trades: list[dict], weeks: float) -> str:
         lines.append(
             f"{pair:<8} {stats['n']:3d} {stats['wins']:5d} {stats['losses']:5d} "
             f"{stats['win_rate']:6.1f} {stats['avg_rr']:7.2f} {stats['net_pips']:10.1f} "
-            f"{stats['net_r']:8.2f} {stats['profit_factor']:6.2f} {stats['max_streak']:6d} {stats['max_dd_r']:8.2f}"
+            f"{stats['net_r']:8.2f} {stats['profit_factor']:7.2f} {stats['profit_factor_r']:6.2f} "
+            f"{stats['max_streak']:6d} {stats['max_dd_r']:8.2f}"
             + (f"   {per_week:.2f}/week" if pair == "ALL" else "")
         )
     if not groups:
@@ -259,9 +268,14 @@ def main() -> int:
         f"days={len(days)} in-sample={len(sample)} ({sample[0].date()}..{sample[-1].date()}) "
         f"out-of-sample={len(holdout)} ({holdout[0].date()}..{holdout[-1].date()})"
     )
-    ins = replay(history, sample, holdout[0], "in-sample")
+    events, banks = load_macro_tables()
+
+    def fund_for(day: datetime):
+        return apply_macro(empty_fundamentals(day), day, events, banks)
+
+    ins = replay(history, sample, holdout[0], "in-sample", fund_for)
     oos_boundary = datetime.fromtimestamp(last_bar, timezone.utc)
-    oos = replay(history, holdout, oos_boundary, "out-of-sample")
+    oos = replay(history, holdout, oos_boundary, "out-of-sample", fund_for)
     in_weeks = max((sample[-1] - sample[0]).days / 7, 0.1)
     out_weeks = max((holdout[-1] - holdout[0]).days / 7, 0.1)
     print(render("IN-SAMPLE", ins, in_weeks))

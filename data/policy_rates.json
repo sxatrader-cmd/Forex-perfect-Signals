@@ -1,0 +1,555 @@
+{
+  "source": "https://economic-calendar.tradingview.com/events",
+  "updatedAt": "2026-11-10T04:28:35Z",
+  "note": "Policy rate is the decision's actual print. changeBp is actual minus previous, in basis points. The rate in force before the first row is that row's previous.",
+  "banks": {
+    "GBP": [
+      {
+        "time": "2025-08-07T11:00:00Z",
+        "rate": 4.0,
+        "previous": 4.25,
+        "changeBp": -25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-09-18T11:00:00Z",
+        "rate": 4.0,
+        "previous": 4.0,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-11-06T12:00:00Z",
+        "rate": 4.0,
+        "previous": 4.0,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-12-18T12:00:00Z",
+        "rate": 3.75,
+        "previous": 4.0,
+        "changeBp": -25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-02-05T12:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-03-19T12:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-04-30T11:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-06-18T11:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-07-30T11:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-09-17T11:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-11-05T12:00:00Z",
+        "rate": 4.0,
+        "previous": 3.75,
+        "changeBp": 25,
+        "title": "Interest Rate"
+      }
+    ],
+    "AUD": [
+      {
+        "time": "2025-08-12T04:30:00Z",
+        "rate": 3.6,
+        "previous": 3.85,
+        "changeBp": -25,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2025-09-30T04:30:00Z",
+        "rate": 3.6,
+        "previous": 3.6,
+        "changeBp": 0,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2025-11-04T03:30:00Z",
+        "rate": 3.6,
+        "previous": 3.6,
+        "changeBp": 0,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2025-12-09T03:30:00Z",
+        "rate": 3.6,
+        "previous": 3.6,
+        "changeBp": 0,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2026-02-03T03:30:00Z",
+        "rate": 3.85,
+        "previous": 3.6,
+        "changeBp": 25,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2026-03-17T03:30:00Z",
+        "rate": 4.1,
+        "previous": 3.85,
+        "changeBp": 25,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2026-05-05T04:30:00Z",
+        "rate": 4.35,
+        "previous": 4.1,
+        "changeBp": 25,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2026-06-16T04:30:00Z",
+        "rate": 4.35,
+        "previous": 4.35,
+        "changeBp": 0,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2026-08-11T04:30:00Z",
+        "rate": 4.35,
+        "previous": 4.35,
+        "changeBp": 0,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2026-09-29T04:30:00Z",
+        "rate": 4.6,
+        "previous": 4.35,
+        "changeBp": 25,
+        "title": "RBA Interest Rate Decision"
+      },
+      {
+        "time": "2026-11-03T03:30:00Z",
+        "rate": 4.85,
+        "previous": 4.6,
+        "changeBp": 25,
+        "title": "RBA Interest Rate Decision"
+      }
+    ],
+    "NZD": [
+      {
+        "time": "2025-08-20T02:00:00Z",
+        "rate": 3.0,
+        "previous": 3.25,
+        "changeBp": -25,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2025-10-08T01:00:00Z",
+        "rate": 2.5,
+        "previous": 3.0,
+        "changeBp": -50,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2025-11-26T01:00:00Z",
+        "rate": 2.25,
+        "previous": 2.5,
+        "changeBp": -25,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2026-02-18T01:00:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2026-04-08T02:00:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2026-05-27T02:00:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2026-07-08T02:00:00Z",
+        "rate": 2.5,
+        "previous": 2.25,
+        "changeBp": 25,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2026-09-02T02:00:00Z",
+        "rate": 2.75,
+        "previous": 2.5,
+        "changeBp": 25,
+        "title": "RBNZ Interest Rate Decision"
+      },
+      {
+        "time": "2026-10-28T01:00:00Z",
+        "rate": 2.75,
+        "previous": 2.75,
+        "changeBp": 0,
+        "title": "RBNZ Interest Rate Decision"
+      }
+    ],
+    "EUR": [
+      {
+        "time": "2025-09-11T12:15:00Z",
+        "rate": 2.15,
+        "previous": 2.15,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2025-10-30T13:15:00Z",
+        "rate": 2.15,
+        "previous": 2.15,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2025-12-18T13:15:00Z",
+        "rate": 2.15,
+        "previous": 2.15,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2026-02-05T13:15:00Z",
+        "rate": 2.15,
+        "previous": 2.15,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2026-03-19T13:15:00Z",
+        "rate": 2.15,
+        "previous": 2.15,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2026-04-30T12:15:00Z",
+        "rate": 2.15,
+        "previous": 2.15,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2026-06-11T12:15:00Z",
+        "rate": 2.4,
+        "previous": 2.15,
+        "changeBp": 25,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2026-07-23T12:15:00Z",
+        "rate": 2.4,
+        "previous": 2.4,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2026-09-10T12:15:00Z",
+        "rate": 2.65,
+        "previous": 2.4,
+        "changeBp": 25,
+        "title": "ECB Interest Rate Decision"
+      },
+      {
+        "time": "2026-10-29T13:15:00Z",
+        "rate": 2.65,
+        "previous": 2.65,
+        "changeBp": 0,
+        "title": "ECB Interest Rate Decision"
+      }
+    ],
+    "CAD": [
+      {
+        "time": "2025-09-17T13:45:00Z",
+        "rate": 2.5,
+        "previous": 2.75,
+        "changeBp": -25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-10-29T13:45:00Z",
+        "rate": 2.25,
+        "previous": 2.5,
+        "changeBp": -25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-12-10T14:45:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-01-28T14:45:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-03-18T13:45:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-04-29T13:45:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-06-10T13:45:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-07-15T13:45:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-09-02T13:45:00Z",
+        "rate": 2.25,
+        "previous": 2.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-10-28T13:45:00Z",
+        "rate": 2.5,
+        "previous": 2.25,
+        "changeBp": 25,
+        "title": "Interest Rate"
+      }
+    ],
+    "USD": [
+      {
+        "time": "2025-09-17T18:00:00Z",
+        "rate": 4.25,
+        "previous": 4.5,
+        "changeBp": -25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-10-29T18:00:00Z",
+        "rate": 4.0,
+        "previous": 4.25,
+        "changeBp": -25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-12-10T19:00:00Z",
+        "rate": 3.75,
+        "previous": 4.0,
+        "changeBp": -25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-01-28T19:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-03-18T18:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-04-29T18:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-06-17T18:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-07-29T18:00:00Z",
+        "rate": 3.75,
+        "previous": 3.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-09-16T18:00:00Z",
+        "rate": 4.0,
+        "previous": 3.75,
+        "changeBp": 25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-10-28T18:00:00Z",
+        "rate": 4.0,
+        "previous": 4.0,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      }
+    ],
+    "JPY": [
+      {
+        "time": "2025-09-19T02:30:00Z",
+        "rate": 0.5,
+        "previous": 0.5,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-10-30T02:30:00Z",
+        "rate": 0.5,
+        "previous": 0.5,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2025-12-19T02:30:00Z",
+        "rate": 0.75,
+        "previous": 0.5,
+        "changeBp": 25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-01-23T02:30:00Z",
+        "rate": 0.75,
+        "previous": null,
+        "changeBp": null,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-03-19T02:30:00Z",
+        "rate": 0.75,
+        "previous": 0.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-04-28T02:30:00Z",
+        "rate": 0.75,
+        "previous": 0.75,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-06-16T02:30:00Z",
+        "rate": 1.0,
+        "previous": 0.75,
+        "changeBp": 25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-07-31T02:30:00Z",
+        "rate": 1.0,
+        "previous": 1.0,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-09-18T02:30:00Z",
+        "rate": 1.25,
+        "previous": 1.0,
+        "changeBp": 25,
+        "title": "Interest Rate"
+      },
+      {
+        "time": "2026-10-30T02:30:00Z",
+        "rate": 1.25,
+        "previous": 1.25,
+        "changeBp": 0,
+        "title": "Interest Rate"
+      }
+    ],
+    "CHF": [
+      {
+        "time": "2025-09-25T07:30:00Z",
+        "rate": 0.0,
+        "previous": 0.0,
+        "changeBp": 0,
+        "title": "SNB Interest Rate Decision"
+      },
+      {
+        "time": "2025-12-11T08:30:00Z",
+        "rate": 0.0,
+        "previous": 0.0,
+        "changeBp": 0,
+        "title": "SNB Interest Rate Decision"
+      },
+      {
+        "time": "2026-03-19T08:30:00Z",
+        "rate": 0.0,
+        "previous": 0.0,
+        "changeBp": 0,
+        "title": "SNB Interest Rate Decision"
+      },
+      {
+        "time": "2026-06-18T07:30:00Z",
+        "rate": 0.0,
+        "previous": 0.0,
+        "changeBp": 0,
+        "title": "SNB Interest Rate Decision"
+      },
+      {
+        "time": "2026-09-24T07:30:00Z",
+        "rate": 0.0,
+        "previous": 0.0,
+        "changeBp": 0,
+        "title": "SNB Interest Rate Decision"
+      }
+    ]
+  }
+}

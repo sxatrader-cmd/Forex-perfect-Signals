@@ -25,6 +25,7 @@ from fps_lib import (
     Decision,
     FetchError,
     Fundamentals,
+    apply_macro,
     calendar_fundamentals,
     completed,
     evaluate_pair,
@@ -149,7 +150,7 @@ def build_fundamentals(now: datetime) -> Fundamentals:
     print(f"HEADLINES used: {', '.join(used) or 'none'}")
     for item in failed:
         print(f"HEADLINES failed: {item['source']}: {item['error']}")
-    return Fundamentals(
+    fund = Fundamentals(
         sentiment=sentiment,
         counts=counts,
         surprises=surprises,
@@ -160,6 +161,8 @@ def build_fundamentals(now: datetime) -> Fundamentals:
         now=now,
         headline_examples=headlines,
     )
+    # The stored TradingView history replaces the one-week surprise window. Headlines stay.
+    return apply_macro(fund, now)
 
 
 def skip_decision(pair: str, block: str, en: str, ar: str, snapshot: dict | None = None) -> Decision:

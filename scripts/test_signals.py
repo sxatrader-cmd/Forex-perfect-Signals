@@ -13,6 +13,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fps_lib import (
     Bar,
+    news_agree,
+    rates_agree,
     actual_is_compatible,
     atr,
     build_progress_update,
@@ -190,6 +192,10 @@ def clear_buy_bars() -> tuple[list[Bar], list[Bar], list[Bar]]:
 def test_clear_setup_has_six_reasons() -> None:
     now = datetime(2026, 11, 4, 12, tzinfo=timezone.utc)  # Wednesday, market open
     fund = empty_fundamentals(now, sources=["Yahoo Finance", "unit-test"])
+    fund.rates = {"EUR": 4.50, "USD": 3.50}
+    fund.rate_changes = {"EUR": 25.0, "USD": 0.0}
+    fund.surprises = {"EUR": 0.40, "USD": -0.20}
+    fund.surprise_counts = {"EUR": 2, "USD": 1}
     daily, h4, h1 = clear_buy_bars()
     found = evaluate_pair(pair="EURUSD", daily=daily, h4=h4, h1=h1, fund=fund, now=now)
     if not found.signal:
@@ -260,15 +266,23 @@ def test_reason_copy_contains_fundamentals() -> None:
             "macdHist": 0.000600,
             "atr4": 0.00250,
             "swing": 1.09900,
+            "rateBase": 4.50,
+            "rateQuote": 3.50,
+            "rateChangeBase": 25.0,
+            "rateChangeQuote": -25.0,
         },
         fund,
     )
     if len(reasons) != 6:
         fail(str(len(reasons)))
     blob = reasons[5]["en"] + reasons[5]["ar"]
-    for needle in ("165K", "65K", "ForexLive", "+0.25", "Euro rebounds as ECB stays hawkish"):
+    for needle in ("165K", "65K", "ForexLive", "+0.25", "Euro rebounds as ECB stays hawkish", "+0.40"):
         if needle not in blob:
-            fail(f"missing {needle} in fundamentals reason")
+            fail(f"missing {needle} in the news reason")
+    rate_blob = reasons[4]["en"] + reasons[4]["ar"]
+    for needle in ("4.50", "3.50", "+25", "-25"):
+        if needle not in rate_blob:
+            fail(f"missing {needle} in the rate reason")
 
 
 def test_four_hour_updates_and_immutable_archive() -> None:
@@ -314,6 +328,26 @@ def test_four_hour_updates_and_immutable_archive() -> None:
         fail("new archive row missing")
 
 
+def test_rate_and_news_gates() -> None:
+    now = datetime(2026, 11, 4, 8, tzinfo=timezone.utc)
+    fund = empty_fundamentals(now)
+    fund.rates = {"EUR": 4.50, "USD": 3.50}
+    fund.rate_changes = {"EUR": 0.0, "USD": 0.0}
+    fund.surprises = {"EUR": 0.30, "USD": -0.10}
+    if not rates_agree(fund, "EURUSD", "BUY"):
+        fail("higher EUR rate should allow a buy when the 120-day change does not fight it")
+    if rates_agree(fund, "EURUSD", "SELL"):
+        fail("a sell fights the rate gap")
+    fund.rate_changes = {"EUR": -50.0, "USD": 0.0}
+    if rates_agree(fund, "EURUSD", "BUY"):
+        fail("a cut in the base currency conflicts with a higher rate level")
+    if not news_agree(fund, "EURUSD", "BUY"):
+        fail("positive EUR surprise versus USD should favour a buy")
+    fund.surprises = {"EUR": 0.0, "USD": 0.0}
+    if news_agree(fund, "EURUSD", "BUY"):
+        fail("a flat surprise does not favour a direction")
+
+
 def test_pause_blocks_issue_even_when_forced() -> None:
     from update_signals import should_issue
 
@@ -338,5 +372,6 @@ if __name__ == "__main__":
     test_clear_setup_has_six_reasons()
     test_reason_copy_contains_fundamentals()
     test_four_hour_updates_and_immutable_archive()
+    test_rate_and_news_gates()
     test_pause_blocks_issue_even_when_forced()
     print("all signal tests passed")

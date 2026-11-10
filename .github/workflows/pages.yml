@@ -39,6 +39,8 @@ jobs:
         run: python scripts/test_signals.py
       - name: Update economic calendar
         run: python scripts/fetch_news.py
+      - name: Update policy rates and high-impact history
+        run: python scripts/update_macro.py
       - name: Update signals
         env:
           FORCE_ISSUE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.issue == 'true' && '1' || '0' }}

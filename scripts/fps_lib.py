@@ -60,6 +60,10 @@ EVENT_BLOCK_HOURS = 8.0
 SENTIMENT_BLOCK = 0.85
 MIN_HEADLINES = 2
 ISSUE_HOUR_UTC = 8
+# both = rate differential and news surprise. rate or news uses one filter.
+FUND_GATE = "news"
+SURPRISE_DAYS = 8
+RATE_CHANGE_DAYS = 120
 
 FEEDS = [
     ("ForexLive", "https://www.forexlive.com/feed"),
@@ -120,6 +124,9 @@ class Fundamentals:
     failed: list[dict]
     now: datetime
     headline_examples: dict[str, dict | None] = field(default_factory=dict)
+    rates: dict[str, float] = field(default_factory=dict)
+    rate_changes: dict[str, float] = field(default_factory=dict)
+    surprise_counts: dict[str, int] = field(default_factory=dict)
 
 
 @dataclass
@@ -646,6 +653,22 @@ def parse_number(value: str | None) -> float | None:
         return None
 
 
+def is_policy_decision(title: str) -> bool:
+    """The policy-rate print itself, not a projection or a reserve-balance rate."""
+    text = title.lower().strip()
+    if any(word in text for word in ("projection", "reserve balance", "balance sheet", "speech", "minutes", "press")):
+        return False
+    if text in {
+        "interest rate",
+        "ecb interest rate decision",
+        "rba interest rate decision",
+        "rbnz interest rate decision",
+        "snb interest rate decision",
+    }:
+        return True
+    return text.endswith("interest rate decision")
+
+
 def is_inverse(title: str) -> bool:
     lowered = title.lower()
     return any(word in lowered for word in INVERSE_WORDS)
@@ -856,6 +879,132 @@ def calendar_fundamentals(events: list[dict], now: datetime) -> tuple[dict[str, 
     return surprises, examples, upcoming
 
 
+def load_macro_tables() -> tuple[list[dict], dict[str, list[dict]]]:
+    calendar = load_json(DATA / "macro_calendar.json") or {}
+    rates = load_json(DATA / "policy_rates.json") or {}
+    events = calendar.get("events") if isinstance(calendar, dict) else None
+    banks = rates.get("banks") if isinstance(rates, dict) else None
+    return (events or []), (banks or {})
+
+
+def trading_day_window(now: datetime, days: int = SURPRISE_DAYS) -> set:
+    found: set = set()
+    cursor = now.astimezone(timezone.utc).date()
+    while len(found) < days:
+        if cursor.weekday() < 5:
+            found.add(cursor)
+        cursor -= timedelta(days=1)
+    return found
+
+
+def apply_macro(fund: Fundamentals, now: datetime, events: list[dict] | None = None, banks: dict | None = None) -> Fundamentals:
+    """Fill rate levels, 120-day changes, and the 8-day high-impact surprise from the stored calendar."""
+    if events is None or banks is None:
+        events, banks = load_macro_tables()
+    window = trading_day_window(now)
+    surprises = {code: 0.0 for code in ALIASES}
+    counts = {code: 0 for code in ALIASES}
+    examples: dict[str, dict] = {}
+    best_abs = {code: -1.0 for code in ALIASES}
+    upcoming: dict[str, dict | None] = {code: None for code in ALIASES}
+    rates: dict[str, float] = {}
+    changes: dict[str, float] = {}
+    for code in ALIASES:
+        rate, change = policy_state(banks, code, now)
+        if rate is not None:
+            rates[code] = rate
+        changes[code] = change
+    for event in events:
+        currency = event.get("currency")
+        if currency not in surprises or not event.get("time"):
+            continue
+        moment = parse_dt(event["time"])
+        if moment > now and event.get("impact") == "High":
+            current = upcoming[currency]
+            if current is None or moment < parse_dt(current["time"]):
+                upcoming[currency] = {
+                    "currency": currency,
+                    "title": event.get("title") or "",
+                    "time": event["time"],
+                    "impact": "High",
+                }
+            continue
+        if moment > now or event.get("policy") or event.get("impact") != "High":
+            continue
+        if moment.date() not in window:
+            continue
+        actual = event.get("actual")
+        forecast = event.get("forecast")
+        if actual is None or forecast is None:
+            continue
+        fraction = surprise_fraction(event.get("title") or "", str(actual), str(forecast))
+        if fraction is None:
+            continue
+        surprises[currency] += fraction
+        counts[currency] += 1
+        if abs(fraction) > best_abs[currency]:
+            best_abs[currency] = abs(fraction)
+            examples[currency] = {
+                "currency": currency,
+                "title": event.get("title") or "",
+                "actual": str(actual),
+                "forecast": str(forecast),
+                "fraction": round(fraction, 2),
+            }
+    fund.surprises = {code: round(value, 2) for code, value in surprises.items()}
+    fund.examples = examples
+    fund.next_events = upcoming
+    fund.rates = rates
+    fund.rate_changes = changes
+    fund.surprise_counts = counts
+    if "TradingView" not in fund.sources:
+        fund.sources.append("TradingView")
+    return fund
+
+
+def policy_state(banks: dict[str, list[dict]], currency: str, now: datetime) -> tuple[float | None, float]:
+    rows = banks.get(currency) or []
+    past = [row for row in rows if row.get("time") and parse_dt(row["time"]) <= now]
+    cutoff = now - timedelta(days=RATE_CHANGE_DAYS)
+    if not past:
+        if rows and rows[0].get("previous") is not None:
+            return float(rows[0]["previous"]), 0.0
+        return None, 0.0
+    change = 0.0
+    for row in past:
+        moment = parse_dt(row["time"])
+        if moment < cutoff or row.get("changeBp") is None:
+            continue
+        change += float(row["changeBp"])
+    return float(past[-1]["rate"]), change
+
+
+def rates_agree(fund: Fundamentals, pair: str, direction: str) -> bool:
+    """Agree with the policy-rate gap, or its 120-day change, and do not fight the other."""
+    base, quote = pair[:3], pair[3:]
+    base_rate = fund.rates.get(base)
+    quote_rate = fund.rates.get(quote)
+    if base_rate is None or quote_rate is None:
+        return False
+    level = base_rate - quote_rate
+    change = fund.rate_changes.get(base, 0.0) - fund.rate_changes.get(quote, 0.0)
+    sign = 1.0 if direction == "BUY" else -1.0
+    votes: list[bool] = []
+    if abs(level) >= 0.001:
+        votes.append(level * sign > 0)
+    if abs(change) >= 1:
+        votes.append(change * sign > 0)
+    return bool(votes) and all(votes)
+
+
+def news_agree(fund: Fundamentals, pair: str, direction: str) -> bool:
+    base, quote = pair[:3], pair[3:]
+    edge = fund.surprises.get(base, 0.0) - fund.surprises.get(quote, 0.0)
+    if direction == "BUY":
+        return edge > 0
+    return edge < 0
+
+
 def imminent_event(pair: str, upcoming: dict[str, dict | None], now: datetime) -> dict | None:
     base, quote = pair[:3], pair[3:]
     soonest = None
@@ -957,8 +1106,44 @@ def build_reasons(pair: str, direction: str, entry: float, sl: float, tp: float,
         swing_en = f"The nearest 4H swing resistance is {fmt_px(pair, swing)}, {fmt_num(swing_pips, 1)} pips above the entry. The stop is placed beyond it."
         swing_ar = f"أقرب مقاومة تأرجح على 4 ساعات عند {fmt_px(pair, swing)}، أي {fmt_num(swing_pips, 1)} نقطة فوق الدخول، ووُضع الإيقاف بعدها."
     if swing is None:
-        swing_en = "No nearby 4H swing level fitted inside the ATR stop band, so the stop uses 1.2–1.5 times the 4H ATR instead of a swing."
-        swing_ar = "لا يوجد مستوى تأرجح قريب داخل نطاق الإيقاف، لذلك حُسب الإيقاف من 1.2 إلى 1.5 ضعف ATR على 4 ساعات."
+        swing_en = "No nearby 4H swing level fitted inside the ATR stop band, so the stop uses an ATR multiple instead of a swing."
+        swing_ar = "لا يوجد مستوى تأرجح قريب داخل نطاق الإيقاف، لذلك حُسب الإيقاف من مضاعف ATR على 4 ساعات."
+    swing_en += (
+        f" 4H ATR(14) is {fmt_px(pair, snap['atr4'])} ({fmt_num(atr_pips, 1)} pips). "
+        f"Stop {fmt_num(risk_pips, 1)} pips, target {fmt_num(reward_pips, 1)} pips, reward-to-risk 1:{fmt_num(rr, 2)}."
+    )
+    swing_ar += (
+        f" ATR(14) على 4 ساعات يساوي {fmt_px(pair, snap['atr4'])} ({fmt_num(atr_pips, 1)} نقطة). "
+        f"الإيقاف {fmt_num(risk_pips, 1)} نقطة، والهدف {fmt_num(reward_pips, 1)} نقطة، والعائد إلى المخاطرة 1:{fmt_num(rr, 2)}."
+    )
+    rate_base = snap.get("rateBase")
+    rate_quote = snap.get("rateQuote")
+    change_base = snap.get("rateChangeBase", 0.0)
+    change_quote = snap.get("rateChangeQuote", 0.0)
+    gap = None if rate_base is None or rate_quote is None else rate_base - rate_quote
+    rate_ok = rates_agree(fund, pair, direction)
+    rate_en = (
+        f"Policy rates: {base} {fmt_num(rate_base, 2)}% versus {quote} {fmt_num(rate_quote, 2)}% "
+        f"(gap {fmt_num(gap, 2, signed=True)} points). "
+        f"Change over the last {RATE_CHANGE_DAYS} days: {base} {fmt_num(change_base, 0, signed=True)} bp, "
+        f"{quote} {fmt_num(change_quote, 0, signed=True)} bp. "
+        + (
+            f"That gap and its change agree with the {direction}."
+            if rate_ok
+            else f"That gap or its change does not agree with the {direction}, so the rate path is not the reason for this trade."
+        )
+    )
+    rate_ar = (
+        f"أسعار السياسة: {base} {fmt_num(rate_base, 2)}% مقابل {quote} {fmt_num(rate_quote, 2)}% "
+        f"(الفارق {fmt_num(gap, 2, signed=True)} نقطة مئوية). "
+        f"التغير خلال {RATE_CHANGE_DAYS} يوماً: {base} {fmt_num(change_base, 0, signed=True)} نقطة أساس، "
+        f"و{quote} {fmt_num(change_quote, 0, signed=True)} نقطة أساس. "
+        + (
+            f"الفارق وتغيره يوافقان اتجاه الصفقة."
+            if rate_ok
+            else "الفارق أو تغيره لا يوافق الاتجاه، لذلك مسار الفائدة ليس سبب هذه الصفقة."
+        )
+    )
 
     bsent = fund.sentiment.get(base)
     qsent = fund.sentiment.get(quote)
@@ -1047,30 +1232,23 @@ def build_reasons(pair: str, direction: str, entry: float, sl: float, tp: float,
             ),
         },
         {"en": swing_en, "ar": swing_ar},
+        {"en": rate_en, "ar": rate_ar},
         {
             "en": (
-                f"4H ATR(14) is {fmt_px(pair, snap['atr4'])} ({fmt_num(atr_pips, 1)} pips). "
-                f"Stop distance {fmt_num(risk_pips, 1)} pips, target distance {fmt_num(reward_pips, 1)} pips, "
-                f"reward-to-risk 1:{fmt_num(rr, 2)}. Distances ignore broker spread and slippage."
+                f"High-impact surprise sum over the last {SURPRISE_DAYS} trading days: "
+                f"{base} {fmt_num(bsur, 2, signed=True)} from {fund.surprise_counts.get(base, 0)} prints, "
+                f"{quote} {fmt_num(qsur, 2, signed=True)} from {fund.surprise_counts.get(quote, 0)}. "
+                f"That {'favours' if news_agree(fund, pair, direction) else 'does not favour'} the {direction}."
+                f"{example_en} Headline tone {base} {fmt_num(bsent, 2, signed=True)} from {bcount} scored headlines, "
+                f"{quote} {fmt_num(qsent, 2, signed=True)} from {qcount}.{next_en} {cite_en} Sources: {sources}."
             ),
             "ar": (
-                f"ATR(14) على 4 ساعات يساوي {fmt_px(pair, snap['atr4'])} ({fmt_num(atr_pips, 1)} نقطة). "
-                f"مسافة الإيقاف {fmt_num(risk_pips, 1)} نقطة، ومسافة الهدف {fmt_num(reward_pips, 1)} نقطة، "
-                f"ونسبة العائد إلى المخاطرة 1:{fmt_num(rr, 2)}. المسافات لا تشمل سبريد الوسيط ولا الانزلاق."
-            ),
-        },
-        {
-            "en": (
-                f"Headline tone {base} {fmt_num(bsent, 2, signed=True)} from {bcount} scored headlines, "
-                f"{quote} {fmt_num(qsent, 2, signed=True)} from {qcount}. "
-                f"Weekly surprise sum {base} {fmt_num(bsur, 2, signed=True)}, {quote} {fmt_num(qsur, 2, signed=True)}."
-                f"{example_en}{next_en} {cite_en} Sources: {sources}."
-            ),
-            "ar": (
-                f"مزاج العناوين: {base} {fmt_num(bsent, 2, signed=True)} من {bcount} عنواناً مُقيَّماً، "
-                f"و{quote} {fmt_num(qsent, 2, signed=True)} من {qcount}. "
-                f"مجموع مفاجآت الأسبوع: {base} {fmt_num(bsur, 2, signed=True)}، {quote} {fmt_num(qsur, 2, signed=True)}."
-                f"{example_ar}{next_ar} {cite_ar} المصادر: {sources}."
+                f"مجموع مفاجآت الأخبار عالية التأثير خلال آخر {SURPRISE_DAYS} أيام تداول: "
+                f"{base} {fmt_num(bsur, 2, signed=True)} من {fund.surprise_counts.get(base, 0)} قراءة، "
+                f"و{quote} {fmt_num(qsur, 2, signed=True)} من {fund.surprise_counts.get(quote, 0)}. "
+                f"هذا {'يرجح' if news_agree(fund, pair, direction) else 'لا يرجح'} اتجاه الصفقة."
+                f"{example_ar} مزاج العناوين: {base} {fmt_num(bsent, 2, signed=True)} من {bcount} عنواناً، "
+                f"و{quote} {fmt_num(qsent, 2, signed=True)} من {qcount}.{next_ar} {cite_ar} المصادر: {sources}."
             ),
         },
     ]
@@ -1296,6 +1474,37 @@ def evaluate_pair(
                 f"مزاج العناوين يعاكس البيع: {base} {fmt_num(base_s, 2, True)} مقابل {quote} {fmt_num(quote_s, 2, True)}.",
                 snapshot,
             )
+    base, quote = pair[:3], pair[3:]
+    if FUND_GATE in {"both", "rate"} and not rates_agree(fund, pair, direction):
+        base_rate = fund.rates.get(base)
+        quote_rate = fund.rates.get(quote)
+        return _skip(
+            pair,
+            "rate",
+            (
+                f"Policy rates do not agree with a {direction}. {base} {fmt_num(base_rate, 2)}% versus {quote} {fmt_num(quote_rate, 2)}%, "
+                f"120-day change {fmt_num(fund.rate_changes.get(base, 0), 0, signed=True)} bp versus {fmt_num(fund.rate_changes.get(quote, 0), 0, signed=True)} bp."
+            ),
+            (
+                f"أسعار الفائدة لا توافق اتجاه { 'الشراء' if direction == 'BUY' else 'البيع' }. {base} {fmt_num(base_rate, 2)}% مقابل {quote} {fmt_num(quote_rate, 2)}%، "
+                f"وتغير 120 يوماً {fmt_num(fund.rate_changes.get(base, 0), 0, signed=True)} نقطة مقابل {fmt_num(fund.rate_changes.get(quote, 0), 0, signed=True)} نقطة."
+            ),
+            snapshot,
+        )
+    if FUND_GATE in {"both", "news"} and not news_agree(fund, pair, direction):
+        return _skip(
+            pair,
+            "news",
+            (
+                f"High-impact surprises over {SURPRISE_DAYS} trading days do not favour a {direction}: "
+                f"{base} {fmt_num(fund.surprises.get(base, 0), 2, signed=True)} versus {quote} {fmt_num(fund.surprises.get(quote, 0), 2, signed=True)}."
+            ),
+            (
+                f"مفاجآت الأخبار عالية التأثير خلال {SURPRISE_DAYS} أيام تداول لا توافق { 'الشراء' if direction == 'BUY' else 'البيع' }: "
+                f"{base} {fmt_num(fund.surprises.get(base, 0), 2, signed=True)} مقابل {quote} {fmt_num(fund.surprises.get(quote, 0), 2, signed=True)}."
+            ),
+            snapshot,
+        )
     closed = market_closed(now) if market_open is None else not market_open
     if closed:
         return _skip(
@@ -1318,6 +1527,10 @@ def evaluate_pair(
         "atr4": atr4,
         "adx4": adx4,
         "swing": swing,
+        "rateBase": fund.rates.get(base),
+        "rateQuote": fund.rates.get(quote),
+        "rateChangeBase": fund.rate_changes.get(base, 0.0),
+        "rateChangeQuote": fund.rate_changes.get(quote, 0.0),
     }
     # Attach currency onto surprise examples for the sentence.
     for code, example in list(fund.examples.items()):
