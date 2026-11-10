@@ -9,7 +9,7 @@ const sections = {
   ar: [
     {
       title: "متى تُفتح الإشارة",
-      body: "التشغيل يحدّث النقاط العائمة ويغلق الصفقة إذا لامس أعلى أو أدنى شمعة ساعية الهدف أو الإيقاف بعد الدخول. إذا لامست الشمعة نفسها الاثنين، يُحتسب الإيقاف أولاً لأن ترتيب المسار غير معروف. إصدار إشارة جديدة يتم مرة في يوم بغداد، في أول تشغيل ناجح من الساعة 08:00 بتوقيت UTC فما بعد، ولزوج ليس لديه إشارة مفتوحة ولم تُصدر له إشارة في اليوم نفسه. لا تصدر إشارات جديدة على USDJPY وUSDCAD بعد نتائج ضعيفة في الاختبار التاريخي، ويبقى الزوجان معروضين للمتابعة.",
+      body: "التشغيل يحدّث النقاط العائمة ويغلق الصفقة إذا لامس أعلى أو أدنى شمعة ساعية الهدف أو الإيقاف بعد الدخول. إذا لامست الشمعة نفسها الاثنين، يُحتسب الإيقاف أولاً لأن ترتيب المسار غير معروف. إصدار إشارة جديدة يتم مرة في يوم بغداد، في أول تشغيل ناجح من الساعة 08:00 بتوقيت UTC فما بعد، ولزوج ليس لديه إشارة مفتوحة ولم تُصدر له إشارة في اليوم نفسه. لا تُنشر الإشارة إلا إذا وافق اتجاهها تقرير التحليل اليومي (Autochartist من IC Markets) لنفس الزوج. لا تصدر إشارات جديدة على USDJPY وUSDCAD بعد نتائج ضعيفة في الاختبار التاريخي، ويبقى الزوجان معروضين للمتابعة.",
     },
     {
       title: "الاتجاه اليومي",
@@ -35,7 +35,7 @@ const sections = {
   en: [
     {
       title: "When a signal is allowed",
-      body: "Each run updates floating pips and closes a trade if an hourly high or low after entry touches the target or the stop. If one candle touches both, the stop is counted first because the path inside the bar is unknown. A new signal is issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing open and nothing already issued that day. No new signals are issued on USDJPY or USDCAD after weak backtest results; both pairs stay on the board for reference.",
+      body: "Each run updates floating pips and closes a trade if an hourly high or low after entry touches the target or the stop. If one candle touches both, the stop is counted first because the path inside the bar is unknown. A new signal is issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing open and nothing already issued that day. A signal is published only when the daily analyst report (Autochartist via IC Markets) gives the same direction for that pair. No new signals are issued on USDJPY or USDCAD after weak backtest results; both pairs stay on the board for reference.",
     },
     {
       title: "Daily trend",

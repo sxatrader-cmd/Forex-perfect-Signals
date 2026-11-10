@@ -11,6 +11,7 @@ anything new. A paused run still updates open signals.
 
 from __future__ import annotations
 
+import json
 import os
 import sys
 from datetime import datetime, timezone
@@ -166,6 +167,43 @@ def build_fundamentals(now: datetime) -> Fundamentals:
     return apply_macro(fund, now)
 
 
+def load_analyst_bias() -> dict:
+    """Daily analyst bias per pair, written from the owner's Autochartist (IC Markets) email."""
+    path = DATA / "analyst_bias.json"
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def apply_analyst_gate(decision: Decision, analyst: dict, now: datetime) -> Decision:
+    """Keep a signal only when today's analyst report gives the same direction for the pair."""
+    if not decision.signal:
+        return decision
+    pair = decision.pair
+    direction = decision.signal["direction"].upper()
+    entry = (analyst.get("pairs") or {}).get(pair) or {}
+    bias = str(entry.get("bias", "")).upper()
+    if analyst.get("date") != baghdad_date(now):
+        en = "Today's analyst report has not been read yet, so the signal is held back."
+        ar = "لم يُقرأ تقرير التحليل اليومي بعد، لذلك لم تُنشر الإشارة."
+    elif bias not in {"BUY", "SELL"}:
+        en = f"The rules gave a {direction}, but today's analyst report has no clear direction for {pair}."
+        ar = f"القواعد أعطت {direction}، لكن تقرير التحليل اليوم لا يعطي اتجاهاً واضحاً لـ {pair}."
+    elif bias != direction:
+        en = f"The rules gave a {direction}, but today's analyst report is {bias} on {pair}."
+        ar = f"القواعد أعطت {direction}، لكن تقرير التحليل اليوم {bias} على {pair}."
+    else:
+        decision.signal["analyst"] = {
+            "source": analyst.get("source", "Autochartist"),
+            "date": analyst.get("date"),
+            "bias": bias,
+            "note": entry.get("note", ""),
+        }
+        return decision
+    return Decision(pair=pair, block="analyst", summary_en=en, summary_ar=ar, snapshot=decision.snapshot)
+
+
 def skip_decision(pair: str, block: str, en: str, ar: str, snapshot: dict | None = None) -> Decision:
     return Decision(pair=pair, block=block, summary_en=en, summary_ar=ar, snapshot=snapshot or {})
 
@@ -191,6 +229,7 @@ def main() -> int:
 
     if issue:
         fund = build_fundamentals(now)
+        analyst = load_analyst_bias()
         decisions: list[Decision] = []
         priced = 0
         for pair in PAIRS:
@@ -255,6 +294,7 @@ def main() -> int:
                 continue
             priced += 1
             decision = evaluate_pair(pair, bars["1d"], bars["4h"], bars["1h"], fund, now)
+            decision = apply_analyst_gate(decision, analyst, now)
             decisions.append(decision)
             if decision.signal:
                 decision.signal["entryReadyTs"] = int(parse_dt(decision.signal["priceAsOf"]).timestamp())
