@@ -10,7 +10,7 @@ export function PartnerBadge() {
   const { t } = useI18n();
   return (
     <a href={HREF} target="_blank" rel="sponsored noopener" className="inline-block max-w-full rounded-lg bg-white p-2">
-      <img src={BADGE} width={400} height={110} alt={t.partnerBadge} className="h-auto w-full max-w-[400px]" />
+      <img src={BADGE} width={400} height={110} alt={t.partnerBadge} loading="lazy" className="h-auto w-full max-w-[400px]" />
     </a>
   );
 }
@@ -20,7 +20,7 @@ export function SponsoredGif() {
     <aside className="mx-auto inline-block w-fit max-w-full text-center">
       <p className="mb-2 text-center text-[11px] text-muted-foreground">Sponsored / إعلان</p>
       <a href={HREF} target="_blank" rel="sponsored noopener" className="inline-block max-w-full">
-        <img src={GIF} width={336} height={280} alt="IC Markets" className="mx-auto h-auto w-[336px] max-w-full" />
+        <img src={GIF} width={336} height={280} alt="IC Markets" loading="lazy" className="mx-auto h-auto w-[336px] max-w-full" />
       </a>
     </aside>
   );
