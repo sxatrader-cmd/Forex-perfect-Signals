@@ -9,23 +9,23 @@ const sections = {
   ar: [
     {
       title: "متى تُفتح الإشارة",
-      body: "التشغيل الساعي يحدّث النقاط العائمة ويغلق الصفقة إذا لامس أعلى أو أدنى شمعة ساعية الهدف أو الإيقاف بعد الدخول. إذا لامست الشمعة نفسها الاثنين، يُحتسب الإيقاف أولاً لأن ترتيب المسار غير معروف. إصدار إشارة جديدة يتم مرة في يوم بغداد، في أول تشغيل ناجح من الساعة 05:00 بتوقيت UTC فما بعد، ولزوج ليس لديه إشارة مفتوحة ولم تُصدر له إشارة في اليوم نفسه.",
+      body: "التشغيل يحدّث النقاط العائمة ويغلق الصفقة إذا لامس أعلى أو أدنى شمعة ساعية الهدف أو الإيقاف بعد الدخول. إذا لامست الشمعة نفسها الاثنين، يُحتسب الإيقاف أولاً لأن ترتيب المسار غير معروف. إصدار إشارة جديدة يتم مرة في يوم بغداد، في أول تشغيل ناجح من الساعة 08:00 بتوقيت UTC فما بعد، ولزوج ليس لديه إشارة مفتوحة ولم تُصدر له إشارة في اليوم نفسه. ما دام متغير PAUSE_ISSUE مساوياً 1 لا تُفتح إشارة جديدة، ويبقى تتبع الصفقات المفتوحة وتحديث الأخبار.",
     },
     {
       title: "الاتجاه اليومي",
-      body: "اتجاه الصفقة من إطار 4 ساعات: EMA20 فوق EMA50 مع هيستوغرام MACD موجب للشراء، والعكس للبيع. الميل اليومي يُستخدم مرشحاً: نترك الصفقة فقط إذا كان الاصطفاف اليومي معاكساً بالكامل والسعر في الجهة الخطأ من EMA200. فرق المتوسطات يُرفض فقط إذا كان الإطاران معاً شبه متلاصقين.",
+      body: "اتجاه الصفقة من إطار 4 ساعات: EMA20 فوق EMA50 مع هيستوغرام MACD موجب للشراء، والعكس للبيع، وADX(14) لا يقل عن 18. نترك الصفقة إذا كان الاصطفاف اليومي معاكساً بالكامل والسعر في الجهة الخطأ من EMA200. فرق المتوسطات يُرفض فقط إذا كان الإطاران معاً شبه متلاصقين.",
     },
     {
       title: "توقيت الأربع ساعات",
-      body: "يُسمح بالتصحيح نحو EMA20 على 4 ساعات ما دام السعر لم يخسر EMA50. الامتداد المقبول من −0.6 إلى 2.0 ضعف ATR. RSI للشراء بين 32 و72، وللبيع بين 28 و68. نبرة الأخبار تمنع الصفقة فقط عند تعارض قوي، ولا تُستخدم لإجبار إشارة.",
+      body: "يُسمح بالتصحيح نحو EMA20 على 4 ساعات ما دام السعر لم يخسر EMA50. الامتداد المقبول من −0.15 إلى 1.5 ضعف ATR. RSI للشراء بين 40 و65، وللبيع بين 35 و60. نبرة الأخبار تمنع الصفقة فقط عند تعارض قوي، ولا تُستخدم لإجبار إشارة.",
     },
     {
       title: "الإيقاف والهدف",
-      body: "الإيقاف يوضع بعد أقرب تأرجح على 4 ساعات بهامش 0.15 ATR عندما تقع المسافة بين 0.9 و2.0 ATR، وإلا تُستخدم مضاعفات ATR. الهدف الافتراضي 1.7 ضعف المخاطرة، ويُقرَّب أمام المقاومة أو الدعم التالي إذا بقيت النسبة 1:1.5 على الأقل. أقل مسافة إيقاف نقبلها 8 نقاط. الأرقام لا تشمل السبريد.",
+      body: "الإيقاف يوضع بعد أقرب تأرجح على 4 ساعات بهامش 0.15 ATR عندما تقع المسافة بين 1.0 و2.2 ATR، وإلا تُستخدم مضاعفات ATR. الهدف الافتراضي ضعفا المخاطرة، ويُقرَّب أمام المقاومة أو الدعم التالي إذا بقيت النسبة 1:1.5 على الأقل. أقل مسافة إيقاف نقبلها 12 نقطة. الأرقام المنشورة لا تشمل السبريد.",
     },
     {
       title: "الخبر والعناوين",
-      body: "لا إشارة جديدة إذا كان لعملة الزوج خبر عالي التأثير خلال 8 ساعات. مفاجأة التقويم هي الفرق بين الفعلي والتوقع بعد تصنيف مؤشرات البطالة كعكسية. مزاج العناوين يُجمع من خلاصات عامة، ويمنع الصفقة فقط إذا عارضها بوضوح (فرق 0.6 أو أكثر) مع عنوانين مُقيَّمين على الأقل لكل عملة. السوق المغلق لا يستقبل إشارة جديدة حتى لو اكتمل الفني.",
+      body: "لا إشارة جديدة إذا كان لعملة الزوج خبر عالي التأثير خلال 8 ساعات. مفاجأة التقويم هي الفرق بين الفعلي والتوقع بعد تصنيف مؤشرات البطالة كعكسية. مزاج العناوين يُجمع من خلاصات عامة، ويمنع الصفقة فقط إذا عارضها بقوة (فرق 0.85 أو أكثر) مع عنوانين مُقيَّمين على الأقل لكل عملة. السوق المغلق لا يستقبل إشارة جديدة حتى لو اكتمل الفني.",
     },
     {
       title: "المصادر",
@@ -35,23 +35,23 @@ const sections = {
   en: [
     {
       title: "When a signal is allowed",
-      body: "Hourly runs update floating pips and close a trade if an hourly high or low after entry touches the target or the stop. If one candle touches both, the stop is counted first because the path inside the bar is unknown. A new signal is issued once per Baghdad day, on the first successful run at or after 05:00 UTC, and only for a pair with nothing open and nothing already issued that day.",
+      body: "Each run updates floating pips and closes a trade if an hourly high or low after entry touches the target or the stop. If one candle touches both, the stop is counted first because the path inside the bar is unknown. A new signal is issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing open and nothing already issued that day. While PAUSE_ISSUE is 1, no new signal is opened. Open trades and the calendar still update.",
     },
     {
       title: "Daily trend",
-      body: "Direction comes from the 4-hour chart: EMA20 above EMA50 with a positive MACD histogram for a buy, and the reverse for a sell. Daily EMAs are a bias filter. A setup is dropped only when the daily stack fully opposes the 4-hour trend and price is on the wrong side of EMA200. A flat skip needs both timeframes stuck together.",
+      body: "Direction comes from the 4-hour chart: EMA20 above EMA50 with a positive MACD histogram for a buy, and the reverse for a sell, and 4-hour ADX(14) at least 18. A setup is dropped when the daily stack fully opposes that trend and price is on the wrong side of EMA200. A flat skip needs both timeframes stuck together.",
     },
     {
       title: "Four-hour timing",
-      body: "A pullback toward the 4-hour EMA20 is allowed as long as price has not lost the 4-hour EMA50. Distance from that EMA20 can sit between −0.6 and 2.0 ATR. Buy RSI is 32–72. Sell RSI is 28–68. Headline tone blocks only a strong contradiction and never forces a trade.",
+      body: "A pullback toward the 4-hour EMA20 is allowed as long as price has not lost the 4-hour EMA50. Distance from that EMA20 can sit between −0.15 and 1.5 ATR. Buy RSI is 40–65. Sell RSI is 35–60. Headline tone blocks only a strong contradiction and never forces a trade.",
     },
     {
       title: "Stop and target",
-      body: "The stop sits beyond the nearest 4H swing by 0.15 ATR when that distance lands between 0.9 and 2.0 ATR. Otherwise it uses an ATR multiple. The default target is 1.7 times the risk, pulled in front of the next swing if reward stays at least 1.5 times risk. Stops closer than 8 pips are rejected. Distances ignore the spread.",
+      body: "The stop sits beyond the nearest 4H swing by 0.15 ATR when that distance lands between 1.0 and 2.2 ATR. Otherwise it uses an ATR multiple. The default target is 2 times the risk, pulled in front of the next swing if reward stays at least 1.5 times risk. Stops closer than 12 pips are rejected. Published distances ignore the spread.",
     },
     {
       title: "News and headlines",
-      body: "No new signal if either currency has a high-impact release inside 8 hours. A calendar surprise is actual versus forecast, with unemployment-style releases treated as inverse. Headline tone comes from public RSS feeds and blocks a trade only when it clearly opposes it (an edge of 0.6 or more) and each currency has at least two scored headlines. A closed market does not receive a new signal even if the technical checks pass.",
+      body: "No new signal if either currency has a high-impact release inside 8 hours. A calendar surprise is actual versus forecast, with unemployment-style releases treated as inverse. Headline tone comes from public RSS feeds and blocks a trade only when it strongly opposes it (an edge of 0.85 or more) and each currency has at least two scored headlines. A closed market does not receive a new signal even if the technical checks pass.",
     },
     {
       title: "Sources",

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import math
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -313,6 +314,22 @@ def test_four_hour_updates_and_immutable_archive() -> None:
         fail("new archive row missing")
 
 
+def test_pause_blocks_issue_even_when_forced() -> None:
+    from update_signals import should_issue
+
+    now = datetime(2026, 11, 10, 8, tzinfo=timezone.utc)
+    os.environ["PAUSE_ISSUE"] = "1"
+    os.environ["FORCE_ISSUE"] = "1"
+    try:
+        if should_issue(now, {"lastIssueDate": "2026-11-09"}):
+            fail("PAUSE_ISSUE must block a new signal even when FORCE_ISSUE is set")
+    finally:
+        os.environ.pop("PAUSE_ISSUE", None)
+        os.environ.pop("FORCE_ISSUE", None)
+    if not should_issue(now, {"lastIssueDate": "2026-11-09"}):
+        fail("issue should proceed when the pause is off and the daily pass is due")
+
+
 if __name__ == "__main__":
     test_ema_rsi_macd()
     test_exit_rules()
@@ -321,4 +338,5 @@ if __name__ == "__main__":
     test_clear_setup_has_six_reasons()
     test_reason_copy_contains_fundamentals()
     test_four_hour_updates_and_immutable_archive()
+    test_pause_blocks_issue_even_when_forced()
     print("all signal tests passed")

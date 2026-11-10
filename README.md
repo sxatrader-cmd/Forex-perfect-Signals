@@ -57,9 +57,11 @@ The static export is written to `out/`.
 | Every 15 minutes (`3,18,33,48`) | Refresh the calendar, track open signals, append a progress note when one is at least 4 hours old, and issue the daily scan when it is due. Commit only if JSON changed, then deploy. |
 | Manual run | Same work. Check **issue** to force the daily pass. Always deploys. |
 
-GitHub often delays or skips a `*/5` cron, so the schedule is one run every 15 minutes. The job does not depend on landing inside a particular hour: the first successful run at or after 05:00 UTC issues for that Baghdad date, hourly tracking runs whenever a signal is open, and a 4-hour note is appended from the last update timestamp.
+GitHub often delays or skips a `*/5` cron, so the schedule is one run every 15 minutes. The job does not depend on landing inside a particular hour: the first successful run at or after 08:00 UTC issues for that Baghdad date, hourly tracking runs whenever a signal is open, and a 4-hour note is appended from the last update timestamp.
 
 GitHub can still throttle scheduled workflows. An optional free pinger such as [cron-job.org](https://cron-job.org) can call this workflow with `workflow_dispatch` if the built-in schedule stays quiet. It is not required. Create a fine-grained token with Actions read/write on the repository and POST `https://api.github.com/repos/sxatrader-cmd/Forex-perfect-Signals/actions/workflows/pages.yml/dispatches` with body `{"ref":"main","inputs":{"issue":"false"}}`.
+
+New signals stay off while the repository variable `PAUSE_ISSUE` is `1`. The workflow passes that variable into the signal job. Tracking of anything already open, and the calendar refresh, keep running. Set the variable to anything other than `1` when the owner wants issuing to resume. `FORCE_ISSUE` does not override the pause.
 
 ## Data
 
@@ -71,7 +73,7 @@ GitHub can still throttle scheduled workflows. An optional free pinger such as [
 
 Price history is the Yahoo Finance chart API (`query1`, then `query2`): daily, 1h, and 4h, requested with an explicit end time so the daily series is not a stale cached range. The latest daily session is kept and filled from the 4-hour bars when Yahoo's daily candle is still forming. That is the endpoint the `yfinance` package reads; the jobs stay on the standard library so Actions does not install it. Stooq answered with a browser check and is not used.
 
-`python3 scripts/backtest_signals.py` replays the current rules over the last three weeks and prints how many signals would have closed at the target or the stop. It does not write `data/history.json`.
+`python3 scripts/backtest_signals.py` replays the live rules on Yahoo daily, 4-hour, and 1-hour history (about thirteen months of intraday data). It charges 1 pip of spread on EUR, GBP, JPY, and AUD, and 1.5 pips on NZD, CAD, and CHF. The first 70% of decision days is the sample used to choose the rules. The last 30% is only a report. It does not write `data/history.json`. The latest holdout profit factor is below 1.3, so new signals stay paused.
 
 Headline tone is requested from ForexLive, Investing.com (forex, economy, opinion), ActionForex, and FXStreet. A feed that returns an error is recorded and the last good calendar file is kept on HTTP 429 or a network failure.
 

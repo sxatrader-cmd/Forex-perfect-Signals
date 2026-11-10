@@ -3,8 +3,10 @@
 
 Hourly runs update floating pips and close trades whose intraday high/low has
 touched the target or the stop. A new signal is considered once per Baghdad
-day, on the first successful run at or after 05:00 UTC, and only for pairs
+day, on the first successful run at or after 08:00 UTC, and only for pairs
 with no open signal. Set FORCE_ISSUE=1 to run that pass immediately.
+Set PAUSE_ISSUE=1 to keep tracking and the calendar running without opening
+anything new. A paused run still updates open signals.
 """
 
 from __future__ import annotations
@@ -53,6 +55,8 @@ from fps_lib import (
 
 
 def should_issue(now: datetime, state: dict) -> bool:
+    if os.environ.get("PAUSE_ISSUE") == "1":
+        return False
     if os.environ.get("FORCE_ISSUE") == "1":
         return True
     if now.astimezone(timezone.utc).hour < ISSUE_HOUR_UTC:

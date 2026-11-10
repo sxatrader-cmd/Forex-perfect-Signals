@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
-"""Replay the live rules over recent weeks.
+"""Walk-forward replay of the live signal rules.
 
-Prints how many signals the current filters would have issued, and whether
-later hourly candles hit the target or the stop. Nothing is written to
-data/history.json.
+Uses evaluate_pair, the same stop/target geometry, one open signal per pair,
+and one new signal per pair per Baghdad day at the live issue hour. Each closed trade
+pays the spread (1 pip on EUR, GBP, JPY, AUD; 1.5 on NZD, CAD, CHF). The
+first 70% of decision days is in-sample. The last 30% is reported separately
+and is not used to pick parameters.
+
+Trades still open at a period boundary are marked at the last completed hour
+so the next period starts flat. Forex Factory history is not available for
+this window, so the live high-impact-news block is not applied here.
 """
 from __future__ import annotations
 
+import pickle
 import sys
+from bisect import bisect_right
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -15,72 +23,249 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fps_lib import (  # noqa: E402
     PAIRS,
-    ema,
+    Bar,
     empty_fundamentals,
     evaluate_pair,
-    fetch_pair_bars,
-    fmt_px,
-    last_valid,
+    fetch_yahoo,
+    market_closed,
+    pip_size,
+    reconcile_daily,
     resolve_exit,
 )
 
-LOOKBACK_DAYS = 21
+CACHE = Path("/tmp/fx-history-v1.pkl")
+SPREAD_PIPS = {
+    "EURUSD": 1.0,
+    "GBPUSD": 1.0,
+    "USDJPY": 1.0,
+    "AUDUSD": 1.0,
+    "NZDUSD": 1.5,
+    "USDCAD": 1.5,
+    "USDCHF": 1.5,
+}
+from fps_lib import ISSUE_HOUR_UTC as ISSUE_HOUR  # noqa: E402
+
+
+def _completed(bars: list[Bar], interval: int, now_ts: int) -> list[Bar]:
+    if not bars:
+        return []
+    cutoff = now_ts - interval
+    index = bisect_right([bar.ts for bar in bars], cutoff)
+    return bars[:index]
+
+
+def load_history() -> dict[str, dict[str, list[Bar]]]:
+    if CACHE.exists():
+        with CACHE.open("rb") as handle:
+            return pickle.load(handle)
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+    history: dict[str, dict[str, list[Bar]]] = {}
+    for pair in PAIRS:
+        symbol = f"{pair}=X"
+        daily = fetch_yahoo(symbol, "1d", period1=now_ts - 1100 * 86400, period2=now_ts + 60)
+        h4 = fetch_yahoo(symbol, "4h", period1=now_ts - 450 * 86400, period2=now_ts + 60)
+        h1 = fetch_yahoo(symbol, "1h", period1=now_ts - 450 * 86400, period2=now_ts + 60)
+        history[pair] = {"1d": _dedupe(daily), "4h": _dedupe(h4), "1h": _dedupe(h1)}
+        print(f"fetched {pair} daily={len(daily)} 4h={len(h4)} 1h={len(h1)}", flush=True)
+    with CACHE.open("wb") as handle:
+        pickle.dump(history, handle)
+    return history
+
+
+def _dedupe(bars: list[Bar]) -> list[Bar]:
+    by_ts: dict[int, Bar] = {}
+    for bar in bars:
+        by_ts[bar.ts] = bar
+    return [by_ts[key] for key in sorted(by_ts)]
+
+
+def decision_days(history: dict, start: datetime, end: datetime) -> list[datetime]:
+    days: list[datetime] = []
+    cursor = start
+    while cursor <= end:
+        if cursor.weekday() < 5 and not market_closed(cursor):
+            ts = int(cursor.timestamp())
+            ready = True
+            for bars in history.values():
+                if len(_completed(bars["4h"], 4 * 3600, ts)) < 220:
+                    ready = False
+                    break
+                if len(_completed(bars["1d"], 86400, ts)) < 210:
+                    ready = False
+                    break
+                if not _completed(bars["1h"], 3600, ts):
+                    ready = False
+                    break
+            if ready:
+                days.append(cursor)
+        cursor += timedelta(days=1)
+    return days
+
+
+def _view(bars: dict[str, list[Bar]], ts: int) -> tuple[list[Bar], list[Bar], list[Bar]]:
+    daily = _completed(bars["1d"], 86400, ts)
+    h4 = _completed(bars["4h"], 4 * 3600, ts)
+    h1 = _completed(bars["1h"], 3600, ts)
+    return reconcile_daily(daily, h4), h4, h1
+
+
+def replay(history: dict, days: list[datetime], boundary: datetime, label: str) -> list[dict]:
+    """Replay one period. Open trades are marked at `boundary` and do not cross it."""
+    if not days:
+        return []
+    boundary_ts = int(boundary.timestamp())
+    trades: list[dict] = []
+    for pair in PAIRS:
+        bars = history[pair]
+        blocked_until: datetime | None = None
+        for day in days:
+            if blocked_until is not None and day < blocked_until:
+                continue
+            ts = int(day.timestamp())
+            daily, h4, h1 = _view(bars, ts)
+            decision = evaluate_pair(pair, daily, h4, h1, empty_fundamentals(day), day, market_open=True)
+            signal = decision.signal
+            if not signal:
+                continue
+            trade = _open_trade(pair, signal, day)
+            future = [bar for bar in bars["1h"] if bar.ts >= ts]
+            resolved = resolve_exit(signal["direction"], ts, float(signal["sl"]), float(signal["tp"]), future)
+            closed_at = None if not resolved else datetime.fromisoformat(resolved[2].replace("Z", "+00:00"))
+            if resolved and closed_at is not None and closed_at <= boundary:
+                _apply_exit(trade, resolved[0])
+                blocked_until = closed_at
+            else:
+                _finalize(trade, bars["1h"], boundary_ts, "mark")
+                blocked_until = boundary
+            trades.append(trade)
+    trades.sort(key=lambda item: item["issued"])
+    print(f"{label} trades={len(trades)}", flush=True)
+    return trades
+
+
+def _open_trade(pair: str, signal: dict, day: datetime) -> dict:
+    entry = float(signal["entry"])
+    sl = float(signal["sl"])
+    tp = float(signal["tp"])
+    risk = abs(entry - sl)
+    pip = pip_size(pair)
+    return {
+        "pair": pair,
+        "direction": signal["direction"],
+        "entry": entry,
+        "sl": sl,
+        "tp": tp,
+        "rr": float(signal["rr"]),
+        "issued": day,
+        "risk_pips": risk / pip,
+        "spread": SPREAD_PIPS[pair],
+        "result": "open",
+        "net_pips": 0.0,
+        "net_r": 0.0,
+    }
+
+
+def _apply_exit(trade: dict, result: str) -> None:
+    trade["result"] = result
+    pips = trade["risk_pips"] * trade["rr"] if result == "TP" else -trade["risk_pips"]
+    trade["net_pips"] = pips - trade["spread"]
+    trade["net_r"] = trade["net_pips"] / trade["risk_pips"] if trade["risk_pips"] else 0.0
+
+
+def _finalize(trade: dict, h1: list[Bar], ts: int, result: str) -> None:
+    done = _completed(h1, 3600, ts)
+    price = done[-1].close if done else trade["entry"]
+    sign = 1 if trade["direction"] == "BUY" else -1
+    pip = pip_size(trade["pair"])
+    gross = (price - trade["entry"]) * sign / pip
+    trade["result"] = result
+    trade["net_pips"] = gross - trade["spread"]
+    trade["net_r"] = trade["net_pips"] / trade["risk_pips"] if trade["risk_pips"] else 0.0
+
+
+def summarize(trades: list[dict]) -> dict:
+    if not trades:
+        return {
+            "n": 0, "wins": 0, "losses": 0, "win_rate": 0.0, "avg_rr": 0.0,
+            "net_pips": 0.0, "net_r": 0.0, "profit_factor": 0.0,
+            "max_streak": 0, "max_dd_r": 0.0,
+        }
+    wins = [trade for trade in trades if trade["net_pips"] > 0]
+    losses = [trade for trade in trades if trade["net_pips"] <= 0]
+    gain = sum(trade["net_pips"] for trade in wins)
+    pain = abs(sum(trade["net_pips"] for trade in losses))
+    streak = worst = 0
+    equity = peak = 0.0
+    drawdown = 0.0
+    ordered = sorted(trades, key=lambda item: item["issued"])
+    for trade in ordered:
+        if trade["net_pips"] <= 0:
+            streak += 1
+            worst = max(worst, streak)
+        else:
+            streak = 0
+        equity += trade["net_r"]
+        peak = max(peak, equity)
+        drawdown = max(drawdown, peak - equity)
+    return {
+        "n": len(trades),
+        "wins": len(wins),
+        "losses": len(losses),
+        "win_rate": 100.0 * len(wins) / len(trades),
+        "avg_rr": sum(trade["rr"] for trade in trades) / len(trades),
+        "net_pips": sum(trade["net_pips"] for trade in trades),
+        "net_r": sum(trade["net_r"] for trade in trades),
+        "profit_factor": (gain / pain) if pain else float("inf"),
+        "max_streak": worst,
+        "max_dd_r": drawdown,
+    }
+
+
+def render(title: str, trades: list[dict], weeks: float) -> str:
+    lines = [title, "pair      n   wins  loss   win%   avgRR    net pips    net R     PF   streak   maxDD R"]
+    groups = [pair for pair in PAIRS if any(trade["pair"] == pair for trade in trades)]
+    for pair in groups + ["ALL"]:
+        subset = trades if pair == "ALL" else [trade for trade in trades if trade["pair"] == pair]
+        stats = summarize(subset)
+        per_week = stats["n"] / weeks if weeks and pair == "ALL" else 0.0
+        lines.append(
+            f"{pair:<8} {stats['n']:3d} {stats['wins']:5d} {stats['losses']:5d} "
+            f"{stats['win_rate']:6.1f} {stats['avg_rr']:7.2f} {stats['net_pips']:10.1f} "
+            f"{stats['net_r']:8.2f} {stats['profit_factor']:6.2f} {stats['max_streak']:6d} {stats['max_dd_r']:8.2f}"
+            + (f"   {per_week:.2f}/week" if pair == "ALL" else "")
+        )
+    if not groups:
+        lines.append("(no trades)")
+    return "\n".join(lines)
 
 
 def main() -> int:
-    now = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
-    now_ts = int(datetime.now(timezone.utc).timestamp())
-    totals = {"signals": 0, "TP": 0, "SL": 0, "open": 0}
-    print(f"replay window {LOOKBACK_DAYS} days ending {now.date().isoformat()} UTC")
-    for pair in PAIRS:
-        bars = fetch_pair_bars(pair, now_ts)
-        daily, h4, h1 = bars["1d"], bars["4h"], bars["1h"]
-        last = daily[-1]
-        closes = [bar.close for bar in daily]
-        ema20 = last_valid(ema(closes, 20))
-        ema50 = last_valid(ema(closes, 50))
-        ema200 = last_valid(ema(closes, 200))
-        last_day = datetime.fromtimestamp(last.ts, timezone.utc).date().isoformat()
-        print(
-            f"{pair} daily={len(daily)} last={last_day} close={fmt_px(pair, last.close)} "
-            f"EMA20={fmt_px(pair, ema20)} EMA50={fmt_px(pair, ema50)} EMA200={fmt_px(pair, ema200)}"
-        )
-        open_until: datetime | None = None
-        outcomes: list[str] = []
-        day = (now - timedelta(days=LOOKBACK_DAYS)).replace(hour=5, minute=0, second=0, microsecond=0)
-        while day <= now:
-            if day.weekday() < 5 and (open_until is None or day >= open_until):
-                ts = int(day.timestamp())
-                decision = evaluate_pair(
-                    pair,
-                    [bar for bar in daily if bar.ts <= ts],
-                    [bar for bar in h4 if bar.ts + 4 * 3600 <= ts],
-                    [bar for bar in h1 if bar.ts + 3600 <= ts],
-                    empty_fundamentals(day),
-                    day,
-                    market_open=True,
-                )
-                signal = decision.signal
-                if signal:
-                    future = [bar for bar in h1 if bar.ts >= ts]
-                    resolved = resolve_exit(signal["direction"], ts, float(signal["sl"]), float(signal["tp"]), future)
-                    if resolved:
-                        result, _price, closed_at = resolved
-                        open_until = datetime.fromisoformat(closed_at.replace("Z", "+00:00"))
-                    else:
-                        result = "open"
-                        open_until = now + timedelta(days=1)
-                    outcomes.append(f"{day.date().isoformat()} {signal['direction']} {result}")
-                    totals[result] = totals.get(result, 0) + 1
-                    totals["signals"] += 1
-            day += timedelta(days=1)
-        print("  " + (", ".join(outcomes) if outcomes else "no signal"))
-    closed = totals["TP"] + totals["SL"]
-    rate = (100.0 * totals["TP"] / closed) if closed else 0.0
+    history = load_history()
+    first_bar = min(bars["4h"][0].ts for bars in history.values())
+    last_bar = max(bars["1h"][-1].ts for bars in history.values())
+    start = datetime.fromtimestamp(first_bar, timezone.utc).replace(hour=ISSUE_HOUR, minute=0, second=0, microsecond=0)
+    end = datetime.fromtimestamp(last_bar, timezone.utc).replace(hour=ISSUE_HOUR, minute=0, second=0, microsecond=0)
+    if end > datetime.now(timezone.utc):
+        end = datetime.now(timezone.utc).replace(hour=ISSUE_HOUR, minute=0, second=0, microsecond=0)
+    days = decision_days(history, start, end - timedelta(days=1))
+    if len(days) < 20:
+        print("not enough decision days")
+        return 1
+    split = int(len(days) * 0.70)
+    sample = days[:split]
+    holdout = days[split:]
     print(
-        f"TOTAL signals={totals['signals']} TP={totals['TP']} SL={totals['SL']} "
-        f"still_open={totals['open']} win_rate={rate:.0f}% of closed"
+        f"window {days[0].date().isoformat()} .. {days[-1].date().isoformat()} "
+        f"days={len(days)} in-sample={len(sample)} ({sample[0].date()}..{sample[-1].date()}) "
+        f"out-of-sample={len(holdout)} ({holdout[0].date()}..{holdout[-1].date()})"
     )
+    ins = replay(history, sample, holdout[0], "in-sample")
+    oos_boundary = datetime.fromtimestamp(last_bar, timezone.utc)
+    oos = replay(history, holdout, oos_boundary, "out-of-sample")
+    in_weeks = max((sample[-1] - sample[0]).days / 7, 0.1)
+    out_weeks = max((holdout[-1] - holdout[0]).days / 7, 0.1)
+    print(render("IN-SAMPLE", ins, in_weeks))
+    print(render("OUT-OF-SAMPLE", oos, out_weeks))
     return 0
 
 

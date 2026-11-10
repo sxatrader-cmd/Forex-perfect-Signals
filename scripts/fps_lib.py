@@ -43,17 +43,23 @@ PAIRS = [
 ]
 
 # A new signal needs every one of these. They are mirrored on the method page.
-RSI_BUY = (32.0, 72.0)
-RSI_SELL = (28.0, 68.0)
+RSI_BUY = (40.0, 65.0)
+RSI_SELL = (35.0, 60.0)
 EMA_GAP_ATR = 0.03
-EXTENSION_ATR = (-0.6, 2.0)
-SL_ATR = (0.9, 2.0)
-TP_R = 1.7
+EXTENSION_ATR = (-0.15, 1.5)
+SL_ATR = (1.0, 2.2)
+TP_R = 2.0
 MIN_R = 1.5
+ADX_MIN = 18.0
+MIN_STOP_PIPS = 12.0
+REQUIRE_DAILY_TREND = False
+# pullback follows a trend. breakout buys a 4H range break. revert fades a quiet stretch.
+ENTRY_MODE = "pullback"
+BREAKOUT_BARS = 20
 EVENT_BLOCK_HOURS = 8.0
 SENTIMENT_BLOCK = 0.85
 MIN_HEADLINES = 2
-ISSUE_HOUR_UTC = 5
+ISSUE_HOUR_UTC = 8
 
 FEEDS = [
     ("ForexLive", "https://www.forexlive.com/feed"),
@@ -324,6 +330,59 @@ def macd(values: list[float]) -> tuple[list[float | None], list[float | None], l
         signal[index] = signal_valid[pos]
         hist[index] = line[index] - signal_valid[pos]
     return line, signal, hist
+
+
+def adx(bars: list[Bar], period: int = 14) -> list[float | None]:
+    """Wilder ADX. Used only as a trend-strength gate, not as a second entry signal."""
+    n = len(bars)
+    out: list[float | None] = [None] * n
+    if n <= period * 2:
+        return out
+    trs = [0.0] * n
+    plus = [0.0] * n
+    minus = [0.0] * n
+    for index in range(1, n):
+        bar = bars[index]
+        prev = bars[index - 1]
+        up = bar.high - prev.high
+        down = prev.low - bar.low
+        plus[index] = up if up > down and up > 0 else 0.0
+        minus[index] = down if down > up and down > 0 else 0.0
+        trs[index] = max(bar.high - bar.low, abs(bar.high - prev.close), abs(bar.low - prev.close))
+
+    def wilder(values: list[float]) -> list[float | None]:
+        smoothed: list[float | None] = [None] * n
+        total = sum(values[1 : period + 1])
+        smoothed[period] = total
+        for index in range(period + 1, n):
+            total = total - (total / period) + values[index]
+            smoothed[index] = total
+        return smoothed
+
+    atr_s = wilder(trs)
+    plus_s = wilder(plus)
+    minus_s = wilder(minus)
+    dx: list[float | None] = [None] * n
+    for index in range(n):
+        atr_v = atr_s[index]
+        if atr_v is None or atr_v <= 0 or plus_s[index] is None or minus_s[index] is None:
+            continue
+        plus_di = 100.0 * plus_s[index] / atr_v
+        minus_di = 100.0 * minus_s[index] / atr_v
+        denom = plus_di + minus_di
+        dx[index] = 0.0 if denom == 0 else 100.0 * abs(plus_di - minus_di) / denom
+    window = [value for value in dx[period : period * 2] if value is not None]
+    if len(window) < period:
+        return out
+    current = sum(window) / len(window)
+    out[period * 2 - 1] = current
+    for index in range(period * 2, n):
+        value = dx[index]
+        if value is None:
+            continue
+        current = (current * (period - 1) + value) / period
+        out[index] = current
+    return out
 
 
 def last_valid(values: list[float | None]) -> float | None:
@@ -955,13 +1014,15 @@ def build_reasons(pair: str, direction: str, entry: float, sl: float, tp: float,
     return [
         {
             "en": (
-                f"4-hour trend is {trend}: EMA20 {fmt_px(pair, snap.get('ema20_4', ema20))} versus EMA50 {fmt_px(pair, snap.get('ema50_4', ema50))}. "
-                f"Daily bias EMA20 {fmt_px(pair, ema20)} is {en_above} EMA50 {fmt_px(pair, ema50)} and EMA50 is {en_above2} EMA200 {fmt_px(pair, ema200)}. "
+                f"4-hour trend is {trend}: EMA20 {fmt_px(pair, snap.get('ema20_4', ema20))} versus EMA50 {fmt_px(pair, snap.get('ema50_4', ema50))}, "
+                f"ADX {fmt_num(snap.get('adx4'), 1)}. "
+                f"Daily bias EMA50 {fmt_px(pair, ema50)} is {en_above2} EMA200 {fmt_px(pair, ema200)} and EMA20 {fmt_px(pair, ema20)} is {en_above} EMA50. "
                 f"Last price {fmt_px(pair, entry)} is {en_side} daily EMA20."
             ),
             "ar": (
-                f"اتجاه 4 ساعات {trend_ar}: متوسط 20 عند {fmt_px(pair, snap.get('ema20_4', ema20))} مقابل متوسط 50 عند {fmt_px(pair, snap.get('ema50_4', ema50))}. "
-                f"الميل اليومي: متوسط 20 عند {fmt_px(pair, ema20)} {above} متوسط 50 عند {fmt_px(pair, ema50)}، ومتوسط 50 {above2} متوسط 200 عند {fmt_px(pair, ema200)}. "
+                f"اتجاه 4 ساعات {trend_ar}: متوسط 20 عند {fmt_px(pair, snap.get('ema20_4', ema20))} مقابل متوسط 50 عند {fmt_px(pair, snap.get('ema50_4', ema50))}، "
+                f"وADX {fmt_num(snap.get('adx4'), 1)}. "
+                f"الميل اليومي: متوسط 50 عند {fmt_px(pair, ema50)} {above2} متوسط 200 عند {fmt_px(pair, ema200)}، ومتوسط 20 عند {fmt_px(pair, ema20)} {above} متوسط 50. "
                 f"آخر سعر {fmt_px(pair, entry)} {side} متوسط 20 اليومي."
             ),
         },
@@ -1054,6 +1115,7 @@ def evaluate_pair(
     ema20_4 = last_valid(ema(h_close, 20))
     ema50_4 = last_valid(ema(h_close, 50))
     atr4 = last_valid(atr(h4))
+    adx4 = last_valid(adx(h4))
     supports, resistances = swings(h4)
     support = nearest_below(supports, price)
     resistance = nearest_above(resistances, price)
@@ -1072,50 +1134,62 @@ def evaluate_pair(
             "ema20_4h": None if ema20_4 is None else round_px(pair, ema20_4),
             "ema50_4h": None if ema50_4 is None else round_px(pair, ema50_4),
             "atr4h": None if atr4 is None else round(atr4, 6),
+            "adx4h": None if adx4 is None else round(adx4, 1),
             "support": None if support is None else round_px(pair, support),
             "resistance": None if resistance is None else round_px(pair, resistance),
         }
     )
-    needed = [ema20, ema50, ema200, atr_d, rsi4, macd_v, signal_v, hist_v, ema20_4, ema50_4, atr4]
+    needed = [ema20, ema50, ema200, atr_d, rsi4, macd_v, signal_v, hist_v, ema20_4, ema50_4, atr4, adx4]
     if any(value is None or not math.isfinite(value) for value in needed) or atr4 <= 0 or atr_d <= 0:
         return _skip(pair, "no-data", "Indicator math did not return finite values.", "حساب المؤشرات لم يُرجع قيماً صالحة.", snapshot)
 
     assert ema20 is not None and ema50 is not None and ema200 is not None
     assert atr_d is not None and rsi4 is not None and hist_v is not None
-    assert ema20_4 is not None and ema50_4 is not None and atr4 is not None
-    # Direction comes from the 4-hour trend. Daily EMAs are a bias filter, not a hard stack.
-    if ema20_4 > ema50_4 and hist_v > 0:
+    assert ema20_4 is not None and ema50_4 is not None and atr4 is not None and adx4 is not None
+    # Daily EMA50 versus EMA200 sets the only allowed direction. 4H has to agree.
+    daily_buy = ema50 > ema200 and price > ema200
+    daily_sell = ema50 < ema200 and price < ema200
+    if ENTRY_MODE == "breakout" and len(h4) > BREAKOUT_BARS + 1:
+        prior = h4[-(BREAKOUT_BARS + 1) : -1]
+        four_buy = price > max(bar.high for bar in prior) and hist_v > 0
+        four_sell = price < min(bar.low for bar in prior) and hist_v < 0
+    elif ENTRY_MODE == "revert":
+        four_buy = adx4 <= ADX_MIN and rsi4 <= 30 and price < ema20_4 - 0.5 * atr4
+        four_sell = adx4 <= ADX_MIN and rsi4 >= 70 and price > ema20_4 + 0.5 * atr4
+    else:
+        four_buy = ema20_4 > ema50_4 and hist_v > 0
+        four_sell = ema20_4 < ema50_4 and hist_v < 0
+    if ENTRY_MODE == "revert":
+        aligned_buy = four_buy and price > ema200
+        aligned_sell = four_sell and price < ema200
+    elif REQUIRE_DAILY_TREND:
+        aligned_buy = daily_buy and four_buy
+        aligned_sell = daily_sell and four_sell
+    else:
+        aligned_buy = four_buy and not (ema20 < ema50 < ema200 and price < ema200)
+        aligned_sell = four_sell and not (ema20 > ema50 > ema200 and price > ema200)
+    if aligned_buy:
         direction = "BUY"
-    elif ema20_4 < ema50_4 and hist_v < 0:
+    elif aligned_sell:
         direction = "SELL"
     else:
         return _skip(
             pair,
             "no-stack",
-            f"4H trend is not aligned: EMA20 {fmt_px(pair, ema20_4)}, EMA50 {fmt_px(pair, ema50_4)}, MACD histogram {fmt_ind(hist_v)}.",
-            f"اتجاه 4 ساعات غير متفق: متوسط 20 عند {fmt_px(pair, ema20_4)}، ومتوسط 50 عند {fmt_px(pair, ema50_4)}، وهيستوغرام MACD {fmt_ind(hist_v)}.",
+            f"Daily and 4H trends disagree. Daily EMA50 {fmt_px(pair, ema50)} versus EMA200 {fmt_px(pair, ema200)}, 4H EMA20 {fmt_px(pair, ema20_4)} versus EMA50 {fmt_px(pair, ema50_4)}, MACD histogram {fmt_ind(hist_v)}.",
+            f"الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي {fmt_px(pair, ema50)} مقابل متوسط 200 {fmt_px(pair, ema200)}، ومتوسط 20 على 4 ساعات {fmt_px(pair, ema20_4)} مقابل متوسط 50 {fmt_px(pair, ema50_4)}، وهيستوغرام MACD {fmt_ind(hist_v)}.",
             snapshot,
         )
-    daily_bull = ema20 > ema50 > ema200
-    daily_bear = ema20 < ema50 < ema200
-    if direction == "BUY" and daily_bear and price < ema200:
+    if ENTRY_MODE != "revert" and adx4 < ADX_MIN:
         return _skip(
             pair,
-            "contradicts",
-            f"4H is bullish but the daily stack is fully bearish and price {fmt_px(pair, price)} is under EMA200 {fmt_px(pair, ema200)}.",
-            f"الأربع ساعات صاعدة، لكن الاصطفاف اليومي هابط بالكامل والسعر {fmt_px(pair, price)} تحت متوسط 200 عند {fmt_px(pair, ema200)}.",
-            snapshot,
-        )
-    if direction == "SELL" and daily_bull and price > ema200:
-        return _skip(
-            pair,
-            "contradicts",
-            f"4H is bearish but the daily stack is fully bullish and price {fmt_px(pair, price)} is above EMA200 {fmt_px(pair, ema200)}.",
-            f"الأربع ساعات هابطة، لكن الاصطفاف اليومي صاعد بالكامل والسعر {fmt_px(pair, price)} فوق متوسط 200 عند {fmt_px(pair, ema200)}.",
+            "regime",
+            f"4H ADX is {fmt_num(adx4, 1)}, under the {ADX_MIN:.0f} trend-strength floor.",
+            f"ADX على 4 ساعات يساوي {fmt_num(adx4, 1)}، أقل من حد قوة الاتجاه {ADX_MIN:.0f}.",
             snapshot,
         )
     snapshot["dailyTrend"] = "buy" if ema20 >= ema50 else "sell"
-    if abs(ema20 - ema50) < EMA_GAP_ATR * atr_d and abs(ema20_4 - ema50_4) < 0.08 * atr4:
+    if ENTRY_MODE == "pullback" and abs(ema20 - ema50) < EMA_GAP_ATR * atr_d and abs(ema20_4 - ema50_4) < 0.08 * atr4:
         return _skip(
             pair,
             "flat",
@@ -1123,7 +1197,7 @@ def evaluate_pair(
             f"الإطاران ضيقان: فرق المتوسط اليومي {fmt_px(pair, abs(ema20 - ema50))} وفرق 4 ساعات {fmt_px(pair, abs(ema20_4 - ema50_4))}.",
             snapshot,
         )
-    if direction == "BUY" and price < ema50_4:
+    if ENTRY_MODE == "pullback" and direction == "BUY" and price < ema50_4:
         return _skip(
             pair,
             "price-side-4h",
@@ -1131,7 +1205,7 @@ def evaluate_pair(
             f"اتجاه 4 ساعات صاعد، لكن السعر {fmt_px(pair, price)} كسر متوسط 50 عند {fmt_px(pair, ema50_4)}.",
             snapshot,
         )
-    if direction == "SELL" and price > ema50_4:
+    if ENTRY_MODE == "pullback" and direction == "SELL" and price > ema50_4:
         return _skip(
             pair,
             "price-side-4h",
@@ -1140,7 +1214,7 @@ def evaluate_pair(
             snapshot,
         )
     extension = (price - ema20_4) / atr4 if direction == "BUY" else (ema20_4 - price) / atr4
-    if extension < EXTENSION_ATR[0] or extension > EXTENSION_ATR[1]:
+    if ENTRY_MODE == "pullback" and (extension < EXTENSION_ATR[0] or extension > EXTENSION_ATR[1]):
         return _skip(
             pair,
             "extension",
@@ -1149,7 +1223,7 @@ def evaluate_pair(
             snapshot,
         )
     low, high = RSI_BUY if direction == "BUY" else RSI_SELL
-    if not (low <= rsi4 <= high):
+    if ENTRY_MODE == "pullback" and not (low <= rsi4 <= high):
         return _skip(
             pair,
             "rsi",
@@ -1157,7 +1231,7 @@ def evaluate_pair(
             f"RSI على 4 ساعات يساوي {fmt_num(rsi4, 1)} خارج نطاق {trend_name(direction, 'ar')} {low:.0f}–{high:.0f}.",
             snapshot,
         )
-    if direction == "BUY" and hist_v <= 0:
+    if ENTRY_MODE != "revert" and direction == "BUY" and hist_v <= 0:
         return _skip(
             pair,
             "macd",
@@ -1165,7 +1239,7 @@ def evaluate_pair(
             f"هيستوغرام MACD على 4 ساعات يساوي {fmt_ind(hist_v)} وليس موجباً.",
             snapshot,
         )
-    if direction == "SELL" and hist_v >= 0:
+    if ENTRY_MODE != "revert" and direction == "SELL" and hist_v >= 0:
         return _skip(
             pair,
             "macd",
@@ -1179,12 +1253,12 @@ def evaluate_pair(
     reward = abs(tp - entry)
     if risk <= 0 or reward < MIN_R * risk - 1e-9:
         return _skip(pair, "geometry", "Stop and target could not keep a 1:1.5 reward-to-risk after rounding.", "تعذر تثبيت نسبة 1:1.5 بعد تقريب السعر.", snapshot)
-    if pips_between(pair, risk) < 8:
+    if pips_between(pair, risk) < MIN_STOP_PIPS:
         return _skip(
             pair,
             "geometry",
-            f"Stop distance is only {fmt_num(pips_between(pair, risk), 1)} pips, inside the spread noise.",
-            f"مسافة الإيقاف {fmt_num(pips_between(pair, risk), 1)} نقطة فقط، أي داخل ضجيج السبريد.",
+            f"Stop distance is only {fmt_num(pips_between(pair, risk), 1)} pips, under the {MIN_STOP_PIPS:.0f}-pip floor.",
+            f"مسافة الإيقاف {fmt_num(pips_between(pair, risk), 1)} نقطة، أقل من الحد الأدنى {MIN_STOP_PIPS:.0f} نقطة.",
             snapshot,
         )
     soon = imminent_event(pair, fund.next_events, now)
@@ -1242,6 +1316,7 @@ def evaluate_pair(
         "macdSignal": signal_v,
         "macdHist": hist_v,
         "atr4": atr4,
+        "adx4": adx4,
         "swing": swing,
     }
     # Attach currency onto surprise examples for the sentence.
@@ -1277,6 +1352,7 @@ def evaluate_pair(
             "macdSignal4h": snapshot["macdSignal4h"],
             "macdHist4h": snapshot["macdHist4h"],
             "atr4h": snapshot["atr4h"],
+            "adx4h": snapshot["adx4h"],
             "atrDaily": snapshot["atrDaily"],
             "swing": None if swing is None else round_px(pair, swing),
         },
