@@ -42,6 +42,7 @@ jobs:
       - name: Update signals
         env:
           FORCE_ISSUE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.issue == 'true' && '1' || '0' }}
+          PAUSE_ISSUE: ${{ vars.PAUSE_ISSUE }}
         run: python scripts/update_signals.py
       - name: Commit data and decide deploy
         id: meta

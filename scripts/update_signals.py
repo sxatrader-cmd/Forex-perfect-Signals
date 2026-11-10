@@ -53,6 +53,8 @@ from fps_lib import (
 
 
 def should_issue(now: datetime, state: dict) -> bool:
+    if os.environ.get("PAUSE_ISSUE") == "1":
+        return False
     if os.environ.get("FORCE_ISSUE") == "1":
         return True
     if now.astimezone(timezone.utc).hour < ISSUE_HOUR_UTC:
