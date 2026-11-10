@@ -3,6 +3,7 @@
 import { faq } from "@/lib/faq";
 import { useI18n } from "@/lib/i18n";
 import { signalsData } from "@/lib/market-data";
+import { BASE_PATH } from "@/lib/site";
 
 const sections = {
   ar: [
@@ -12,11 +13,11 @@ const sections = {
     },
     {
       title: "الاتجاه اليومي",
-      body: "يجب أن يصطف EMA20 فوق EMA50 وفوق EMA200 للشراء، أو العكس للبيع. المسافة بين EMA20 وEMA50 لا تقل عن 0.08 من ATR اليومي. وآخر سعر يجب أن يبقى في جهة الاتجاه بالنسبة إلى EMA20 اليومي.",
+      body: "اتجاه الصفقة من إطار 4 ساعات: EMA20 فوق EMA50 مع هيستوغرام MACD موجب للشراء، والعكس للبيع. الميل اليومي يُستخدم مرشحاً: نترك الصفقة فقط إذا كان الاصطفاف اليومي معاكساً بالكامل والسعر في الجهة الخطأ من EMA200. فرق المتوسطات يُرفض فقط إذا كان الإطاران معاً شبه متلاصقين.",
     },
     {
       title: "توقيت الأربع ساعات",
-      body: "السعر في جهة الاتجاه بالنسبة إلى EMA50 على 4 ساعات، وبعده عن EMA20 بين 0.15 و1.15 ضعف ATR حتى لا نلاحق امتداداً ولا ندخل ملتصقين بالمتوسط. RSI للشراء بين 45 و65، وللبيع بين 35 و55. هيستوغرام MACD يوافق الاتجاه.",
+      body: "يُسمح بالتصحيح نحو EMA20 على 4 ساعات ما دام السعر لم يخسر EMA50. الامتداد المقبول من −0.6 إلى 2.0 ضعف ATR. RSI للشراء بين 32 و72، وللبيع بين 28 و68. نبرة الأخبار تمنع الصفقة فقط عند تعارض قوي، ولا تُستخدم لإجبار إشارة.",
     },
     {
       title: "الإيقاف والهدف",
@@ -38,11 +39,11 @@ const sections = {
     },
     {
       title: "Daily trend",
-      body: "EMA20 must sit above EMA50 and EMA200 for a buy, or the reverse for a sell. EMA20 and EMA50 must be at least 0.08 daily ATR apart. The latest price has to stay on the trend side of daily EMA20.",
+      body: "Direction comes from the 4-hour chart: EMA20 above EMA50 with a positive MACD histogram for a buy, and the reverse for a sell. Daily EMAs are a bias filter. A setup is dropped only when the daily stack fully opposes the 4-hour trend and price is on the wrong side of EMA200. A flat skip needs both timeframes stuck together.",
     },
     {
       title: "Four-hour timing",
-      body: "Price must be on the trend side of the 4H EMA50, and 0.15 to 1.15 ATR away from the 4H EMA20 so the entry is neither extended nor stuck to the average. Buy RSI is 45–65. Sell RSI is 35–55. The MACD histogram has to agree.",
+      body: "A pullback toward the 4-hour EMA20 is allowed as long as price has not lost the 4-hour EMA50. Distance from that EMA20 can sit between −0.6 and 2.0 ATR. Buy RSI is 32–72. Sell RSI is 28–68. Headline tone blocks only a strong contradiction and never forces a trade.",
     },
     {
       title: "Stop and target",
@@ -65,6 +66,13 @@ export function MethodView() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10 sm:px-6">
       <header>
+        <img
+          src={`${BASE_PATH}/logo-square.webp`}
+          alt="964FX"
+          width={759}
+          height={800}
+          className="mb-6 w-full max-w-[200px]"
+        />
         <p className="text-sm font-semibold text-primary">{t.ib}</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t.methodTitle}</h1>
         <p className="mt-3 text-sm leading-7 text-muted-foreground">{t.methodLede}</p>

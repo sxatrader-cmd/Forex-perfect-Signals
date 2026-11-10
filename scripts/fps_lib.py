@@ -43,15 +43,15 @@ PAIRS = [
 ]
 
 # A new signal needs every one of these. They are mirrored on the method page.
-RSI_BUY = (45.0, 65.0)
-RSI_SELL = (35.0, 55.0)
-EMA_GAP_ATR = 0.08
-EXTENSION_ATR = (0.15, 1.15)
+RSI_BUY = (32.0, 72.0)
+RSI_SELL = (28.0, 68.0)
+EMA_GAP_ATR = 0.03
+EXTENSION_ATR = (-0.6, 2.0)
 SL_ATR = (0.9, 2.0)
 TP_R = 1.7
 MIN_R = 1.5
 EVENT_BLOCK_HOURS = 8.0
-SENTIMENT_BLOCK = 0.6
+SENTIMENT_BLOCK = 0.85
 MIN_HEADLINES = 2
 ISSUE_HOUR_UTC = 5
 
@@ -338,11 +338,16 @@ def completed(bars: list[Bar], seconds: int, now_ts: int) -> list[Bar]:
     return done or bars
 
 
-def fetch_yahoo(symbol: str, interval: str, range_: str) -> list[Bar]:
+def fetch_yahoo(symbol: str, interval: str, range_: str | None = None, period1: int | None = None, period2: int | None = None) -> list[Bar]:
     encoded = urllib.request.quote(symbol, safe="")
     errors: list[str] = []
+    nonce = int(period2 or time.time())
+    if period1 is not None and period2 is not None:
+        query = f"period1={int(period1)}&period2={int(period2)}&interval={interval}&includePrePost=false&_={nonce}"
+    else:
+        query = f"interval={interval}&range={range_}&includePrePost=false&_={nonce}"
     for host in ("query1.finance.yahoo.com", "query2.finance.yahoo.com"):
-        url = f"https://{host}/v8/finance/chart/{encoded}?interval={interval}&range={range_}"
+        url = f"https://{host}/v8/finance/chart/{encoded}?{query}"
         try:
             payload = json.loads(http_get(url).decode("utf-8"))
         except FetchError as exc:
@@ -381,9 +386,10 @@ def fetch_yahoo(symbol: str, interval: str, range_: str) -> list[Bar]:
 
 def fetch_pair_bars(pair: str, now_ts: int) -> dict[str, list[Bar]]:
     symbol = f"{pair}=X"
-    daily = completed(fetch_yahoo(symbol, "1d", "2y"), 24 * 3600, now_ts)
-    h4 = completed(fetch_yahoo(symbol, "4h", "60d"), 4 * 3600, now_ts)
-    h1 = completed(fetch_yahoo(symbol, "1h", "3mo"), 3600, now_ts)
+    # Explicit end time plus a cache-busting query so each run gets a fresh daily series.
+    daily = [bar for bar in fetch_yahoo(symbol, "1d", period1=now_ts - 800 * 86400, period2=now_ts + 120) if bar.ts <= now_ts + 7200]
+    h4 = completed(fetch_yahoo(symbol, "4h", period1=now_ts - 80 * 86400, period2=now_ts + 120), 4 * 3600, now_ts)
+    h1 = completed(fetch_yahoo(symbol, "1h", period1=now_ts - 45 * 86400, period2=now_ts + 120), 3600, now_ts)
     time.sleep(0.12)
     return {"1d": reconcile_daily(daily, h4), "4h": h4, "1h": h1}
 
@@ -411,6 +417,23 @@ def reconcile_daily(daily: list[Bar], intraday: list[Bar]) -> list[Bar]:
                 close=chunk[-1].close,
             )
         )
+    known = {datetime.fromtimestamp(bar.ts, timezone.utc).date() for bar in merged}
+    for day in sorted(grouped):
+        if day in known:
+            continue
+        if merged and day < datetime.fromtimestamp(merged[-1].ts, timezone.utc).date():
+            continue
+        chunk = grouped[day]
+        merged.append(
+            Bar(
+                ts=int(datetime(day.year, day.month, day.day, tzinfo=timezone.utc).timestamp()),
+                open=chunk[0].open,
+                high=max(item.high for item in chunk),
+                low=min(item.low for item in chunk),
+                close=chunk[-1].close,
+            )
+        )
+    merged.sort(key=lambda bar: bar.ts)
     return merged
 
 
@@ -932,12 +955,14 @@ def build_reasons(pair: str, direction: str, entry: float, sl: float, tp: float,
     return [
         {
             "en": (
-                f"Daily trend is {trend}: EMA20 at {fmt_px(pair, ema20)} is {en_above} EMA50 at {fmt_px(pair, ema50)}, "
-                f"and EMA50 is {en_above2} EMA200 at {fmt_px(pair, ema200)}. Last price {fmt_px(pair, entry)} is {en_side} EMA20."
+                f"4-hour trend is {trend}: EMA20 {fmt_px(pair, snap.get('ema20_4', ema20))} versus EMA50 {fmt_px(pair, snap.get('ema50_4', ema50))}. "
+                f"Daily bias EMA20 {fmt_px(pair, ema20)} is {en_above} EMA50 {fmt_px(pair, ema50)} and EMA50 is {en_above2} EMA200 {fmt_px(pair, ema200)}. "
+                f"Last price {fmt_px(pair, entry)} is {en_side} daily EMA20."
             ),
             "ar": (
-                f"الاتجاه اليومي {trend_ar}: متوسط 20 عند {fmt_px(pair, ema20)} {above} متوسط 50 عند {fmt_px(pair, ema50)}، "
-                f"ومتوسط 50 {above2} متوسط 200 عند {fmt_px(pair, ema200)}. آخر سعر {fmt_px(pair, entry)} {side} متوسط 20."
+                f"اتجاه 4 ساعات {trend_ar}: متوسط 20 عند {fmt_px(pair, snap.get('ema20_4', ema20))} مقابل متوسط 50 عند {fmt_px(pair, snap.get('ema50_4', ema50))}. "
+                f"الميل اليومي: متوسط 20 عند {fmt_px(pair, ema20)} {above} متوسط 50 عند {fmt_px(pair, ema50)}، ومتوسط 50 {above2} متوسط 200 عند {fmt_px(pair, ema200)}. "
+                f"آخر سعر {fmt_px(pair, entry)} {side} متوسط 20 اليومي."
             ),
         },
         {
@@ -1058,57 +1083,60 @@ def evaluate_pair(
     assert ema20 is not None and ema50 is not None and ema200 is not None
     assert atr_d is not None and rsi4 is not None and hist_v is not None
     assert ema20_4 is not None and ema50_4 is not None and atr4 is not None
-    if ema20 > ema50 > ema200:
+    # Direction comes from the 4-hour trend. Daily EMAs are a bias filter, not a hard stack.
+    if ema20_4 > ema50_4 and hist_v > 0:
         direction = "BUY"
-    elif ema20 < ema50 < ema200:
+    elif ema20_4 < ema50_4 and hist_v < 0:
         direction = "SELL"
     else:
         return _skip(
             pair,
             "no-stack",
-            f"Daily EMAs are mixed: EMA20 {fmt_px(pair, ema20)}, EMA50 {fmt_px(pair, ema50)}, EMA200 {fmt_px(pair, ema200)}.",
-            f"المتوسطات اليومية غير مصطفة: 20 عند {fmt_px(pair, ema20)}، و50 عند {fmt_px(pair, ema50)}، و200 عند {fmt_px(pair, ema200)}.",
+            f"4H trend is not aligned: EMA20 {fmt_px(pair, ema20_4)}, EMA50 {fmt_px(pair, ema50_4)}, MACD histogram {fmt_ind(hist_v)}.",
+            f"اتجاه 4 ساعات غير متفق: متوسط 20 عند {fmt_px(pair, ema20_4)}، ومتوسط 50 عند {fmt_px(pair, ema50_4)}، وهيستوغرام MACD {fmt_ind(hist_v)}.",
             snapshot,
         )
-    snapshot["dailyTrend"] = direction.lower()
-    if abs(ema20 - ema50) < EMA_GAP_ATR * atr_d:
+    daily_bull = ema20 > ema50 > ema200
+    daily_bear = ema20 < ema50 < ema200
+    if direction == "BUY" and daily_bear and price < ema200:
+        return _skip(
+            pair,
+            "contradicts",
+            f"4H is bullish but the daily stack is fully bearish and price {fmt_px(pair, price)} is under EMA200 {fmt_px(pair, ema200)}.",
+            f"الأربع ساعات صاعدة، لكن الاصطفاف اليومي هابط بالكامل والسعر {fmt_px(pair, price)} تحت متوسط 200 عند {fmt_px(pair, ema200)}.",
+            snapshot,
+        )
+    if direction == "SELL" and daily_bull and price > ema200:
+        return _skip(
+            pair,
+            "contradicts",
+            f"4H is bearish but the daily stack is fully bullish and price {fmt_px(pair, price)} is above EMA200 {fmt_px(pair, ema200)}.",
+            f"الأربع ساعات هابطة، لكن الاصطفاف اليومي صاعد بالكامل والسعر {fmt_px(pair, price)} فوق متوسط 200 عند {fmt_px(pair, ema200)}.",
+            snapshot,
+        )
+    snapshot["dailyTrend"] = "buy" if ema20 >= ema50 else "sell"
+    if abs(ema20 - ema50) < EMA_GAP_ATR * atr_d and abs(ema20_4 - ema50_4) < 0.08 * atr4:
         return _skip(
             pair,
             "flat",
-            f"Daily EMA20 and EMA50 are only {fmt_px(pair, abs(ema20 - ema50))} apart, under {EMA_GAP_ATR:.2f}× daily ATR {fmt_px(pair, atr_d)}.",
-            f"الفرق بين متوسط 20 ومتوسط 50 ضيق ({fmt_px(pair, abs(ema20 - ema50))}) وأقل من {EMA_GAP_ATR:.2f}× ATR اليومي {fmt_px(pair, atr_d)}.",
+            f"Both timeframes are flat: daily EMA gap {fmt_px(pair, abs(ema20 - ema50))} and 4H gap {fmt_px(pair, abs(ema20_4 - ema50_4))}.",
+            f"الإطاران ضيقان: فرق المتوسط اليومي {fmt_px(pair, abs(ema20 - ema50))} وفرق 4 ساعات {fmt_px(pair, abs(ema20_4 - ema50_4))}.",
             snapshot,
         )
-    if direction == "BUY" and price <= ema20:
-        return _skip(
-            pair,
-            "price-side",
-            f"Bullish stack, but price {fmt_px(pair, price)} is not above daily EMA20 {fmt_px(pair, ema20)}.",
-            f"الاصطفاف صاعد، لكن السعر {fmt_px(pair, price)} ليس فوق متوسط 20 اليومي {fmt_px(pair, ema20)}.",
-            snapshot,
-        )
-    if direction == "SELL" and price >= ema20:
-        return _skip(
-            pair,
-            "price-side",
-            f"Bearish stack, but price {fmt_px(pair, price)} is not below daily EMA20 {fmt_px(pair, ema20)}.",
-            f"الاصطفاف هابط، لكن السعر {fmt_px(pair, price)} ليس تحت متوسط 20 اليومي {fmt_px(pair, ema20)}.",
-            snapshot,
-        )
-    if direction == "BUY" and price <= ema50_4:
+    if direction == "BUY" and price < ema50_4:
         return _skip(
             pair,
             "price-side-4h",
-            f"Price {fmt_px(pair, price)} is not above 4H EMA50 {fmt_px(pair, ema50_4)}.",
-            f"السعر {fmt_px(pair, price)} ليس فوق متوسط 50 على 4 ساعات {fmt_px(pair, ema50_4)}.",
+            f"Bullish 4H trend, but price {fmt_px(pair, price)} has lost 4H EMA50 {fmt_px(pair, ema50_4)}.",
+            f"اتجاه 4 ساعات صاعد، لكن السعر {fmt_px(pair, price)} كسر متوسط 50 عند {fmt_px(pair, ema50_4)}.",
             snapshot,
         )
-    if direction == "SELL" and price >= ema50_4:
+    if direction == "SELL" and price > ema50_4:
         return _skip(
             pair,
             "price-side-4h",
-            f"Price {fmt_px(pair, price)} is not below 4H EMA50 {fmt_px(pair, ema50_4)}.",
-            f"السعر {fmt_px(pair, price)} ليس تحت متوسط 50 على 4 ساعات {fmt_px(pair, ema50_4)}.",
+            f"Bearish 4H trend, but price {fmt_px(pair, price)} has reclaimed 4H EMA50 {fmt_px(pair, ema50_4)}.",
+            f"اتجاه 4 ساعات هابط، لكن السعر {fmt_px(pair, price)} استعاد متوسط 50 عند {fmt_px(pair, ema50_4)}.",
             snapshot,
         )
     extension = (price - ema20_4) / atr4 if direction == "BUY" else (ema20_4 - price) / atr4
@@ -1207,6 +1235,8 @@ def evaluate_pair(
         "ema20": ema20,
         "ema50": ema50,
         "ema200": ema200,
+        "ema20_4": ema20_4,
+        "ema50_4": ema50_4,
         "rsi4": rsi4,
         "macd": macd_v,
         "macdSignal": signal_v,

@@ -4,10 +4,9 @@ on:
   push:
     branches: [main]
   schedule:
-    # News poll. GitHub may start this later than the clock time.
-    - cron: "*/5 * * * *"
-    # Hourly signal tracking, offset from the news minutes.
-    - cron: "7 * * * *"
+    # Every 15 minutes on odd minutes. GitHub may delay or skip runs; each run still
+    # refreshes news and lets the Python jobs decide what is due from timestamps.
+    - cron: "3,18,33,48 * * * *"
   workflow_dispatch:
     inputs:
       issue:
@@ -39,12 +38,10 @@ jobs:
       - name: Test signal rules
         run: python scripts/test_signals.py
       - name: Update economic calendar
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '*/5 * * * *'
         run: python scripts/fetch_news.py
       - name: Update signals
-        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '7 * * * *'
         env:
-          FORCE_ISSUE: ${{ github.event.inputs.issue == 'true' && '1' || '0' }}
+          FORCE_ISSUE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.issue == 'true' && '1' || '0' }}
         run: python scripts/update_signals.py
       - name: Commit data and decide deploy
         id: meta

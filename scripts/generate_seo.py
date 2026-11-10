@@ -44,7 +44,11 @@ manifest = {
     "display": "standalone",
     "background_color": "#07090c",
     "theme_color": "#22c55e",
-    "icons": [{"src": f"{site_url}/logo-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}],
+    "icons": [
+        {"src": f"{site_url}/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+        {"src": f"{site_url}/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+        {"src": f"{site_url}/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"},
+    ],
 }
 (ROOT / "public/manifest.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(f"seo files for {site_url} lastmod {stamp} urls {len(paths) * 2}")

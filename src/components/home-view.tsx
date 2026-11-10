@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { formatClock, formatPips, formatPrice, fxMarketClosed, pairLabel, tradeStats } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
+import { BASE_PATH } from "@/lib/site";
 import { historyData, signalsData } from "@/lib/market-data";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +52,15 @@ export function HomeView() {
               </Link>
             </div>
           </div>
-          <Card className="bg-card/80 lg:col-span-5">
+          <div className="flex flex-col gap-6 lg:col-span-5">
+            <img
+              src={`${BASE_PATH}/logo-square.webp`}
+              alt="964FX"
+              width={759}
+              height={800}
+              className="mx-auto w-full max-w-[280px]"
+            />
+          <Card className="bg-card/80">
             <CardHeader>
               <p className="text-xs tracking-wide text-primary uppercase">{t.clockLabel}</p>
               <CardTitle className="nums text-3xl">{now ? formatClock(now, lang) : "—"}</CardTitle>
@@ -63,6 +72,7 @@ export function HomeView() {
               <Stat label={t.statsOpen} value={String(signalsData.open.length)} />
             </CardContent>
           </Card>
+          </div>
         </div>
       </section>
       <Ticker />

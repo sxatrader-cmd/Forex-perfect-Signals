@@ -130,7 +130,7 @@ export function organizationLd() {
         "@type": "Organization",
         name: "964FX",
         url: `${SITE_URL}/ar/`,
-        logo: `${SITE_URL}/logo-mark.svg`,
+        logo: `${SITE_URL}/logo-square.png`,
         description: "Educational Iraqi forex signals. Saif Altamimi is an Introducing Broker for IC Markets.",
       },
       {

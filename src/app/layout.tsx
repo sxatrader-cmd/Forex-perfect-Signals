@@ -23,7 +23,14 @@ export const metadata: Metadata = {
   description: "توصيات فوركس مجانية من العراق. Educational forex signals from 964FX. Not financial advice.",
   applicationName: SITE_NAME,
   manifest: "/manifest.webmanifest",
-  icons: { icon: "/logo-mark.svg" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
