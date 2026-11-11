@@ -364,6 +364,30 @@ def test_pause_blocks_issue_even_when_forced() -> None:
         fail("issue should proceed when the pause is off and the daily pass is due")
 
 
+def test_chart_payload() -> None:
+    from update_charts import build_chart, bucket
+
+    base = 1_794_340_800
+    raw = [Bar(base + i * 900, 1.1, 1.1 + i * 0.0001, 1.1 - 0.0001, 1.1) for i in range(12)]
+    raw.append(Bar(base + 11 * 900 + 37, 1.1, 1.2, 1.0, 1.15))
+    merged = bucket(raw, 900)
+    if len(merged) != 12 or merged[-1].close != 1.15 or merged[-1].high != 1.2:
+        fail("chart bucketing should merge the live partial bar into its 15m candle")
+    signal = {
+        "id": "EURUSD-T", "pair": "EURUSD", "direction": "SELL", "entry": 1.1, "sl": 1.101, "tp": 1.0995,
+        "issuedAt": iso_z(datetime.fromtimestamp(base + 1800, timezone.utc)), "status": "open", "currentPrice": 1.1,
+    }
+    now = datetime.fromtimestamp(base + 12 * 900, timezone.utc)
+    live = build_chart(signal, raw, 900, now)
+    if live["final"] or live["status"] != "open" or live["entryTs"] != base + 1800 or not live["candles"]:
+        fail("open chart should be live with an aligned entry time")
+    closed = dict(signal, status="closed", result="TP", closePrice=1.0995, pips=5.0,
+                  closedAt=iso_z(datetime.fromtimestamp(base + 8 * 900, timezone.utc)))
+    final = build_chart(closed, [*raw[:4], Bar(base + 4 * 900, 1.1, 1.1, 1.0994, 1.0996), *raw[5:]], 900, now)
+    if not final["final"] or final["result"] != "TP" or final["closeTs"] != base + 4 * 900:
+        fail("closed chart should be final and mark the candle that touched the target")
+
+
 if __name__ == "__main__":
     test_ema_rsi_macd()
     test_exit_rules()
@@ -374,4 +398,5 @@ if __name__ == "__main__":
     test_four_hour_updates_and_immutable_archive()
     test_rate_and_news_gates()
     test_pause_blocks_issue_even_when_forced()
+    test_chart_payload()
     print("all signal tests passed")

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { SignalChart } from "@/components/signal-chart";
 import { formatPercent, formatPips, formatPrice, formatWhen, pairLabel, tradeStats } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import { historyData } from "@/lib/market-data";
@@ -90,6 +91,7 @@ export function ArchiveDetail({ id }: { id: string }) {
         <Cell label={t.sl} value={formatPrice(signal.pair, signal.sl)} />
         <Cell label={t.tp} value={formatPrice(signal.pair, signal.tp)} />
       </dl>
+      <SignalChart signal={signal} />
       <ol className="space-y-2">
         {signal.reasons.map((reason, index) => (
           <li key={reason.en} className="rounded-lg bg-muted/60 px-3 py-2 text-sm leading-6">

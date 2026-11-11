@@ -46,6 +46,8 @@ jobs:
           FORCE_ISSUE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.issue == 'true' && '1' || '0' }}
           PAUSE_ISSUE: ${{ vars.PAUSE_ISSUE }}
         run: python scripts/update_signals.py
+      - name: Update signal charts
+        run: python scripts/update_charts.py
       - name: Commit data and decide deploy
         id: meta
         env:
@@ -53,13 +55,13 @@ jobs:
         run: |
           set -euo pipefail
           changed=false
-          if ! git diff --quiet -- data; then
+          if [ -n "$(git status --porcelain -- data)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data
-            if git diff --cached --quiet -- data/news.json && ! git diff --cached --quiet -- data/signals.json data/history.json; then
+            if git diff --cached --quiet -- data/news.json && ! git diff --cached --quiet -- data/signals.json data/history.json data/charts; then
               msg="data: update signals"
-            elif ! git diff --cached --quiet -- data/news.json && git diff --cached --quiet -- data/signals.json data/history.json; then
+            elif ! git diff --cached --quiet -- data/news.json && git diff --cached --quiet -- data/signals.json data/history.json data/charts; then
               msg="data: update economic calendar"
             else
               msg="data: update calendar and signals"
