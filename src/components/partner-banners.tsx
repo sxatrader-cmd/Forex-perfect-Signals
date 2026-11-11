@@ -21,7 +21,7 @@ export function SponsoredGif() {
     <aside className="mx-auto inline-block w-fit max-w-full text-center">
       <p className="mb-2 text-center text-[11px] text-muted-foreground">{t.sponsoredLabel}</p>
       <a href={HREF} target="_blank" rel="sponsored noopener" className="inline-block max-w-full">
-        <img src={GIF} width={336} height={280} alt="IC Markets" loading="lazy" className="mx-auto h-auto w-[336px] max-w-full" />
+        <img src={GIF} width={336} height={280} alt="IC Markets" loading="eager" className="mx-auto h-auto w-[336px] max-w-full" />
       </a>
     </aside>
   );

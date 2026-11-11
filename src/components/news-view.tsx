@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SponsoredGif } from "@/components/partner-banners";
 import { Badge } from "@/components/ui/badge";
 import {
   compareActual,
@@ -264,9 +263,6 @@ export function NewsView() {
         )}
         <p className="text-xs leading-6 text-muted-foreground">{t.newsFootnote}</p>
       </div>
-      <aside className="flex justify-center lg:justify-start">
-        <SponsoredGif />
-      </aside>
     </div>
   );
 }

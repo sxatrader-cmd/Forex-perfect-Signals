@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SponsoredGif } from "@/components/partner-banners";
 import { JsonLd } from "@/components/json-ld";
 import { I18nProvider } from "@/lib/i18n";
 import { LANG_META, type Lang } from "@/lib/langs";
@@ -12,6 +13,7 @@ export function SiteShell({ lang, children }: { lang: Lang; children: ReactNode 
     <I18nProvider lang={lang} t={clientCopy(lang)}>
       <JsonLd data={organizationLd(lang)} />
       <SiteHeader />
+      <div className="flex justify-center px-4 pt-4"><SponsoredGif /></div>
       <main id="content" lang={LANG_META[lang].tag} dir={LANG_META[lang].dir} className="flex-1">
         {children}
       </main>

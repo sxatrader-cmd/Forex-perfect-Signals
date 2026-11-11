@@ -1,7 +1,6 @@
 "use client";
 
 import { Disclaimer } from "@/components/disclaimer";
-import { SponsoredGif } from "@/components/partner-banners";
 import { PriceWidget } from "@/components/price-widget";
 import { SignalCard } from "@/components/signal-card";
 import { Badge } from "@/components/ui/badge";
@@ -134,7 +133,6 @@ export function SignalsView() {
     </div>
     <aside className="flex flex-col items-center gap-8">
       <PriceWidget />
-      <SponsoredGif />
     </aside>
     </div>
   );
