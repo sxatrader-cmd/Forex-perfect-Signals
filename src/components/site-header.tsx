@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { slug: "", key: "home" },
   { slug: "/signals", key: "signals" },
-  { slug: "/news", key: "news" },
+  { slug: "/calendar", key: "news" },
   { slug: "/archive", key: "archive" },
   { slug: "/method", key: "method" },
 ] as const;

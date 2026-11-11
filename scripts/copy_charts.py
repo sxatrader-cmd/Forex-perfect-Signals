@@ -17,3 +17,8 @@ for path in sorted(src.glob("*.json")) if src.exists() else []:
     shutil.copy2(path, dst / path.name)
     count += 1
 print(f"copied {count} chart files to public/data/charts")
+news_src = ROOT / "data/news.json"
+if news_src.exists():
+    shutil.copy2(news_src, ROOT / "public/news.json")
+    print("copied data/news.json to public/news.json")
+

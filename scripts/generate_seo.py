@@ -16,7 +16,7 @@ stamp = datetime.now(timezone.utc).date().isoformat()
 pairs = ["eurusd", "gbpusd", "usdjpy", "usdchf", "audusd", "usdcad", "nzdusd"]
 history = json.loads((ROOT / "data/history.json").read_text(encoding="utf-8"))
 signals = json.loads((ROOT / "data/signals.json").read_text(encoding="utf-8"))
-paths = ["/", "/signals/", "/news/", "/method/", "/archive/"]
+paths = ["/", "/signals/", "/news/", "/calendar/", "/method/", "/archive/"]
 paths += [f"/signals/{pair}/" for pair in pairs]
 paths += [f"/archive/{item['id']}/" for item in history.get("closed") or [] if item.get("id") and item["id"] != "empty"]
 
@@ -145,6 +145,7 @@ The site is available in 13 languages. Arabic is the default.
 - [الرئيسية]({site_url}/ar/): نظرة عامة على مكتب 964FX والإشارات التعليمية
 - [الإشارات]({site_url}/ar/signals/): التوصيات اليومية للأزواج الرئيسية مع الإيقاف والهدف وستة أسباب
 - [الأخبار]({site_url}/ar/news/): المفكرة الاقتصادية وأخبار Forex Factory بتوقيت بغداد
+- [التقويم الاقتصادي]({site_url}/ar/calendar/): التقويم الاقتصادي للأسبوع، مع الأثر والفعلي والتوقع والسابق
 - [المنهج]({site_url}/ar/method/): قواعد بناء الإشارة، ولماذا يُتخطى الزوج أحياناً
 - [الأرشيف]({site_url}/ar/archive/): السجل العلني للإشارات المغلقة مع النتيجة والنقاط
 """
@@ -158,6 +159,7 @@ The site is available in 13 languages. Arabic is the default.
 - [Home]({site_url}/en/): Overview of the 964FX educational desk
 - [Signals]({site_url}/en/signals/): Daily major-pair signals with stop, target, and six reasons
 - [News]({site_url}/en/news/): This week's economic calendar and live Forex Factory news
+- [Economic calendar]({site_url}/en/calendar/): This week's economic calendar, with impact, actual, forecast, and previous
 - [Method]({site_url}/en/method/): How a signal is built, and when a pair is skipped
 - [Archive]({site_url}/en/archive/): Public record of closed signals, with results and pips
 """
@@ -188,6 +190,7 @@ Data last updated: {updated}
 - Home: {site_url}/ar/
 - Signals: {site_url}/ar/signals/
 - News: {site_url}/ar/news/
+- Economic calendar: {site_url}/ar/calendar/
 - Method: {site_url}/ar/method/
 - Archive: {site_url}/ar/archive/
 """
@@ -200,6 +203,7 @@ Data last updated: {updated}
 - Home: {site_url}/en/
 - Signals: {site_url}/en/signals/
 - News: {site_url}/en/news/
+- Economic calendar: {site_url}/en/calendar/
 - Method: {site_url}/en/method/
 - Archive: {site_url}/en/archive/
 """

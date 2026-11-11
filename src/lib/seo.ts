@@ -21,7 +21,7 @@ export function siteVerification(): Metadata["verification"] {
   return Object.keys(verification).length ? verification : undefined;
 }
 
-type PageKey = "home" | "signals" | "news" | "method" | "archive";
+type PageKey = "home" | "signals" | "news" | "calendar" | "method" | "archive";
 
 type ArticleTimes = {
   publishedTime: string;
@@ -195,6 +195,19 @@ export function newsPageLd(lang: Lang) {
     description: d.seo.news.description,
     inLanguage: LANG_META[lang].tag,
     url: `${SITE_URL}/${lang}/news/`,
+    isPartOf: { "@id": `${SITE_URL}/${lang}/#website` },
+  };
+}
+
+export function calendarPageLd(lang: Lang) {
+  const d = dict(lang);
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: d.seo.calendar.title,
+    description: d.seo.calendar.description,
+    inLanguage: LANG_META[lang].tag,
+    url: `${SITE_URL}/${lang}/calendar/`,
     isPartOf: { "@id": `${SITE_URL}/${lang}/#website` },
   };
 }

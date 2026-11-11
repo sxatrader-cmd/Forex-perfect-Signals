@@ -13,6 +13,10 @@ on:
         description: Issue a new daily signal now if a pair has no open trade
         type: boolean
         default: false
+      news_only:
+        description: Refresh the economic calendar only (skip signals, charts, and tests)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -36,17 +40,21 @@ jobs:
         with:
           python-version: "3.12"
       - name: Test signal rules
+        if: ${{ github.event.inputs.news_only != 'true' }}
         run: python scripts/test_signals.py
       - name: Update economic calendar
         run: python scripts/fetch_news.py
       - name: Update policy rates and high-impact history
+        if: ${{ github.event.inputs.news_only != 'true' }}
         run: python scripts/update_macro.py
       - name: Update signals
+        if: ${{ github.event.inputs.news_only != 'true' }}
         env:
           FORCE_ISSUE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.issue == 'true' && '1' || '0' }}
           PAUSE_ISSUE: ${{ vars.PAUSE_ISSUE }}
         run: python scripts/update_signals.py
       - name: Update signal charts
+        if: ${{ github.event.inputs.news_only != 'true' }}
         run: python scripts/update_charts.py
       - name: Commit data and decide deploy
         id: meta
@@ -71,7 +79,12 @@ jobs:
             changed=true
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          if [ "$EVENT_NAME" = "push" ] || [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$changed" = "true" ]; then
+          NEWS_ONLY="${{ github.event.inputs.news_only }}"
+          if [ "$EVENT_NAME" = "push" ]; then
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$NEWS_ONLY" != "true" ]; then
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          elif [ "$changed" = "true" ]; then
             echo "deploy=true" >> "$GITHUB_OUTPUT"
           else
             echo "deploy=false" >> "$GITHUB_OUTPUT"

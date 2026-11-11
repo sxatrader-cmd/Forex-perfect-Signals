@@ -54,11 +54,12 @@ The Pages base path is derived from `siteUrl` in `site.config.json` (empty at th
 | --- | --- |
 | Push to `main` | Run the Python unit tests, build, and deploy. |
 | Every 15 minutes (`3,18,33,48`) | Refresh the calendar, track open signals, append a progress note when one is at least 4 hours old, and issue the daily scan when it is due. Commit only if JSON changed, then deploy. |
-| Manual run | Same work. Check **issue** to force the daily pass. Always deploys. |
+| Manual run | Same work. Check **issue** to force the daily pass. Always deploys. Check **news_only** to refresh the economic calendar without running signals, tests, or charts; that path deploys only if `data/news.json` changed. |
+| Event-timed news | A box-side scheduler reads the Forex Factory week and, for each event time T, dispatches `news_only` at about T+30s, T+2m, T+5m, and T+15m so actuals land quickly. An hourly full run is the fallback. The 15-minute GitHub schedule stays as a backup. |
 
 GitHub often delays or skips a `*/5` cron, so the schedule is one run every 15 minutes. The job does not depend on landing inside a particular hour: the first successful run at or after 08:00 UTC issues for that Baghdad date, hourly tracking runs whenever a signal is open, and a 4-hour note is appended from the last update timestamp.
 
-GitHub can still throttle scheduled workflows. An optional free pinger such as [cron-job.org](https://cron-job.org) can call this workflow with `workflow_dispatch` if the built-in schedule stays quiet. It is not required. Create a fine-grained token with Actions read/write on the repository and POST `https://api.github.com/repos/sxatrader-cmd/Forex-perfect-Signals/actions/workflows/pages.yml/dispatches` with body `{"ref":"main","inputs":{"issue":"false"}}`.
+GitHub can still throttle scheduled workflows. An optional free pinger such as [cron-job.org](https://cron-job.org) can call this workflow with `workflow_dispatch` if the built-in schedule stays quiet. It is not required. Create a fine-grained token with Actions read/write on the repository and POST `https://api.github.com/repos/sxatrader-cmd/Forex-perfect-Signals/actions/workflows/pages.yml/dispatches` with body `{"ref":"main","inputs":{"issue":"false"}}`. To refresh only the calendar, use `{"ref":"main","inputs":{"news_only":"true"}}`.
 
 New signals stay off while the repository variable `PAUSE_ISSUE` is `1`. The workflow passes that variable into the signal job. Tracking of anything already open, and the calendar refresh, keep running. Set the variable to anything other than `1` when the owner wants issuing to resume. `FORCE_ISSUE` does not override the pause.
 

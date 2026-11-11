@@ -47,3 +47,6 @@ __pycache__/
 
 # chart copies made at build time
 /public/data/
+
+# news.json copy made at build time for browser auto-refresh
+/public/news.json

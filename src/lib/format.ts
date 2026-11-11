@@ -60,12 +60,59 @@ export function formatClock(date: Date, lang: Lang) {
 }
 
 export function baghdadDay(iso: string) {
+  return dayKey(iso, "Asia/Baghdad");
+}
+
+export const DEFAULT_TZ = "Asia/Baghdad";
+
+export function dayKey(iso: string, timeZone = DEFAULT_TZ) {
   return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Baghdad",
+    timeZone,
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   }).format(new Date(iso));
+}
+
+export function formatDayHeading(iso: string, timeZone: string, lang: Lang) {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "—";
+  return new Intl.DateTimeFormat(localeFor(lang), {
+    timeZone,
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    numberingSystem: "latn",
+  }).format(date);
+}
+
+export function formatTimeShort(iso: string, timeZone: string, lang: Lang) {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return "—";
+  return new Intl.DateTimeFormat(localeFor(lang), {
+    timeZone,
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+    numberingSystem: "latn",
+  }).format(date);
+}
+
+export function formatCountdown(ms: number) {
+  const total = Math.max(0, Math.floor(ms / 1000));
+  const hours = Math.floor(total / 3600);
+  const minutes = Math.floor((total % 3600) / 60);
+  const seconds = total % 60;
+  const pad = (value: number) => value.toString().padStart(2, "0");
+  return hours > 0 ? `${pad(hours)}:${pad(minutes)}:${pad(seconds)}` : `${pad(minutes)}:${pad(seconds)}`;
+}
+
+export function detectTimeZone() {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || DEFAULT_TZ;
+  } catch {
+    return DEFAULT_TZ;
+  }
 }
 
 export function fxMarketClosed(date: Date) {

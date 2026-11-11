@@ -28,7 +28,7 @@ export function SiteFooter() {
             <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground">
               <Link href={`/${lang}`} className="hover:text-foreground">{t.nav.home}</Link>
               <Link href={`/${lang}/signals`} className="hover:text-foreground">{t.nav.signals}</Link>
-              <Link href={`/${lang}/news`} className="hover:text-foreground">{t.nav.news}</Link>
+              <Link href={`/${lang}/calendar`} className="hover:text-foreground">{t.nav.news}</Link>
               <Link href={`/${lang}/archive`} className="hover:text-foreground">{t.nav.archive}</Link>
               <Link href={`/${lang}/method`} className="hover:text-foreground">{t.nav.method}</Link>
             </nav>
