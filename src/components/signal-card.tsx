@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ShareSignal } from "@/components/share-signal";
 import { UpdatesTimeline } from "@/components/updates-timeline";
 import { formatPips, formatPrice, formatWhen, pairLabel } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
@@ -66,6 +67,7 @@ export function SignalCard({ signal, compact = false }: { signal: Signal; compac
           <br />
           {t.quoteTime}: {formatWhen(signal.priceAsOf, "Asia/Baghdad", lang)}
         </p>
+        {signal.status === "closed" ? null : <ShareSignal signal={signal} />}
         {compact ? null : (
           <>
             <div>
