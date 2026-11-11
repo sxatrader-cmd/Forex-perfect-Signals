@@ -6,12 +6,15 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { isLang, LANG_META, LANGS, type Lang } from "@/lib/langs";
 import { cn } from "@/lib/utils";
+import { hasGuides } from "@/lib/guides/nav";
 
 /** Swap the language segment and keep the rest of the path. */
 export function withLang(path: string, lang: Lang) {
   const parts = path.split("/").filter(Boolean);
   if (parts[0] && isLang(parts[0])) parts[0] = lang;
   else parts.unshift(lang);
+  // Guides exist only in some languages; send the rest to their home page.
+  if (parts[1] === "guides" && !hasGuides(lang)) return `/${lang}`;
   return `/${parts.join("/")}`;
 }
 

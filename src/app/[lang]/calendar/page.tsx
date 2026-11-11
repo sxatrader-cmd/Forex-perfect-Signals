@@ -1,6 +1,6 @@
 import { JsonLd } from "@/components/json-ld";
 import { NewsView } from "@/components/news-view";
-import { breadcrumbLd, calendarPageLd, pageMeta } from "@/lib/seo";
+import { breadcrumbLd, calendarPageLd, pageH1, pageMeta } from "@/lib/seo";
 import type { Lang } from "@/lib/langs";
 import { dict } from "@/lib/locales";
 
@@ -15,7 +15,7 @@ export default async function CalendarPage({ params }: { params: Promise<{ lang:
     <>
       <JsonLd data={breadcrumbLd(lang as Lang, [{ name: "964FX", path: "/" }, { name: d.nav.news, path: "/calendar/" }])} />
       <JsonLd data={calendarPageLd(lang as Lang)} />
-      <NewsView />
+      <NewsView heading={pageH1(lang as Lang, "calendar")} />
     </>
   );
 }

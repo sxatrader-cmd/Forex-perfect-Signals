@@ -6,9 +6,12 @@ import { Disclaimer } from "@/components/disclaimer";
 import { Logo } from "@/components/logo";
 import { PartnerBadge } from "@/components/partner-banners";
 import { useI18n } from "@/lib/i18n";
+import { GUIDE_SLUGS } from "@/lib/guides/types";
+import { guideNav } from "@/lib/guides/nav";
 
 export function SiteFooter() {
   const { t, lang } = useI18n();
+  const guides = guideNav(lang);
   return (
     <footer className="mt-16 border-t border-border">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-6">
@@ -32,6 +35,16 @@ export function SiteFooter() {
               <Link href={`/${lang}/archive`} className="hover:text-foreground">{t.nav.archive}</Link>
               <Link href={`/${lang}/method`} className="hover:text-foreground">{t.nav.method}</Link>
             </nav>
+            {guides ? (
+              <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground" aria-label={guides.nav}>
+                <Link href={`/${lang}/guides`} className="font-medium text-foreground hover:text-primary">{guides.nav}</Link>
+                {GUIDE_SLUGS.map((slug) => (
+                  <Link key={slug} href={`/${lang}/guides/${slug}`} className="hover:text-foreground">
+                    {guides.labels[slug]}
+                  </Link>
+                ))}
+              </nav>
+            ) : null}
             <BrokerLink variant="outline">{t.openAccount}</BrokerLink>
           </div>
         </div>

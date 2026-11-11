@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { formatClock } from "@/lib/format";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useI18n } from "@/lib/i18n";
+import { guideNav } from "@/lib/guides/nav";
 import { LANG_META } from "@/lib/langs";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +31,7 @@ export function SiteHeader() {
   const pathname = normalize(usePathname() || "/");
   const { t, lang } = useI18n();
   const [open, setOpen] = useState(false);
+  const guides = guideNav(lang);
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -75,6 +77,17 @@ export function SiteHeader() {
                 </Link>
               );
             })}
+            {guides ? (
+              <Link
+                href={`/${lang}/guides`}
+                className={cn(
+                  "rounded-lg px-2.5 py-2 text-sm text-muted-foreground hover:text-foreground",
+                  pathname.startsWith(`/${lang}/guides`) && "bg-muted text-foreground",
+                )}
+              >
+                {guides.nav}
+              </Link>
+            ) : null}
           </nav>
           <p className="nums hidden text-xs text-muted-foreground xl:block">
             <span className="me-1 text-primary">{t.clockLabel}</span>
@@ -108,6 +121,15 @@ export function SiteHeader() {
                 {t.nav[link.key]}
               </Link>
             ))}
+            {guides ? (
+              <Link
+                href={`/${lang}/guides`}
+                className="rounded-lg px-2 py-3 text-base hover:bg-muted"
+                onClick={() => setOpen(false)}
+              >
+                {guides.nav}
+              </Link>
+            ) : null}
           </nav>
           <BrokerLink className="mt-3 w-full">{t.openAccount}</BrokerLink>
         </div>

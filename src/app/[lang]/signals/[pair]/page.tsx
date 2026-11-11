@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/json-ld";
 import { PairView } from "@/components/pair-view";
-import { breadcrumbLd, PAIRS, pairMeta, pairPageLd } from "@/lib/seo";
+import { breadcrumbLd, PAIRS, pairH1, pairMeta, pairPageLd } from "@/lib/seo";
 import { LANGS, type Lang } from "@/lib/langs";
 import { dict } from "@/lib/locales";
 
@@ -29,7 +29,7 @@ export default async function PairPage({ params }: { params: Promise<{ lang: str
         ])}
       />
       <JsonLd data={pairPageLd(lang as Lang, code)} />
-      <PairView pair={code} />
+      <PairView pair={code} heading={pairH1(lang as Lang, code)} />
     </>
   );
 }

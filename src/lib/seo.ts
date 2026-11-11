@@ -4,6 +4,8 @@ import { BING_VERIFICATION, GSC_VERIFICATION, SITE_NAME, SITE_URL, YANDEX_VERIFI
 import { fill, LANG_META, LANGS, pickText, type Lang } from "@/lib/langs";
 import { dict } from "@/lib/locales";
 import type { Signal } from "@/lib/types";
+import { pairValues, seoCopy } from "@/lib/seo-copy";
+import { GUIDE_LANGS, GUIDES_REVIEWED, guidePack, type GuideSlug } from "@/lib/guides";
 
 export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD"] as const;
 
@@ -29,7 +31,8 @@ type ArticleTimes = {
 };
 
 export function pageMeta(lang: Lang, key: PageKey, path = ""): Metadata {
-  const copy = dict(lang).seo[key];
+  const override = key === "signals" || key === "calendar" ? seoCopy(lang)?.[key] : undefined;
+  const copy = override ?? dict(lang).seo[key];
   return meta(lang, path, copy.title, copy.description);
 }
 
@@ -37,11 +40,13 @@ export function pairMeta(lang: Lang, pair: string): Metadata {
   const d = dict(lang);
   const name = d.pairNames[pair] ?? pair;
   const signal = openSignalFor(pair);
+  const copy = seoCopy(lang);
+  const values = { name, ...pairValues(lang, pair) };
   return meta(
     lang,
     `/signals/${pair.toLowerCase()}`,
-    fill(d.seo.pairTitle, { name }),
-    fill(d.seo.pairDescription, { name }),
+    fill(copy?.pairTitle ?? d.seo.pairTitle, values),
+    fill(copy?.pairDescription ?? d.seo.pairDescription, values),
     signal ? articleTimes(signal) : undefined,
   );
 }
@@ -65,11 +70,18 @@ function articleTimes(signal: Signal): ArticleTimes {
   };
 }
 
-function meta(lang: Lang, path: string, title: string, description: string, article?: ArticleTimes): Metadata {
+function meta(
+  lang: Lang,
+  path: string,
+  title: string,
+  description: string,
+  article?: ArticleTimes,
+  only: readonly Lang[] = LANGS,
+): Metadata {
   const suffix = path ? (path.endsWith("/") ? path : `${path}/`) : "/";
   const canonicalPath = `/${lang}${suffix}`;
   const languages: Record<string, string> = {};
-  for (const code of LANGS) languages[LANG_META[code].tag] = `${SITE_URL}/${code}${suffix}`;
+  for (const code of only) languages[LANG_META[code].tag] = `${SITE_URL}/${code}${suffix}`;
   languages["x-default"] = `${SITE_URL}/ar${suffix}`;
   return {
     title: { absolute: title },
@@ -84,7 +96,7 @@ function meta(lang: Lang, path: string, title: string, description: string, arti
       url: `${SITE_URL}${canonicalPath}`,
       siteName: SITE_NAME,
       locale: LANG_META[lang].og,
-      alternateLocale: LANGS.filter((code) => code !== lang).map((code) => LANG_META[code].og),
+      alternateLocale: only.filter((code) => code !== lang).map((code) => LANG_META[code].og),
       type: article ? "article" : "website",
       images: [OG_IMAGE],
       ...(article
@@ -204,8 +216,8 @@ export function calendarPageLd(lang: Lang) {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: d.seo.calendar.title,
-    description: d.seo.calendar.description,
+    name: (seoCopy(lang)?.calendar ?? d.seo.calendar).title,
+    description: (seoCopy(lang)?.calendar ?? d.seo.calendar).description,
     inLanguage: LANG_META[lang].tag,
     url: `${SITE_URL}/${lang}/calendar/`,
     isPartOf: { "@id": `${SITE_URL}/${lang}/#website` },
@@ -245,8 +257,8 @@ export function pairPageLd(lang: Lang, pair: string) {
   return {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: fill(d.seo.pairTitle, { name }),
-    description: fill(d.seo.pairDescription, { name }),
+    name: fill(seoCopy(lang)?.pairTitle ?? d.seo.pairTitle, { name, ...pairValues(lang, pair) }),
+    description: fill(seoCopy(lang)?.pairDescription ?? d.seo.pairDescription, { name, ...pairValues(lang, pair) }),
     inLanguage: LANG_META[lang].tag,
     url,
     isPartOf: { "@id": `${SITE_URL}/${lang}/#website` },
@@ -303,4 +315,86 @@ function articleDescription(lang: Lang, signal: Signal) {
     return `Archived ${signal.pair} ${signal.direction} signal, closed at ${result}${pips}. ${levels}. Educational analysis, not financial advice.`;
   }
   return `Open ${signal.pair} ${signal.direction} signal. ${levels}. Educational analysis, not financial advice.`;
+}
+
+/** H1 for the signals or calendar page, falling back to the locale file. */
+export function pageH1(lang: Lang, key: "signals" | "calendar"): string | undefined {
+  return seoCopy(lang)?.[key].h1;
+}
+
+export function pairH1(lang: Lang, pair: string): string | undefined {
+  const copy = seoCopy(lang);
+  return copy ? fill(copy.pairH1, pairValues(lang, pair)) : undefined;
+}
+
+export function guidesIndexMeta(lang: Lang): Metadata {
+  const pack = guidePack(lang)!;
+  return meta(lang, "/guides", pack.index.title, pack.index.description, undefined, GUIDE_LANGS);
+}
+
+export function guideMeta(lang: Lang, slug: GuideSlug): Metadata {
+  const guide = guidePack(lang)!.guides[slug];
+  return meta(
+    lang,
+    `/guides/${slug}`,
+    guide.title,
+    guide.description,
+    { publishedTime: `${GUIDES_REVIEWED}T00:00:00Z`, modifiedTime: `${GUIDES_REVIEWED}T00:00:00Z` },
+    GUIDE_LANGS,
+  );
+}
+
+export function guideLd(lang: Lang, slug: GuideSlug) {
+  const guide = guidePack(lang)!.guides[slug];
+  const url = `${SITE_URL}/${lang}/guides/${slug}/`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: guide.h1,
+      description: guide.description,
+      inLanguage: LANG_META[lang].tag,
+      datePublished: GUIDES_REVIEWED,
+      dateModified: GUIDES_REVIEWED,
+      url,
+      mainEntityOfPage: url,
+      image: `${SITE_URL}/og.png`,
+      author: { "@type": "Organization", "@id": ORG_ID, name: "964FX", url: `${SITE_URL}/ar/` },
+      publisher: { "@type": "Organization", "@id": ORG_ID, name: "964FX", logo: { "@type": "ImageObject", url: LOGO_URL } },
+      isPartOf: { "@id": `${SITE_URL}/${lang}/#website` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      inLanguage: LANG_META[lang].tag,
+      url,
+      mainEntity: guide.faq.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: { "@type": "Answer", text: item.a },
+      })),
+    },
+  ];
+}
+
+export function guidesIndexLd(lang: Lang) {
+  const pack = guidePack(lang)!;
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: pack.index.title,
+    description: pack.index.description,
+    inLanguage: LANG_META[lang].tag,
+    url: `${SITE_URL}/${lang}/guides/`,
+    isPartOf: { "@id": `${SITE_URL}/${lang}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: Object.entries(pack.guides).map(([slug, guide], index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: guide.h1,
+        url: `${SITE_URL}/${lang}/guides/${slug}/`,
+      })),
+    },
+  };
 }

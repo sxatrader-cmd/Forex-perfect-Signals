@@ -34,7 +34,7 @@ function newsUrl() {
   return `${base}/news.json`;
 }
 
-export function NewsView() {
+export function NewsView({ heading }: { heading?: string } = {}) {
   const { t, lang } = useI18n();
   const [impact, setImpact] = useState<(typeof IMPACTS)[number]>("All");
   const [currency, setCurrency] = useState("All");
@@ -131,7 +131,7 @@ export function NewsView() {
       <div className="flex min-w-0 flex-col gap-6">
         <header>
           <p className="text-sm font-semibold text-primary">{t.ib}</p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t.newsTitle}</h1>
+          <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{heading ?? t.newsTitle}</h1>
           <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">{t.newsLede}</p>
           <p className="mt-2 text-xs text-muted-foreground">
             {t.updated}: {live.updatedAt ? formatWhen(live.updatedAt, timeZone, lang, true) : "—"} · {live.sources.forexFactory.events} · {t.timezoneShowing}{" "}

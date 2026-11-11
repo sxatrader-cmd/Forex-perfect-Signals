@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n";
 import { historyData, signalsData } from "@/lib/market-data";
 import { pickText, textAttrs } from "@/lib/langs";
 
-export function PairView({ pair }: { pair: string }) {
+export function PairView({ pair, heading }: { pair: string; heading?: string }) {
   const { t, lang } = useI18n();
   const code = pair.toUpperCase();
   const name = t.pairNames[code] ?? pairLabel(code);
@@ -22,7 +22,7 @@ export function PairView({ pair }: { pair: string }) {
         <Link href={`/${lang}/signals`} className="text-primary">{t.nav.signals}</Link>
       </p>
       <header>
-        <h1 className="text-3xl font-semibold tracking-tight">{name}</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">{heading ?? name}</h1>
         <p className="nums mt-2 text-sm text-muted-foreground">{pairLabel(code)}</p>
       </header>
       {open ? <SignalCard signal={open} /> : null}

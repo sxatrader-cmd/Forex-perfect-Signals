@@ -69,6 +69,29 @@ AI_BOTS = [
 ]
 
 IB_URL = "https://www.ic.com/en/?camp=8117"
+
+# Hand-written guides. Keep in step with src/lib/guides/nav.ts.
+GUIDE_LANGS = ["ar", "en", "ru", "fr", "de", "es"]
+GUIDE_SLUGS = ["xauusd-gold", "islamic-swap-free-account", "forex-for-beginners", "demo-account", "leverage"]
+guide_paths = ["/guides/"] + [f"/guides/{slug}/" for slug in GUIDE_SLUGS]
+GUIDE_TITLES = {
+    "en": {
+        "/guides/": ("Forex guides", "Index of 964FX guides"),
+        "xauusd-gold": ("XAUUSD gold", "Live XAUUSD chart and what moves gold: the dollar, US rates, CPI, NFP"),
+        "islamic-swap-free-account": ("Is forex halal? Islamic swap-free accounts", "What a swap-free account changes, scholars' questions, IC Markets' swap-free option"),
+        "forex-for-beginners": ("Forex for beginners", "Pairs, pips, lots, and how to read a 964FX signal"),
+        "demo-account": ("Forex demo account", "Practising with virtual money and a checklist before going live"),
+        "leverage": ("Leverage explained", "Leverage and margin with examples, margin call, retail limits"),
+    },
+    "ar": {
+        "/guides/": ("أدلة الفوركس", "فهرس أدلة 964FX"),
+        "xauusd-gold": ("تحليل الذهب XAUUSD", "شارت الذهب المباشر وما الذي يحرك الذهب"),
+        "islamic-swap-free-account": ("هل الفوركس حلال؟ الحساب الإسلامي", "ما يغيّره الحساب بدون سواب والمسائل الشرعية وخيار IC Markets"),
+        "forex-for-beginners": ("تعلم الفوركس للمبتدئين", "الأزواج والنقاط واللوت وكيف تقرأ توصية 964FX"),
+        "demo-account": ("الحساب التجريبي", "التدرب بأموال افتراضية وقائمة التحقق قبل الحساب الحقيقي"),
+        "leverage": ("الرافعة المالية", "الرافعة والهامش بالأمثلة وحدود الرافعة"),
+    },
+}
 PAIR_CODES = [pair.upper() for pair in pairs]
 
 
@@ -87,6 +110,15 @@ def write_sitemap() -> int:
                 lines.append(f'    <xhtml:link rel="alternate" hreflang="{tag}" href="{site_url}/{code}{path}"/>')
             lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{site_url}/ar{path}"/>')
             lines.append("  </url>")
+    for lang in GUIDE_LANGS:
+        for path in guide_paths:
+            lines.append("  <url>")
+            lines.append(f"    <loc>{site_url}/{lang}{path}</loc>")
+            lines.append(f"    <lastmod>{stamp}</lastmod>")
+            for code in GUIDE_LANGS:
+                lines.append(f'    <xhtml:link rel="alternate" hreflang="{LANGS[code]}" href="{site_url}/{code}{path}"/>')
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{site_url}/ar{path}"/>')
+            lines.append("  </url>")
     for extra in ("/llms.txt", "/llms-full.txt"):
         lines.append("  <url>")
         lines.append(f"    <loc>{site_url}{extra}</loc>")
@@ -94,7 +126,7 @@ def write_sitemap() -> int:
         lines.append("  </url>")
     lines.append("</urlset>")
     (ROOT / "public/sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    return len(paths) * len(LANGS) + 2
+    return len(paths) * len(LANGS) + len(guide_paths) * len(GUIDE_LANGS) + 2
 
 
 def write_robots() -> None:
@@ -125,6 +157,16 @@ def _reason(item: dict, lang: str) -> str:
     return " ".join(parts)
 
 
+def _guide_links(lang: str) -> str:
+    titles = GUIDE_TITLES[lang]
+    out = ""
+    for path in guide_paths:
+        key = "/guides/" if path == "/guides/" else path.strip("/").split("/")[-1]
+        name, note = titles[key]
+        out += f"- [{name}]({site_url}/{lang}{path}): {note}\n"
+    return out
+
+
 def write_llms() -> None:
     updated = str(signals.get("updatedAt") or stamp)
     open_items = [item for item in (signals.get("open") or []) if isinstance(item, dict) and item.get("id") and item["id"] != "empty"]
@@ -153,6 +195,7 @@ The site is available in 13 languages. Arabic is the default.
         slug = pair.lower()
         llms += f"- [{pair}]({site_url}/ar/signals/{slug}/): صفحة زوج {pair}\n"
 
+    llms += _guide_links("ar")
     llms += f"""
 ## English
 
@@ -167,6 +210,12 @@ The site is available in 13 languages. Arabic is the default.
         slug = pair.lower()
         llms += f"- [{pair}]({site_url}/en/signals/{slug}/): {pair} signal page\n"
 
+    llms += _guide_links("en")
+    llms += "\n## Guides in other languages\n\n"
+    for lang in GUIDE_LANGS:
+        if lang in ("ar", "en"):
+            continue
+        llms += f"- [{LANG_LABELS[lang]}]({site_url}/{lang}/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage\n"
     llms += f"""
 ## Optional
 
@@ -209,6 +258,11 @@ Data last updated: {updated}
 """
     for pair in PAIR_CODES:
         full += f"- {pair}: {site_url}/en/signals/{pair.lower()}/\n"
+
+    full += "\n## Guides\n\nEvergreen guides, written separately for each language (not machine translations), each with FAQ structured data, a risk warning, and the IB disclosure:\n\n"
+    for lang in GUIDE_LANGS:
+        for slug in GUIDE_SLUGS:
+            full += f"- {LANG_LABELS[lang]} · {slug}: {site_url}/{lang}/guides/{slug}/\n"
 
     full += "\n## Open signals\n\n"
     if not open_items:

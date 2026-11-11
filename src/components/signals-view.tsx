@@ -17,7 +17,7 @@ import { useI18n } from "@/lib/i18n";
 import { pickText, textAttrs } from "@/lib/langs";
 import { historyData, signalsData } from "@/lib/market-data";
 
-export function SignalsView() {
+export function SignalsView({ heading }: { heading?: string } = {}) {
   const { t, lang } = useI18n();
   const stats = tradeStats(historyData.closed);
   const floating = signalsData.open.reduce((sum, signal) => sum + signal.floatingPips, 0);
@@ -27,7 +27,7 @@ export function SignalsView() {
     <div className="flex min-w-0 flex-col gap-8">
       <header>
         <p className="text-sm font-semibold text-primary">{t.ib}</p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{t.signalsTitle}</h1>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">{heading ?? t.signalsTitle}</h1>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">{t.signalsLede}</p>
         <p className="mt-2 text-xs text-muted-foreground">
           {t.updated}: {formatWhen(signalsData.updatedAt, "Asia/Baghdad", lang)}
