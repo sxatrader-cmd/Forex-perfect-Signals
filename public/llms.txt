@@ -1,0 +1,44 @@
+# 964FX
+
+> Free forex signals for the major pairs, with fundamental and technical reasons, live Forex Factory news, and a public archive. Run by Saif, an IC Markets introducing broker (IB).
+
+964FX is an educational forex desk from Iraq. Signals are free, cover the majors (EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD, USDCAD, NZDUSD), and are published only when the setup is complete. A pair with an open signal does not get another until the previous one hits its take-profit or stop-loss. This is automated educational analysis, not financial advice.
+
+سيف التميمي وسيط معرّف (IB) لدى IC Markets: https://www.ic.com/en/?camp=8117
+
+The site is available in 13 languages. Arabic is the default.
+
+## العربية
+
+- [الرئيسية](https://964fx.com/ar/): نظرة عامة على مكتب 964FX والإشارات التعليمية
+- [الإشارات](https://964fx.com/ar/signals/): التوصيات اليومية للأزواج الرئيسية مع الإيقاف والهدف وستة أسباب
+- [الأخبار](https://964fx.com/ar/news/): المفكرة الاقتصادية وأخبار Forex Factory بتوقيت بغداد
+- [المنهج](https://964fx.com/ar/method/): قواعد بناء الإشارة، ولماذا يُتخطى الزوج أحياناً
+- [الأرشيف](https://964fx.com/ar/archive/): السجل العلني للإشارات المغلقة مع النتيجة والنقاط
+- [EURUSD](https://964fx.com/ar/signals/eurusd/): صفحة زوج EURUSD
+- [GBPUSD](https://964fx.com/ar/signals/gbpusd/): صفحة زوج GBPUSD
+- [USDJPY](https://964fx.com/ar/signals/usdjpy/): صفحة زوج USDJPY
+- [USDCHF](https://964fx.com/ar/signals/usdchf/): صفحة زوج USDCHF
+- [AUDUSD](https://964fx.com/ar/signals/audusd/): صفحة زوج AUDUSD
+- [USDCAD](https://964fx.com/ar/signals/usdcad/): صفحة زوج USDCAD
+- [NZDUSD](https://964fx.com/ar/signals/nzdusd/): صفحة زوج NZDUSD
+
+## English
+
+- [Home](https://964fx.com/en/): Overview of the 964FX educational desk
+- [Signals](https://964fx.com/en/signals/): Daily major-pair signals with stop, target, and six reasons
+- [News](https://964fx.com/en/news/): This week's economic calendar and live Forex Factory news
+- [Method](https://964fx.com/en/method/): How a signal is built, and when a pair is skipped
+- [Archive](https://964fx.com/en/archive/): Public record of closed signals, with results and pips
+- [EURUSD](https://964fx.com/en/signals/eurusd/): EURUSD signal page
+- [GBPUSD](https://964fx.com/en/signals/gbpusd/): GBPUSD signal page
+- [USDJPY](https://964fx.com/en/signals/usdjpy/): USDJPY signal page
+- [USDCHF](https://964fx.com/en/signals/usdchf/): USDCHF signal page
+- [AUDUSD](https://964fx.com/en/signals/audusd/): AUDUSD signal page
+- [USDCAD](https://964fx.com/en/signals/usdcad/): USDCAD signal page
+- [NZDUSD](https://964fx.com/en/signals/nzdusd/): NZDUSD signal page
+
+## Optional
+
+- [Full site brief](https://964fx.com/llms-full.txt): Longer description, current signals, and recent archive entries
+- [Sitemap](https://964fx.com/sitemap.xml)

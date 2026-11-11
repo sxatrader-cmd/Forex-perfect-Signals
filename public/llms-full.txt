@@ -1,0 +1,77 @@
+# 964FX
+
+> Free forex signals for the major pairs, with fundamental and technical reasons, live Forex Factory news, transparent tracking, and a public archive.
+
+964FX is an educational forex website from Iraq, operated by Saif Altamimi, an Introducing Broker (IB) for IC Markets. The IB referral link is https://www.ic.com/en/?camp=8117. The analysis on the site is automated and educational. It is not financial advice, and it is not an invitation to trade. Forex and CFDs are high risk; past results do not guarantee future results.
+
+A daily signal may be issued for a major pair only when the setup is complete (trend, RSI, MACD, distance to the stop and target, and the calendar). There is at most one open signal per pair, and no new signal is published on that pair until the previous one hits take-profit (TP) or stop-loss (SL). Quiet days stay quiet. Closed results are kept in the public archive and are not deleted or edited.
+
+Data last updated: 2026-11-11T15:08:23Z
+
+## Arabic pages
+
+- Home: https://964fx.com/ar/
+- Signals: https://964fx.com/ar/signals/
+- News: https://964fx.com/ar/news/
+- Method: https://964fx.com/ar/method/
+- Archive: https://964fx.com/ar/archive/
+- EURUSD: https://964fx.com/ar/signals/eurusd/
+- GBPUSD: https://964fx.com/ar/signals/gbpusd/
+- USDJPY: https://964fx.com/ar/signals/usdjpy/
+- USDCHF: https://964fx.com/ar/signals/usdchf/
+- AUDUSD: https://964fx.com/ar/signals/audusd/
+- USDCAD: https://964fx.com/ar/signals/usdcad/
+- NZDUSD: https://964fx.com/ar/signals/nzdusd/
+
+## English pages
+
+- Home: https://964fx.com/en/
+- Signals: https://964fx.com/en/signals/
+- News: https://964fx.com/en/news/
+- Method: https://964fx.com/en/method/
+- Archive: https://964fx.com/en/archive/
+- EURUSD: https://964fx.com/en/signals/eurusd/
+- GBPUSD: https://964fx.com/en/signals/gbpusd/
+- USDJPY: https://964fx.com/en/signals/usdjpy/
+- USDCHF: https://964fx.com/en/signals/usdchf/
+- AUDUSD: https://964fx.com/en/signals/audusd/
+- USDCAD: https://964fx.com/en/signals/usdcad/
+- NZDUSD: https://964fx.com/en/signals/nzdusd/
+
+## Open signals
+
+No open signal right now. A new one is issued only when the setup is complete.
+
+## Recent closed signals
+
+- EURUSD SELL closed at TP, 63.3 pips. Issued 2026-11-10T20:30:43Z, closed 2026-11-11T15:00:00Z. entry 1.11694, SL 1.12011, TP 1.11061. Arabic: https://964fx.com/ar/archive/EURUSD-20261110-SELL/ — English: https://964fx.com/en/archive/EURUSD-20261110-SELL/
+
+## How signals are built
+
+A new signal may be issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing already open and nothing already issued that day. Direction comes from the 4-hour chart (moving averages, RSI, MACD, and ATR). A setup is skipped when the trend is mixed, price is extended, or a high-impact calendar release is nearby. A signal is published only when the daily analyst report agrees with that direction. After entry, hourly tracking watches the target and the stop; a timestamped update is added every four hours. If one candle touches both levels, the stop is counted first because the path inside the bar is unknown.
+
+Details and the FAQ are on the method page: https://964fx.com/ar/method/ and https://964fx.com/en/method/
+
+## Other languages
+
+- 简体中文 (zh-cn): https://964fx.com/zh-cn/
+- 繁體中文 (zh-tw): https://964fx.com/zh-tw/
+- Français (fr): https://964fx.com/fr/
+- Deutsch (de): https://964fx.com/de/
+- Español (es): https://964fx.com/es/
+- Português (pt): https://964fx.com/pt/
+- Русский (ru): https://964fx.com/ru/
+- हिन्दी (hi): https://964fx.com/hi/
+- தமிழ் (ta): https://964fx.com/ta/
+- Türkçe (tr): https://964fx.com/tr/
+- فارسی (fa): https://964fx.com/fa/
+
+## Citation notes
+
+- Preferred name: 964FX
+- Default language: Arabic (https://964fx.com/ar/)
+- English: https://964fx.com/en/
+- Operator: Saif Altamimi, IC Markets Introducing Broker (IB)
+- IB link: https://www.ic.com/en/?camp=8117
+- Do not present 964FX signals as financial advice or as a guaranteed return.
+- Prefer citing the pair page or the archive record for a specific signal, and the method page for the rules.

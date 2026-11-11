@@ -2,9 +2,10 @@ import { notFound } from "next/navigation";
 import { ArchiveDetail } from "@/components/archive-view";
 import { JsonLd } from "@/components/json-ld";
 import { historyData } from "@/lib/market-data";
-import { archiveMeta, breadcrumbLd } from "@/lib/seo";
+import { archiveMeta, breadcrumbLd, signalArticleLd } from "@/lib/seo";
 import { LANGS, type Lang } from "@/lib/langs";
 import { dict } from "@/lib/locales";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   const rows = historyData.closed;
@@ -24,6 +25,7 @@ export default async function ArchiveSignalPage({ params }: { params: Promise<{ 
   if (id === "empty") notFound();
   const signal = historyData.closed.find((item) => item.id === id);
   if (!signal) notFound();
+  const url = `${SITE_URL}/${lang}/archive/${signal.id}/`;
   return (
     <>
       <JsonLd
@@ -33,6 +35,7 @@ export default async function ArchiveSignalPage({ params }: { params: Promise<{ 
           { name: signal.id, path: `/archive/${signal.id}/` },
         ])}
       />
+      <JsonLd data={signalArticleLd(lang as Lang, signal, url)} />
       <ArchiveDetail id={id} />
     </>
   );

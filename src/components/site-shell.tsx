@@ -10,7 +10,7 @@ import { organizationLd } from "@/lib/seo";
 export function SiteShell({ lang, children }: { lang: Lang; children: ReactNode }) {
   return (
     <I18nProvider lang={lang} t={clientCopy(lang)}>
-      <JsonLd data={organizationLd()} />
+      <JsonLd data={organizationLd(lang)} />
       <SiteHeader />
       <main id="content" lang={LANG_META[lang].tag} dir={LANG_META[lang].dir} className="flex-1">
         {children}

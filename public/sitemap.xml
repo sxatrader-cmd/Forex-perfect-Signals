@@ -3042,4 +3042,12 @@
     <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
   </url>
+  <url>
+    <loc>https://964fx.com/llms.txt</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://964fx.com/llms-full.txt</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
 </urlset>
