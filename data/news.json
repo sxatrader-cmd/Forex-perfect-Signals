@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T03:49:06Z",
+  "updatedAt": "2026-11-11T07:18:23Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 21,
+      "matched": 22,
       "error": null
     }
   },
@@ -530,8 +530,8 @@
       "impact": "Low",
       "forecast": "-0.2%",
       "previous": "-0.2%",
-      "actual": "",
-      "actualSource": null
+      "actual": "-0.2%",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|french-bank-holiday|2026-11-11T07:01:00Z",
