@@ -213,6 +213,18 @@
             "en": "Price 1.11719 is still below the daily EMA50 saved at entry (1.13030). Floating -2.5 pips, -3.9% of the way to the target, 29.2 pips from the stop. 1-hour RSI is 40.0. Next high-impact release: USD Core PPI m/m in 59.4 hours. The original plan is unchanged: target and stop stay where they were set.",
             "ar": "السعر 1.11719 ما زال تحت متوسط 50 اليومي المحفوظ عند الدخول (1.13030). النقاط العائمة -2.5، أي -3.9% من المسافة إلى الهدف، و29.2 نقطة عن الإيقاف. مؤشر RSI على الساعة 40.0. أقرب خبر عالي التأثير: USD Core PPI m/m بعد 59.4 ساعة. الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
           }
+        },
+        {
+          "at": "2026-11-11T06:28:07Z",
+          "baghdad": "2026-11-11 09:28",
+          "price": 1.11632,
+          "floatingPips": 6.2,
+          "progressToTp": 9.8,
+          "distanceToSlPips": 37.9,
+          "comment": {
+            "en": "Price 1.11632 is still below the daily EMA50 saved at entry (1.13030). Floating +6.2 pips, 9.8% of the way to the target, 37.9 pips from the stop. 1-hour RSI is 36.4. Next high-impact release: USD Core PPI m/m in 55.0 hours. The original plan is unchanged: target and stop stay where they were set.",
+            "ar": "السعر 1.11632 ما زال تحت متوسط 50 اليومي المحفوظ عند الدخول (1.13030). النقاط العائمة +6.2، أي 9.8% من المسافة إلى الهدف، و37.9 نقطة عن الإيقاف. مؤشر RSI على الساعة 36.4. أقرب خبر عالي التأثير: USD Core PPI m/m بعد 55.0 ساعة. الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
+          }
         }
       ],
       "sources": [
@@ -241,5 +253,5 @@
       "entryReadyTs": 1794340800
     }
   ],
-  "updatedAt": "2026-11-11T06:01:01Z"
+  "updatedAt": "2026-11-11T06:28:07Z"
 }
