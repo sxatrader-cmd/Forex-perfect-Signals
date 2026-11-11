@@ -8,6 +8,7 @@ import { PartnerBadge } from "@/components/partner-banners";
 import { useI18n } from "@/lib/i18n";
 import { GUIDE_SLUGS } from "@/lib/guides/types";
 import { guideNav } from "@/lib/guides/nav";
+import { showShellCta } from "@/lib/broker-cta";
 
 export function SiteFooter() {
   const { t, lang } = useI18n();
@@ -45,7 +46,7 @@ export function SiteFooter() {
                 ))}
               </nav>
             ) : null}
-            <BrokerLink variant="outline">{t.openAccount}</BrokerLink>
+            {showShellCta(lang) ? <BrokerLink variant="outline">{t.openAccount}</BrokerLink> : null}
           </div>
         </div>
         <p className="text-xs text-muted-foreground">© 2026 Saif Altamimi · 964FX</p>

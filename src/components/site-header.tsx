@@ -11,6 +11,7 @@ import { formatClock } from "@/lib/format";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { useI18n } from "@/lib/i18n";
 import { guideNav } from "@/lib/guides/nav";
+import { showShellCta } from "@/lib/broker-cta";
 import { LANG_META } from "@/lib/langs";
 import { cn } from "@/lib/utils";
 
@@ -94,7 +95,7 @@ export function SiteHeader() {
             {now ? formatClock(now, lang) : "—"}
           </p>
           <LanguageSwitcher pathname={pathname} onNavigate={() => setOpen(false)} />
-          <BrokerLink className="hidden sm:inline-flex">{t.openAccount}</BrokerLink>
+          {showShellCta(lang) ? <BrokerLink className="hidden sm:inline-flex">{t.openAccount}</BrokerLink> : null}
           <Button
             type="button"
             variant="outline"
@@ -131,7 +132,7 @@ export function SiteHeader() {
               </Link>
             ) : null}
           </nav>
-          <BrokerLink className="mt-3 w-full">{t.openAccount}</BrokerLink>
+          {showShellCta(lang) ? <BrokerLink className="mt-3 w-full">{t.openAccount}</BrokerLink> : null}
         </div>
       ) : null}
     </header>
