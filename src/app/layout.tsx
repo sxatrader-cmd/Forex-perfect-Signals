@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_Tamil, Syne, Vazirmatn } from "next/font/google";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { siteVerification } from "@/lib/seo";
 import "./globals.css";
 
 const ibm = IBM_Plex_Sans_Arabic({
@@ -52,6 +53,7 @@ export const metadata: Metadata = {
   title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
   description: "توصيات فوركس مجانية من العراق. Educational forex signals from 964FX. Not financial advice.",
   applicationName: SITE_NAME,
+  verification: siteVerification(),
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [

@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
-import { GSC_VERIFICATION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { BING_VERIFICATION, GSC_VERIFICATION, SITE_NAME, SITE_URL, YANDEX_VERIFICATION } from "@/lib/site";
 import { fill, LANG_META, LANGS, type Lang } from "@/lib/langs";
 import { dict } from "@/lib/locales";
 
 export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD"] as const;
+
+
+export function siteVerification(): Metadata["verification"] {
+  const other: Record<string, string> = {};
+  if (BING_VERIFICATION) other["msvalidate.01"] = BING_VERIFICATION;
+  const verification: NonNullable<Metadata["verification"]> = {};
+  if (GSC_VERIFICATION) verification.google = GSC_VERIFICATION;
+  if (YANDEX_VERIFICATION) verification.yandex = YANDEX_VERIFICATION;
+  if (Object.keys(other).length) verification.other = other;
+  return Object.keys(verification).length ? verification : undefined;
+}
 
 type PageKey = "home" | "signals" | "news" | "method" | "archive";
 
@@ -52,7 +63,7 @@ function meta(lang: Lang, path: string, title: string, description: string): Met
       description,
       images: [`${SITE_URL}/og.png`],
     },
-    verification: GSC_VERIFICATION ? { google: GSC_VERIFICATION } : undefined,
+    verification: siteVerification(),
   };
 }
 

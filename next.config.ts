@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_SITE_URL: siteUrl,
     NEXT_PUBLIC_BASE_PATH: basePath,
     NEXT_PUBLIC_GSC_VERIFICATION: process.env.NEXT_PUBLIC_GSC_VERIFICATION || config.gscVerification,
+    NEXT_PUBLIC_BING_VERIFICATION: process.env.NEXT_PUBLIC_BING_VERIFICATION || config.bingVerification,
+    NEXT_PUBLIC_YANDEX_VERIFICATION: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || config.yandexVerification,
   },
   turbopack: {
     rules: {
