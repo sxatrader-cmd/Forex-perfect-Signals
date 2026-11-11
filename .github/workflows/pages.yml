@@ -4,9 +4,9 @@ on:
   push:
     branches: [main]
   schedule:
-    # Every 15 minutes on odd minutes. GitHub may delay or skip runs; each run still
+    # Every 5 minutes (Saif 2026-11-11). GitHub may delay or skip runs; each run still
     # refreshes news and lets the Python jobs decide what is due from timestamps.
-    - cron: "3,18,33,48 * * * *"
+    - cron: "2-59/5 * * * *"
     # Session-open scans (08:00 local, DST-aware; scripts/update_signals.py checks the real local time).
     # Frankfurt 07:00 UTC winter / 06:00 summer, London 08:00 / 07:00, New York 13:00 / 12:00.
     # Two extra tries a few minutes after each possible open, Monday to Friday.
