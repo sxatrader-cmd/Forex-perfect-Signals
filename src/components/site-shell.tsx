@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { TelegramFab } from "@/components/telegram-fab";
 import { SponsoredGif } from "@/components/partner-banners";
 import { JsonLd } from "@/components/json-ld";
 import { I18nProvider } from "@/lib/i18n";
@@ -18,6 +19,7 @@ export function SiteShell({ lang, children }: { lang: Lang; children: ReactNode 
         {children}
       </main>
       <SiteFooter />
+      <TelegramFab />
     </I18nProvider>
   );
 }
