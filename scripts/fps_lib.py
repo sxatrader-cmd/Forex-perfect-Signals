@@ -65,7 +65,7 @@ SENTIMENT_BLOCK = 0.85
 MIN_HEADLINES = 2
 ISSUE_HOUR_UTC = 8
 # both = rate differential and news surprise. rate or news uses one filter.
-FUND_GATE = "news"
+FUND_GATE = "both"  # Saif 2026-11-11: rates + news
 SURPRISE_DAYS = 8
 RATE_CHANGE_DAYS = 120
 
