@@ -256,7 +256,7 @@ export const en = {
   methodSections: [
     {
       title: "When a signal is allowed",
-      body: "Each run updates floating pips and closes a trade if an hourly high or low after entry touches the target or the stop. If one candle touches both, the stop is counted first because the path inside the bar is unknown. A new signal is issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing open and nothing already issued that day. A signal is published only when the daily analyst report (Autochartist via IC Markets) gives the same direction for that pair. No new signals are issued on USDJPY or USDCAD after weak backtest results; both pairs stay on the board for reference.",
+      body: "Each run updates floating pips and closes a trade if an hourly high or low after entry touches the target or the stop. If one candle touches both, the stop is counted first because the path inside the bar is unknown. A new signal is issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing open and nothing already issued that day. Direction comes from the 4-hour strategy, filtered by news and fundamentals: recent high-impact data surprises must not point the other way, and no new signal is issued close to a high-impact release. No new signals are issued on USDJPY or USDCAD after weak backtest results; both pairs stay on the board for reference.",
     },
     {
       title: "Daily trend",

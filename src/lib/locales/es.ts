@@ -255,7 +255,7 @@ export const es: Dict = {
   methodSections: [
     {
       title: "Cuándo se permite una señal",
-      body: "Cada ejecución actualiza los pips flotantes y cierra la operación si el máximo o el mínimo de una vela horaria posterior a la entrada toca el objetivo o el stop. Si una misma vela toca ambos, cuenta primero el stop, porque se desconoce el recorrido del precio dentro de la vela. Se emite una señal nueva una vez por día (hora de Bagdad), en la primera ejecución correcta a partir de las 08:00 UTC, y solo para un par sin posición abierta ni señal emitida ese día. Una señal solo se publica si el informe diario del analista (Autochartist a través de IC Markets) da la misma dirección para ese par. No se emiten señales nuevas en USDJPY ni en USDCAD tras resultados débiles en el backtest; ambos pares siguen en el panel como referencia.",
+      body: "Cada ejecución actualiza los pips flotantes y cierra la operación si el máximo o el mínimo de una vela horaria posterior a la entrada toca el objetivo o el stop. Si una misma vela toca ambos, cuenta primero el stop, porque se desconoce el recorrido del precio dentro de la vela. Se emite una señal nueva una vez por día (hora de Bagdad), en la primera ejecución correcta a partir de las 08:00 UTC, y solo para un par sin posición abierta ni señal emitida ese día. La dirección sale de la estrategia de 4 horas, filtrada por noticias y fundamentales: las sorpresas recientes en datos de alto impacto no deben ir en contra, y no se emite una señal nueva cerca de un dato de alto impacto. No se emiten señales nuevas en USDJPY ni en USDCAD tras resultados débiles en el backtest; ambos pares siguen en el panel como referencia.",
     },
     {
       title: "Tendencia principal",

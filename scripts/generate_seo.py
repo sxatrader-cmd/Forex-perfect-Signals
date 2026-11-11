@@ -308,7 +308,7 @@ Data last updated: {updated}
     full += """
 ## How signals are built
 
-A new signal may be issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing already open and nothing already issued that day. Direction comes from the 4-hour chart (moving averages, RSI, MACD, and ATR). A setup is skipped when the trend is mixed, price is extended, or a high-impact calendar release is nearby. A signal is published only when the daily analyst report agrees with that direction. After entry, hourly tracking watches the target and the stop; a timestamped update is added every four hours. If one candle touches both levels, the stop is counted first because the path inside the bar is unknown.
+A new signal may be issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing already open and nothing already issued that day. Direction comes from the 4-hour chart (moving averages, RSI, MACD, and ATR). A setup is skipped when the trend is mixed, price is extended, or a high-impact calendar release is nearby. Recent high-impact data surprises must not point against the direction. After entry, hourly tracking watches the target and the stop; a timestamped update is added every four hours. If one candle touches both levels, the stop is counted first because the path inside the bar is unknown.
 
 Details and the FAQ are on the method page: {site}/ar/method/ and {site}/en/method/
 
