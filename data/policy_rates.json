@@ -1,6 +1,6 @@
 {
   "source": "https://economic-calendar.tradingview.com/events",
-  "updatedAt": "2026-11-11T15:08:23Z",
+  "updatedAt": "2026-11-11T15:09:46Z",
   "note": "Policy rate is the decision's actual print. changeBp is actual minus previous, in basis points. The rate in force before the first row is that row's previous.",
   "banks": {
     "GBP": [
