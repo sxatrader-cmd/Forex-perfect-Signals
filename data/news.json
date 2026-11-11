@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T09:49:55Z",
+  "updatedAt": "2026-11-11T14:55:50Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -578,10 +578,10 @@
       "actualSource": null
     },
     {
-      "id": "EUR|german-30-y-bond-auction|2026-11-11T10:34:00Z",
+      "id": "EUR|german-30-y-bond-auction|2026-11-11T10:35:00Z",
       "title": "German 30-y Bond Auction",
       "currency": "EUR",
-      "time": "2026-11-11T10:34:00Z",
+      "time": "2026-11-11T10:35:00Z",
       "impact": "Low",
       "forecast": "",
       "previous": "3.80|1.4",
