@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-11-11T00:29:56Z",
+  "updatedAt": "2026-11-11T03:49:06Z",
   "error": null,
   "sources": {
     "forexFactory": {
       "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
       "ok": true,
-      "events": 105
+      "events": 106
     },
     "actuals": {
       "provider": "TradingView",
@@ -869,7 +869,7 @@
       "currency": "USD",
       "time": "2026-11-12T17:00:00Z",
       "impact": "Low",
-      "forecast": "",
+      "forecast": "-0.6M",
       "previous": "-0.9M",
       "actual": "",
       "actualSource": null
@@ -924,7 +924,7 @@
       "currency": "USD",
       "time": "2026-11-12T19:00:00Z",
       "impact": "Low",
-      "forecast": "-286.3B",
+      "forecast": "-298.6B",
       "previous": "-26.9B",
       "actual": "",
       "actualSource": null
@@ -1106,12 +1106,23 @@
       "actualSource": null
     },
     {
+      "id": "USD|fomc-member-logan-speaks|2026-11-13T14:40:00Z",
+      "title": "FOMC Member Logan Speaks",
+      "currency": "USD",
+      "time": "2026-11-13T14:40:00Z",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "",
+      "actual": "",
+      "actualSource": null
+    },
+    {
       "id": "USD|natural-gas-storage|2026-11-13T15:30:00Z",
       "title": "Natural Gas Storage",
       "currency": "USD",
       "time": "2026-11-13T15:30:00Z",
       "impact": "Low",
-      "forecast": "",
+      "forecast": "65B",
       "previous": "77B",
       "actual": "",
       "actualSource": null
