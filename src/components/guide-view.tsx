@@ -4,7 +4,18 @@ import { BrokerLink } from "@/components/broker-link";
 import { GUIDE_SLUGS, GUIDES_REVIEWED, type GuidePack, type GuideSlug } from "@/lib/guides";
 import type { Lang } from "@/lib/langs";
 
-const TV_LOCALE: Record<string, string> = { ar: "ar_AE", en: "en", ru: "ru", fr: "fr", de: "de_DE", es: "es" };
+const TV_LOCALE: Record<string, string> = {
+  ar: "ar_AE",
+  en: "en",
+  ru: "ru",
+  fr: "fr",
+  de: "de_DE",
+  es: "es",
+  pt: "br",
+  tr: "tr",
+  "zh-cn": "zh_CN",
+  "zh-tw": "zh_TW",
+};
 
 function InternalLinks({ lang, pack }: { lang: Lang; pack: GuidePack }) {
   const item = "flex items-center gap-2 rounded-xl border border-border bg-card/60 px-4 py-3 text-sm hover:bg-muted";
@@ -124,9 +135,11 @@ export function GuideView({ lang, pack, slug }: { lang: Lang; pack: GuidePack; s
       </section>
 
       <GuideNotices pack={pack} />
-      <div>
-        <BrokerLink variant="outline">IC Markets</BrokerLink>
-      </div>
+      {pack.brokerCta !== false ? (
+        <div>
+          <BrokerLink variant="outline">IC Markets</BrokerLink>
+        </div>
+      ) : null}
     </article>
   );
 }

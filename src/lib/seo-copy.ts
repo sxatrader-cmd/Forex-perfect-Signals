@@ -115,6 +115,111 @@ const COPY: Partial<Record<Lang, SeoCopy>> = {
     pairDescription: "Señal forex {pair} y análisis en vivo: setup actual, entrada, stop loss y take profit, seis razones, gráfico y resultados cerrados. No es asesoramiento.",
     pairH1: "Señal forex {pair} y análisis",
   },
+  pt: {
+    signals: {
+      title: "Sinais forex grátis hoje: entrada, stop loss e alvo | 964FX",
+      description: "Sinais forex grátis todo dia para EUR/USD, GBP/USD e outros pares principais, com entrada, stop loss, take profit e seis motivos. Arquivo público. Conteúdo educacional.",
+      h1: "Sinais forex grátis do dia",
+    },
+    calendar: {
+      title: "Calendário econômico forex hoje, ao vivo no seu horário | 964FX",
+      description: "Calendário econômico forex ao vivo: eventos de alto e médio impacto dos EUA e do mundo com atual, previsão e anterior, atualizado na divulgação, no seu horário local.",
+      h1: "Calendário econômico forex",
+    },
+    pairTitle: "Sinal {pair} e análise hoje: entrada, stop e alvo | 964FX",
+    pairDescription: "Sinal forex {pair} e análise ao vivo: setup atual, entrada, stop loss e take profit, seis motivos, gráfico e resultados fechados. Educacional, não é recomendação.",
+    pairH1: "Sinal forex {pair} e análise",
+  },
+  tr: {
+    signals: {
+      title: "Forex sinyalleri bugün: ücretsiz, stop ve hedefli | 964FX",
+      description: "Ücretsiz günlük forex (foreks) sinyalleri: EUR/USD, GBP/USD ve diğer majörler için giriş, stop loss, take profit ve altı gerekçe. Herkese açık arşiv. Yatırım tavsiyesi değildir.",
+      h1: "Ücretsiz günlük forex sinyalleri",
+    },
+    calendar: {
+      title: "Ekonomik takvim forex: bu haftanın verileri canlı | 964FX",
+      description: "Canlı forex ekonomik takvimi: yüksek ve orta etkili veriler, gerçekleşen, beklenti ve önceki değerle, açıklandığı anda güncellenir, Türkiye saatiyle ya da yerel saatinizle.",
+      h1: "Forex ekonomik takvim",
+    },
+    pairTitle: "{pair} forex sinyali ve analiz: giriş, stop, hedef | 964FX",
+    pairDescription: "{pair} forex sinyali ve canlı analiz: güncel kurulum, giriş, stop loss ve take profit, altı gerekçe, grafik ve kapanmış sonuçlar. Eğitim amaçlıdır, tavsiye değildir.",
+    pairH1: "{pair} forex sinyali ve analizi",
+  },
+  "zh-cn": {
+    signals: {
+      title: "今日外汇信号：免费每日外汇交易信号（含止损止盈）| 964FX",
+      description: "免费每日外汇信号：EUR/USD、GBP/USD 等主要货币对，每条含入场价、止损、止盈和六个理由，历史信号公开可查。仅供学习，不构成投资建议。",
+      h1: "免费每日外汇信号",
+    },
+    calendar: {
+      title: "外汇财经日历：本周经济数据实时更新（北京时间）| 964FX",
+      description: "外汇财经日历实时更新：高、中影响经济数据的公布值、预期值和前值，数据公布即刻刷新，按你的本地时间显示，含非农、CPI 和美联储决议。",
+      h1: "外汇财经日历",
+    },
+    pairTitle: "{name}与{pair}行情分析：入场、止损、止盈 | 964FX",
+    pairDescription: "{pair} 外汇信号与实时分析：当前形态、入场价、止损和止盈、六个理由、走势图和已平仓结果。仅供学习，不构成投资建议。",
+    pairH1: "{pair} 外汇信号与行情分析",
+  },
+  "zh-tw": {
+    signals: {
+      title: "今日外匯訊號：免費每日外匯交易訊號（含停損停利）| 964FX",
+      description: "免費每日外匯訊號：EUR/USD、GBP/USD 等主要貨幣對，每則含進場價、停損、停利與六個理由，歷史訊號公開可查。僅供教學，非投資建議。",
+      h1: "免費每日外匯訊號",
+    },
+    calendar: {
+      title: "外匯經濟日曆：本週經濟數據即時更新（台灣時間）| 964FX",
+      description: "外匯經濟日曆即時更新：高、中影響經濟數據的公布值、預期值與前值，數據公布即刻刷新，依你的當地時間顯示，含非農、CPI 與聯準會決策。",
+      h1: "外匯經濟日曆",
+    },
+    pairTitle: "{pair} 外匯訊號與分析：進場、停損、停利 | 964FX",
+    pairDescription: "{pair} 外匯訊號與即時分析：目前型態、進場價、停損與停利、六個理由、走勢圖與已平倉結果。僅供教學，非投資建議。",
+    pairH1: "{pair} 外匯訊號與分析",
+  },
+  hi: {
+    signals: {
+      title: "आज के फॉरेक्स सिग्नल: फ्री डेली सिग्नल, SL और TP के साथ | 964FX",
+      description: "फ्री डेली फॉरेक्स सिग्नल हिंदी में: EUR/USD, GBP/USD और दूसरे मेजर पेयर, एंट्री, स्टॉप लॉस, टेक प्रॉफ़िट और छह कारणों के साथ। सार्वजनिक आर्काइव। सिर्फ़ शिक्षा के लिए।",
+      h1: "फ्री डेली फॉरेक्स सिग्नल",
+    },
+    calendar: {
+      title: "फॉरेक्स इकोनॉमिक कैलेंडर: इस हफ़्ते के डेटा लाइव (IST) | 964FX",
+      description: "लाइव फॉरेक्स इकोनॉमिक कैलेंडर: हाई और मीडियम इम्पैक्ट इवेंट, एक्चुअल, फ़ोरकास्ट और पिछला आँकड़ा, जारी होते ही अपडेट, आपके लोकल टाइम (IST) में।",
+      h1: "फॉरेक्स इकोनॉमिक कैलेंडर",
+    },
+    pairTitle: "{pair} फॉरेक्स सिग्नल और एनालिसिस: एंट्री, SL, TP | 964FX",
+    pairDescription: "{pair} फॉरेक्स सिग्नल और लाइव एनालिसिस: मौजूदा सेटअप, एंट्री, स्टॉप लॉस और टेक प्रॉफ़िट, छह कारण, चार्ट और बंद नतीजे। शिक्षा के लिए, सलाह नहीं।",
+    pairH1: "{pair} फॉरेक्स सिग्नल और एनालिसिस",
+  },
+  ta: {
+    signals: {
+      title: "இன்றைய forex signals தமிழில்: இலவச தினசரி signals | 964FX",
+      description: "இலவச தினசரி forex signals தமிழில்: EUR/USD, GBP/USD மற்றும் முக்கிய ஜோடிகளுக்கு entry, stop loss, take profit, ஆறு காரணங்கள். பொது archive. கல்விக்காக மட்டும்.",
+      h1: "இலவச தினசரி forex signals",
+    },
+    calendar: {
+      title: "Forex பொருளாதார நாட்காட்டி: இந்த வார தரவுகள் நேரடியாக | 964FX",
+      description: "நேரடி forex பொருளாதார நாட்காட்டி: அதிக மற்றும் நடுத்தர தாக்க நிகழ்வுகள், actual, forecast, previous மதிப்புகளுடன், உங்கள் உள்ளூர் நேரத்தில் (இலங்கை, மலேசியா, சிங்கப்பூர்).",
+      h1: "Forex பொருளாதார நாட்காட்டி",
+    },
+    pairTitle: "{pair} forex signal மற்றும் பகுப்பாய்வு தமிழில் | 964FX",
+    pairDescription: "{pair} forex signal மற்றும் நேரடி பகுப்பாய்வு: தற்போதைய setup, entry, stop loss, take profit, ஆறு காரணங்கள், சார்ட், மூடிய முடிவுகள். கல்விக்காக, ஆலோசனை அல்ல.",
+    pairH1: "{pair} forex signal மற்றும் பகுப்பாய்வு",
+  },
+  fa: {
+    signals: {
+      title: "سیگنال فارکس امروز رایگان با حد ضرر و حد سود | 964FX",
+      description: "سیگنال فارکس رایگان روزانه برای EUR/USD، GBP/USD و دیگر جفت‌ارزهای اصلی، با نقطه ورود، حد ضرر، حد سود و شش دلیل. آرشیو عمومی. آموزشی، نه توصیه مالی.",
+      h1: "سیگنال فارکس رایگان روزانه",
+    },
+    calendar: {
+      title: "تقویم اقتصادی فارکس امروز و این هفته به‌صورت زنده | 964FX",
+      description: "تقویم اقتصادی فارکس زنده: خبرهای پراهمیت و متوسط با مقدار واقعی، پیش‌بینی و قبلی، به‌روزرسانی لحظه انتشار، به وقت محلی شما.",
+      h1: "تقویم اقتصادی فارکس",
+    },
+    pairTitle: "سیگنال {pair} و تحلیل امروز: ورود، حد ضرر، حد سود | 964FX",
+    pairDescription: "سیگنال فارکس {pair} و تحلیل زنده: ستاپ فعلی، نقطه ورود، حد ضرر و حد سود، شش دلیل، نمودار و نتایج بسته‌شده. آموزشی، نه توصیه.",
+    pairH1: "سیگنال و تحلیل {pair}",
+  },
 };
 
 export function seoCopy(lang: Lang) {

@@ -29,6 +29,8 @@ export type Guide = {
 
 export type GuidePack = {
   nav: string;
+  /** Show the broker button at the end of each guide. Off where local rules restrict offshore forex. Default true. */
+  brokerCta?: boolean;
   index: { title: string; description: string; h1: string; lede: string };
   ui: {
     faq: string;

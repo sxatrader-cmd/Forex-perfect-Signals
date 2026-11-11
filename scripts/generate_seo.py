@@ -71,7 +71,7 @@ AI_BOTS = [
 IB_URL = "https://www.ic.com/en/?camp=8117"
 
 # Hand-written guides. Keep in step with src/lib/guides/nav.ts.
-GUIDE_LANGS = ["ar", "en", "ru", "fr", "de", "es"]
+GUIDE_LANGS = ["ar", "en", "zh-cn", "zh-tw", "fr", "de", "es", "pt", "ru", "hi", "ta", "tr", "fa"]
 GUIDE_SLUGS = ["xauusd-gold", "islamic-swap-free-account", "forex-for-beginners", "demo-account", "leverage"]
 guide_paths = ["/guides/"] + [f"/guides/{slug}/" for slug in GUIDE_SLUGS]
 GUIDE_TITLES = {
