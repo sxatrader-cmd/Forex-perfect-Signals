@@ -189,8 +189,6 @@ def format_issue(signal: dict) -> str:
             "",
             f"🔗 {url}",
             "",
-            f"🌍 {IC_LINK}",
-            "",
             "⚠️ Educational analysis, not financial advice. — تحليل تعليمي وليس نصيحة مالية.",
         ]
     )
