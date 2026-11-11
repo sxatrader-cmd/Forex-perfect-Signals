@@ -1,0 +1,24 @@
+{
+  "lastSubmitAt": "2026-11-11T15:33:08Z",
+  "lastMode": "full-first",
+  "lastCount": 169,
+  "lastStatus": 202,
+  "signals": {
+    "open": [],
+    "closed": [
+      {
+        "id": "EURUSD-20261110-SELL",
+        "pair": "EURUSD",
+        "direction": "SELL",
+        "entry": 1.11694,
+        "sl": 1.12011,
+        "tp": 1.11061,
+        "status": "closed",
+        "issuedAt": "2026-11-10T20:30:43Z",
+        "priceAsOf": "2026-11-11T15:00:00Z",
+        "currentPrice": 1.11061
+      }
+    ]
+  },
+  "lastFullSubmit": "2026-11-11"
+}
