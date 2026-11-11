@@ -408,7 +408,7 @@ def completed(bars: list[Bar], seconds: int, now_ts: int) -> list[Bar]:
     return done or bars
 
 
-def fetch_yahoo(symbol: str, interval: str, range_: str | None = None, period1: int | None = None, period2: int | None = None) -> list[Bar]:
+def fetch_yahoo(symbol: str, interval: str, range_: str | None = None, period1: int | None = None, period2: int | None = None, min_bars: int = 10) -> list[Bar]:
     encoded = urllib.request.quote(symbol, safe="")
     errors: list[str] = []
     nonce = int(period2 or time.time())
@@ -447,7 +447,7 @@ def fetch_yahoo(symbol: str, interval: str, range_: str | None = None, period1: 
             if None in (o, h, l, c):
                 continue
             bars.append(Bar(int(stamp), float(o), float(h), float(l), float(c)))
-        if len(bars) < 10:
+        if len(bars) < min_bars:
             errors.append(f"{host} returned {len(bars)} bars")
             continue
         return bars

@@ -189,3 +189,21 @@ html:lang(zh-TW) {
     animation: none;
   }
 }
+
+/* Native Fullscreen API stretches the shell; keep the toolbar and let the plot fill the rest. */
+.chart-shell:fullscreen,
+.chart-shell:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0;
+  border: 0;
+  background: var(--background);
+}
+.chart-shell:fullscreen .chart-plot,
+.chart-shell:-webkit-full-screen .chart-plot {
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+}

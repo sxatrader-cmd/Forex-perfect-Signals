@@ -378,12 +378,15 @@ def test_chart_payload() -> None:
         "issuedAt": iso_z(datetime.fromtimestamp(base + 1800, timezone.utc)), "status": "open", "currentPrice": 1.1,
     }
     now = datetime.fromtimestamp(base + 12 * 900, timezone.utc)
-    live = build_chart(signal, raw, 900, now)
+    live = build_chart(signal, {"15m": merged, "1h": bucket(merged, 3600)}, now)
     if live["final"] or live["status"] != "open" or live["entryTs"] != base + 1800 or not live["candles"]:
         fail("open chart should be live with an aligned entry time")
+    if live["interval"] != "15m" or "15m" not in live["timeframes"] or "1h" not in live["timeframes"]:
+        fail("open chart should keep 15m as the default and also store other timeframes")
     closed = dict(signal, status="closed", result="TP", closePrice=1.0995, pips=5.0,
                   closedAt=iso_z(datetime.fromtimestamp(base + 8 * 900, timezone.utc)))
-    final = build_chart(closed, [*raw[:4], Bar(base + 4 * 900, 1.1, 1.1, 1.0994, 1.0996), *raw[5:]], 900, now)
+    hit = [*merged[:4], Bar(base + 4 * 900, 1.1, 1.1, 1.0994, 1.0996), *merged[5:]]
+    final = build_chart(closed, {"15m": hit}, now)
     if not final["final"] or final["result"] != "TP" or final["closeTs"] != base + 4 * 900:
         fail("closed chart should be final and mark the candle that touched the target")
 
