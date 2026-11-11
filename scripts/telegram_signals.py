@@ -165,7 +165,7 @@ def format_issue(signal: dict) -> str:
     url = signal_url(signal, closed=False)
     return "\n".join(
         [
-            "🔔 964FX — توصية جديدة",
+            "توصية جديدة 🤩",
             "",
             f"{pair}  {side_ar}",
             f"الدخول: {entry}",
@@ -176,7 +176,7 @@ def format_issue(signal: dict) -> str:
             "الأسباب:",
             *reasons_ar,
             "",
-            "🔔 964FX — New signal",
+            "New Signal 🤩",
             "",
             f"{pair}  {side_en}",
             f"Entry: {entry}",
