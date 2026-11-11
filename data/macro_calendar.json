@@ -1,7 +1,7 @@
 {
   "source": "https://economic-calendar.tradingview.com/events",
   "countries": "US,EU,GB,JP,AU,CA,NZ,CH",
-  "updatedAt": "2026-11-11T18:11:32Z",
+  "updatedAt": "2026-11-11T18:13:23Z",
   "note": "High-impact TradingView releases plus central-bank policy-rate decisions. Actual and forecast are numbers, not scaled text.",
   "events": [
     {
