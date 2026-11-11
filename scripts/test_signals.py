@@ -364,6 +364,40 @@ def test_pause_blocks_issue_even_when_forced() -> None:
         fail("issue should proceed when the pause is off and the daily pass is due")
 
 
+def test_session_scans() -> None:
+    from update_signals import due_session, mark_session
+
+    def at(*args):
+        return datetime(*args, tzinfo=timezone.utc)
+
+    # Winter (CET/GMT/EST): Frankfurt 07:00, London 08:00, New York 13:00 UTC.
+    cases = [
+        (at(2026, 11, 10, 7, 5), "frankfurt"),
+        (at(2026, 11, 10, 6, 55), None),
+        (at(2026, 11, 10, 13, 5), "new_york"),
+        (at(2026, 11, 10, 10, 30), None),
+        # Summer (CEST/BST/EDT): Frankfurt 06:00, London 07:00, New York 12:00 UTC.
+        (at(2026, 7, 14, 6, 5), "frankfurt"),
+        (at(2026, 7, 14, 12, 5), "new_york"),
+        (at(2026, 7, 14, 13, 30), "new_york"),
+        (at(2026, 7, 14, 14, 5), None),
+        # Saturday: market closed.
+        (at(2026, 11, 14, 8, 5), None),
+    ]
+    for now, expected in cases:
+        got = due_session(now, {})
+        if got != expected:
+            fail(f"due_session({now.isoformat()}) = {got}, expected {expected}")
+    now = at(2026, 11, 10, 8, 5)  # Frankfurt (07:00) and London (08:00) both inside their windows
+    state: dict = {}
+    first = due_session(now, state)
+    mark_session(now, state, first)
+    second = due_session(now, state)
+    mark_session(now, state, second)
+    if (first, second) != ("frankfurt", "london") or due_session(now, state) is not None:
+        fail(f"overlapping Frankfurt/London scans should run once each, got {first}, {second}, {state}")
+
+
 def test_chart_payload() -> None:
     from update_charts import build_chart, bucket
 
@@ -401,5 +435,6 @@ if __name__ == "__main__":
     test_four_hour_updates_and_immutable_archive()
     test_rate_and_news_gates()
     test_pause_blocks_issue_even_when_forced()
+    test_session_scans()
     test_chart_payload()
     print("all signal tests passed")

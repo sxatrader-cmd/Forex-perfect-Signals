@@ -63,7 +63,17 @@ BREAKOUT_BARS = 20
 EVENT_BLOCK_HOURS = 8.0
 SENTIMENT_BLOCK = 0.85
 MIN_HEADLINES = 2
-ISSUE_HOUR_UTC = 8
+ISSUE_HOUR_UTC = 8  # legacy single daily pass; kept for the backtest default
+# Saif 2026-11-11: scan at each session open, 08:00 local time (DST-aware).
+# In UTC: Frankfurt 07:00 winter / 06:00 summer, London 08:00 / 07:00, New York 13:00 / 12:00.
+SESSIONS = (
+    ("frankfurt", "Europe/Berlin"),
+    ("london", "Europe/London"),
+    ("new_york", "America/New_York"),
+)
+SESSION_OPEN_HOUR = 8
+# A scan is still due this long after the open, in case a scheduled run is late or skipped.
+SESSION_WINDOW_MINUTES = 120
 # both = rate differential and news surprise. rate or news uses one filter.
 FUND_GATE = "both"  # Saif 2026-11-11: rates + news
 SURPRISE_DAYS = 8
@@ -1022,6 +1032,29 @@ def imminent_event(pair: str, upcoming: dict[str, dict | None], now: datetime) -
             soonest = {**event, "hours": hours}
             soonest_hours = hours
     return soonest
+
+
+
+def session_open_utc(name: str, now: datetime) -> datetime:
+    """Today's 08:00 local open for a session, in UTC (local date taken from `now`)."""
+    from zoneinfo import ZoneInfo
+
+    tz = ZoneInfo(dict(SESSIONS)[name])
+    local = now.astimezone(tz)
+    return local.replace(hour=SESSION_OPEN_HOUR, minute=0, second=0, microsecond=0).astimezone(timezone.utc)
+
+
+def due_sessions(now: datetime) -> list[tuple[str, str]]:
+    """Sessions whose open was at most SESSION_WINDOW_MINUTES ago: (name, local date)."""
+    from zoneinfo import ZoneInfo
+
+    out: list[tuple[str, str]] = []
+    for name, zone in SESSIONS:
+        opened = session_open_utc(name, now)
+        minutes = (now - opened).total_seconds() / 60
+        if 0 <= minutes < SESSION_WINDOW_MINUTES:
+            out.append((name, now.astimezone(ZoneInfo(zone)).date().isoformat()))
+    return out
 
 
 def market_closed(now: datetime) -> bool:

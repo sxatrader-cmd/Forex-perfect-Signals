@@ -2,9 +2,10 @@
 """Track open signals every run and issue a new daily signal when the rules pass.
 
 Hourly runs update floating pips and close trades whose intraday high/low has
-touched the target or the stop. A new signal is considered once per Baghdad
-day, on the first successful run at or after 08:00 UTC, and only for pairs
-with no open signal. Set FORCE_ISSUE=1 to run that pass immediately.
+touched the target or the stop. New signals are scanned for at each session
+open: Frankfurt, London and New York at 08:00 local time (DST-aware), within
+SESSION_WINDOW_MINUTES of the open. A pair still gets at most one new signal
+per Baghdad day, and none while it has an open signal. Set FORCE_ISSUE=1 to run that pass immediately.
 Set PAUSE_ISSUE=1 to keep tracking and the calendar running without opening
 anything new. A paused run still updates open signals.
 """
@@ -21,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fps_lib import (
     DATA,
-    ISSUE_HOUR_UTC,
+    due_sessions,
     PAIRS,
     NO_ISSUE_PAIRS,
     Decision,
@@ -57,14 +58,33 @@ from fps_lib import (
 )
 
 
-def should_issue(now: datetime, state: dict) -> bool:
+def due_session(now: datetime, state: dict) -> str | None:
+    """Name of a session open that has not been scanned yet, or "manual" when forced."""
     if os.environ.get("PAUSE_ISSUE") == "1":
-        return False
+        return None
     if os.environ.get("FORCE_ISSUE") == "1":
-        return True
-    if now.astimezone(timezone.utc).hour < ISSUE_HOUR_UTC:
-        return False
-    return state.get("lastIssueDate") != baghdad_date(now)
+        return "manual"
+    if market_closed(now):
+        return None
+    scans = state.get("sessionScans") or {}
+    for name, local_date in due_sessions(now):
+        if scans.get(name) != local_date:
+            return name
+    return None
+
+
+def should_issue(now: datetime, state: dict) -> bool:
+    return due_session(now, state) is not None
+
+
+def mark_session(now: datetime, state: dict, session: str) -> None:
+    if session == "manual":
+        return
+    scans = dict(state.get("sessionScans") or {})
+    for name, local_date in due_sessions(now):
+        if name == session:
+            scans[name] = local_date
+    state["sessionScans"] = scans
 
 
 def quote_from_bars(pair: str, bars: list) -> tuple[float, str]:
@@ -221,11 +241,12 @@ def main() -> int:
     open_signals = list(state.get("open") or [])
     history = list(history_state.get("closed") or [])
 
-    issue = should_issue(now, state)
-    print(f"now {iso_z(now)} issue_pass={issue} market_closed={market_closed(now)} open={len(open_signals)}")
+    session = due_session(now, state)
+    issue = session is not None
+    print(f"now {iso_z(now)} issue_pass={issue} session={session} market_closed={market_closed(now)} open={len(open_signals)}")
 
     if not open_signals and not issue:
-        print("idle: no open signals and the daily issue window is not due")
+        print("idle: no open signals and no session scan is due")
         return 0
 
     open_signals, newly_closed, tracked = track(open_signals, now)
@@ -311,6 +332,7 @@ def main() -> int:
                 print(f"PAIR {pair} SKIP {decision.block}: {decision.summary_en}")
         if priced:
             state["lastIssueDate"] = baghdad_date(now)
+            mark_session(now, state, session)
         state["sources"] = {
             "prices": {
                 "provider": "Yahoo Finance chart API",
