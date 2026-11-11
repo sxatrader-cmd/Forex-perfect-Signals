@@ -24,7 +24,8 @@ import { newsData } from "@/lib/market-data";
 import type { NewsEvent, NewsFile } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const IMPACTS = ["All", "High", "Medium", "Low", "Holiday"] as const;
+const IMPACTS = ["All", "High", "Medium", "Holiday"] as const;
+const dropLow = (f: NewsFile): NewsFile => ({ ...f, events: f.events.filter((e) => e.impact !== "Low") });
 const REFRESH_MS = 60_000;
 const FAST_REFRESH_MS = 15_000;
 
@@ -39,8 +40,8 @@ export function NewsView() {
   const [currency, setCurrency] = useState("All");
   const [now, setNow] = useState<number | null>(null);
   const [timeZone, setTimeZone] = useState(DEFAULT_TZ);
-  const [live, setLive] = useState<NewsFile>(newsData);
-  const eventsRef = useRef(newsData.events);
+  const [live, setLive] = useState<NewsFile>(() => dropLow(newsData));
+  const eventsRef = useRef(dropLow(newsData).events);
   eventsRef.current = live.events;
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export function NewsView() {
         const response = await fetch(`${newsUrl()}?t=${Date.now()}`, { cache: "no-store" });
         if (!response.ok) return;
         const payload: unknown = await response.json();
-        if (!cancelled && isNewsFile(payload)) setLive(payload);
+        if (!cancelled && isNewsFile(payload)) setLive(dropLow(payload));
       } catch {
         // Keep the last good payload, including the copy baked in at build time.
       }
