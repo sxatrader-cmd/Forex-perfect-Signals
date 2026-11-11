@@ -1,15 +1,14 @@
 # 964FX
 
-توصيات فوركس تعليمية من العراق. Saif Altamimi is an Introducing Broker for IC Markets. The public URL is the `siteUrl` value in `site.config.json` (today the GitHub Pages project site). The brand name is 964FX.
+توصيات فوركس تعليمية من العراق. Saif Altamimi is an Introducing Broker for IC Markets. The public URL is `https://964fx.com` (`siteUrl` in `site.config.json`). The brand name is 964FX.
 
-## Switching to 964fx.com
+## Custom domain
 
-The domain is not purchased yet. When it is:
+The site is served at `https://964fx.com`. `siteUrl` in `site.config.json` is the one switch for canonical links, the sitemap, Open Graph, and the Pages base path (empty at the domain root). `public/CNAME` contains `964fx.com`.
 
-1. Change `siteUrl` in `site.config.json` to `https://964fx.com`. The Pages base path is derived from that URL, so this is the one switch for canonical links, the sitemap, Open Graph, and asset prefixes.
-2. Add a `public/CNAME` file whose only line is `964fx.com`, then redeploy. GitHub Pages reads that file as the custom domain. Do not add it before the DNS records exist, or the `github.io` address stops serving the site.
-3. Point the domain at GitHub Pages (A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, or a CNAME to `sxatrader-cmd.github.io`).
-4. Optional Search Console: set `gscVerification` in `site.config.json` to the verification token. It is empty until then.
+DNS at GoDaddy: apex A records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153`; `www` CNAME to `sxatrader-cmd.github.io`.
+
+Optional Search Console: set `gscVerification` in `site.config.json` to the verification token. It is empty until then.
 
 Open signals receive a timestamped Arabic and English progress note every four hours. The hourly job appends one when at least four hours have passed since the last note. Closed signals, including that timeline, move to `/ar/archive/` and `/en/archive/` and are not edited afterward.
 
@@ -17,7 +16,7 @@ Open signals receive a timestamped Arabic and English progress note every four h
 
 Educational desk for Saif Altamimi, an Introducing Broker for IC Markets. The static site publishes a daily rules-based study of seven majors and this week's Forex Factory calendar. It is not financial advice.
 
-The public site is meant to be served at `https://sxatrader-cmd.github.io/Forex-perfect-Signals/`.
+The public site is served at `https://964fx.com/`.
 
 ## Run locally
 
@@ -27,14 +26,14 @@ python3 scripts/test_signals.py
 npm run dev
 ```
 
-Open `http://127.0.0.1:4317/Forex-perfect-Signals/ar/`. Arabic and English are separate URLs (`/ar/`, `/en/`).
+Open `http://127.0.0.1:4317/ar/`. Language routes live at `/ar/`, `/en/`, and the other locale prefixes.
 
 Refresh data before a production build if you want a newer snapshot:
 
 ```bash
 python3 scripts/fetch_news.py
 FORCE_ISSUE=1 python3 scripts/update_signals.py
-NEXT_PUBLIC_BASE_PATH=/Forex-perfect-Signals npm run build
+npm run build
 ```
 
 The static export is written to `out/`.
@@ -47,7 +46,7 @@ The static export is written to `out/`.
 4. If `main` is protected, allow the GitHub Actions bot to push data commits, or the scheduled updates cannot land.
 5. The first successful deploy creates the `github-pages` environment. Later deploys use it.
 
-`NEXT_PUBLIC_BASE_PATH` is `/Forex-perfect-Signals` in the workflow and in `next.config.ts`. Change both if the repository name changes. Asset URLs are prefixed with that path so they resolve on the project site.
+The Pages base path is derived from `siteUrl` in `site.config.json` (empty at the domain root). Do not set `NEXT_PUBLIC_BASE_PATH` unless you need to override that.
 
 ## What the workflow does
 

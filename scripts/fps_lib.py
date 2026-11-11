@@ -26,7 +26,7 @@ DATA = ROOT / "data"
 BAGHDAD = timezone(timedelta(hours=3))
 USER_AGENT = (
     "964FX/1.0 "
-    "(educational static site; +https://sxatrader-cmd.github.io/Forex-perfect-Signals/)"
+    "(educational static site; +https://964fx.com/)"
 )
 UPDATE_GAP = timedelta(hours=4)
 FF_URL = "https://nfs.faireconomy.media/ff_calendar_thisweek.json"
