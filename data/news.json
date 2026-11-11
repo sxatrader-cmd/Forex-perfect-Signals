@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T20:00:35Z",
+  "updatedAt": "2026-11-11T00:29:56Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 19,
+      "matched": 21,
       "error": null
     }
   },
@@ -475,8 +475,8 @@
       "impact": "Low",
       "forecast": "",
       "previous": "",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.433M",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|fomc-member-bowman-speaks|2026-11-10T23:30:00Z",
@@ -508,8 +508,8 @@
       "impact": "Low",
       "forecast": "2.1%",
       "previous": "2.0%",
-      "actual": "",
-      "actualSource": null
+      "actual": "1296T",
+      "actualSource": "TradingView"
     },
     {
       "id": "JPY|prelim-machine-tool-orders-y-y|2026-11-11T06:00:00Z",
