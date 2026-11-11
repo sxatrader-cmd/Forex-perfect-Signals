@@ -53,6 +53,12 @@ jobs:
           FORCE_ISSUE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.issue == 'true' && '1' || '0' }}
           PAUSE_ISSUE: ${{ vars.PAUSE_ISSUE }}
         run: python scripts/update_signals.py
+      - name: Post signals to Telegram
+        if: ${{ github.event.inputs.news_only != 'true' }}
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python scripts/telegram_signals.py
       - name: Update signal charts
         if: ${{ github.event.inputs.news_only != 'true' }}
         run: python scripts/update_charts.py
@@ -67,9 +73,11 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data
-            if git diff --cached --quiet -- data/news.json && ! git diff --cached --quiet -- data/signals.json data/history.json data/charts; then
+            if git diff --cached --quiet -- data/news.json data/signals.json data/history.json data/charts data/macro_calendar.json data/policy_rates.json && ! git diff --cached --quiet -- data/telegram_state.json; then
+              msg="data: telegram state [skip ci]"
+            elif git diff --cached --quiet -- data/news.json && ! git diff --cached --quiet -- data/signals.json data/history.json data/charts; then
               msg="data: update signals"
-            elif ! git diff --cached --quiet -- data/news.json && git diff --cached --quiet -- data/signals.json data/history.json data/charts; then
+            elif ! git diff --cached --quiet -- data/news.json && git diff --cached --quiet -- data/signals.json data/history.json data/charts data/telegram_state.json; then
               msg="data: update economic calendar"
             else
               msg="data: update calendar and signals"

@@ -1,0 +1,13 @@
+{
+  "initializedAt": "2026-11-11T16:02:26Z",
+  "updatedAt": "2026-11-11T16:02:26Z",
+  "signals": {
+    "EURUSD-20261110-SELL": {
+      "issued": true,
+      "closed": true,
+      "message_id": null,
+      "closed_message_id": null,
+      "skipped": "preexisting"
+    }
+  }
+}
