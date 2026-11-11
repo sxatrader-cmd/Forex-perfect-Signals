@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/table";
 import { formatPercent, formatPips, formatPrice, formatWhen, pairLabel, tradeStats } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
+import { pickText, textAttrs } from "@/lib/langs";
 import { historyData, signalsData } from "@/lib/market-data";
 
 export function SignalsView() {
@@ -66,7 +67,7 @@ export function SignalsView() {
                   {t.blocks[row.block ?? ""] ?? row.decision}
                 </Badge>
               </div>
-              <p className="mt-2 text-sm leading-6">{lang === "ar" ? row.summary.ar : row.summary.en}</p>
+              <p className="mt-2 text-sm leading-6" {...textAttrs(lang)}>{pickText(lang, row.summary)}</p>
               <p className="nums mt-3 text-xs text-muted-foreground">
                 {t.trend[row.dailyTrend]} · {formatPrice(row.pair, row.price)} · EMA {formatPrice(row.pair, row.ema20)} / {formatPrice(row.pair, row.ema50)} / {formatPrice(row.pair, row.ema200)} · RSI {row.rsi4h ?? "—"}
               </p>

@@ -19,7 +19,7 @@ export function SiteFooter() {
             <p className="text-sm font-medium text-primary">{t.partnerBadge}</p>
             <PartnerBadge />
             <p className="text-sm font-medium text-primary">{t.ib}</p>
-            <p className="text-sm text-muted-foreground" lang={t.ibExact.startsWith("و") ? "ar" : "en"}>
+            <p className="text-sm text-muted-foreground" lang={/[\u0600-\u06FF]/.test(t.ibExact) ? "ar" : "en"}>
               {t.ibExact}
             </p>
             <p className="max-w-md text-sm text-muted-foreground">{t.footerNote}</p>

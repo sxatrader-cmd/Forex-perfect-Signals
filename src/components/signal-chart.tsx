@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CandlestickData, IChartApi, ISeriesApi, SeriesMarker, Time, UTCTimestamp } from "lightweight-charts";
 import { formatPrice, formatWhen } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
+import { LANG_META } from "@/lib/langs";
 import { BASE_PATH } from "@/lib/site";
 import type { Signal } from "@/lib/types";
 
@@ -81,8 +82,9 @@ function toCandles(file: ChartFile): CandlestickData<Time>[] {
 }
 
 export function SignalChart({ signal }: { signal: Signal }) {
-  const { lang } = useI18n();
-  const ar = lang === "ar";
+  const { lang, t } = useI18n();
+  const c = t.chart;
+  const rtl = LANG_META[lang].dir === "rtl";
   const box = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const seriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
@@ -112,7 +114,7 @@ export function SignalChart({ signal }: { signal: Signal }) {
           position: next.direction === "BUY" ? "belowBar" : "aboveBar",
           shape: next.direction === "BUY" ? "arrowUp" : "arrowDown",
           color: COLORS.entry,
-          text: ar ? (next.direction === "BUY" ? "دخول شراء" : "دخول بيع") : `${next.direction} entry`,
+          text: next.direction === "BUY" ? c.buyEntry : c.sellEntry,
         },
       ];
       if (next.status === "closed") {
@@ -124,7 +126,7 @@ export function SignalChart({ signal }: { signal: Signal }) {
             position: "inBar",
             shape: "circle",
             color: win ? COLORS.up : COLORS.down,
-            text: ar ? (win ? "ضرب الهدف" : "ضرب الستوب") : win ? "TP hit" : "SL hit",
+            text: win ? c.tpHit : c.slHit,
           });
         }
       }
@@ -172,9 +174,9 @@ export function SignalChart({ signal }: { signal: Signal }) {
       });
       const line = (price: number, color: string, title: string, style: number) =>
         series.createPriceLine({ price, color, lineWidth: 2, lineStyle: style, axisLabelVisible: true, title });
-      line(first.entry, COLORS.entry, ar ? "الدخول" : "Entry", lib.LineStyle.Solid);
-      line(first.sl, COLORS.down, ar ? "الستوب" : "SL", lib.LineStyle.Dashed);
-      line(first.tp, COLORS.up, ar ? "الهدف" : "TP", lib.LineStyle.Dashed);
+      line(first.entry, COLORS.entry, c.entry, lib.LineStyle.Solid);
+      line(first.sl, COLORS.down, c.sl, lib.LineStyle.Dashed);
+      line(first.tp, COLORS.up, c.tp, lib.LineStyle.Dashed);
       chartRef.current = chart;
       seriesRef.current = series;
       markersRef.current = lib.createSeriesMarkers(series, []);
@@ -232,47 +234,47 @@ export function SignalChart({ signal }: { signal: Signal }) {
       chartRef.current = null;
       seriesRef.current = null;
     };
-  }, [signal.id, signal.pair, ar]);
+  }, [signal.id, signal.pair, c]);
 
   const closed = file?.status === "closed";
   return (
     <section className="space-y-2">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-sm font-semibold">
-          {ar ? "الشارت" : "Chart"}
+          {c.title}
           {file && !closed ? (
             <span className="ms-2 inline-flex items-center gap-1 rounded-full bg-buy/15 px-2 py-0.5 text-[11px] font-medium text-buy">
               <span className="size-1.5 animate-pulse rounded-full bg-buy" />
-              {ar ? "لايف" : "Live"}
+              {c.live}
             </span>
           ) : null}
           {closed ? (
             <span className={`ms-2 rounded-full px-2 py-0.5 text-[11px] font-medium ${file?.result === "TP" ? "bg-buy/15 text-buy" : "bg-sell/15 text-sell"}`}>
-              {ar ? "محفوظ" : "Saved"} · {file?.result === "TP" ? (ar ? "ضرب الهدف" : "TP hit") : ar ? "ضرب الستوب" : "SL hit"}
+              {c.saved} · {file?.result === "TP" ? c.tpHit : c.slHit}
             </span>
           ) : null}
         </h3>
         <div className="flex gap-3 text-[11px] text-muted-foreground">
-          <span><span className="me-1 inline-block h-0.5 w-3 align-middle" style={{ background: COLORS.entry }} />{ar ? "الدخول" : "Entry"}</span>
-          <span><span className="me-1 inline-block h-0.5 w-3 align-middle" style={{ background: COLORS.down }} />{ar ? "الستوب" : "SL"}</span>
-          <span><span className="me-1 inline-block h-0.5 w-3 align-middle" style={{ background: COLORS.up }} />{ar ? "الهدف" : "TP"}</span>
+          <span><span className="me-1 inline-block h-0.5 w-3 align-middle" style={{ background: COLORS.entry }} />{c.entry}</span>
+          <span><span className="me-1 inline-block h-0.5 w-3 align-middle" style={{ background: COLORS.down }} />{c.sl}</span>
+          <span><span className="me-1 inline-block h-0.5 w-3 align-middle" style={{ background: COLORS.up }} />{c.tp}</span>
         </div>
       </div>
       <div dir="ltr" className="relative h-72 w-full overflow-hidden rounded-lg border border-border bg-background/40 sm:h-80">
         <div ref={box} className="absolute inset-0" />
         {state !== "ready" ? (
-          <p className="absolute inset-0 flex items-center justify-center px-4 text-center text-xs text-muted-foreground" dir={ar ? "rtl" : "ltr"}>
-            {state === "loading" ? (ar ? "جاري تحميل الشارت…" : "Loading chart…") : ar ? "الشارت غير متوفر لهذه التوصية بعد." : "No chart saved for this signal yet."}
+          <p className="absolute inset-0 flex items-center justify-center px-4 text-center text-xs text-muted-foreground" dir={rtl ? "rtl" : "ltr"}>
+            {state === "loading" ? c.loading : c.missing}
           </p>
         ) : null}
       </div>
       {file ? (
         <p className="nums text-[11px] leading-5 text-muted-foreground">
-          {ar ? "شموع" : "Candles"} {file.interval} · Yahoo Finance · {ar ? "بتوقيت بغداد" : "Baghdad time"} · {ar ? "آخر تحديث" : "updated"} {formatWhen(file.updatedAt, "Asia/Baghdad", lang)}
+          {c.candles} {file.interval} · Yahoo Finance · {c.baghdadTime} · {c.updated} {formatWhen(file.updatedAt, "Asia/Baghdad", lang)}
           {tick ? (
             <>
               <br />
-              {ar ? "سعر لحظي" : "Live price"} {formatPrice(signal.pair, tick.price)} (Kraken) · {tick.at.toLocaleTimeString(ar ? "ar-IQ" : "en-GB", { timeZone: "Asia/Baghdad", hour: "2-digit", minute: "2-digit", second: "2-digit", numberingSystem: "latn" })}
+              {c.livePrice} {formatPrice(signal.pair, tick.price)} (Kraken) · {tick.at.toLocaleTimeString(lang === "ar" ? "ar-IQ" : LANG_META[lang].intl, { timeZone: "Asia/Baghdad", hour: "2-digit", minute: "2-digit", second: "2-digit", numberingSystem: "latn" })}
             </>
           ) : null}
         </p>

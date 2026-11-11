@@ -1,114 +1,48 @@
 import type { Metadata } from "next";
 import { GSC_VERIFICATION, SITE_NAME, SITE_URL } from "@/lib/site";
-import type { Lang } from "@/lib/i18n";
+import { fill, LANG_META, LANGS, type Lang } from "@/lib/langs";
+import { dict } from "@/lib/locales";
 
 export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD"] as const;
 
-export const pairNames: Record<string, { ar: string; en: string }> = {
-  EURUSD: { ar: "تحليل اليورو دولار", en: "EUR/USD signal" },
-  GBPUSD: { ar: "تحليل الجنيه دولار", en: "GBP/USD signal" },
-  USDJPY: { ar: "تحليل الدولار ين", en: "USD/JPY signal" },
-  USDCHF: { ar: "تحليل الدولار فرنك", en: "USD/CHF signal" },
-  AUDUSD: { ar: "تحليل الدولار الأسترالي", en: "AUD/USD signal" },
-  USDCAD: { ar: "تحليل الدولار الكندي", en: "USD/CAD signal" },
-  NZDUSD: { ar: "تحليل الدولار النيوزيلندي", en: "NZD/USD signal" },
-};
+type PageKey = "home" | "signals" | "news" | "method" | "archive";
 
-const pages = {
-  home: {
-    ar: {
-      title: "964FX | توصيات فوركس مجانية",
-      description: "توصيات فوركس مجانية ويومية من العراق، مع المفكرة الاقتصادية وتحليل اليورو دولار. سيف التميمي وسيط IC Markets.",
-    },
-    en: {
-      title: "964FX | Free daily forex signals",
-      description: "Free daily forex signals from Iraq, plus the economic calendar. Saif Altamimi is an IC Markets introducing broker.",
-    },
-  },
-  signals: {
-    ar: {
-      title: "توصيات الفوركس اليومية | 964FX",
-      description: "توصيات الفوركس اليومية لأزواج العملات الرئيسية، مع سبب محسوب ووقف وهدف. ليست نصيحة مالية.",
-    },
-    en: {
-      title: "Daily forex signals | 964FX",
-      description: "Daily forex signals for the majors, each with a stop, a target, and six measured reasons. Not financial advice.",
-    },
-  },
-  news: {
-    ar: {
-      title: "أخبار الفوركس والمفكرة | 964FX",
-      description: "المفكرة الاقتصادية وأخبار الفوركس لهذا الأسبوع بتوقيت بغداد، مع الفعلي عند صدوره.",
-    },
-    en: {
-      title: "Forex news and calendar | 964FX",
-      description: "This week's economic calendar and forex news, shown in Baghdad time and your local time.",
-    },
-  },
-  method: {
-    ar: {
-      title: "منهج توصيات 964FX",
-      description: "كيف تُبنى توصيات فوركس 964FX: المتوسطات وRSI وMACD وATR والتقويم، ومتى نتخطى الزوج.",
-    },
-    en: {
-      title: "How 964FX signals are built",
-      description: "The rules behind 964FX signals: moving averages, RSI, MACD, ATR, and the calendar. Unclear setups are skipped.",
-    },
-  },
-  archive: {
-    ar: {
-      title: "أرشيف توصيات الفوركس | 964FX",
-      description: "أرشيف توصيات فوركس 964FX: كل إشارة مغلقة بنتيجتها ونقاطها وتحديثاتها. لا نعدّل النتائج.",
-    },
-    en: {
-      title: "Forex signal archive | 964FX",
-      description: "Archive of closed 964FX forex signals with results, pips, and the four-hour update timeline.",
-    },
-  },
-} as const;
-
-export function pageMeta(lang: Lang, key: keyof typeof pages, path = ""): Metadata {
-  const copy = pages[key][lang];
+export function pageMeta(lang: Lang, key: PageKey, path = ""): Metadata {
+  const copy = dict(lang).seo[key];
   return meta(lang, path, copy.title, copy.description);
 }
 
 export function pairMeta(lang: Lang, pair: string): Metadata {
-  const name = pairNames[pair] ?? { ar: pair, en: pair };
-  const title = lang === "ar" ? `${name.ar} | 964FX` : `${name.en} | 964FX`;
-  const description =
-    lang === "ar"
-      ? `${name.ar}: توصيات فوركس يومية مع الإيقاف والهدف وستة أسباب. ليست نصيحة مالية.`
-      : `${name.en}: daily forex signal with stop, target, and six reasons. Not financial advice.`;
-  return meta(lang, `/signals/${pair.toLowerCase()}`, title, description);
+  const d = dict(lang);
+  const name = d.pairNames[pair] ?? pair;
+  return meta(lang, `/signals/${pair.toLowerCase()}`, fill(d.seo.pairTitle, { name }), fill(d.seo.pairDescription, { name }));
 }
 
 export function archiveMeta(lang: Lang, id: string, pair: string): Metadata {
-  const title = lang === "ar" ? `أرشيف ${pair} | 964FX` : `${pair} archived signal | 964FX`;
-  const description =
-    lang === "ar"
-      ? `السجل الدائم للإشارة ${id} مع الأسباب والتحديثات والنتيجة.`
-      : `Permanent record of signal ${id}, with reasons, updates, and the result.`;
-  return meta(lang, `/archive/${id}`, title, description);
+  const d = dict(lang);
+  return meta(lang, `/archive/${id}`, fill(d.seo.archiveTitle, { pair, id }), fill(d.seo.archiveDescription, { pair, id }));
 }
 
 function meta(lang: Lang, path: string, title: string, description: string): Metadata {
   const suffix = path ? (path.endsWith("/") ? path : `${path}/`) : "/";
   const canonicalPath = `/${lang}${suffix}`;
-  const ar = `${SITE_URL}/ar${suffix}`;
-  const en = `${SITE_URL}/en${suffix}`;
+  const languages: Record<string, string> = {};
+  for (const code of LANGS) languages[LANG_META[code].tag] = `${SITE_URL}/${code}${suffix}`;
+  languages["x-default"] = `${SITE_URL}/ar${suffix}`;
   return {
     title: { absolute: title },
     description,
     alternates: {
       canonical: `${SITE_URL}${canonicalPath}`,
-      languages: { ar, en, "x-default": ar },
+      languages,
     },
     openGraph: {
       title,
       description,
       url: `${SITE_URL}${canonicalPath}`,
       siteName: SITE_NAME,
-      locale: lang === "ar" ? "ar_IQ" : "en_US",
+      locale: LANG_META[lang].og,
+      alternateLocale: LANGS.filter((code) => code !== lang).map((code) => LANG_META[code].og),
       type: "website",
       images: [{ url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: "964FX" }],
     },
@@ -137,7 +71,7 @@ export function organizationLd() {
         "@type": "WebSite",
         name: "964FX",
         url: `${SITE_URL}/ar/`,
-        inLanguage: ["ar", "en"],
+        inLanguage: LANGS.map((code) => LANG_META[code].tag),
       },
     ],
   };

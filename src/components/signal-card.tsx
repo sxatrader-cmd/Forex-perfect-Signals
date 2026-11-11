@@ -7,6 +7,7 @@ import { SignalChart } from "@/components/signal-chart";
 import { UpdatesTimeline } from "@/components/updates-timeline";
 import { formatPips, formatPrice, formatWhen, pairLabel } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
+import { pickText, textAttrs } from "@/lib/langs";
 import type { Signal } from "@/lib/types";
 
 export function SignalCard({ signal, compact = false }: { signal: Signal; compact?: boolean }) {
@@ -74,11 +75,12 @@ export function SignalCard({ signal, compact = false }: { signal: Signal; compac
             <SignalChart signal={signal} />
             <div>
               <h3 className="mb-2 text-sm font-semibold">{t.reasons}</h3>
+              {t.fallbackNote ? <p className="mb-2 text-xs text-muted-foreground">{t.fallbackNote}</p> : null}
               <ol className="space-y-2">
                 {signal.reasons.map((reason, index) => (
                   <li key={reason.en} className="rounded-lg bg-muted/60 px-3 py-2 text-sm leading-6">
                     <span className="nums me-2 text-primary">{index + 1}</span>
-                    {lang === "ar" ? reason.ar : reason.en}
+                    <span {...textAttrs(lang)}>{pickText(lang, reason)}</span>
                   </li>
                 ))}
               </ol>

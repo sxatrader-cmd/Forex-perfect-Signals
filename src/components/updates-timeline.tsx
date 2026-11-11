@@ -2,6 +2,7 @@
 
 import { formatPips, formatPrice } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
+import { pickText, textAttrs } from "@/lib/langs";
 import type { SignalUpdate } from "@/lib/types";
 
 export function UpdatesTimeline({ updates, pair }: { updates: SignalUpdate[]; pair: string }) {
@@ -21,7 +22,7 @@ export function UpdatesTimeline({ updates, pair }: { updates: SignalUpdate[]; pa
               <p className="nums text-xs text-muted-foreground">
                 {update.progressToTp}% {t.toTarget} · {update.distanceToSlPips} {t.pips} {t.fromStop}
               </p>
-              <p>{lang === "ar" ? update.comment.ar : update.comment.en}</p>
+              <p {...textAttrs(lang)}>{pickText(lang, update.comment)}</p>
             </li>
           ))}
         </ol>

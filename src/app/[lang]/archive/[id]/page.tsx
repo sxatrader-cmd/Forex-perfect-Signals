@@ -3,12 +3,13 @@ import { ArchiveDetail } from "@/components/archive-view";
 import { JsonLd } from "@/components/json-ld";
 import { historyData } from "@/lib/market-data";
 import { archiveMeta, breadcrumbLd } from "@/lib/seo";
-import type { Lang } from "@/lib/i18n";
+import { LANGS, type Lang } from "@/lib/langs";
+import { dict } from "@/lib/locales";
 
 export function generateStaticParams() {
   const rows = historyData.closed;
-  if (!rows.length) return [{ lang: "ar", id: "empty" }, { lang: "en", id: "empty" }];
-  return ["ar", "en"].flatMap((lang) => rows.map((signal) => ({ lang, id: signal.id })));
+  if (!rows.length) return LANGS.map((lang) => ({ lang, id: "empty" }));
+  return LANGS.flatMap((lang) => rows.map((signal) => ({ lang, id: signal.id })));
 }
 
 export function generateMetadata({ params }: { params: Promise<{ lang: string; id: string }> }) {
@@ -28,7 +29,7 @@ export default async function ArchiveSignalPage({ params }: { params: Promise<{ 
       <JsonLd
         data={breadcrumbLd(lang as Lang, [
           { name: "964FX", path: "/" },
-          { name: lang === "ar" ? "الأرشيف" : "Archive", path: "/archive/" },
+          { name: dict(lang as Lang).nav.archive, path: "/archive/" },
           { name: signal.id, path: `/archive/${signal.id}/` },
         ])}
       />

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { SiteShell } from "@/components/site-shell";
-import type { Lang } from "@/lib/i18n";
+import { isLang, LANGS } from "@/lib/langs";
 
 export function generateStaticParams() {
-  return [{ lang: "ar" }, { lang: "en" }];
+  return LANGS.map((lang) => ({ lang }));
 }
 
 export default async function LangLayout({
@@ -15,6 +15,6 @@ export default async function LangLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  if (lang !== "ar" && lang !== "en") notFound();
-  return <SiteShell lang={lang as Lang}>{children}</SiteShell>;
+  if (!isLang(lang)) notFound();
+  return <SiteShell lang={lang}>{children}</SiteShell>;
 }

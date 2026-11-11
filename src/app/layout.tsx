@@ -1,13 +1,43 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans_Arabic, Syne } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Sans_Arabic, Noto_Sans_Devanagari, Noto_Sans_Tamil, Syne, Vazirmatn } from "next/font/google";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const ibm = IBM_Plex_Sans_Arabic({
-  subsets: ["arabic", "latin"],
+  subsets: ["arabic", "latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-ibm",
   display: "swap",
+});
+
+// Script fonts below are only downloaded by pages whose text needs them (unicode-range), so no preload.
+const plex = IBM_Plex_Sans({
+  subsets: ["cyrillic"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plex",
+  display: "swap",
+  preload: false,
+});
+
+const deva = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  variable: "--font-deva",
+  display: "swap",
+  preload: false,
+});
+
+const tamil = Noto_Sans_Tamil({
+  subsets: ["tamil"],
+  variable: "--font-tamil",
+  display: "swap",
+  preload: false,
+});
+
+const vazir = Vazirmatn({
+  subsets: ["arabic"],
+  variable: "--font-vazir",
+  display: "swap",
+  preload: false,
 });
 
 const syne = Syne({
@@ -35,7 +65,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning className={`${ibm.variable} ${syne.variable} dark h-full antialiased`}>
+    <html lang="ar" dir="rtl" suppressHydrationWarning className={`${ibm.variable} ${syne.variable} ${plex.variable} ${deva.variable} ${tamil.variable} ${vazir.variable} dark h-full antialiased`}>
       <head>
         <link rel="preconnect" href="https://secure.ic.com" />
         <link rel="preconnect" href="https://promo.icmarkets.com" />

@@ -19,13 +19,36 @@ paths = ["/", "/signals/", "/news/", "/method/", "/archive/"]
 paths += [f"/signals/{pair}/" for pair in pairs]
 paths += [f"/archive/{item['id']}/" for item in history.get("closed") or [] if item.get("id") and item["id"] != "empty"]
 
-lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-for lang in ("ar", "en"):
+# Route segment -> hreflang tag. Keep in step with src/lib/langs.ts.
+LANGS = {
+    "ar": "ar",
+    "en": "en",
+    "zh-cn": "zh-CN",
+    "zh-tw": "zh-TW",
+    "fr": "fr",
+    "de": "de",
+    "es": "es",
+    "pt": "pt",
+    "ru": "ru",
+    "hi": "hi",
+    "ta": "ta",
+    "tr": "tr",
+    "fa": "fa",
+}
+
+lines = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+]
+for lang in LANGS:
     for path in paths:
         loc = f"{site_url}/{lang}{path}"
         lines.append("  <url>")
         lines.append(f"    <loc>{loc}</loc>")
         lines.append(f"    <lastmod>{stamp}</lastmod>")
+        for code, tag in LANGS.items():
+            lines.append(f'    <xhtml:link rel="alternate" hreflang="{tag}" href="{site_url}/{code}{path}"/>')
+        lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{site_url}/ar{path}"/>')
         lines.append("  </url>")
 lines.append("</urlset>")
 (ROOT / "public/sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -51,4 +74,4 @@ manifest = {
     ],
 }
 (ROOT / "public/manifest.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print(f"seo files for {site_url} lastmod {stamp} urls {len(paths) * 2}")
+print(f"seo files for {site_url} lastmod {stamp} urls {len(paths) * len(LANGS)}")

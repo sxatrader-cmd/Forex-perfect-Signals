@@ -2,9 +2,11 @@
 
 import { ShieldAlert } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { LANG_META } from "@/lib/langs";
 
 export function Disclaimer({ prominent = false }: { prominent?: boolean }) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const bilingual = lang === "ar" || lang === "en";
   return (
     <section
       className={
@@ -18,9 +20,15 @@ export function Disclaimer({ prominent = false }: { prominent?: boolean }) {
         <ShieldAlert className="size-4 shrink-0" aria-hidden />
         <h2 className="text-sm font-semibold tracking-wide">{t.disclaimerTitle}</h2>
       </div>
-      <p lang="ar" dir="rtl" className="text-sm leading-7 text-foreground">
-        {t.disclaimerAr}
-      </p>
+      {bilingual ? (
+        <p lang="ar" dir="rtl" className="text-sm leading-7 text-foreground">
+          {t.disclaimerAr}
+        </p>
+      ) : (
+        <p lang={LANG_META[lang].tag} dir={LANG_META[lang].dir} className="text-sm leading-7 text-foreground">
+          {t.disclaimerLocal}
+        </p>
+      )}
       <p lang="en" dir="ltr" className="mt-3 text-sm leading-6 text-muted-foreground">
         {t.disclaimerEn}
       </p>

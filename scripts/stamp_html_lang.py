@@ -7,6 +7,22 @@ import re
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parents[1] / "out"
+# Route segment -> (html lang, dir). Keep in step with src/lib/langs.ts.
+LANGS = {
+    "ar": ("ar", "rtl"),
+    "en": ("en", "ltr"),
+    "zh-cn": ("zh-CN", "ltr"),
+    "zh-tw": ("zh-TW", "ltr"),
+    "fr": ("fr", "ltr"),
+    "de": ("de", "ltr"),
+    "es": ("es", "ltr"),
+    "pt": ("pt", "ltr"),
+    "ru": ("ru", "ltr"),
+    "hi": ("hi", "ltr"),
+    "ta": ("ta", "ltr"),
+    "tr": ("tr", "ltr"),
+    "fa": ("fa", "rtl"),
+}
 HTML = re.compile(r"<html\b[^>]*>", re.IGNORECASE)
 
 
@@ -28,10 +44,12 @@ def main() -> None:
         return
     for html in OUT.rglob("*.html"):
         relative = html.relative_to(OUT).as_posix()
-        if relative == "index.html" or relative.startswith("ar/"):
+        if relative == "index.html":
             stamp(html, "ar", "rtl")
-        elif relative.startswith("en/"):
-            stamp(html, "en", "ltr")
+            continue
+        segment = relative.split("/", 1)[0]
+        if segment in LANGS:
+            stamp(html, *LANGS[segment])
 
 
 if __name__ == "__main__":

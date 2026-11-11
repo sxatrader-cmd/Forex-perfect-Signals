@@ -8,7 +8,9 @@ import { BrokerLink } from "@/components/broker-link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { formatClock } from "@/lib/format";
-import { useI18n, type Lang } from "@/lib/i18n";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { useI18n } from "@/lib/i18n";
+import { LANG_META } from "@/lib/langs";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -22,13 +24,6 @@ const links = [
 function normalize(path: string) {
   if (path.length > 1 && path.endsWith("/")) return path.slice(0, -1);
   return path || "/";
-}
-
-function withLang(path: string, lang: Lang) {
-  const parts = normalize(path).split("/").filter(Boolean);
-  if (parts[0] === "ar" || parts[0] === "en") parts[0] = lang;
-  else parts.unshift(lang);
-  return `/${parts.join("/")}`;
 }
 
 export function SiteHeader() {
@@ -85,23 +80,7 @@ export function SiteHeader() {
             <span className="me-1 text-primary">{t.clockLabel}</span>
             {now ? formatClock(now, lang) : "—"}
           </p>
-          <div className="flex rounded-lg border border-border p-0.5" role="group" aria-label={t.langLabel}>
-            {(["ar", "en"] as const).map((code) => (
-              <Link
-                key={code}
-                href={withLang(pathname, code)}
-                hrefLang={code}
-                className={cn(
-                  "rounded-md px-2 py-1 text-xs font-medium",
-                  lang === code ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground",
-                )}
-                aria-current={lang === code ? "true" : undefined}
-                onClick={() => setOpen(false)}
-              >
-                {code === "ar" ? "عربي" : "EN"}
-              </Link>
-            ))}
-          </div>
+          <LanguageSwitcher pathname={pathname} onNavigate={() => setOpen(false)} />
           <BrokerLink className="hidden sm:inline-flex">{t.openAccount}</BrokerLink>
           <Button
             type="button"
@@ -109,7 +88,7 @@ export function SiteHeader() {
             size="icon"
             className="lg:hidden"
             aria-expanded={open}
-            aria-label={open ? "Close" : "Menu"}
+            aria-label={open ? t.menuClose : t.menuOpen}
             onClick={() => setOpen((value) => !value)}
           >
             {open ? <X /> : <Menu />}
@@ -117,7 +96,7 @@ export function SiteHeader() {
         </div>
       </div>
       {open ? (
-        <div className="border-t border-border px-4 py-3 lg:hidden" dir={lang === "ar" ? "rtl" : "ltr"}>
+        <div className="border-t border-border px-4 py-3 lg:hidden" dir={LANG_META[lang].dir}>
           <nav className="flex flex-col gap-1">
             {links.map((link) => (
               <Link

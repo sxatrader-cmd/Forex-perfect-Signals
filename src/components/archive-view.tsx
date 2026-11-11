@@ -5,8 +5,9 @@ import { useMemo, useState } from "react";
 import { SignalChart } from "@/components/signal-chart";
 import { formatPercent, formatPips, formatPrice, formatWhen, pairLabel, tradeStats } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
+import { pickText, textAttrs } from "@/lib/langs";
 import { historyData } from "@/lib/market-data";
-import { PAIRS } from "@/lib/seo";
+import { PAIRS } from "@/lib/format";
 
 export function ArchiveView() {
   const { t, lang } = useI18n();
@@ -96,7 +97,7 @@ export function ArchiveDetail({ id }: { id: string }) {
         {signal.reasons.map((reason, index) => (
           <li key={reason.en} className="rounded-lg bg-muted/60 px-3 py-2 text-sm leading-6">
             <span className="nums me-2 text-primary">{index + 1}</span>
-            {lang === "ar" ? reason.ar : reason.en}
+            <span {...textAttrs(lang)}>{pickText(lang, reason)}</span>
           </li>
         ))}
       </ol>
@@ -104,7 +105,7 @@ export function ArchiveDetail({ id }: { id: string }) {
         {(signal.updates ?? []).map((update) => (
           <li key={update.at} className="text-sm leading-6">
             <p className="nums text-xs text-primary">{update.baghdad} · {formatPrice(signal.pair, update.price)} · {formatPips(update.floatingPips)}</p>
-            <p>{lang === "ar" ? update.comment.ar : update.comment.en}</p>
+            <p {...textAttrs(lang)}>{pickText(lang, update.comment)}</p>
           </li>
         ))}
       </ol>

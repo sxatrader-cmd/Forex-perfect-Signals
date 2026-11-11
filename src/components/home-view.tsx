@@ -12,6 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { buttonVariants } from "@/components/ui/button";
 import { formatClock, formatPips, formatPrice, fxMarketClosed, pairLabel, tradeStats } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
+import { pickText, textAttrs } from "@/lib/langs";
 import { BASE_PATH } from "@/lib/site";
 import { historyData, signalsData } from "@/lib/market-data";
 import { cn } from "@/lib/utils";
@@ -176,8 +177,8 @@ export function HomeView() {
                       <h3 className="nums font-semibold">{pairLabel(row.pair)}</h3>
                       <Badge variant="outline">{t.blocks[row.block ?? ""] ?? row.block}</Badge>
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {lang === "ar" ? row.summary.ar : row.summary.en}
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground" {...textAttrs(lang)}>
+                      {pickText(lang, row.summary)}
                     </p>
                     <p className="nums mt-2 text-xs text-muted-foreground">
                       {t.scanPrice} {formatPrice(row.pair, row.price)} · {t.rsiShort} {row.rsi4h ?? "—"}

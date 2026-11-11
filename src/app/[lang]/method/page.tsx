@@ -1,8 +1,8 @@
 import { JsonLd } from "@/components/json-ld";
 import { MethodView } from "@/components/method-view";
-import { faq } from "@/lib/faq";
 import { pageMeta } from "@/lib/seo";
-import type { Lang } from "@/lib/i18n";
+import type { Lang } from "@/lib/langs";
+import { dict } from "@/lib/locales";
 
 export function generateMetadata({ params }: { params: Promise<{ lang: string }> }) {
   return params.then(({ lang }) => pageMeta(lang as Lang, "method", "/method"));
@@ -13,7 +13,7 @@ export default async function MethodPage({ params }: { params: Promise<{ lang: s
   const data = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faq[lang as Lang].map((item) => ({
+    mainEntity: dict(lang as Lang).faq.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: { "@type": "Answer", text: item.a },

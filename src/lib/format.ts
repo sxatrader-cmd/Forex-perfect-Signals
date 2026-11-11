@@ -1,3 +1,5 @@
+import { LANG_META, type Lang } from "@/lib/langs";
+
 export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD"] as const;
 
 export function pairLabel(pair: string) {
@@ -25,11 +27,11 @@ export function formatPercent(value: number | null) {
   return `${Math.round(value * 100)}%`;
 }
 
-export function localeFor(lang: "ar" | "en") {
-  return lang === "ar" ? "ar-EG" : "en-GB";
+export function localeFor(lang: Lang) {
+  return LANG_META[lang]?.intl ?? "en-GB";
 }
 
-export function formatWhen(iso: string, timeZone: string | undefined, lang: "ar" | "en", withZone = false) {
+export function formatWhen(iso: string, timeZone: string | undefined, lang: Lang, withZone = false) {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "—";
   return new Intl.DateTimeFormat(localeFor(lang), {
@@ -45,7 +47,7 @@ export function formatWhen(iso: string, timeZone: string | undefined, lang: "ar"
   }).format(date);
 }
 
-export function formatClock(date: Date, lang: "ar" | "en") {
+export function formatClock(date: Date, lang: Lang) {
   return new Intl.DateTimeFormat(localeFor(lang), {
     timeZone: "Asia/Baghdad",
     weekday: "short",

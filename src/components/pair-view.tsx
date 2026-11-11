@@ -6,12 +6,12 @@ import { UpdatesTimeline } from "@/components/updates-timeline";
 import { formatPips, formatPrice, pairLabel } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import { historyData, signalsData } from "@/lib/market-data";
-import { pairNames } from "@/lib/seo";
+import { pickText, textAttrs } from "@/lib/langs";
 
 export function PairView({ pair }: { pair: string }) {
   const { t, lang } = useI18n();
   const code = pair.toUpperCase();
-  const name = pairNames[code]?.[lang] ?? pairLabel(code);
+  const name = t.pairNames[code] ?? pairLabel(code);
   const open = signalsData.open.find((signal) => signal.pair === code);
   const scan = signalsData.scan.find((row) => row.pair === code);
   const past = historyData.closed.filter((signal) => signal.pair === code);
@@ -29,7 +29,7 @@ export function PairView({ pair }: { pair: string }) {
       {!open && scan ? (
         <article className="rounded-xl border border-border bg-card/70 p-4">
           <h2 className="font-semibold">{t.scanHeading}</h2>
-          <p className="mt-2 text-sm leading-7">{lang === "ar" ? scan.summary.ar : scan.summary.en}</p>
+          <p className="mt-2 text-sm leading-7" {...textAttrs(lang)}>{pickText(lang, scan.summary)}</p>
           <p className="nums mt-2 text-xs text-muted-foreground">{formatPrice(code, scan.price)} · RSI {scan.rsi4h ?? "—"}</p>
         </article>
       ) : null}
