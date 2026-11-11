@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-11",
+  "source": "Autochartist (IC Markets European Session)",
+  "reportTime": "not received",
+  "pairs": {
+    "EURUSD": {
+      "bias": "NEUTRAL",
+      "note": "No report received yet"
+    },
+    "GBPUSD": {
+      "bias": "NEUTRAL",
+      "note": "No report received yet"
+    },
+    "USDCHF": {
+      "bias": "NEUTRAL",
+      "note": "No report received yet"
+    },
+    "AUDUSD": {
+      "bias": "NEUTRAL",
+      "note": "No report received yet"
+    },
+    "NZDUSD": {
+      "bias": "NEUTRAL",
+      "note": "No report received yet"
+    },
+    "USDJPY": {
+      "bias": "NEUTRAL",
+      "note": "No report received yet"
+    },
+    "USDCAD": {
+      "bias": "NEUTRAL",
+      "note": "No report received yet"
+    }
+  }
+}
