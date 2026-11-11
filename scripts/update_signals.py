@@ -176,9 +176,13 @@ def load_analyst_bias() -> dict:
         return {}
 
 
+# Saif (2026-11-11): signals rely on news, fundamentals and the strategy only; the analyst gate is off.
+ANALYST_GATE_ENABLED = False
+
+
 def apply_analyst_gate(decision: Decision, analyst: dict, now: datetime) -> Decision:
     """Keep a signal only when today's analyst report gives the same direction for the pair."""
-    if not decision.signal:
+    if not ANALYST_GATE_ENABLED or not decision.signal:
         return decision
     pair = decision.pair
     direction = decision.signal["direction"].upper()
