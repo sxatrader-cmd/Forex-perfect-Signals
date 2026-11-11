@@ -171,7 +171,7 @@
       "rr": 2.0,
       "atr": 0.002638,
       "issuedAt": "2026-11-10T20:30:43Z",
-      "priceAsOf": "2026-11-11T00:00:00Z",
+      "priceAsOf": "2026-11-11T02:00:00Z",
       "status": "open",
       "currentPrice": 1.11719,
       "floatingPips": -2.5,
@@ -201,7 +201,20 @@
           "ar": "مجموع مفاجآت الأخبار عالية التأثير خلال آخر 8 أيام تداول: EUR +1.18 من 3 قراءة، وUSD +1.99 من 8. هذا يرجح اتجاه الصفقة. أكبر مفاجأة قابلة للمقارنة: EUR GDP Growth Rate QoQ Flash الفعلي 0.4 مقابل التوقع 0.2 (المفاجأة +1.00). مزاج العناوين: EUR n/a من 0 عنواناً، وUSD +0.83 من 12. أقرب خبر عالي التأثير: USD Existing Home Sales بعد 42.5 ساعة.  عنوان مستخدم (ActionForex): Fed’s Waller Backs December Hike, Says 50bps Should Be Considered if Inflation Stays Hot. المصادر: Yahoo Finance, Forex Factory, TradingView, ForexLive, Investing.com Forex, Investing.com Economy, Investing.com Opinion, ActionForex."
         }
       ],
-      "updates": [],
+      "updates": [
+        {
+          "at": "2026-11-11T02:03:51Z",
+          "baghdad": "2026-11-11 05:03",
+          "price": 1.11719,
+          "floatingPips": -2.5,
+          "progressToTp": -3.9,
+          "distanceToSlPips": 29.2,
+          "comment": {
+            "en": "Price 1.11719 is still below the daily EMA50 saved at entry (1.13030). Floating -2.5 pips, -3.9% of the way to the target, 29.2 pips from the stop. 1-hour RSI is 40.0. Next high-impact release: USD Core PPI m/m in 59.4 hours. The original plan is unchanged: target and stop stay where they were set.",
+            "ar": "السعر 1.11719 ما زال تحت متوسط 50 اليومي المحفوظ عند الدخول (1.13030). النقاط العائمة -2.5، أي -3.9% من المسافة إلى الهدف، و29.2 نقطة عن الإيقاف. مؤشر RSI على الساعة 40.0. أقرب خبر عالي التأثير: USD Core PPI m/m بعد 59.4 ساعة. الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
+          }
+        }
+      ],
       "sources": [
         "Yahoo Finance",
         "Forex Factory",
@@ -228,5 +241,5 @@
       "entryReadyTs": 1794340800
     }
   ],
-  "updatedAt": "2026-11-11T00:29:58Z"
+  "updatedAt": "2026-11-11T02:03:51Z"
 }
