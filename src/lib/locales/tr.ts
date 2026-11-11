@@ -255,7 +255,7 @@ export const tr: Dict = {
   methodSections: [
     {
       title: "Sinyale ne zaman izin verilir",
-      body: "Her çalıştırma açık pipleri günceller ve girişten sonraki bir saatlik mumun en yüksek ya da en düşük seviyesi hedefe veya stopa değerse işlemi kapatır. Aynı mum ikisine birden değerse, mum içindeki fiyat yolu bilinmediği için önce stop sayılır. Yeni sinyal, Bağdat saatiyle günde bir kez, 08:00 UTC ve sonrasındaki ilk başarılı çalıştırmada ve yalnızca açık pozisyonu ve o gün verilmiş sinyali olmayan bir parite için yayınlanır. Yön 4 saatlik stratejiden gelir ve haber ile temel analiz filtrelerinden geçer: yüksek etkili verilerdeki son sürprizler ters yönü göstermemeli, yüksek etkili bir veriye yakın yeni sinyal verilmez. Zayıf backtest sonuçları nedeniyle USDJPY ve USDCAD'de yeni sinyal verilmez; iki parite de bilgi amaçlı panoda kalır.",
+      body: "Her çalıştırma açık pipleri günceller ve girişten sonraki bir saatlik mumun en yüksek ya da en düşük seviyesi hedefe veya stopa değerse işlemi kapatır. Aynı mum ikisine birden değerse, mum içindeki fiyat yolu bilinmediği için önce stop sayılır. Yeni sinyal, Bağdat saatiyle günde bir kez, 08:00 UTC ve sonrasındaki ilk başarılı çalıştırmada ve yalnızca açık pozisyonu ve o gün verilmiş sinyali olmayan bir parite için yayınlanır. Yön 4 saatlik stratejiden gelir ve haber ile temel analiz filtrelerinden geçer: yüksek etkili verilerdeki son sürprizler ve iki para birimi arasındaki politika faizi farkı (ve 120 günlük değişimi) ters yönü göstermemeli, yüksek etkili bir veriye yakın yeni sinyal verilmez. Zayıf backtest sonuçları nedeniyle USDJPY ve USDCAD'de yeni sinyal verilmez; iki parite de bilgi amaçlı panoda kalır.",
     },
     {
       title: "Ana trend",
