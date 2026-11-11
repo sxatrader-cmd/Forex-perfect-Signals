@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T07:18:23Z",
+  "updatedAt": "2026-11-11T09:49:55Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 22,
+      "matched": 23,
       "error": null
     }
   },
@@ -563,30 +563,8 @@
       "impact": "Low",
       "forecast": "0.7%",
       "previous": "-1.3%",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "CNY|m2-money-supply-y-y|2026-11-11T09:03:00Z",
-      "title": "M2 Money Supply y/y",
-      "currency": "CNY",
-      "time": "2026-11-11T09:03:00Z",
-      "impact": "Low",
-      "forecast": "7.2%",
-      "previous": "7.2%",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "CNY|new-loans|2026-11-11T09:03:00Z",
-      "title": "New Loans",
-      "currency": "CNY",
-      "time": "2026-11-11T09:03:00Z",
-      "impact": "Low",
-      "forecast": "80B",
-      "previous": "1080B",
-      "actual": "",
-      "actualSource": null
+      "actual": "1.2%",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|ecb-president-lagarde-speaks|2026-11-11T09:45:00Z",
@@ -772,6 +750,28 @@
       "impact": "Low",
       "forecast": "",
       "previous": "",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "CNY|m2-money-supply-y-y|2026-11-12T09:03:00Z",
+      "title": "M2 Money Supply y/y",
+      "currency": "CNY",
+      "time": "2026-11-12T09:03:00Z",
+      "impact": "Low",
+      "forecast": "7.2%",
+      "previous": "7.2%",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "CNY|new-loans|2026-11-12T09:03:00Z",
+      "title": "New Loans",
+      "currency": "CNY",
+      "time": "2026-11-12T09:03:00Z",
+      "impact": "Low",
+      "forecast": "80B",
+      "previous": "1080B",
       "actual": "",
       "actualSource": null
     },
