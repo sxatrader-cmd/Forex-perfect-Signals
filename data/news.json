@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T14:43:26Z",
+  "updatedAt": "2026-11-12T16:52:04Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 35,
+      "matched": 36,
       "error": null
     }
   },
@@ -794,8 +794,8 @@
       "impact": "Low",
       "forecast": "3.89M",
       "previous": "3.99M",
-      "actual": "",
-      "actualSource": null
+      "actual": "3.75M",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|fomc-member-barr-speaks|2026-11-12T15:00:00Z",
@@ -805,17 +805,6 @@
       "impact": "Low",
       "forecast": "",
       "previous": "",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "USD|mortgage-delinquencies|2026-11-12T15:21:00Z",
-      "title": "Mortgage Delinquencies",
-      "currency": "USD",
-      "time": "2026-11-12T15:21:00Z",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "4.37%",
       "actual": "",
       "actualSource": null
     },
@@ -860,6 +849,17 @@
       "impact": "Low",
       "forecast": "",
       "previous": "",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "USD|mortgage-delinquencies|2026-11-12T17:59:00Z",
+      "title": "Mortgage Delinquencies",
+      "currency": "USD",
+      "time": "2026-11-12T17:59:00Z",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "4.37%",
       "actual": "",
       "actualSource": null
     },
