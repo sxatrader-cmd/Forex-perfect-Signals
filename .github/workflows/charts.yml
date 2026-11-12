@@ -1,0 +1,54 @@
+name: Live charts
+
+# Refreshes the candle files behind the live signal charts on their own,
+# so they do not wait for the full Pages workflow (which also runs tests,
+# calendar, signals and the site deploy).
+#
+# GitHub runs scheduled workflows at most every 5 minutes and often later.
+# So each scheduled run keeps refreshing once a minute for about 5 minutes
+# itself, which gives a chart update roughly every minute whenever a run starts.
+#
+# Commits use [skip ci] so they do not trigger a site deploy. The chart files
+# are read from raw.githubusercontent.com, not from the deployed site.
+#
+# Shares the "pages" concurrency group with pages.yml so the two never push
+# to main at the same time.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  charts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh chart candles about once a minute
+        run: |
+          set -uo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            python scripts/update_charts.py || echo "update_charts failed on pass $i"
+            git add data/charts
+            if ! git diff --cached --quiet -- data/charts; then
+              git commit -q -m "data: chart candles [skip ci]"
+              git pull -q --rebase origin main
+              git push -q origin HEAD:main
+            else
+              git reset -q -- data/charts || true
+            fi
+            [ "$i" -lt 5 ] && sleep 55
+          done
