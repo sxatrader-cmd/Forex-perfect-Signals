@@ -50,5 +50,5 @@ jobs:
             else
               git reset -q -- data/charts || true
             fi
-            [ "$i" -lt 5 ] && sleep 55
+            if [ "$i" -lt 5 ]; then sleep 55; fi
           done
