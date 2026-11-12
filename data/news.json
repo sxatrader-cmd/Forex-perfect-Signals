@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T09:59:13Z",
+  "updatedAt": "2026-11-12T14:43:26Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 34,
+      "matched": 35,
       "error": null
     }
   },
@@ -761,8 +761,8 @@
       "impact": "Low",
       "forecast": "-4.0%",
       "previous": "8.8%",
-      "actual": "",
-      "actualSource": null
+      "actual": "-4.1%",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|fomc-member-hammack-speaks|2026-11-12T13:30:00Z",
@@ -809,10 +809,10 @@
       "actualSource": null
     },
     {
-      "id": "USD|mortgage-delinquencies|2026-11-12T15:00:00Z",
+      "id": "USD|mortgage-delinquencies|2026-11-12T15:21:00Z",
       "title": "Mortgage Delinquencies",
       "currency": "USD",
-      "time": "2026-11-12T15:00:00Z",
+      "time": "2026-11-12T15:21:00Z",
       "impact": "Low",
       "forecast": "",
       "previous": "4.37%",
