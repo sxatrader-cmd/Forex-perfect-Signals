@@ -4,7 +4,7 @@
     "prices": {
       "provider": "Yahoo Finance chart API",
       "ok": true,
-      "detail": "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. This is the endpoint yfinance reads. 5 of 5 issuing pairs loaded."
+      "detail": "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. This is the endpoint yfinance reads. 12 of 12 issuing pairs loaded."
     },
     "calendar": {
       "provider": "Forex Factory",
@@ -158,11 +158,205 @@
       "rsi4h": 34.3,
       "macdHist4h": -0.000575,
       "atr4h": 0.001707
+    },
+    {
+      "pair": "GBPJPY",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily and 4H trends disagree. Daily EMA50 211.323 versus EMA200 211.293, 4H EMA20 212.014 versus EMA50 211.894, MACD histogram -0.006667.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 211.323 مقابل متوسط 200 211.293، ومتوسط 20 على 4 ساعات 212.014 مقابل متوسط 50 211.894، وهيستوغرام MACD -0.006667."
+      },
+      "price": 211.916,
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 211.402,
+      "ema50": 211.323,
+      "ema200": 211.293,
+      "rsi4h": 48.5,
+      "macdHist4h": -0.006667,
+      "atr4h": 0.497668
+    },
+    {
+      "pair": "GBPAUD",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily and 4H trends disagree. Daily EMA50 1.91023 versus EMA200 1.91917, 4H EMA20 1.94001 versus EMA50 1.93253, MACD histogram -0.001036.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.91023 مقابل متوسط 200 1.91917، ومتوسط 20 على 4 ساعات 1.94001 مقابل متوسط 50 1.93253، وهيستوغرام MACD -0.001036."
+      },
+      "price": 1.94504,
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 1.92265,
+      "ema50": 1.91023,
+      "ema200": 1.91917,
+      "rsi4h": 59.2,
+      "macdHist4h": -0.001036,
+      "atr4h": 0.005483
+    },
+    {
+      "pair": "GBPCAD",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily and 4H trends disagree. Daily EMA50 1.88041 versus EMA200 1.86970, 4H EMA20 1.89144 versus EMA50 1.88652, MACD histogram -0.001051.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.88041 مقابل متوسط 200 1.86970، ومتوسط 20 على 4 ساعات 1.89144 مقابل متوسط 50 1.88652، وهيستوغرام MACD -0.001051."
+      },
+      "price": 1.89123,
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 1.88341,
+      "ema50": 1.88041,
+      "ema200": 1.8697,
+      "rsi4h": 53.3,
+      "macdHist4h": -0.001051,
+      "atr4h": 0.003905
+    },
+    {
+      "pair": "GBPNZD",
+      "decision": "signal",
+      "block": null,
+      "summary": {
+        "en": "New BUY signal at 2.38864, stop 2.38082, target 2.40429.",
+        "ar": "إشارة شراء جديدة عند 2.38864، الإيقاف 2.38082، الهدف 2.40429."
+      },
+      "price": 2.38864,
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "dailyTrend": "buy",
+      "ema20": 2.37739,
+      "ema50": 2.35649,
+      "ema200": 2.31862,
+      "rsi4h": 52.7,
+      "macdHist4h": 0.000445,
+      "atr4h": 0.00652
+    },
+    {
+      "pair": "EURGBP",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily and 4H trends disagree. Daily EMA50 0.84439 versus EMA200 0.85566, 4H EMA20 0.83549 versus EMA50 0.83542, MACD histogram -0.000103.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.84439 مقابل متوسط 200 0.85566، ومتوسط 20 على 4 ساعات 0.83549 مقابل متوسط 50 0.83542، وهيستوغرام MACD -0.000103."
+      },
+      "price": 0.83586,
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 0.8379,
+      "ema50": 0.84439,
+      "ema200": 0.85566,
+      "rsi4h": 49.6,
+      "macdHist4h": -0.000103,
+      "atr4h": 0.001052
+    },
+    {
+      "pair": "EURJPY",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily and 4H trends disagree. Daily EMA50 178.450 versus EMA200 180.811, 4H EMA20 177.144 versus EMA50 177.028, MACD histogram -0.02761.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 178.450 مقابل متوسط 200 180.811، ومتوسط 20 على 4 ساعات 177.144 مقابل متوسط 50 177.028، وهيستوغرام MACD -0.02761."
+      },
+      "price": 177.136,
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 177.139,
+      "ema50": 178.45,
+      "ema200": 180.811,
+      "rsi4h": 48.1,
+      "macdHist4h": -0.027609,
+      "atr4h": 0.382005
+    },
+    {
+      "pair": "EURCAD",
+      "decision": "skip",
+      "block": "no-stack",
+      "summary": {
+        "en": "Daily and 4H trends disagree. Daily EMA50 1.58787 versus EMA200 1.59986, 4H EMA20 1.58037 versus EMA50 1.57611, MACD histogram -0.001070.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.58787 مقابل متوسط 200 1.59986، ومتوسط 20 على 4 ساعات 1.58037 مقابل متوسط 50 1.57611، وهيستوغرام MACD -0.001070."
+      },
+      "price": 1.58084,
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "dailyTrend": "mixed",
+      "ema20": 1.57817,
+      "ema50": 1.58787,
+      "ema200": 1.59986,
+      "rsi4h": 52.6,
+      "macdHist4h": -0.00107,
+      "atr4h": 0.003081
     }
   ],
-  "open": [],
-  "updatedAt": "2026-11-12T09:29:06Z",
+  "open": [
+    {
+      "id": "GBPNZD-20261112-BUY",
+      "pair": "GBPNZD",
+      "direction": "BUY",
+      "entry": 2.38864,
+      "sl": 2.38082,
+      "tp": 2.40429,
+      "rr": 2.0,
+      "atr": 0.00652,
+      "issuedAt": "2026-11-12T09:38:27Z",
+      "priceAsOf": "2026-11-12T09:00:00Z",
+      "status": "open",
+      "currentPrice": 2.38864,
+      "floatingPips": 0.0,
+      "reasons": [
+        {
+          "en": "4-hour trend is bullish: EMA20 2.38730 versus EMA50 2.38633, ADX 20.4. Daily bias EMA50 2.35649 is above EMA200 2.31862 and EMA20 2.37739 is above EMA50. Last price 2.38864 is above daily EMA20.",
+          "ar": "اتجاه 4 ساعات صاعد: متوسط 20 عند 2.38730 مقابل متوسط 50 عند 2.38633، وADX 20.4. الميل اليومي: متوسط 50 عند 2.35649 فوق متوسط 200 عند 2.31862، ومتوسط 20 عند 2.37739 فوق متوسط 50. آخر سعر 2.38864 فوق متوسط 20 اليومي."
+        },
+        {
+          "en": "4H RSI(14) is 52.7, inside the BUY band 40–65. The band excludes overbought and oversold extremes.",
+          "ar": "مؤشر RSI(14) على 4 ساعات يساوي 52.7 داخل نطاق صاعد المعتمد 40–65. هذا النطاق يستبعد مناطق التشبع."
+        },
+        {
+          "en": "4H MACD line is -0.001841, signal line -0.002286, histogram 0.000445. The histogram agrees with the bullish direction.",
+          "ar": "خط MACD على 4 ساعات -0.001841، وخط الإشارة -0.002286، والهيستوغرام 0.000445. إشارة الهيستوغرام توافق الاتجاه صاعد."
+        },
+        {
+          "en": "The nearest 4H swing support is 2.38441, 42.3 pips under the entry. The stop is placed beyond it. 4H ATR(14) is 0.00652 (65.2 pips). Stop 78.2 pips, target 156.5 pips, reward-to-risk 1:2.00.",
+          "ar": "أقرب دعم تأرجح على 4 ساعات عند 2.38441، أي 42.3 نقطة تحت الدخول، ووُضع الإيقاف بعده. ATR(14) على 4 ساعات يساوي 0.00652 (65.2 نقطة). الإيقاف 78.2 نقطة، والهدف 156.5 نقطة، والعائد إلى المخاطرة 1:2.00."
+        },
+        {
+          "en": "Policy rates: GBP 4.00% versus NZD 2.75% (gap +1.25 points). Change over the last 120 days: GBP +25 bp, NZD +25 bp. That gap and its change agree with the BUY.",
+          "ar": "أسعار السياسة: GBP 4.00% مقابل NZD 2.75% (الفارق +1.25 نقطة مئوية). التغير خلال 120 يوماً: GBP +25 نقطة أساس، وNZD +25 نقطة أساس. الفارق وتغيره يوافقان اتجاه الصفقة."
+        },
+        {
+          "en": "High-impact surprise sum over the last 8 trading days: GBP +1.00 from 3 prints, NZD +0.00 from 0. That favours the BUY. Largest comparable print: GBP GDP MoM actual 0.2 versus forecast 0.0 (signed surprise +1.00). Headline tone GBP +0.20 from 5 scored headlines, NZD n/a from 0. Next high-impact event: GBP Unemployment Rate in 117.4 hours.  Sample headline (Investing.com Opinion): GBP/USD at Month’s Lows: The Outlook Remains Weak. Sources: Yahoo Finance, Forex Factory, TradingView, ForexLive, Investing.com Forex, Investing.com Economy, Investing.com Opinion, ActionForex.",
+          "ar": "مجموع مفاجآت الأخبار عالية التأثير خلال آخر 8 أيام تداول: GBP +1.00 من 3 قراءة، وNZD +0.00 من 0. هذا يرجح اتجاه الصفقة. أكبر مفاجأة قابلة للمقارنة: GBP GDP MoM الفعلي 0.2 مقابل التوقع 0.0 (المفاجأة +1.00). مزاج العناوين: GBP +0.20 من 5 عنواناً، وNZD n/a من 0. أقرب خبر عالي التأثير: GBP Unemployment Rate بعد 117.4 ساعة.  عنوان مستخدم (Investing.com Opinion): GBP/USD at Month’s Lows: The Outlook Remains Weak. المصادر: Yahoo Finance, Forex Factory, TradingView, ForexLive, Investing.com Forex, Investing.com Economy, Investing.com Opinion, ActionForex."
+        }
+      ],
+      "updates": [],
+      "sources": [
+        "Yahoo Finance",
+        "Forex Factory",
+        "TradingView",
+        "ForexLive",
+        "Investing.com Forex",
+        "Investing.com Economy",
+        "Investing.com Opinion",
+        "ActionForex"
+      ],
+      "indicators": {
+        "ema20": 2.37739,
+        "ema50": 2.35649,
+        "ema200": 2.31862,
+        "rsi4h": 52.7,
+        "macd4h": -0.001841,
+        "macdSignal4h": -0.002286,
+        "macdHist4h": 0.000445,
+        "atr4h": 0.00652,
+        "adx4h": 20.4,
+        "atrDaily": 0.013983,
+        "swing": 2.38441
+      },
+      "entryReadyTs": 1794474000
+    }
+  ],
+  "updatedAt": "2026-11-12T09:38:33Z",
   "sessionScans": {
-    "frankfurt": "2026-11-12"
+    "frankfurt": "2026-11-12",
+    "london": "2026-11-12"
   }
 }

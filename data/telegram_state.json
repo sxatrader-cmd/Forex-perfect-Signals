@@ -1,6 +1,5 @@
 {
   "initializedAt": "2026-11-11T16:02:26Z",
-  "updatedAt": "2026-11-11T16:02:26Z",
   "signals": {
     "EURUSD-20261110-SELL": {
       "issued": true,
@@ -8,6 +7,14 @@
       "message_id": null,
       "closed_message_id": null,
       "skipped": "preexisting"
+    },
+    "GBPNZD-20261112-BUY": {
+      "issued": true,
+      "closed": false,
+      "message_id": 4,
+      "closed_message_id": null,
+      "postedAt": "2026-11-12T09:38:34Z"
     }
-  }
+  },
+  "updatedAt": "2026-11-12T09:38:34Z"
 }
