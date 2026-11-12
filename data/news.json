@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T14:55:50Z",
+  "updatedAt": "2026-11-12T00:57:50Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 23,
+      "matched": 26,
       "error": null
     }
   },
@@ -618,8 +618,8 @@
       "impact": "Low",
       "forecast": "",
       "previous": "2.8%",
-      "actual": "",
-      "actualSource": null
+      "actual": "9.8%",
+      "actualSource": "TradingView"
     },
     {
       "id": "JPY|ppi-y-y|2026-11-11T23:50:00Z",
@@ -629,8 +629,8 @@
       "impact": "Low",
       "forecast": "6.5%",
       "previous": "6.8%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.7%",
+      "actualSource": "TradingView"
     },
     {
       "id": "AUD|mi-inflation-expectations|2026-11-12T00:00:00Z",
@@ -651,8 +651,8 @@
       "impact": "Low",
       "forecast": "-33%",
       "previous": "-32%",
-      "actual": "",
-      "actualSource": null
+      "actual": "-36",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|construction-output-m-m|2026-11-12T07:00:00Z",
