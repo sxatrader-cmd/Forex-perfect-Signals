@@ -38,11 +38,11 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.46× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.46× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.15× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.15× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 1.10889,
-      "priceAsOf": "2026-11-12T08:00:00Z",
+      "price": 1.10963,
+      "priceAsOf": "2026-11-12T09:00:00Z",
       "dailyTrend": "sell",
       "ema20": 1.11925,
       "ema50": 1.12869,
@@ -56,11 +56,11 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.50× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.50× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.49× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.49× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 1.32707,
-      "priceAsOf": "2026-11-12T08:00:00Z",
+      "price": 1.3271,
+      "priceAsOf": "2026-11-12T09:00:00Z",
       "dailyTrend": "sell",
       "ema20": 1.33542,
       "ema50": 1.33631,
@@ -92,11 +92,11 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.28× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.28× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.24× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.24× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.8321,
-      "priceAsOf": "2026-11-12T08:00:00Z",
+      "price": 0.83199,
+      "priceAsOf": "2026-11-12T09:00:00Z",
       "dailyTrend": "buy",
       "ema20": 0.82462,
       "ema50": 0.82243,
@@ -110,11 +110,11 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.63× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.63× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.75× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.75× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.68273,
-      "priceAsOf": "2026-11-12T08:00:00Z",
+      "price": 0.6825,
+      "priceAsOf": "2026-11-12T09:00:00Z",
       "dailyTrend": "sell",
       "ema20": 0.69481,
       "ema50": 0.69979,
@@ -146,11 +146,11 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.00× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.00× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 1.85× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 1.85× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.55543,
-      "priceAsOf": "2026-11-12T08:00:00Z",
+      "price": 0.55568,
+      "priceAsOf": "2026-11-12T09:00:00Z",
       "dailyTrend": "sell",
       "ema20": 0.56182,
       "ema50": 0.56728,
@@ -161,7 +161,7 @@
     }
   ],
   "open": [],
-  "updatedAt": "2026-11-12T08:11:18Z",
+  "updatedAt": "2026-11-12T09:29:06Z",
   "sessionScans": {
     "frankfurt": "2026-11-12"
   }
