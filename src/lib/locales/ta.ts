@@ -221,6 +221,13 @@ export const ta: Dict = {
     AUDUSD: "AUD/USD சிக்னல்",
     USDCAD: "USD/CAD சிக்னல்",
     NZDUSD: "NZD/USD சிக்னல்",
+    GBPJPY: "GBP/JPY சிக்னல்",
+    GBPAUD: "GBP/AUD சிக்னல்",
+    GBPCAD: "GBP/CAD சிக்னல்",
+    GBPNZD: "GBP/NZD சிக்னல்",
+    EURGBP: "EUR/GBP சிக்னல்",
+    EURJPY: "EUR/JPY சிக்னல்",
+    EURCAD: "EUR/CAD சிக்னல்",
   } as Record<string, string>,
   seo: {
     home: {

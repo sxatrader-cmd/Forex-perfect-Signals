@@ -46,6 +46,13 @@ SPREAD_PIPS = {
     "NZDUSD": 1.5,
     "USDCAD": 1.5,
     "USDCHF": 1.5,
+    "EURGBP": 1.5,
+    "EURJPY": 2.0,
+    "EURCAD": 2.5,
+    "GBPJPY": 2.5,
+    "GBPAUD": 3.0,
+    "GBPCAD": 3.0,
+    "GBPNZD": 4.0,
 }
 from fps_lib import ISSUE_HOUR_UTC as ISSUE_HOUR  # noqa: E402
 

@@ -221,6 +221,13 @@ export const zhCn: Dict = {
     AUDUSD: "澳元/美元信号",
     USDCAD: "美元/加元信号",
     NZDUSD: "纽元/美元信号",
+    GBPJPY: "英镑/日元信号",
+    GBPAUD: "英镑/澳元信号",
+    GBPCAD: "英镑/加元信号",
+    GBPNZD: "英镑/纽元信号",
+    EURGBP: "欧元/英镑信号",
+    EURJPY: "欧元/日元信号",
+    EURCAD: "欧元/加元信号",
   } as Record<string, string>,
   seo: {
     home: {

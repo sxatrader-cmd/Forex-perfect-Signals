@@ -13,7 +13,7 @@ config = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))
 site_url = os.environ.get("NEXT_PUBLIC_SITE_URL", config["siteUrl"]).rstrip("/")
 stamp = datetime.now(timezone.utc).date().isoformat()
 
-pairs = ["eurusd", "gbpusd", "usdjpy", "usdchf", "audusd", "usdcad", "nzdusd"]
+pairs = ["eurusd", "gbpusd", "usdjpy", "usdchf", "audusd", "usdcad", "nzdusd", "gbpjpy", "gbpaud", "gbpcad", "gbpnzd", "eurgbp", "eurjpy", "eurcad"]
 history = json.loads((ROOT / "data/history.json").read_text(encoding="utf-8"))
 signals = json.loads((ROOT / "data/signals.json").read_text(encoding="utf-8"))
 paths = ["/", "/signals/", "/news/", "/calendar/", "/method/", "/archive/"]
@@ -176,7 +176,7 @@ def write_llms() -> None:
 
 > Free forex signals for the major pairs, with fundamental and technical reasons, live Forex Factory news, and a public archive. Run by Saif, an IC Markets introducing broker (IB).
 
-964FX is an educational forex desk from Iraq. Signals are free, cover the majors (EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD, USDCAD, NZDUSD), and are published only when the setup is complete. A pair with an open signal does not get another until the previous one hits its take-profit or stop-loss. This is automated educational analysis, not financial advice.
+964FX is an educational forex desk from Iraq. Signals are free, cover the majors and main crosses (EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD, USDCAD, NZDUSD, GBPJPY, GBPAUD, GBPCAD, GBPNZD, EURGBP, EURJPY, EURCAD), and are published only when the setup is complete. A pair with an open signal does not get another until the previous one hits its take-profit or stop-loss. This is automated educational analysis, not financial advice.
 
 سيف التميمي وسيط معرّف (IB) لدى IC Markets: {IB_URL}
 

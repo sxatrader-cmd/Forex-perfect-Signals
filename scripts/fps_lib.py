@@ -40,6 +40,13 @@ PAIRS = [
     "AUDUSD",
     "USDCAD",
     "NZDUSD",
+    "GBPJPY",
+    "GBPAUD",
+    "GBPCAD",
+    "GBPNZD",
+    "EURGBP",
+    "EURJPY",
+    "EURCAD",
 ]
 
 # Pairs tracked and shown but not issued new signals (owner decision 2026-11-10:

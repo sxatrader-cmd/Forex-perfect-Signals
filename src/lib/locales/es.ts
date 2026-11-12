@@ -221,6 +221,13 @@ export const es: Dict = {
     AUDUSD: "Señal AUD/USD",
     USDCAD: "Señal USD/CAD",
     NZDUSD: "Señal NZD/USD",
+    GBPJPY: "Señal GBP/JPY",
+    GBPAUD: "Señal GBP/AUD",
+    GBPCAD: "Señal GBP/CAD",
+    GBPNZD: "Señal GBP/NZD",
+    EURGBP: "Señal EUR/GBP",
+    EURJPY: "Señal EUR/JPY",
+    EURCAD: "Señal EUR/CAD",
   } as Record<string, string>,
   seo: {
     home: {

@@ -221,6 +221,13 @@ export const zhTw: Dict = {
     AUDUSD: "澳幣/美元訊號",
     USDCAD: "美元/加幣訊號",
     NZDUSD: "紐幣/美元訊號",
+    GBPJPY: "英鎊/日圓訊號",
+    GBPAUD: "英鎊/澳幣訊號",
+    GBPCAD: "英鎊/加幣訊號",
+    GBPNZD: "英鎊/紐幣訊號",
+    EURGBP: "歐元/英鎊訊號",
+    EURJPY: "歐元/日圓訊號",
+    EURCAD: "歐元/加幣訊號",
   } as Record<string, string>,
   seo: {
     home: {

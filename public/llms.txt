@@ -2,7 +2,7 @@
 
 > Free forex signals for the major pairs, with fundamental and technical reasons, live Forex Factory news, and a public archive. Run by Saif, an IC Markets introducing broker (IB).
 
-964FX is an educational forex desk from Iraq. Signals are free, cover the majors (EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD, USDCAD, NZDUSD), and are published only when the setup is complete. A pair with an open signal does not get another until the previous one hits its take-profit or stop-loss. This is automated educational analysis, not financial advice.
+964FX is an educational forex desk from Iraq. Signals are free, cover the majors and main crosses (EURUSD, GBPUSD, USDJPY, USDCHF, AUDUSD, USDCAD, NZDUSD, GBPJPY, GBPAUD, GBPCAD, GBPNZD, EURGBP, EURJPY, EURCAD), and are published only when the setup is complete. A pair with an open signal does not get another until the previous one hits its take-profit or stop-loss. This is automated educational analysis, not financial advice.
 
 سيف التميمي وسيط معرّف (IB) لدى IC Markets: https://www.ic.com/en/?camp=8117
 
@@ -13,6 +13,7 @@ The site is available in 13 languages. Arabic is the default.
 - [الرئيسية](https://964fx.com/ar/): نظرة عامة على مكتب 964FX والإشارات التعليمية
 - [الإشارات](https://964fx.com/ar/signals/): التوصيات اليومية للأزواج الرئيسية مع الإيقاف والهدف وستة أسباب
 - [الأخبار](https://964fx.com/ar/news/): المفكرة الاقتصادية وأخبار Forex Factory بتوقيت بغداد
+- [التقويم الاقتصادي](https://964fx.com/ar/calendar/): التقويم الاقتصادي للأسبوع، مع الأثر والفعلي والتوقع والسابق
 - [المنهج](https://964fx.com/ar/method/): قواعد بناء الإشارة، ولماذا يُتخطى الزوج أحياناً
 - [الأرشيف](https://964fx.com/ar/archive/): السجل العلني للإشارات المغلقة مع النتيجة والنقاط
 - [EURUSD](https://964fx.com/ar/signals/eurusd/): صفحة زوج EURUSD
@@ -22,12 +23,26 @@ The site is available in 13 languages. Arabic is the default.
 - [AUDUSD](https://964fx.com/ar/signals/audusd/): صفحة زوج AUDUSD
 - [USDCAD](https://964fx.com/ar/signals/usdcad/): صفحة زوج USDCAD
 - [NZDUSD](https://964fx.com/ar/signals/nzdusd/): صفحة زوج NZDUSD
+- [GBPJPY](https://964fx.com/ar/signals/gbpjpy/): صفحة زوج GBPJPY
+- [GBPAUD](https://964fx.com/ar/signals/gbpaud/): صفحة زوج GBPAUD
+- [GBPCAD](https://964fx.com/ar/signals/gbpcad/): صفحة زوج GBPCAD
+- [GBPNZD](https://964fx.com/ar/signals/gbpnzd/): صفحة زوج GBPNZD
+- [EURGBP](https://964fx.com/ar/signals/eurgbp/): صفحة زوج EURGBP
+- [EURJPY](https://964fx.com/ar/signals/eurjpy/): صفحة زوج EURJPY
+- [EURCAD](https://964fx.com/ar/signals/eurcad/): صفحة زوج EURCAD
+- [أدلة الفوركس](https://964fx.com/ar/guides/): فهرس أدلة 964FX
+- [تحليل الذهب XAUUSD](https://964fx.com/ar/guides/xauusd-gold/): شارت الذهب المباشر وما الذي يحرك الذهب
+- [هل الفوركس حلال؟ الحساب الإسلامي](https://964fx.com/ar/guides/islamic-swap-free-account/): ما يغيّره الحساب بدون سواب والمسائل الشرعية وخيار IC Markets
+- [تعلم الفوركس للمبتدئين](https://964fx.com/ar/guides/forex-for-beginners/): الأزواج والنقاط واللوت وكيف تقرأ توصية 964FX
+- [الحساب التجريبي](https://964fx.com/ar/guides/demo-account/): التدرب بأموال افتراضية وقائمة التحقق قبل الحساب الحقيقي
+- [الرافعة المالية](https://964fx.com/ar/guides/leverage/): الرافعة والهامش بالأمثلة وحدود الرافعة
 
 ## English
 
 - [Home](https://964fx.com/en/): Overview of the 964FX educational desk
 - [Signals](https://964fx.com/en/signals/): Daily major-pair signals with stop, target, and six reasons
 - [News](https://964fx.com/en/news/): This week's economic calendar and live Forex Factory news
+- [Economic calendar](https://964fx.com/en/calendar/): This week's economic calendar, with impact, actual, forecast, and previous
 - [Method](https://964fx.com/en/method/): How a signal is built, and when a pair is skipped
 - [Archive](https://964fx.com/en/archive/): Public record of closed signals, with results and pips
 - [EURUSD](https://964fx.com/en/signals/eurusd/): EURUSD signal page
@@ -37,6 +52,33 @@ The site is available in 13 languages. Arabic is the default.
 - [AUDUSD](https://964fx.com/en/signals/audusd/): AUDUSD signal page
 - [USDCAD](https://964fx.com/en/signals/usdcad/): USDCAD signal page
 - [NZDUSD](https://964fx.com/en/signals/nzdusd/): NZDUSD signal page
+- [GBPJPY](https://964fx.com/en/signals/gbpjpy/): GBPJPY signal page
+- [GBPAUD](https://964fx.com/en/signals/gbpaud/): GBPAUD signal page
+- [GBPCAD](https://964fx.com/en/signals/gbpcad/): GBPCAD signal page
+- [GBPNZD](https://964fx.com/en/signals/gbpnzd/): GBPNZD signal page
+- [EURGBP](https://964fx.com/en/signals/eurgbp/): EURGBP signal page
+- [EURJPY](https://964fx.com/en/signals/eurjpy/): EURJPY signal page
+- [EURCAD](https://964fx.com/en/signals/eurcad/): EURCAD signal page
+- [Forex guides](https://964fx.com/en/guides/): Index of 964FX guides
+- [XAUUSD gold](https://964fx.com/en/guides/xauusd-gold/): Live XAUUSD chart and what moves gold: the dollar, US rates, CPI, NFP
+- [Is forex halal? Islamic swap-free accounts](https://964fx.com/en/guides/islamic-swap-free-account/): What a swap-free account changes, scholars' questions, IC Markets' swap-free option
+- [Forex for beginners](https://964fx.com/en/guides/forex-for-beginners/): Pairs, pips, lots, and how to read a 964FX signal
+- [Forex demo account](https://964fx.com/en/guides/demo-account/): Practising with virtual money and a checklist before going live
+- [Leverage explained](https://964fx.com/en/guides/leverage/): Leverage and margin with examples, margin call, retail limits
+
+## Guides in other languages
+
+- [简体中文](https://964fx.com/zh-cn/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [繁體中文](https://964fx.com/zh-tw/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [Français](https://964fx.com/fr/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [Deutsch](https://964fx.com/de/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [Español](https://964fx.com/es/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [Português](https://964fx.com/pt/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [Русский](https://964fx.com/ru/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [हिन्दी](https://964fx.com/hi/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [தமிழ்](https://964fx.com/ta/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [Türkçe](https://964fx.com/tr/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
+- [فارسی](https://964fx.com/fa/guides/): XAUUSD gold, Islamic swap-free account, beginners, demo account, leverage
 
 ## Optional
 

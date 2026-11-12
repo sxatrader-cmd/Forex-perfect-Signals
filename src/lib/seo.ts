@@ -7,7 +7,7 @@ import type { Signal } from "@/lib/types";
 import { pairValues, seoCopy } from "@/lib/seo-copy";
 import { GUIDE_LANGS, GUIDES_REVIEWED, guidePack, type GuideSlug } from "@/lib/guides";
 
-export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD"] as const;
+export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD", "GBPJPY", "GBPAUD", "GBPCAD", "GBPNZD", "EURGBP", "EURJPY", "EURCAD"] as const;
 
 const ORG_ID = `${SITE_URL}/#organization`;
 const LOGO_URL = `${SITE_URL}/logo-square.png`;

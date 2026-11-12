@@ -1,6 +1,6 @@
 import { LANG_META, type Lang } from "@/lib/langs";
 
-export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD"] as const;
+export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD", "GBPJPY", "GBPAUD", "GBPCAD", "GBPNZD", "EURGBP", "EURJPY", "EURCAD"] as const;
 
 export function pairLabel(pair: string) {
   return `${pair.slice(0, 3)}/${pair.slice(3)}`;

@@ -6,13 +6,14 @@
 
 A daily signal may be issued for a major pair only when the setup is complete (trend, RSI, MACD, distance to the stop and target, and the calendar). There is at most one open signal per pair, and no new signal is published on that pair until the previous one hits take-profit (TP) or stop-loss (SL). Quiet days stay quiet. Closed results are kept in the public archive and are not deleted or edited.
 
-Data last updated: 2026-11-11T15:08:23Z
+Data last updated: 2026-11-12T09:29:06Z
 
 ## Arabic pages
 
 - Home: https://964fx.com/ar/
 - Signals: https://964fx.com/ar/signals/
 - News: https://964fx.com/ar/news/
+- Economic calendar: https://964fx.com/ar/calendar/
 - Method: https://964fx.com/ar/method/
 - Archive: https://964fx.com/ar/archive/
 - EURUSD: https://964fx.com/ar/signals/eurusd/
@@ -22,12 +23,20 @@ Data last updated: 2026-11-11T15:08:23Z
 - AUDUSD: https://964fx.com/ar/signals/audusd/
 - USDCAD: https://964fx.com/ar/signals/usdcad/
 - NZDUSD: https://964fx.com/ar/signals/nzdusd/
+- GBPJPY: https://964fx.com/ar/signals/gbpjpy/
+- GBPAUD: https://964fx.com/ar/signals/gbpaud/
+- GBPCAD: https://964fx.com/ar/signals/gbpcad/
+- GBPNZD: https://964fx.com/ar/signals/gbpnzd/
+- EURGBP: https://964fx.com/ar/signals/eurgbp/
+- EURJPY: https://964fx.com/ar/signals/eurjpy/
+- EURCAD: https://964fx.com/ar/signals/eurcad/
 
 ## English pages
 
 - Home: https://964fx.com/en/
 - Signals: https://964fx.com/en/signals/
 - News: https://964fx.com/en/news/
+- Economic calendar: https://964fx.com/en/calendar/
 - Method: https://964fx.com/en/method/
 - Archive: https://964fx.com/en/archive/
 - EURUSD: https://964fx.com/en/signals/eurusd/
@@ -37,6 +46,83 @@ Data last updated: 2026-11-11T15:08:23Z
 - AUDUSD: https://964fx.com/en/signals/audusd/
 - USDCAD: https://964fx.com/en/signals/usdcad/
 - NZDUSD: https://964fx.com/en/signals/nzdusd/
+- GBPJPY: https://964fx.com/en/signals/gbpjpy/
+- GBPAUD: https://964fx.com/en/signals/gbpaud/
+- GBPCAD: https://964fx.com/en/signals/gbpcad/
+- GBPNZD: https://964fx.com/en/signals/gbpnzd/
+- EURGBP: https://964fx.com/en/signals/eurgbp/
+- EURJPY: https://964fx.com/en/signals/eurjpy/
+- EURCAD: https://964fx.com/en/signals/eurcad/
+
+## Guides
+
+Evergreen guides, written separately for each language (not machine translations), each with FAQ structured data, a risk warning, and the IB disclosure:
+
+- العربية · xauusd-gold: https://964fx.com/ar/guides/xauusd-gold/
+- العربية · islamic-swap-free-account: https://964fx.com/ar/guides/islamic-swap-free-account/
+- العربية · forex-for-beginners: https://964fx.com/ar/guides/forex-for-beginners/
+- العربية · demo-account: https://964fx.com/ar/guides/demo-account/
+- العربية · leverage: https://964fx.com/ar/guides/leverage/
+- English · xauusd-gold: https://964fx.com/en/guides/xauusd-gold/
+- English · islamic-swap-free-account: https://964fx.com/en/guides/islamic-swap-free-account/
+- English · forex-for-beginners: https://964fx.com/en/guides/forex-for-beginners/
+- English · demo-account: https://964fx.com/en/guides/demo-account/
+- English · leverage: https://964fx.com/en/guides/leverage/
+- 简体中文 · xauusd-gold: https://964fx.com/zh-cn/guides/xauusd-gold/
+- 简体中文 · islamic-swap-free-account: https://964fx.com/zh-cn/guides/islamic-swap-free-account/
+- 简体中文 · forex-for-beginners: https://964fx.com/zh-cn/guides/forex-for-beginners/
+- 简体中文 · demo-account: https://964fx.com/zh-cn/guides/demo-account/
+- 简体中文 · leverage: https://964fx.com/zh-cn/guides/leverage/
+- 繁體中文 · xauusd-gold: https://964fx.com/zh-tw/guides/xauusd-gold/
+- 繁體中文 · islamic-swap-free-account: https://964fx.com/zh-tw/guides/islamic-swap-free-account/
+- 繁體中文 · forex-for-beginners: https://964fx.com/zh-tw/guides/forex-for-beginners/
+- 繁體中文 · demo-account: https://964fx.com/zh-tw/guides/demo-account/
+- 繁體中文 · leverage: https://964fx.com/zh-tw/guides/leverage/
+- Français · xauusd-gold: https://964fx.com/fr/guides/xauusd-gold/
+- Français · islamic-swap-free-account: https://964fx.com/fr/guides/islamic-swap-free-account/
+- Français · forex-for-beginners: https://964fx.com/fr/guides/forex-for-beginners/
+- Français · demo-account: https://964fx.com/fr/guides/demo-account/
+- Français · leverage: https://964fx.com/fr/guides/leverage/
+- Deutsch · xauusd-gold: https://964fx.com/de/guides/xauusd-gold/
+- Deutsch · islamic-swap-free-account: https://964fx.com/de/guides/islamic-swap-free-account/
+- Deutsch · forex-for-beginners: https://964fx.com/de/guides/forex-for-beginners/
+- Deutsch · demo-account: https://964fx.com/de/guides/demo-account/
+- Deutsch · leverage: https://964fx.com/de/guides/leverage/
+- Español · xauusd-gold: https://964fx.com/es/guides/xauusd-gold/
+- Español · islamic-swap-free-account: https://964fx.com/es/guides/islamic-swap-free-account/
+- Español · forex-for-beginners: https://964fx.com/es/guides/forex-for-beginners/
+- Español · demo-account: https://964fx.com/es/guides/demo-account/
+- Español · leverage: https://964fx.com/es/guides/leverage/
+- Português · xauusd-gold: https://964fx.com/pt/guides/xauusd-gold/
+- Português · islamic-swap-free-account: https://964fx.com/pt/guides/islamic-swap-free-account/
+- Português · forex-for-beginners: https://964fx.com/pt/guides/forex-for-beginners/
+- Português · demo-account: https://964fx.com/pt/guides/demo-account/
+- Português · leverage: https://964fx.com/pt/guides/leverage/
+- Русский · xauusd-gold: https://964fx.com/ru/guides/xauusd-gold/
+- Русский · islamic-swap-free-account: https://964fx.com/ru/guides/islamic-swap-free-account/
+- Русский · forex-for-beginners: https://964fx.com/ru/guides/forex-for-beginners/
+- Русский · demo-account: https://964fx.com/ru/guides/demo-account/
+- Русский · leverage: https://964fx.com/ru/guides/leverage/
+- हिन्दी · xauusd-gold: https://964fx.com/hi/guides/xauusd-gold/
+- हिन्दी · islamic-swap-free-account: https://964fx.com/hi/guides/islamic-swap-free-account/
+- हिन्दी · forex-for-beginners: https://964fx.com/hi/guides/forex-for-beginners/
+- हिन्दी · demo-account: https://964fx.com/hi/guides/demo-account/
+- हिन्दी · leverage: https://964fx.com/hi/guides/leverage/
+- தமிழ் · xauusd-gold: https://964fx.com/ta/guides/xauusd-gold/
+- தமிழ் · islamic-swap-free-account: https://964fx.com/ta/guides/islamic-swap-free-account/
+- தமிழ் · forex-for-beginners: https://964fx.com/ta/guides/forex-for-beginners/
+- தமிழ் · demo-account: https://964fx.com/ta/guides/demo-account/
+- தமிழ் · leverage: https://964fx.com/ta/guides/leverage/
+- Türkçe · xauusd-gold: https://964fx.com/tr/guides/xauusd-gold/
+- Türkçe · islamic-swap-free-account: https://964fx.com/tr/guides/islamic-swap-free-account/
+- Türkçe · forex-for-beginners: https://964fx.com/tr/guides/forex-for-beginners/
+- Türkçe · demo-account: https://964fx.com/tr/guides/demo-account/
+- Türkçe · leverage: https://964fx.com/tr/guides/leverage/
+- فارسی · xauusd-gold: https://964fx.com/fa/guides/xauusd-gold/
+- فارسی · islamic-swap-free-account: https://964fx.com/fa/guides/islamic-swap-free-account/
+- فارسی · forex-for-beginners: https://964fx.com/fa/guides/forex-for-beginners/
+- فارسی · demo-account: https://964fx.com/fa/guides/demo-account/
+- فارسی · leverage: https://964fx.com/fa/guides/leverage/
 
 ## Open signals
 
@@ -48,7 +134,7 @@ No open signal right now. A new one is issued only when the setup is complete.
 
 ## How signals are built
 
-A new signal may be issued once per Baghdad day, on the first successful run at or after 08:00 UTC, and only for a pair with nothing already open and nothing already issued that day. Direction comes from the 4-hour chart (moving averages, RSI, MACD, and ATR). A setup is skipped when the trend is mixed, price is extended, or a high-impact calendar release is nearby. A signal is published only when the daily analyst report agrees with that direction. After entry, hourly tracking watches the target and the stop; a timestamped update is added every four hours. If one candle touches both levels, the stop is counted first because the path inside the bar is unknown.
+New signals are scanned for at each session open: Frankfurt, London and New York, each at 08:00 local time (daylight saving included; currently 07:00, 08:00 and 13:00 UTC). A pair still gets at most one new signal per Baghdad day, and none while it has an open signal. Direction comes from the 4-hour chart (moving averages, RSI, MACD, and ATR). A setup is skipped when the trend is mixed, price is extended, or a high-impact calendar release is nearby. Recent high-impact data surprises, and the policy-rate gap between the two currencies and its 120-day change, must not point against the direction; with no rate data for a pair, no signal is issued. After entry, hourly tracking watches the target and the stop; a timestamped update is added every four hours. If one candle touches both levels, the stop is counted first because the path inside the bar is unknown.
 
 Details and the FAQ are on the method page: https://964fx.com/ar/method/ and https://964fx.com/en/method/
 

@@ -222,6 +222,13 @@ export const en = {
     AUDUSD: "AUD/USD signal",
     USDCAD: "USD/CAD signal",
     NZDUSD: "NZD/USD signal",
+    GBPJPY: "GBP/JPY signal",
+    GBPAUD: "GBP/AUD signal",
+    GBPCAD: "GBP/CAD signal",
+    GBPNZD: "GBP/NZD signal",
+    EURGBP: "EUR/GBP signal",
+    EURJPY: "EUR/JPY signal",
+    EURCAD: "EUR/CAD signal",
   } as Record<string, string>,
   seo: {
     home: {

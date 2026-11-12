@@ -53,6 +53,13 @@ const COPY: Partial<Record<Lang, SeoCopy>> = {
       AUDUSD: "الأسترالي دولار",
       USDCAD: "الدولار كندي",
       NZDUSD: "النيوزيلندي دولار",
+      GBPJPY: "الجنيه ين",
+      GBPAUD: "الجنيه أسترالي",
+      GBPCAD: "الجنيه كندي",
+      GBPNZD: "الجنيه نيوزيلندي",
+      EURGBP: "اليورو جنيه",
+      EURJPY: "اليورو ين",
+      EURCAD: "اليورو كندي",
     },
   },
   ru: {
