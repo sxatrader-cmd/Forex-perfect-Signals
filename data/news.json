@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:11:15Z",
+  "updatedAt": "2026-11-12T09:59:13Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -754,28 +754,6 @@
       "actualSource": null
     },
     {
-      "id": "CNY|m2-money-supply-y-y|2026-11-12T09:03:00Z",
-      "title": "M2 Money Supply y/y",
-      "currency": "CNY",
-      "time": "2026-11-12T09:03:00Z",
-      "impact": "Low",
-      "forecast": "7.2%",
-      "previous": "7.2%",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "CNY|new-loans|2026-11-12T09:03:00Z",
-      "title": "New Loans",
-      "currency": "CNY",
-      "time": "2026-11-12T09:03:00Z",
-      "impact": "Low",
-      "forecast": "80B",
-      "previous": "1080B",
-      "actual": "",
-      "actualSource": null
-    },
-    {
       "id": "CAD|building-permits-m-m|2026-11-12T13:30:00Z",
       "title": "Building Permits m/m",
       "currency": "CAD",
@@ -1036,6 +1014,28 @@
       "impact": "Low",
       "forecast": "-4.5B",
       "previous": "-6.8B",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "CNY|m2-money-supply-y-y|2026-11-13T10:03:00Z",
+      "title": "M2 Money Supply y/y",
+      "currency": "CNY",
+      "time": "2026-11-13T10:03:00Z",
+      "impact": "Low",
+      "forecast": "7.2%",
+      "previous": "7.2%",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "CNY|new-loans|2026-11-13T10:03:00Z",
+      "title": "New Loans",
+      "currency": "CNY",
+      "time": "2026-11-13T10:03:00Z",
+      "impact": "Low",
+      "forecast": "80B",
+      "previous": "1080B",
       "actual": "",
       "actualSource": null
     },

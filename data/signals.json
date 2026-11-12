@@ -299,8 +299,8 @@
       "issuedAt": "2026-11-12T09:38:27Z",
       "priceAsOf": "2026-11-12T09:00:00Z",
       "status": "open",
-      "currentPrice": 2.38864,
-      "floatingPips": 0.0,
+      "currentPrice": 2.38867,
+      "floatingPips": 0.3,
       "reasons": [
         {
           "en": "4-hour trend is bullish: EMA20 2.38730 versus EMA50 2.38633, ADX 20.4. Daily bias EMA50 2.35649 is above EMA200 2.31862 and EMA20 2.37739 is above EMA50. Last price 2.38864 is above daily EMA20.",
@@ -354,7 +354,7 @@
       "entryReadyTs": 1794474000
     }
   ],
-  "updatedAt": "2026-11-12T09:38:33Z",
+  "updatedAt": "2026-11-12T09:59:14Z",
   "sessionScans": {
     "frankfurt": "2026-11-12",
     "london": "2026-11-12"
