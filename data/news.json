@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T00:57:50Z",
+  "updatedAt": "2026-11-12T08:11:15Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 26,
+      "matched": 34,
       "error": null
     }
   },
@@ -662,8 +662,8 @@
       "impact": "Low",
       "forecast": "0.0%",
       "previous": "-0.2%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.8%",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|gdp-m-m|2026-11-12T07:00:00Z",
@@ -673,8 +673,8 @@
       "impact": "High",
       "forecast": "0.0%",
       "previous": "0.1%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.2%",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|goods-trade-balance|2026-11-12T07:00:00Z",
@@ -684,8 +684,8 @@
       "impact": "Low",
       "forecast": "-19.2B",
       "previous": "-18.0B",
-      "actual": "",
-      "actualSource": null
+      "actual": "-22.291B",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|index-of-services-3m-3m|2026-11-12T07:00:00Z",
@@ -695,8 +695,8 @@
       "impact": "Low",
       "forecast": "0.9%",
       "previous": "0.9%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.2%",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|industrial-production-m-m|2026-11-12T07:00:00Z",
@@ -706,8 +706,8 @@
       "impact": "Low",
       "forecast": "-0.4%",
       "previous": "0.8%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.3%",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|manufacturing-production-m-m|2026-11-12T07:00:00Z",
@@ -717,8 +717,8 @@
       "impact": "Low",
       "forecast": "-0.5%",
       "previous": "1.2%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.7%",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|prelim-business-investment-q-q|2026-11-12T07:00:00Z",
@@ -728,8 +728,8 @@
       "impact": "Low",
       "forecast": "0.4%",
       "previous": "1.7%",
-      "actual": "",
-      "actualSource": null
+      "actual": "3%",
+      "actualSource": "TradingView"
     },
     {
       "id": "GBP|prelim-gdp-q-q|2026-11-12T07:00:00Z",
@@ -739,8 +739,8 @@
       "impact": "Medium",
       "forecast": "0.7%",
       "previous": "0.5%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.2%",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|ecb-economic-bulletin|2026-11-12T09:00:00Z",

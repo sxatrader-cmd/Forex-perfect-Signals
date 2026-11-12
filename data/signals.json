@@ -1,10 +1,10 @@
 {
-  "lastIssueDate": "2026-11-11",
+  "lastIssueDate": "2026-11-12",
   "sources": {
     "prices": {
       "provider": "Yahoo Finance chart API",
-      "ok": false,
-      "detail": "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. This is the endpoint yfinance reads. 4 of 5 issuing pairs loaded."
+      "ok": true,
+      "detail": "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. This is the endpoint yfinance reads. 5 of 5 issuing pairs loaded."
     },
     "calendar": {
       "provider": "Forex Factory",
@@ -36,38 +36,38 @@
     {
       "pair": "EURUSD",
       "decision": "skip",
-      "block": "open",
+      "block": "extension",
       "summary": {
-        "en": "Open SELL from 2026-11-10T20:30:43Z stays active until stop 1.12011 or target 1.11061.",
-        "ar": "إشارة SELL المفتوحة منذ 2026-11-10T20:30:43Z تبقى حتى الإيقاف 1.12011 أو الهدف 1.11061."
+        "en": "Distance from 4H EMA20 is 2.46× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.46× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 1.11595,
-      "priceAsOf": "2026-11-11T08:00:00Z",
+      "price": 1.10889,
+      "priceAsOf": "2026-11-12T08:00:00Z",
       "dailyTrend": "sell",
-      "ema20": 1.12143,
-      "ema50": 1.1303,
-      "ema200": 1.14662,
-      "rsi4h": 42.7,
-      "macdHist4h": -0.000107,
-      "atr4h": 0.002638
+      "ema20": 1.11925,
+      "ema50": 1.12869,
+      "ema200": 1.14587,
+      "rsi4h": 31.3,
+      "macdHist4h": -0.001082,
+      "atr4h": 0.002409
     },
     {
       "pair": "GBPUSD",
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.07× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.07× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.50× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.50× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 1.33317,
-      "priceAsOf": "2026-11-11T08:00:00Z",
+      "price": 1.32707,
+      "priceAsOf": "2026-11-12T08:00:00Z",
       "dailyTrend": "sell",
-      "ema20": 1.33682,
-      "ema50": 1.3369,
-      "ema200": 1.33906,
-      "rsi4h": 35.5,
-      "macdHist4h": -0.00091,
-      "atr4h": 0.00284
+      "ema20": 1.33542,
+      "ema50": 1.33631,
+      "ema200": 1.33888,
+      "rsi4h": 30.1,
+      "macdHist4h": -0.001132,
+      "atr4h": 0.002749
     },
     {
       "pair": "USDJPY",
@@ -92,36 +92,36 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.14× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.14× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.28× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.28× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.82743,
-      "priceAsOf": "2026-11-11T08:00:00Z",
+      "price": 0.8321,
+      "priceAsOf": "2026-11-12T08:00:00Z",
       "dailyTrend": "buy",
-      "ema20": 0.82337,
-      "ema50": 0.82184,
-      "ema200": 0.80999,
-      "rsi4h": 65.5,
-      "macdHist4h": 0.000915,
-      "atr4h": 0.002629
+      "ema20": 0.82462,
+      "ema50": 0.82243,
+      "ema200": 0.81027,
+      "rsi4h": 68.3,
+      "macdHist4h": 0.00095,
+      "atr4h": 0.002458
     },
     {
       "pair": "AUDUSD",
       "decision": "skip",
-      "block": "no-stack",
+      "block": "extension",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 0.70059 versus EMA200 0.69827, 4H EMA20 0.69031 versus EMA50 0.69417, MACD histogram 0.000039.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.70059 مقابل متوسط 200 0.69827، ومتوسط 20 على 4 ساعات 0.69031 مقابل متوسط 50 0.69417، وهيستوغرام MACD 0.000039."
+        "en": "Distance from 4H EMA20 is 2.63× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.63× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.68738,
-      "priceAsOf": "2026-11-11T08:00:00Z",
-      "dailyTrend": "mixed",
-      "ema20": 0.69635,
-      "ema50": 0.70059,
-      "ema200": 0.69827,
-      "rsi4h": 36.4,
-      "macdHist4h": 3.9e-05,
-      "atr4h": 0.002067
+      "price": 0.68273,
+      "priceAsOf": "2026-11-12T08:00:00Z",
+      "dailyTrend": "sell",
+      "ema20": 0.69481,
+      "ema50": 0.69979,
+      "ema200": 0.69809,
+      "rsi4h": 27.2,
+      "macdHist4h": -0.000202,
+      "atr4h": 0.001921
     },
     {
       "pair": "USDCAD",
@@ -144,22 +144,25 @@
     {
       "pair": "NZDUSD",
       "decision": "skip",
-      "block": "no-stack",
+      "block": "extension",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 0.56790 versus EMA200 0.57793, 4H EMA20 0.56079 versus EMA50 0.56151, MACD histogram 0.000057.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.56790 مقابل متوسط 200 0.57793، ومتوسط 20 على 4 ساعات 0.56079 مقابل متوسط 50 0.56151، وهيستوغرام MACD 0.000057."
+        "en": "Distance from 4H EMA20 is 2.00× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.00× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.5601,
-      "priceAsOf": "2026-11-11T08:00:00Z",
-      "dailyTrend": "mixed",
-      "ema20": 0.56284,
-      "ema50": 0.5679,
-      "ema200": 0.57793,
-      "rsi4h": 47.2,
-      "macdHist4h": 5.7e-05,
-      "atr4h": 0.001822
+      "price": 0.55543,
+      "priceAsOf": "2026-11-12T08:00:00Z",
+      "dailyTrend": "sell",
+      "ema20": 0.56182,
+      "ema50": 0.56728,
+      "ema200": 0.57766,
+      "rsi4h": 34.3,
+      "macdHist4h": -0.000575,
+      "atr4h": 0.001707
     }
   ],
   "open": [],
-  "updatedAt": "2026-11-11T15:08:23Z"
+  "updatedAt": "2026-11-12T08:11:18Z",
+  "sessionScans": {
+    "frankfurt": "2026-11-12"
+  }
 }
