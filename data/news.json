@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T16:52:04Z",
+  "updatedAt": "2026-11-12T22:34:43Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 36,
+      "matched": 39,
       "error": null
     }
   },
@@ -838,8 +838,8 @@
       "impact": "Low",
       "forecast": "-0.6M",
       "previous": "-0.9M",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.544M",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|german-buba-president-nagel-speaks|2026-11-12T17:30:00Z",
@@ -853,17 +853,6 @@
       "actualSource": null
     },
     {
-      "id": "USD|mortgage-delinquencies|2026-11-12T17:59:00Z",
-      "title": "Mortgage Delinquencies",
-      "currency": "USD",
-      "time": "2026-11-12T17:59:00Z",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "4.37%",
-      "actual": "",
-      "actualSource": null
-    },
-    {
       "id": "USD|30-y-bond-auction|2026-11-12T18:01:00Z",
       "title": "30-y Bond Auction",
       "currency": "USD",
@@ -871,8 +860,8 @@
       "impact": "Low",
       "forecast": "",
       "previous": "5.62|2.5",
-      "actual": "",
-      "actualSource": null
+      "actual": "5.441%",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|fomc-member-daly-speaks|2026-11-12T18:10:00Z",
@@ -904,8 +893,8 @@
       "impact": "Low",
       "forecast": "-298.6B",
       "previous": "-26.9B",
-      "actual": "",
-      "actualSource": null
+      "actual": "-404B",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|ecb-president-lagarde-speaks|2026-11-12T19:30:00Z",
@@ -1113,6 +1102,17 @@
       "impact": "Low",
       "forecast": "",
       "previous": "",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "USD|mortgage-delinquencies|2026-11-13T15:15:00Z",
+      "title": "Mortgage Delinquencies",
+      "currency": "USD",
+      "time": "2026-11-13T15:15:00Z",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "4.37%",
       "actual": "",
       "actualSource": null
     },

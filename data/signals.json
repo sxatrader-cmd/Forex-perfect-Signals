@@ -297,10 +297,10 @@
       "rr": 2.0,
       "atr": 0.00652,
       "issuedAt": "2026-11-12T09:38:27Z",
-      "priceAsOf": "2026-11-12T16:00:00Z",
+      "priceAsOf": "2026-11-12T22:00:00Z",
       "status": "open",
-      "currentPrice": 2.38505,
-      "floatingPips": -35.9,
+      "currentPrice": 2.38545,
+      "floatingPips": -31.9,
       "reasons": [
         {
           "en": "4-hour trend is bullish: EMA20 2.38730 versus EMA50 2.38633, ADX 20.4. Daily bias EMA50 2.35649 is above EMA200 2.31862 and EMA20 2.37739 is above EMA50. Last price 2.38864 is above daily EMA20.",
@@ -339,6 +339,18 @@
             "en": "Price 2.38665 is still above the daily EMA50 saved at entry (2.35649). Floating -19.9 pips, -12.7% of the way to the target, 58.3 pips from the stop. 1-hour RSI is 53.4. No high-impact event for these currencies is listed in the current weekly file. The original plan is unchanged: target and stop stay where they were set.",
             "ar": "السعر 2.38665 ما زال فوق متوسط 50 اليومي المحفوظ عند الدخول (2.35649). النقاط العائمة -19.9، أي -12.7% من المسافة إلى الهدف، و58.3 نقطة عن الإيقاف. مؤشر RSI على الساعة 53.4. لا خبر عالي التأثير لعملتي الزوج في ملف الأسبوع الحالي. الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
           }
+        },
+        {
+          "at": "2026-11-12T22:34:44Z",
+          "baghdad": "2026-11-13 01:34",
+          "price": 2.38545,
+          "floatingPips": -31.9,
+          "progressToTp": -20.4,
+          "distanceToSlPips": 46.3,
+          "comment": {
+            "en": "Price 2.38545 is still above the daily EMA50 saved at entry (2.35649). Floating -31.9 pips, -20.4% of the way to the target, 46.3 pips from the stop. 1-hour RSI is 48.5. No high-impact event for these currencies is listed in the current weekly file. The original plan is unchanged: target and stop stay where they were set.",
+            "ar": "السعر 2.38545 ما زال فوق متوسط 50 اليومي المحفوظ عند الدخول (2.35649). النقاط العائمة -31.9، أي -20.4% من المسافة إلى الهدف، و46.3 نقطة عن الإيقاف. مؤشر RSI على الساعة 48.5. لا خبر عالي التأثير لعملتي الزوج في ملف الأسبوع الحالي. الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
+          }
         }
       ],
       "sources": [
@@ -367,7 +379,7 @@
       "entryReadyTs": 1794474000
     }
   ],
-  "updatedAt": "2026-11-12T16:52:04Z",
+  "updatedAt": "2026-11-12T22:34:44Z",
   "sessionScans": {
     "frankfurt": "2026-11-12",
     "london": "2026-11-12",
