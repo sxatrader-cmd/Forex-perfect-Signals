@@ -1,0 +1,79 @@
+name: Heartbeat
+
+# Keeps the Pages workflow (session scans, signal tracking, news) running on
+# time. GitHub's own schedule for Pages often arrives hours late, which missed
+# the London session scan on 2026-11-12.
+#
+# Each Heartbeat run stays alive ~50 minutes and dispatches Pages with
+# auto=true every 5 minutes while the market is open (every 60 minutes while
+# it is closed, for the news calendar), then dispatches the next Heartbeat run.
+# workflow_dispatch is the one event a GITHUB_TOKEN may trigger, which is what
+# makes the chain possible. auto=true runs behave like scheduled runs: the
+# Python jobs decide what is due from the clock, and the site is deployed only
+# when the data changed.
+#
+# Own concurrency group: at most one run plus one queued run, so a restart
+# while the chain is alive never starts a second chain. The schedule below is
+# only a fallback that restarts the chain if it ever breaks.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: heartbeat
+  cancel-in-progress: false
+
+jobs:
+  beat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 58
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dispatch Pages on a steady clock
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+          closed() {
+            python3 -c "import sys; sys.path.insert(0,'scripts'); from datetime import datetime, timezone; from fps_lib import market_closed; sys.exit(0 if market_closed(datetime.now(timezone.utc)) else 1)"
+          }
+          busy() {
+            # Skip a beat when a Pages run is already running or queued.
+            n=$(gh run list -R "$REPO" --workflow pages.yml --limit 5 --json status \
+                 -q '[.[] | select(.status=="in_progress" or .status=="queued" or .status=="pending" or .status=="waiting")] | length' 2>/dev/null || echo 0)
+            [ "${n:-0}" -gt 0 ]
+          }
+          start=$(date +%s)
+          last=0
+          while [ $(( $(date +%s) - start )) -lt 2940 ]; do
+            now=$(date +%s)
+            if closed; then every=3600; else every=300; fi
+            if [ $(( now - last )) -ge "$every" ]; then
+              if busy; then
+                echo "$(date -u +%H:%M) Pages already running or queued; skip"
+              else
+                gh workflow run pages.yml -R "$REPO" --ref main -f auto=true \
+                  && echo "$(date -u +%H:%M) dispatched Pages" \
+                  || echo "$(date -u +%H:%M) dispatch failed"
+              fi
+              last=$now
+            fi
+            sleep 30
+          done
+      - name: Start the next Heartbeat run
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run heartbeat.yml -R "${{ github.repository }}" --ref main || echo "dispatch failed"

@@ -21,6 +21,10 @@ on:
         description: Refresh the economic calendar only (skip signals, charts, and tests)
         type: boolean
         default: false
+      auto:
+        description: Sent by the Heartbeat workflow; behaves like a scheduled run (deploys only when data changed)
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -100,9 +104,10 @@ jobs:
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           NEWS_ONLY="${{ github.event.inputs.news_only }}"
+          AUTO="${{ github.event.inputs.auto }}"
           if [ "$EVENT_NAME" = "push" ]; then
             echo "deploy=true" >> "$GITHUB_OUTPUT"
-          elif [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$NEWS_ONLY" != "true" ]; then
+          elif [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$NEWS_ONLY" != "true" ] && [ "$AUTO" != "true" ]; then
             echo "deploy=true" >> "$GITHUB_OUTPUT"
           elif [ "$changed" = "true" ]; then
             echo "deploy=true" >> "$GITHUB_OUTPUT"
@@ -116,7 +121,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if python3 -c "import json,sys; o=json.load(open('data/signals.json')).get('open') or []; sys.exit(0 if [s for s in o if s.get('id') not in (None,'empty')] else 1)"; then
-            gh workflow run charts.yml --ref main
+            active=$(gh run list --workflow charts.yml --limit 5 --json status -q '[.[] | select(.status!="completed")] | length' || echo 0)
+            if [ "${active:-0}" = "0" ]; then gh workflow run charts.yml --ref main; else echo "Live charts already running"; fi
           fi
 
   deploy:
