@@ -30,6 +30,7 @@ from fps_lib import (
     macd,
     match_actual,
     merge_closed,
+    normalize_ff,
     parse_number,
     resolve_exit,
     rsi,
@@ -88,6 +89,8 @@ def test_surprise_and_match() -> None:
         fail("165K")
     if parse_number("4.2%") != 4.2:
         fail("percent")
+    if parse_number("2.81T") != 2.81e12 or parse_number("2910.5B") != 2910.5e9:
+        fail("trillion and billion scales")
     nfp = surprise_fraction("Non-Farm Employment Change", "165K", "65K")
     if nfp is None or nfp <= 0:
         fail(f"nfp surprise should be positive, got {nfp}")
@@ -128,6 +131,200 @@ def test_surprise_and_match() -> None:
         fail("an index level must not fill a percent forecast")
     if not actual_is_compatible({"title": "Non-Farm Employment Change", "forecast": "65K", "previous": "29K"}, "165K"):
         fail("nfp actual should stay compatible")
+
+
+def _tv_row(
+    currency: str,
+    country: str,
+    when: str,
+    title: str,
+    actual: str,
+    forecast: str = "",
+    previous: str = "",
+    indicator: str = "",
+    unit: str = "",
+) -> dict:
+    return {
+        "currency": currency,
+        "country": country,
+        "dt": datetime.fromisoformat(when.replace("Z", "+00:00")),
+        "title": title,
+        "indicator": indicator,
+        "unit": unit,
+        "actual": actual,
+        "forecast": forecast,
+        "previous": previous,
+    }
+
+
+def _ff_row(
+    currency: str,
+    when: str,
+    title: str,
+    forecast: str = "",
+    previous: str = "",
+    impact: str = "Low",
+) -> dict:
+    return {
+        "country": currency,
+        "date": when,
+        "title": title,
+        "impact": impact,
+        "forecast": forecast,
+        "previous": previous,
+    }
+
+
+def _by_title(events: list[dict]) -> dict[tuple[str, str], dict]:
+    return {(event["title"], event["time"]): event for event in events}
+
+
+def test_calendar_actuals_match_the_right_release() -> None:
+    """Country, period, and indicator have to agree, and one print is used once.
+
+    The fixture is the 13 Nov 2026 mix-up: Italy's EU-only balance (-0.784B) was
+    pasted onto both the Italian total and the eurozone balance, while Flash GDP
+    was left blank. The other rows are the same week's wrong or missed matches.
+    """
+    raw = [
+        _ff_row("EUR", "2026-11-13T09:00:00Z", "Italian Trade Balance", "2.84B", "1.77B"),
+        _ff_row("EUR", "2026-11-13T10:00:00Z", "Flash Employment Change q/q", "0.2%", "0.1%"),
+        _ff_row("EUR", "2026-11-13T10:00:00Z", "Flash GDP q/q", "0.4%", "0.4%"),
+        _ff_row("EUR", "2026-11-13T10:00:00Z", "Trade Balance", "-4.5B", "-6.8B"),
+        _ff_row("EUR", "2026-11-13T10:00:00Z", "ECB President Lagarde Speaks"),
+        _ff_row("JPY", "2026-11-11T23:50:00Z", "PPI y/y", "6.5%", "6.8%"),
+        _ff_row("JPY", "2026-11-09T23:30:00Z", "Household Spending y/y", "-3.1%", "-3.1%"),
+        _ff_row("JPY", "2026-11-09T23:50:00Z", "Current Account", "2.81T", "2.98T"),
+        _ff_row("JPY", "2026-11-10T23:50:00Z", "M2 Money Stock y/y", "2.1%", "2.0%"),
+        _ff_row("GBP", "2026-11-12T07:00:00Z", "GDP m/m", "0.0%", "0.1%"),
+        _ff_row("GBP", "2026-11-12T07:00:00Z", "Prelim GDP q/q", "0.7%", "0.5%"),
+        _ff_row("GBP", "2026-11-12T07:00:00Z", "Prelim Business Investment q/q", "0.4%", "1.7%"),
+        _ff_row("GBP", "2026-11-12T07:00:00Z", "Index of Services 3m/3m", "0.9%", "0.9%"),
+        _ff_row("NZD", "2026-11-11T21:45:00Z", "Visitor Arrivals m/m", "", "2.8%"),
+        _ff_row("CNY", "2026-11-10T02:32:00Z", "USD-Denominated Trade Balance", "126.5B", "133.5B"),
+        _ff_row("CNY", "2026-11-10T02:33:00Z", "Trade Balance", "855B", "906B"),
+        _ff_row("USD", "2026-11-10T13:14:00Z", "ADP Weekly Employment Change", "", "16.8K"),
+        _ff_row("USD", "2026-11-10T13:15:00Z", "ADP Weekly Employment Change", "", "19.5K"),
+        _ff_row("USD", "2026-11-10T21:30:00Z", "API Weekly Statistical Bulletin"),
+        _ff_row("USD", "2026-11-12T17:00:00Z", "Crude Oil Inventories", "-0.6M", "-0.9M"),
+        _ff_row("USD", "2026-11-12T13:30:00Z", "Unemployment Claims", "194K", "189K"),
+        _ff_row("USD", "2026-11-10T13:30:00Z", "CPI m/m", "0.3%", "0.6%"),
+        _ff_row("USD", "2026-11-10T13:30:00Z", "Core CPI m/m", "0.2%", "0.3%"),
+        _ff_row("USD", "2026-11-12T18:01:00Z", "30-y Bond Auction", "", "5.62|2.5"),
+        _ff_row("USD", "2026-11-13T13:30:00Z", "PPI m/m", "0.4%", "1.3%"),
+        _ff_row("EUR", "2026-11-11T07:00:00Z", "German Final CPI m/m", "-0.2%", "-0.2%"),
+        _ff_row("EUR", "2026-11-13T07:45:00Z", "French Final CPI m/m", "0.4%", "0.4%"),
+        _ff_row("EUR", "2026-11-13T07:00:00Z", "German WPI m/m", "0.4%", "1.9%"),
+        _ff_row("CHF", "2026-11-13T07:30:00Z", "PPI m/m", "0.2%", "0.3%"),
+    ]
+    tv = [
+        _tv_row("EUR", "IT", "2026-11-13T09:00:00Z", "Balance of Trade EU", "-0.784B", previous="-0.276B", indicator="Trade Balance EU"),
+        _tv_row("EUR", "IT", "2026-11-13T09:00:00Z", "Balance of Trade", "2.083B", previous="1.824B", indicator="Global Trade Balance"),
+        _tv_row("EUR", "EU", "2026-11-13T10:00:00Z", "Employed Persons Flash", "176547.1K", previous="176577.2K", indicator="Employment Overall Flash"),
+        _tv_row("EUR", "EU", "2026-11-13T10:00:00Z", "Employment Change QoQ Prel", "0%", "0.1%", "0.1%", "Employment Flash QQ"),
+        _tv_row("EUR", "EU", "2026-11-13T10:00:00Z", "Employment Change YoY Prel", "0.4%", "0.4%", "0.5%", "Employment Flash YY"),
+        _tv_row("EUR", "EU", "2026-11-13T10:00:00Z", "GDP Growth Rate QoQ 2nd Est", "0.4%", "0.4%", "0.4%", "GDP Flash Estimate QQ"),
+        _tv_row("EUR", "EU", "2026-11-13T10:00:00Z", "GDP Growth Rate YoY 2nd Est", "1.3%", "1.3%", "1%", "GDP Flash Estimate YY"),
+        _tv_row("EUR", "EU", "2026-11-13T10:00:00Z", "Balance of Trade", "-10.3B", previous="-16.6B", indicator="Eurostat Trade NSA"),
+        _tv_row("EUR", "EU", "2026-11-13T10:00:00Z", "Balance of Trade s.a", "-8.7B", previous="-7.8B", indicator="Total Trade Balance SA"),
+        _tv_row("JPY", "JP", "2026-11-11T23:50:00Z", "PPI MoM", "0.7%", "0.3%", "-0.2%", "Corp Goods Price MM"),
+        _tv_row("JPY", "JP", "2026-11-11T23:50:00Z", "PPI YoY", "7.1%", "6.5%", "6.8%", "Corp Goods Price YY"),
+        _tv_row("JPY", "JP", "2026-11-09T23:30:00Z", "Household Spending MoM", "-2.8%", "0.3%", "0.1%"),
+        _tv_row("JPY", "JP", "2026-11-09T23:30:00Z", "Household Spending YoY", "-6.8%", "-3.1%", "-3.1%"),
+        _tv_row("JPY", "JP", "2026-11-09T23:50:00Z", "Current Account s.a", "1817.7B", previous="2910.5B", indicator="Current Account Bal SA"),
+        _tv_row("JPY", "JP", "2026-11-09T23:50:00Z", "Current Account", "2372.3B", "3354.4B", "3993.1B", "Current Account NSA JPY"),
+        _tv_row("JPY", "JP", "2026-11-09T23:50:00Z", "Current Account Goods", "-187.53B", previous="-687.72B"),
+        _tv_row("JPY", "JP", "2026-11-10T23:50:00Z", "Money Supply M2", "1296T", previous="1296.5T"),
+        _tv_row("GBP", "GB", "2026-11-12T07:00:00Z", "GDP MoM", "0.2%", "0%", "0%", "GDP Estimate MM"),
+        _tv_row("GBP", "GB", "2026-11-12T07:00:00Z", "GDP Growth Rate QoQ Prel", "0.7%", "0.7%", "0.4%", "GDP Prelim QQ"),
+        _tv_row("GBP", "GB", "2026-11-12T07:00:00Z", "GDP 3-Month Avg", "9.9%", "0.7%", "0.6%", "GDP Est 3M/3M"),
+        _tv_row("GBP", "GB", "2026-11-12T07:00:00Z", "Business Investment QoQ Prel", "0.4%", "0.8%", "1.7%"),
+        _tv_row("GBP", "GB", "2026-11-12T07:00:00Z", "Business Investment YoY Prel", "3%", previous="0.8%"),
+        _tv_row("GBP", "GB", "2026-11-12T07:00:00Z", "Services Output MoM", "0.2%", "0%", "-0.1%"),
+        _tv_row("NZD", "NZ", "2026-11-11T21:45:00Z", "Visitor Arrivals YoY", "9.8%", previous="8%"),
+        _tv_row("CNY", "CN", "2026-11-10T03:00:00Z", "Balance of Trade", "105.28B", "125.8B", "133.53B", "Trade Balance USD", "$"),
+        _tv_row("CNY", "CN", "2026-11-10T03:00:00Z", "Balance of Trade Yuan", "712.8B", previous="906B", indicator="Yuan-Denominated Trade Balance", unit="CNY"),
+        _tv_row("USD", "US", "2026-11-10T13:15:00Z", "ADP Employment Change Weekly", "19750", previous="19500", indicator="ADP Weekly NER Pulse"),
+        _tv_row("USD", "US", "2026-11-10T21:30:00Z", "API Heating Oil", "0.433M", indicator="API weekly heating oil"),
+        _tv_row("USD", "US", "2026-11-10T21:30:00Z", "API Crude Oil Stock Change", "8.968M", indicator="API wkly crude Stk"),
+        _tv_row("USD", "US", "2026-11-12T17:00:00Z", "EIA Crude Oil Imports Change", "0.544M", previous="1.179M"),
+        _tv_row("USD", "US", "2026-11-12T17:00:00Z", "EIA Crude Oil Stocks Change", "4.657M", "-1.483M", "-0.865M", "EIA Wkly Crude Stk"),
+        _tv_row("USD", "US", "2026-11-12T13:30:00Z", "Initial Jobless Claims", "200K", "195K", "191K", "Initial Jobless Clm"),
+        _tv_row("USD", "US", "2026-11-12T13:30:00Z", "Continuing Jobless Claims", "1697K", "1710K", "1717K"),
+        _tv_row("USD", "US", "2026-11-12T13:30:00Z", "Jobless Claims 4-week Average", "195.25K", previous="195.25K"),
+        _tv_row("USD", "US", "2026-11-10T13:30:00Z", "Inflation Rate MoM", "0.4%", "0.3%", "0.6%", "CPI MM, SA"),
+        _tv_row("USD", "US", "2026-11-10T13:30:00Z", "Inflation Rate MoM NSA", "0.17%", previous="0.59%", indicator="CPI MM NSA"),
+        _tv_row("USD", "US", "2026-11-10T13:30:00Z", "Core Inflation Rate MoM", "0.3%", "0.2%", "0.3%", "Core CPI MM"),
+        _tv_row("USD", "US", "2026-11-12T18:00:00Z", "30-Year Bond Auction Allotted at High", "21.29%", previous="26.77%", indicator="30Y Bond Auc - HAP"),
+        _tv_row("USD", "US", "2026-11-12T18:00:00Z", "30-Year Bond Auction Bid-to-Cover", "2.36", previous="2.54", indicator="30Y Bond Auc - BTC"),
+        _tv_row("USD", "US", "2026-11-12T18:00:00Z", "30-Year Bond Auction", "5.441%", previous="5.618%", indicator="30Y Bond Auc - HY"),
+        _tv_row("USD", "US", "2026-11-12T18:00:00Z", "30-Year Bond Auction Total Accepted", "25B", previous="22B", indicator="30Y Bond Auc - TA"),
+        _tv_row("USD", "US", "2026-11-13T13:30:00Z", "PPI MoM", "0.5%", "0.4%", "1.3%"),
+        _tv_row("USD", "US", "2026-11-13T13:30:00Z", "PPI Ex Food Energy and Trade Services MoM", "0.9%", "0.4%", "0.5%"),
+        _tv_row("EUR", "DE", "2026-11-11T07:00:00Z", "Inflation Rate MoM Final", "-0.2%", "-0.2%", "0.6%", "CPI Final MM"),
+        _tv_row("EUR", "DE", "2026-11-11T07:00:00Z", "Harmonised Inflation Rate MoM Final", "-0.1%", "-0.1%", "0.6%", "HICP Final MM"),
+        _tv_row("EUR", "FR", "2026-11-13T07:45:00Z", "Inflation Rate MoM Final", "0.4%", "0.4%", "-0.3%", "CPI MM NSA"),
+        _tv_row("EUR", "FR", "2026-11-13T07:45:00Z", "Harmonised Inflation Rate MoM Final", "0.5%", "0.4%", "-0.3%", "CPI (EU Norm) Final MM"),
+        _tv_row("EUR", "FR", "2026-11-13T07:45:00Z", "Consumer Price Index Final", "103.46", previous="103.07", indicator="CPI NSA"),
+        _tv_row("EUR", "DE", "2026-11-13T07:00:00Z", "Wholesale Prices MoM", "0.4%", previous="1.9%", indicator="Wholesale Price Index MM"),
+        _tv_row("EUR", "DE", "2026-11-13T07:00:00Z", "Wholesale Prices YoY", "8.8%", previous="8.7%", indicator="Wholesale Price Index YY"),
+        _tv_row("CHF", "CH", "2026-11-13T07:30:00Z", "Producer & Import Prices MoM", "0.9%", previous="0.3%", indicator="Producer/Import Price MM"),
+        _tv_row("CHF", "CH", "2026-11-13T07:30:00Z", "Producer & Import Prices YoY", "0.9%", previous="-0.2%", indicator="Producer/Import Price YY"),
+    ]
+    events, matched = normalize_ff(raw, tv)
+    got = _by_title(events)
+
+    def actual(title: str, when: str) -> str:
+        row = got.get((title, when))
+        if row is None:
+            fail(f"missing event {title} {when}")
+        return row["actual"]
+
+    expect = {
+        ("Italian Trade Balance", "2026-11-13T09:00:00Z"): "2.083B",
+        ("Flash Employment Change q/q", "2026-11-13T10:00:00Z"): "0%",
+        ("Flash GDP q/q", "2026-11-13T10:00:00Z"): "0.4%",
+        ("Trade Balance", "2026-11-13T10:00:00Z"): "-8.7B",
+        ("ECB President Lagarde Speaks", "2026-11-13T10:00:00Z"): "",
+        ("PPI y/y", "2026-11-11T23:50:00Z"): "7.1%",
+        ("Household Spending y/y", "2026-11-09T23:30:00Z"): "-6.8%",
+        ("Current Account", "2026-11-09T23:50:00Z"): "1817.7B",
+        ("M2 Money Stock y/y", "2026-11-10T23:50:00Z"): "",
+        ("GDP m/m", "2026-11-12T07:00:00Z"): "0.2%",
+        ("Prelim GDP q/q", "2026-11-12T07:00:00Z"): "0.7%",
+        ("Prelim Business Investment q/q", "2026-11-12T07:00:00Z"): "0.4%",
+        ("Index of Services 3m/3m", "2026-11-12T07:00:00Z"): "",
+        ("Visitor Arrivals m/m", "2026-11-11T21:45:00Z"): "",
+        ("USD-Denominated Trade Balance", "2026-11-10T02:32:00Z"): "105.28B",
+        ("Trade Balance", "2026-11-10T02:33:00Z"): "712.8B",
+        ("ADP Weekly Employment Change", "2026-11-10T13:14:00Z"): "",
+        ("ADP Weekly Employment Change", "2026-11-10T13:15:00Z"): "19750",
+        ("API Weekly Statistical Bulletin", "2026-11-10T21:30:00Z"): "",
+        ("Crude Oil Inventories", "2026-11-12T17:00:00Z"): "4.657M",
+        ("Unemployment Claims", "2026-11-12T13:30:00Z"): "200K",
+        ("CPI m/m", "2026-11-10T13:30:00Z"): "0.4%",
+        ("Core CPI m/m", "2026-11-10T13:30:00Z"): "0.3%",
+        ("30-y Bond Auction", "2026-11-12T18:01:00Z"): "5.441%",
+        ("PPI m/m", "2026-11-13T13:30:00Z"): "0.5%",
+        ("German Final CPI m/m", "2026-11-11T07:00:00Z"): "-0.2%",
+        ("French Final CPI m/m", "2026-11-13T07:45:00Z"): "0.4%",
+        ("German WPI m/m", "2026-11-13T07:00:00Z"): "0.4%",
+        ("PPI m/m", "2026-11-13T07:30:00Z"): "0.9%",
+    }
+    for key, wanted in expect.items():
+        if actual(*key) != wanted:
+            fail(f"{key[0]} {key[1]} actual {actual(*key)!r}, expected {wanted!r}")
+    if matched != sum(1 for value in expect.values() if value):
+        fail(f"matched {matched} events, expected {sum(1 for value in expect.values() if value)}")
+    # The same TradingView row cannot fill two Forex Factory events.
+    twins = [
+        _ff_row("USD", "2026-11-10T13:30:00Z", "CPI m/m", "0.3%", "0.6%"),
+        _ff_row("USD", "2026-11-10T13:30:00Z", "CPI m/m", "0.3%", "0.6%"),
+    ]
+    twin_events, twin_matched = normalize_ff(twins, tv)
+    filled = [event for event in twin_events if event["actual"]]
+    if twin_matched != 1 or len(filled) != 1 or filled[0]["actual"] != "0.4%":
+        fail(f"one CPI print must be used once, got {twin_matched} {[(e['actual']) for e in twin_events]}")
 
 
 def test_issuance_limits() -> None:
@@ -556,6 +753,7 @@ if __name__ == "__main__":
     test_ema_rsi_macd()
     test_exit_rules()
     test_surprise_and_match()
+    test_calendar_actuals_match_the_right_release()
     test_issuance_limits()
     test_clear_setup_has_six_reasons()
     test_reason_copy_contains_fundamentals()
