@@ -37,26 +37,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/ar/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/ar/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -74,7 +56,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -92,7 +73,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -110,7 +91,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -128,7 +109,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -146,7 +126,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -164,7 +143,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -182,7 +160,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -200,7 +177,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -218,7 +194,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -236,7 +211,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -254,7 +228,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -272,7 +245,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -308,7 +280,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -326,7 +297,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -344,7 +314,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -362,7 +331,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -415,26 +384,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/en/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/en/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -452,7 +403,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -470,7 +420,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -488,7 +438,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -506,7 +456,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -524,7 +473,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -542,7 +490,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -560,7 +507,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -578,7 +524,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -596,7 +541,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -614,7 +558,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -632,7 +575,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -650,7 +592,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -686,7 +627,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -704,7 +644,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -722,7 +661,6 @@
   </url>
   <url>
     <loc>https://964fx.com/en/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -740,7 +678,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -793,26 +731,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/zh-cn/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/zh-cn/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -830,7 +750,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -848,7 +767,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -866,7 +785,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -884,7 +803,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -902,7 +820,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -920,7 +837,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -938,7 +854,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -956,7 +871,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -974,7 +888,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -992,7 +905,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -1010,7 +922,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -1028,7 +939,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -1064,7 +974,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -1082,7 +991,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -1100,7 +1008,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -1118,7 +1025,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -1171,26 +1078,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/zh-tw/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/zh-tw/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -1208,7 +1097,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -1226,7 +1114,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -1244,7 +1132,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -1262,7 +1150,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -1280,7 +1167,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -1298,7 +1184,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -1316,7 +1201,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -1334,7 +1218,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -1352,7 +1235,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -1370,7 +1252,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -1388,7 +1269,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -1406,7 +1286,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -1442,7 +1321,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -1460,7 +1338,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -1478,7 +1355,6 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -1496,7 +1372,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -1549,26 +1425,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/fr/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/fr/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -1586,7 +1444,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -1604,7 +1461,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -1622,7 +1479,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -1640,7 +1497,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -1658,7 +1514,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -1676,7 +1531,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -1694,7 +1548,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -1712,7 +1565,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -1730,7 +1582,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -1748,7 +1599,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -1766,7 +1616,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -1784,7 +1633,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -1820,7 +1668,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -1838,7 +1685,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -1856,7 +1702,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -1874,7 +1719,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -1927,26 +1772,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/de/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/de/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -1964,7 +1791,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -1982,7 +1808,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -2000,7 +1826,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -2018,7 +1844,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -2036,7 +1861,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -2054,7 +1878,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -2072,7 +1895,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -2090,7 +1912,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -2108,7 +1929,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -2126,7 +1946,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -2144,7 +1963,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -2162,7 +1980,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -2198,7 +2015,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -2216,7 +2032,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -2234,7 +2049,6 @@
   </url>
   <url>
     <loc>https://964fx.com/de/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -2252,7 +2066,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -2305,26 +2119,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/es/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/es/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -2342,7 +2138,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -2360,7 +2155,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -2378,7 +2173,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -2396,7 +2191,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -2414,7 +2208,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -2432,7 +2225,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -2450,7 +2242,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -2468,7 +2259,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -2486,7 +2276,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -2504,7 +2293,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -2522,7 +2310,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -2540,7 +2327,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -2576,7 +2362,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -2594,7 +2379,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -2612,7 +2396,6 @@
   </url>
   <url>
     <loc>https://964fx.com/es/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -2630,7 +2413,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -2683,26 +2466,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/pt/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/pt/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -2720,7 +2485,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -2738,7 +2502,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -2756,7 +2520,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -2774,7 +2538,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -2792,7 +2555,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -2810,7 +2572,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -2828,7 +2589,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -2846,7 +2606,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -2864,7 +2623,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -2882,7 +2640,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -2900,7 +2657,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -2918,7 +2674,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -2954,7 +2709,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -2972,7 +2726,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -2990,7 +2743,6 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -3008,7 +2760,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -3061,26 +2813,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/ru/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/ru/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -3098,7 +2832,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -3116,7 +2849,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -3134,7 +2867,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -3152,7 +2885,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -3170,7 +2902,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -3188,7 +2919,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -3206,7 +2936,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -3224,7 +2953,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -3242,7 +2970,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -3260,7 +2987,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -3278,7 +3004,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -3296,7 +3021,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -3332,7 +3056,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -3350,7 +3073,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -3368,7 +3090,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -3386,7 +3107,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -3439,26 +3160,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/hi/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/hi/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -3476,7 +3179,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -3494,7 +3196,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -3512,7 +3214,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -3530,7 +3232,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -3548,7 +3249,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -3566,7 +3266,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -3584,7 +3283,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -3602,7 +3300,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -3620,7 +3317,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -3638,7 +3334,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -3656,7 +3351,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -3674,7 +3368,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -3710,7 +3403,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -3728,7 +3420,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -3746,7 +3437,6 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -3764,7 +3454,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -3817,26 +3507,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/ta/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/ta/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -3854,7 +3526,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -3872,7 +3543,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -3890,7 +3561,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -3908,7 +3579,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -3926,7 +3596,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -3944,7 +3613,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -3962,7 +3630,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -3980,7 +3647,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -3998,7 +3664,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -4016,7 +3681,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -4034,7 +3698,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -4052,7 +3715,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -4088,7 +3750,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -4106,7 +3767,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -4124,7 +3784,6 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -4142,7 +3801,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -4195,26 +3854,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/tr/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/tr/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -4232,7 +3873,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -4250,7 +3890,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -4268,7 +3908,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -4286,7 +3926,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -4304,7 +3943,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -4322,7 +3960,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -4340,7 +3977,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -4358,7 +3994,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -4376,7 +4011,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -4394,7 +4028,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -4412,7 +4045,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -4430,7 +4062,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -4466,7 +4097,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -4484,7 +4114,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -4502,7 +4131,6 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -4520,7 +4148,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -4573,26 +4201,8 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/signals/"/>
   </url>
   <url>
-    <loc>https://964fx.com/fa/news/</loc>
-    <lastmod>2026-11-12</lastmod>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/news/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/news/"/>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://964fx.com/zh-tw/news/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://964fx.com/fr/news/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://964fx.com/de/news/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://964fx.com/es/news/"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://964fx.com/pt/news/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://964fx.com/ru/news/"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://964fx.com/hi/news/"/>
-    <xhtml:link rel="alternate" hreflang="ta" href="https://964fx.com/ta/news/"/>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://964fx.com/tr/news/"/>
-    <xhtml:link rel="alternate" hreflang="fa" href="https://964fx.com/fa/news/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://964fx.com/ar/news/"/>
-  </url>
-  <url>
     <loc>https://964fx.com/fa/calendar/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/calendar/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/calendar/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/calendar/"/>
@@ -4610,7 +4220,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/method/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/method/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/method/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/method/"/>
@@ -4628,7 +4237,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/archive/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/"/>
@@ -4646,7 +4255,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/eurusd/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurusd/"/>
@@ -4664,7 +4273,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/gbpusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpusd/"/>
@@ -4682,7 +4290,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/usdjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdjpy/"/>
@@ -4700,7 +4307,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/usdchf/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdchf/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdchf/"/>
@@ -4718,7 +4324,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/audusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/audusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/audusd/"/>
@@ -4736,7 +4341,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/usdcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/usdcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/usdcad/"/>
@@ -4754,7 +4358,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/nzdusd/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/nzdusd/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/nzdusd/"/>
@@ -4772,7 +4375,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/gbpjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpjpy/"/>
@@ -4790,7 +4392,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/gbpaud/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpaud/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpaud/"/>
@@ -4808,7 +4409,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/gbpcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/gbpcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/gbpcad/"/>
@@ -4844,7 +4444,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/eurgbp/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurgbp/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurgbp/"/>
@@ -4862,7 +4461,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/eurjpy/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurjpy/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurjpy/"/>
@@ -4880,7 +4478,6 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/signals/eurcad/</loc>
-    <lastmod>2026-11-12</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/signals/eurcad/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/signals/eurcad/"/>
@@ -4898,7 +4495,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/archive/EURUSD-20261110-SELL/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/archive/EURUSD-20261110-SELL/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/archive/EURUSD-20261110-SELL/"/>
@@ -4916,7 +4513,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -4934,7 +4531,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -4952,7 +4549,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -4970,7 +4567,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -4988,7 +4585,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5006,7 +4603,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ar/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5024,7 +4621,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5042,7 +4639,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5060,7 +4657,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5078,7 +4675,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5096,7 +4693,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5114,7 +4711,7 @@
   </url>
   <url>
     <loc>https://964fx.com/en/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5132,7 +4729,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5150,7 +4747,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5168,7 +4765,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5186,7 +4783,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5204,7 +4801,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5222,7 +4819,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-cn/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5240,7 +4837,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5258,7 +4855,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5276,7 +4873,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5294,7 +4891,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5312,7 +4909,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5330,7 +4927,7 @@
   </url>
   <url>
     <loc>https://964fx.com/zh-tw/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5348,7 +4945,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5366,7 +4963,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5384,7 +4981,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5402,7 +4999,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5420,7 +5017,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5438,7 +5035,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fr/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5456,7 +5053,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5474,7 +5071,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5492,7 +5089,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5510,7 +5107,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5528,7 +5125,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5546,7 +5143,7 @@
   </url>
   <url>
     <loc>https://964fx.com/de/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5564,7 +5161,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5582,7 +5179,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5600,7 +5197,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5618,7 +5215,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5636,7 +5233,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5654,7 +5251,7 @@
   </url>
   <url>
     <loc>https://964fx.com/es/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5672,7 +5269,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5690,7 +5287,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5708,7 +5305,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5726,7 +5323,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5744,7 +5341,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5762,7 +5359,7 @@
   </url>
   <url>
     <loc>https://964fx.com/pt/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5780,7 +5377,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5798,7 +5395,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5816,7 +5413,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5834,7 +5431,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5852,7 +5449,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5870,7 +5467,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ru/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5888,7 +5485,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -5906,7 +5503,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -5924,7 +5521,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -5942,7 +5539,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -5960,7 +5557,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -5978,7 +5575,7 @@
   </url>
   <url>
     <loc>https://964fx.com/hi/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -5996,7 +5593,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -6014,7 +5611,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -6032,7 +5629,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -6050,7 +5647,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -6068,7 +5665,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -6086,7 +5683,7 @@
   </url>
   <url>
     <loc>https://964fx.com/ta/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -6104,7 +5701,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -6122,7 +5719,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -6140,7 +5737,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -6158,7 +5755,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -6176,7 +5773,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -6194,7 +5791,7 @@
   </url>
   <url>
     <loc>https://964fx.com/tr/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>
@@ -6212,7 +5809,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/guides/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/"/>
@@ -6230,7 +5827,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/guides/xauusd-gold/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/xauusd-gold/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/xauusd-gold/"/>
@@ -6248,7 +5845,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/guides/islamic-swap-free-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/islamic-swap-free-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/islamic-swap-free-account/"/>
@@ -6266,7 +5863,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/guides/forex-for-beginners/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/forex-for-beginners/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/forex-for-beginners/"/>
@@ -6284,7 +5881,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/guides/demo-account/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/demo-account/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/demo-account/"/>
@@ -6302,7 +5899,7 @@
   </url>
   <url>
     <loc>https://964fx.com/fa/guides/leverage/</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-11</lastmod>
     <xhtml:link rel="alternate" hreflang="ar" href="https://964fx.com/ar/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://964fx.com/en/guides/leverage/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://964fx.com/zh-cn/guides/leverage/"/>

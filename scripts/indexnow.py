@@ -2,8 +2,10 @@
 """Submit sitemap URLs to IndexNow (Bing, Yandex, Seznam, Naver, Yep, and others).
 
 Reads the built sitemap, then POSTs to https://api.indexnow.org/indexnow.
-By default only new or changed signal/archive pages are submitted. A full
-sitemap submit happens at most once per UTC day, or when --full is passed.
+Submits URLs that are new or whose lastmod changed since the last successful
+submit. The first run after a state file that has no per-URL record submits
+the whole sitemap, so growth since the last partial submit is not skipped.
+Pass --full to submit every current sitemap URL.
 """
 
 from __future__ import annotations
@@ -62,20 +64,28 @@ def find_sitemap() -> Path:
     raise SystemExit("indexnow: sitemap.xml not found in out/ or public/")
 
 
-def parse_sitemap(path: Path) -> list[str]:
+def parse_sitemap(path: Path) -> list[tuple[str, str]]:
+    """Return (loc, lastmod) pairs. lastmod is "" when the sitemap omits it."""
     tree = ET.parse(path)
     root = tree.getroot()
-    urls: list[str] = []
+    entries: list[tuple[str, str]] = []
     seen: set[str] = set()
-    for node in root.findall("sm:url", NS) or root.findall("url"):
+    nodes = root.findall("sm:url", NS)
+    if not nodes:
+        nodes = root.findall("url")
+    for node in nodes:
         loc_el = node.find("sm:loc", NS)
         if loc_el is None:
             loc_el = node.find("loc")
+        mod_el = node.find("sm:lastmod", NS)
+        if mod_el is None:
+            mod_el = node.find("lastmod")
         loc = (loc_el.text or "").strip() if loc_el is not None else ""
+        modified = (mod_el.text or "").strip() if mod_el is not None else ""
         if loc and loc not in seen:
             seen.add(loc)
-            urls.append(loc)
-    return urls
+            entries.append((loc, modified))
+    return entries
 
 
 def compact_signals() -> dict[str, list[dict[str, Any]]]:
@@ -168,22 +178,53 @@ def save_state(state: dict[str, Any]) -> None:
     STATE_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-def select_urls(all_urls: list[str], state: dict[str, Any], force_full: bool) -> tuple[list[str], str]:
-    today = utc_today()
-    last_full = str(state.get("lastFullSubmit") or "")
-    if force_full or not last_full or last_full < today:
-        reason = "full-forced" if force_full else ("full-first" if not last_full else "full-daily")
-        return all_urls, reason
-    curr = compact_signals()
-    keys = changed_page_keys(state.get("signals") or {}, curr)
-    if not keys:
+def select_urls(entries: list[tuple[str, str]], state: dict[str, Any], force_full: bool) -> tuple[list[str], str]:
+    """Pick URLs IndexNow has not already accepted at this lastmod.
+
+    A state file from the old daily submit has no `submitted` map. That run
+    must send every current sitemap URL, because the previous full submit
+    covered fewer URLs than the sitemap does now.
+    """
+    urls = [loc for loc, _mod in entries]
+    if force_full:
+        return urls, "full-forced"
+    submitted = state.get("submitted")
+    if not isinstance(submitted, dict):
+        return urls, "full-untracked"
+    selected: list[str] = []
+    grew = False
+    changed = False
+    for loc, modified in entries:
+        previous = submitted.get(loc)
+        if previous is None:
+            selected.append(loc)
+            grew = True
+        elif str(previous) != modified:
+            selected.append(loc)
+            changed = True
+    if not selected:
         return [], "none"
-    selected = [url for url in all_urls if page_key(url) in keys]
-    return selected, "changed-signals"
+    if grew and changed:
+        return selected, "new-and-changed"
+    if grew:
+        return selected, "sitemap-growth"
+    return selected, "changed"
 
 
-def post_indexnow(host: str, key: str, key_location: str, urls: list[str]) -> list[int]:
+def _log_failure(status: int | str, batch: list[str], detail: str) -> None:
+    print("indexnow: FAILED", file=sys.stderr)
+    print(f"indexnow: endpoint {ENDPOINT}", file=sys.stderr)
+    print(f"indexnow: HTTP {status} for {len(batch)} URLs", file=sys.stderr)
+    print(f"indexnow: response: {detail.strip() or '(empty)'}", file=sys.stderr)
+    if batch:
+        print(f"indexnow: batch starts {batch[0]}", file=sys.stderr)
+        print(f"indexnow: batch ends {batch[-1]}", file=sys.stderr)
+
+
+def post_indexnow(host: str, key: str, key_location: str, urls: list[str]) -> tuple[list[int], list[str]]:
+    """POST batches. Returns HTTP statuses and the URLs IndexNow accepted."""
     statuses: list[int] = []
+    accepted: list[str] = []
     for start in range(0, len(urls), MAX_URLS):
         batch = urls[start : start + MAX_URLS]
         payload = json.dumps(
@@ -204,16 +245,18 @@ def post_indexnow(host: str, key: str, key_location: str, urls: list[str]) -> li
                 if body.strip():
                     print(body.strip())
                 statuses.append(status)
+                if status in {200, 202}:
+                    accepted.extend(batch)
+                else:
+                    _log_failure(status, batch, body)
         except HTTPError as exc:
             err = exc.read().decode("utf-8", errors="replace")
-            print(f"indexnow: POST {ENDPOINT} -> HTTP {exc.code} ({len(batch)} URLs)", file=sys.stderr)
-            if err.strip():
-                print(err.strip(), file=sys.stderr)
+            _log_failure(exc.code, batch, err)
             statuses.append(exc.code)
         except URLError as exc:
-            print(f"indexnow: POST {ENDPOINT} failed: {exc.reason}", file=sys.stderr)
+            _log_failure(0, batch, str(exc.reason))
             statuses.append(0)
-    return statuses
+    return statuses, accepted
 
 
 def main() -> int:
@@ -226,14 +269,20 @@ def main() -> int:
     key, key_location = key_and_location(config)
     host = urlparse(str(config.get("siteUrl") or "https://964fx.com")).netloc
     sitemap = find_sitemap()
-    all_urls = parse_sitemap(sitemap)
-    if not all_urls:
-        print("indexnow: sitemap is empty", file=sys.stderr)
+    entries = parse_sitemap(sitemap)
+    if not entries:
+        print("indexnow: FAILED sitemap is empty", file=sys.stderr)
+        print(f"indexnow: sitemap {sitemap}", file=sys.stderr)
         return 1
 
     state = load_state()
-    urls, reason = select_urls(all_urls, state, force_full=args.full)
-    print(f"indexnow: sitemap {sitemap} ({len(all_urls)} URLs), mode {reason}, submitting {len(urls)}")
+    tracked = state.get("submitted")
+    tracked_count = len(tracked) if isinstance(tracked, dict) else 0
+    urls, reason = select_urls(entries, state, force_full=args.full)
+    print(
+        f"indexnow: sitemap {sitemap} has {len(entries)} URLs; "
+        f"previously tracked {tracked_count}; mode {reason}; submitting {len(urls)}"
+    )
     if not urls:
         print("indexnow: nothing to submit")
         return 0
@@ -242,25 +291,32 @@ def main() -> int:
             print(url)
         return 0
 
-    statuses = post_indexnow(host, key, key_location, urls)
-    ok = all(status in {200, 202} for status in statuses)
-    state = {
+    statuses, accepted = post_indexnow(host, key, key_location, urls)
+    ok = bool(statuses) and all(status in {200, 202} for status in statuses) and len(accepted) == len(urls)
+    lastmods = {loc: modified for loc, modified in entries}
+    submitted = dict(tracked) if isinstance(tracked, dict) else {}
+    for url in accepted:
+        submitted[url] = lastmods.get(url, "")
+    current = set(lastmods)
+    submitted = {url: modified for url, modified in submitted.items() if url in current}
+    new_state = {
         "lastSubmitAt": utc_now(),
         "lastMode": reason,
-        "lastCount": len(urls),
+        "lastCount": len(accepted),
         "lastStatus": statuses[0] if len(statuses) == 1 else statuses,
-        "signals": compact_signals(),
+        "submitted": submitted,
     }
-    if reason.startswith("full") and ok:
-        state["lastFullSubmit"] = utc_today()
-    else:
-        prev_full = load_state().get("lastFullSubmit")
-        if prev_full:
-            state["lastFullSubmit"] = prev_full
-    save_state(state)
     if not ok:
-        print("indexnow: submission failed", file=sys.stderr)
+        failed = [url for url in urls if url not in set(accepted)]
+        new_state["lastError"] = f"HTTP {statuses} failed {len(failed)} URLs"
+        save_state(new_state)
+        print(
+            f"indexnow: FAILED {len(failed)} of {len(urls)} URLs were not accepted; they will be retried",
+            file=sys.stderr,
+        )
         return 1
+    save_state(new_state)
+    print(f"indexnow: accepted {len(accepted)} URLs; tracked {len(submitted)}")
     return 0
 
 

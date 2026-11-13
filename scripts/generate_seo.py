@@ -5,18 +5,18 @@ from __future__ import annotations
 
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 config = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))
 site_url = os.environ.get("NEXT_PUBLIC_SITE_URL", config["siteUrl"]).rstrip("/")
-stamp = datetime.now(timezone.utc).date().isoformat()
-
 pairs = ["eurusd", "gbpusd", "usdjpy", "usdchf", "audusd", "usdcad", "nzdusd", "gbpjpy", "gbpaud", "gbpcad", "gbpnzd", "eurgbp", "eurjpy", "eurcad"]
 history = json.loads((ROOT / "data/history.json").read_text(encoding="utf-8"))
 signals = json.loads((ROOT / "data/signals.json").read_text(encoding="utf-8"))
-paths = ["/", "/signals/", "/news/", "/calendar/", "/method/", "/archive/"]
+news = json.loads((ROOT / "data/news.json").read_text(encoding="utf-8"))
+# /news/ stays as a page (links must not 404) but is noindex and canonical to /calendar/, so it is not listed.
+paths = ["/", "/signals/", "/calendar/", "/method/", "/archive/"]
 paths += [f"/signals/{pair}/" for pair in pairs]
 paths += [f"/archive/{item['id']}/" for item in history.get("closed") or [] if item.get("id") and item["id"] != "empty"]
 
@@ -93,6 +93,71 @@ GUIDE_TITLES = {
     },
 }
 PAIR_CODES = [pair.upper() for pair in pairs]
+# Keep in step with GUIDES_REVIEWED in src/lib/guides/index.ts.
+GUIDE_REVIEWED = "2026-11-11"
+
+
+def day(value: object) -> str | None:
+    if not isinstance(value, str) or len(value) < 10:
+        return None
+    text = value[:10]
+    if text[4] != "-" or text[7] != "-":
+        return None
+    try:
+        datetime.strptime(text, "%Y-%m-%d")
+    except ValueError:
+        return None
+    return text
+
+
+def _rows(items: object) -> list[dict]:
+    if not isinstance(items, list):
+        return []
+    return [item for item in items if isinstance(item, dict) and item.get("id") and item.get("id") != "empty"]
+
+
+def content_lastmod() -> dict[str, str]:
+    """Per-path lastmod from signal and content dates. Paths with no real date are omitted."""
+    open_items = _rows(signals.get("open"))
+    closed_items = _rows(history.get("closed"))
+    signal_days = [
+        day(item.get("issuedAt")) for item in open_items
+    ] + [
+        day(item.get("closedAt")) or day(item.get("issuedAt")) for item in closed_items
+    ]
+    signal_days = [item for item in signal_days if item]
+    board = max(signal_days) if signal_days else None
+    out: dict[str, str] = {}
+    if board:
+        out["/"] = board
+        out["/signals/"] = board
+        out["/llms.txt"] = board
+        out["/llms-full.txt"] = board
+    calendar = day(news.get("updatedAt")) if isinstance(news, dict) else None
+    if calendar:
+        out["/calendar/"] = calendar
+    closed_days = [day(item.get("closedAt")) or day(item.get("issuedAt")) for item in closed_items]
+    closed_days = [item for item in closed_days if item]
+    if closed_days:
+        out["/archive/"] = max(closed_days)
+    for item in open_items:
+        pair = str(item.get("pair") or "").lower()
+        issued = day(item.get("issuedAt"))
+        if pair and issued:
+            out[f"/signals/{pair}/"] = issued
+    for item in closed_items:
+        pair = str(item.get("pair") or "").lower()
+        closed = day(item.get("closedAt")) or day(item.get("issuedAt"))
+        path = f"/signals/{pair}/"
+        if pair and closed and path not in out:
+            out[path] = closed
+        sid = item.get("id")
+        if sid and closed:
+            out[f"/archive/{sid}/"] = closed
+    return out
+
+
+LASTMOD = content_lastmod()
 
 
 def write_sitemap() -> int:
@@ -105,7 +170,9 @@ def write_sitemap() -> int:
             loc = f"{site_url}/{lang}{path}"
             lines.append("  <url>")
             lines.append(f"    <loc>{loc}</loc>")
-            lines.append(f"    <lastmod>{stamp}</lastmod>")
+            modified = LASTMOD.get(path)
+            if modified:
+                lines.append(f"    <lastmod>{modified}</lastmod>")
             for code, tag in LANGS.items():
                 lines.append(f'    <xhtml:link rel="alternate" hreflang="{tag}" href="{site_url}/{code}{path}"/>')
             lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{site_url}/ar{path}"/>')
@@ -114,7 +181,7 @@ def write_sitemap() -> int:
         for path in guide_paths:
             lines.append("  <url>")
             lines.append(f"    <loc>{site_url}/{lang}{path}</loc>")
-            lines.append(f"    <lastmod>{stamp}</lastmod>")
+            lines.append(f"    <lastmod>{GUIDE_REVIEWED}</lastmod>")
             for code in GUIDE_LANGS:
                 lines.append(f'    <xhtml:link rel="alternate" hreflang="{LANGS[code]}" href="{site_url}/{code}{path}"/>')
             lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{site_url}/ar{path}"/>')
@@ -122,7 +189,9 @@ def write_sitemap() -> int:
     for extra in ("/llms.txt", "/llms-full.txt"):
         lines.append("  <url>")
         lines.append(f"    <loc>{site_url}{extra}</loc>")
-        lines.append(f"    <lastmod>{stamp}</lastmod>")
+        modified = LASTMOD.get(extra)
+        if modified:
+            lines.append(f"    <lastmod>{modified}</lastmod>")
         lines.append("  </url>")
     lines.append("</urlset>")
     (ROOT / "public/sitemap.xml").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -168,7 +237,7 @@ def _guide_links(lang: str) -> str:
 
 
 def write_llms() -> None:
-    updated = str(signals.get("updatedAt") or stamp)
+    updated = str(signals.get("updatedAt") or LASTMOD.get("/") or "")
     open_items = [item for item in (signals.get("open") or []) if isinstance(item, dict) and item.get("id") and item["id"] != "empty"]
     closed_items = [item for item in (history.get("closed") or []) if isinstance(item, dict) and item.get("id") and item["id"] != "empty"]
 
@@ -186,8 +255,7 @@ The site is available in 13 languages. Arabic is the default.
 
 - [الرئيسية]({site_url}/ar/): نظرة عامة على مكتب 964FX والإشارات التعليمية
 - [الإشارات]({site_url}/ar/signals/): التوصيات اليومية للأزواج الرئيسية مع الإيقاف والهدف وستة أسباب
-- [الأخبار]({site_url}/ar/news/): المفكرة الاقتصادية وأخبار Forex Factory بتوقيت بغداد
-- [التقويم الاقتصادي]({site_url}/ar/calendar/): التقويم الاقتصادي للأسبوع، مع الأثر والفعلي والتوقع والسابق
+- [التقويم الاقتصادي]({site_url}/ar/calendar/): التقويم الاقتصادي للأسبوع، مع الأثر والفعلي والتوقع والسابق. المسار /ar/news/ يحوّل إلى هذه الصفحة.
 - [المنهج]({site_url}/ar/method/): قواعد بناء الإشارة، ولماذا يُتخطى الزوج أحياناً
 - [الأرشيف]({site_url}/ar/archive/): السجل العلني للإشارات المغلقة مع النتيجة والنقاط
 """
@@ -201,8 +269,7 @@ The site is available in 13 languages. Arabic is the default.
 
 - [Home]({site_url}/en/): Overview of the 964FX educational desk
 - [Signals]({site_url}/en/signals/): Daily major-pair signals with stop, target, and six reasons
-- [News]({site_url}/en/news/): This week's economic calendar and live Forex Factory news
-- [Economic calendar]({site_url}/en/calendar/): This week's economic calendar, with impact, actual, forecast, and previous
+- [Economic calendar]({site_url}/en/calendar/): This week's economic calendar, with impact, actual, forecast, and previous. /en/news/ redirects here.
 - [Method]({site_url}/en/method/): How a signal is built, and when a pair is skipped
 - [Archive]({site_url}/en/archive/): Public record of closed signals, with results and pips
 """
@@ -238,8 +305,7 @@ Data last updated: {updated}
 
 - Home: {site_url}/ar/
 - Signals: {site_url}/ar/signals/
-- News: {site_url}/ar/news/
-- Economic calendar: {site_url}/ar/calendar/
+- Economic calendar: {site_url}/ar/calendar/ (/ar/news/ redirects here)
 - Method: {site_url}/ar/method/
 - Archive: {site_url}/ar/archive/
 """
@@ -251,8 +317,7 @@ Data last updated: {updated}
 
 - Home: {site_url}/en/
 - Signals: {site_url}/en/signals/
-- News: {site_url}/en/news/
-- Economic calendar: {site_url}/en/calendar/
+- Economic calendar: {site_url}/en/calendar/ (/en/news/ redirects here)
 - Method: {site_url}/en/method/
 - Archive: {site_url}/en/archive/
 """
@@ -355,8 +420,13 @@ def write_manifest() -> None:
     (ROOT / "public/manifest.webmanifest").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
-url_count = write_sitemap()
-write_robots()
-write_llms()
-write_manifest()
-print(f"seo files for {site_url} lastmod {stamp} urls {url_count}")
+def main() -> None:
+    url_count = write_sitemap()
+    write_robots()
+    write_llms()
+    write_manifest()
+    print(f"seo files for {site_url} urls {url_count}")
+
+
+if __name__ == "__main__":
+    main()

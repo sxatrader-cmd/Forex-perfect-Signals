@@ -19,7 +19,7 @@ export function PairView({ pair, heading }: { pair: string; heading?: string }) 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10 sm:px-6">
       <p className="text-sm">
-        <Link href={`/${lang}/signals`} className="text-primary">{t.nav.signals}</Link>
+        <Link href={`/${lang}/signals/`} className="text-primary">{t.nav.signals}</Link>
       </p>
       <header>
         <h1 className="text-3xl font-semibold tracking-tight">{heading ?? name}</h1>
@@ -42,7 +42,7 @@ export function PairView({ pair, heading }: { pair: string; heading?: string }) 
           <ul className="space-y-2">
             {past.map((signal) => (
               <li key={signal.id}>
-                <Link href={`/${lang}/archive/${signal.id}`} className="nums text-sm text-primary">
+                <Link href={`/${lang}/archive/${signal.id}/`} className="nums text-sm text-primary">
                   {signal.result} · {formatPips(signal.pips)} · {signal.id}
                 </Link>
               </li>

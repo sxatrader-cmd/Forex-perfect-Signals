@@ -4,14 +4,17 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { siteVerification } from "@/lib/seo";
 import "./globals.css";
 
+// Shared layout cannot know the language, so nothing is preloaded here.
+// scripts/stamp_html_lang.py adds <link rel="preload"> only for the current page's script.
 const ibm = IBM_Plex_Sans_Arabic({
   subsets: ["arabic", "latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-ibm",
   display: "swap",
+  preload: false,
 });
 
-// Script fonts below are only downloaded by pages whose text needs them (unicode-range), so no preload.
+// Script fonts below are only downloaded by pages whose text needs them (unicode-range).
 const plex = IBM_Plex_Sans({
   subsets: ["cyrillic"],
   weight: ["400", "500", "600", "700"],
@@ -46,6 +49,7 @@ const syne = Syne({
   weight: ["600", "700", "800"],
   variable: "--font-display",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -70,7 +74,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="ar" dir="rtl" suppressHydrationWarning className={`${ibm.variable} ${syne.variable} ${plex.variable} ${deva.variable} ${tamil.variable} ${vazir.variable} dark h-full antialiased`}>
       <head>
         <link rel="preconnect" href="https://secure.ic.com" />
-        <link rel="preconnect" href="https://promo.icmarkets.com" />
       </head>
       <body className="flex min-h-full flex-col">
         <a

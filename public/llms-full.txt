@@ -6,14 +6,13 @@
 
 A daily signal may be issued for a major pair only when the setup is complete (trend, RSI, MACD, distance to the stop and target, and the calendar). There is at most one open signal per pair, and no new signal is published on that pair until the previous one hits take-profit (TP) or stop-loss (SL). Quiet days stay quiet. Closed results are kept in the public archive and are not deleted or edited.
 
-Data last updated: 2026-11-12T09:29:06Z
+Data last updated: 2026-11-13T15:02:56Z
 
 ## Arabic pages
 
 - Home: https://964fx.com/ar/
 - Signals: https://964fx.com/ar/signals/
-- News: https://964fx.com/ar/news/
-- Economic calendar: https://964fx.com/ar/calendar/
+- Economic calendar: https://964fx.com/ar/calendar/ (/ar/news/ redirects here)
 - Method: https://964fx.com/ar/method/
 - Archive: https://964fx.com/ar/archive/
 - EURUSD: https://964fx.com/ar/signals/eurusd/
@@ -35,8 +34,7 @@ Data last updated: 2026-11-12T09:29:06Z
 
 - Home: https://964fx.com/en/
 - Signals: https://964fx.com/en/signals/
-- News: https://964fx.com/en/news/
-- Economic calendar: https://964fx.com/en/calendar/
+- Economic calendar: https://964fx.com/en/calendar/ (/en/news/ redirects here)
 - Method: https://964fx.com/en/method/
 - Archive: https://964fx.com/en/archive/
 - EURUSD: https://964fx.com/en/signals/eurusd/
@@ -126,7 +124,9 @@ Evergreen guides, written separately for each language (not machine translations
 
 ## Open signals
 
-No open signal right now. A new one is issued only when the setup is complete.
+- GBPNZD BUY, issued 2026-11-12T09:38:27Z. entry 2.38864, SL 2.38082, TP 2.40429. Arabic: https://964fx.com/ar/signals/gbpnzd/ — English: https://964fx.com/en/signals/gbpnzd/
+  Reasons (EN): 4-hour trend is bullish: EMA20 2.38730 versus EMA50 2.38633, ADX 20.4. Daily bias EMA50 2.35649 is above EMA200 2.31862 and EMA20 2.37739 is above EMA50. Last price 2.38864 is above daily EMA20. 4H RSI(14) is 52.7, inside the BUY band 40–65. The band excludes overbought and oversold extremes. 4H MACD line is -0.001841, signal line -0.002286, histogram 0.000445. The histogram agrees with the bullish direction. The nearest 4H swing support is 2.38441, 42.3 pips under the entry. The stop is placed beyond it. 4H ATR(14) is 0.00652 (65.2 pips). Stop 78.2 pips, target 156.5 pips, reward-to-risk 1:2.00. Policy rates: GBP 4.00% versus NZD 2.75% (gap +1.25 points). Change over the last 120 days: GBP +25 bp, NZD +25 bp. That gap and its change agree with the BUY. High-impact surprise sum over the last 8 trading days: GBP +1.00 from 3 prints, NZD +0.00 from 0. That favours the BUY. Largest comparable print: GBP GDP MoM actual 0.2 versus forecast 0.0 (signed surprise +1.00). Headline tone GBP +0.20 from 5 scored headlines, NZD n/a from 0. Next high-impact event: GBP Unemployment Rate in 117.4 hours.  Sample headline (Investing.com Opinion): GBP/USD at Month’s Lows: The Outlook Remains Weak. Sources: Yahoo Finance, Forex Factory, TradingView, ForexLive, Investing.com Forex, Investing.com Economy, Investing.com Opinion, ActionForex.
+  الأسباب: اتجاه 4 ساعات صاعد: متوسط 20 عند 2.38730 مقابل متوسط 50 عند 2.38633، وADX 20.4. الميل اليومي: متوسط 50 عند 2.35649 فوق متوسط 200 عند 2.31862، ومتوسط 20 عند 2.37739 فوق متوسط 50. آخر سعر 2.38864 فوق متوسط 20 اليومي. مؤشر RSI(14) على 4 ساعات يساوي 52.7 داخل نطاق صاعد المعتمد 40–65. هذا النطاق يستبعد مناطق التشبع. خط MACD على 4 ساعات -0.001841، وخط الإشارة -0.002286، والهيستوغرام 0.000445. إشارة الهيستوغرام توافق الاتجاه صاعد. أقرب دعم تأرجح على 4 ساعات عند 2.38441، أي 42.3 نقطة تحت الدخول، ووُضع الإيقاف بعده. ATR(14) على 4 ساعات يساوي 0.00652 (65.2 نقطة). الإيقاف 78.2 نقطة، والهدف 156.5 نقطة، والعائد إلى المخاطرة 1:2.00. أسعار السياسة: GBP 4.00% مقابل NZD 2.75% (الفارق +1.25 نقطة مئوية). التغير خلال 120 يوماً: GBP +25 نقطة أساس، وNZD +25 نقطة أساس. الفارق وتغيره يوافقان اتجاه الصفقة. مجموع مفاجآت الأخبار عالية التأثير خلال آخر 8 أيام تداول: GBP +1.00 من 3 قراءة، وNZD +0.00 من 0. هذا يرجح اتجاه الصفقة. أكبر مفاجأة قابلة للمقارنة: GBP GDP MoM الفعلي 0.2 مقابل التوقع 0.0 (المفاجأة +1.00). مزاج العناوين: GBP +0.20 من 5 عنواناً، وNZD n/a من 0. أقرب خبر عالي التأثير: GBP Unemployment Rate بعد 117.4 ساعة.  عنوان مستخدم (Investing.com Opinion): GBP/USD at Month’s Lows: The Outlook Remains Weak. المصادر: Yahoo Finance, Forex Factory, TradingView, ForexLive, Investing.com Forex, Investing.com Economy, Investing.com Opinion, ActionForex.
 
 ## Recent closed signals
 

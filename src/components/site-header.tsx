@@ -56,14 +56,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/80 bg-background/85 backdrop-blur-md">
       <div dir="ltr" className="mx-auto flex h-16 w-full max-w-6xl items-center gap-3 px-4 sm:px-6">
-        <Link href={`/${lang}`} className="shrink-0" aria-label={t.brand}>
+        <Link href={`/${lang}/`} className="shrink-0" aria-label={t.brand}>
           <Logo />
         </Link>
         <div className="ms-auto flex min-w-0 items-center gap-2">
           <nav className="hidden items-center gap-1 lg:flex" aria-label={t.brand}>
             {links.map((link) => {
-              const href = `/${lang}${link.slug}`;
-              const active = link.slug === "" ? pathname === `/${lang}` || pathname === "/" : pathname.startsWith(href);
+              const href = `/${lang}${link.slug}/`;
+              const bare = `/${lang}${link.slug}`;
+              const active = link.slug === "" ? pathname === `/${lang}` || pathname === "/" : pathname === bare || pathname.startsWith(`${bare}/`);
               return (
                 <Link
                   key={link.key}
@@ -80,7 +81,7 @@ export function SiteHeader() {
             })}
             {guides ? (
               <Link
-                href={`/${lang}/guides`}
+                href={`/${lang}/guides/`}
                 className={cn(
                   "rounded-lg px-2.5 py-2 text-sm text-muted-foreground hover:text-foreground",
                   pathname.startsWith(`/${lang}/guides`) && "bg-muted text-foreground",
@@ -115,7 +116,7 @@ export function SiteHeader() {
             {links.map((link) => (
               <Link
                 key={link.key}
-                href={`/${lang}${link.slug}`}
+                href={`/${lang}${link.slug}/`}
                 className="rounded-lg px-2 py-3 text-base hover:bg-muted"
                 onClick={() => setOpen(false)}
               >
@@ -124,7 +125,7 @@ export function SiteHeader() {
             ))}
             {guides ? (
               <Link
-                href={`/${lang}/guides`}
+                href={`/${lang}/guides/`}
                 className="rounded-lg px-2 py-3 text-base hover:bg-muted"
                 onClick={() => setOpen(false)}
               >
