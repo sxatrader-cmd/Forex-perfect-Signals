@@ -749,6 +749,301 @@ def test_track_falls_back_to_coinbase_spot() -> None:
         fail(f"yahoo candles must stay the price and skip Coinbase: {quoted} {called} {closed}")
 
 
+def _webhook_signal(signal_id: str, pair: str) -> dict:
+    return {
+        "id": signal_id,
+        "pair": pair,
+        "direction": "BUY",
+        "entry": 1.1,
+        "sl": 1.09,
+        "tp": 1.12,
+        "issuedAt": "2026-11-13T08:00:00Z",
+    }
+
+
+def test_webhook_posts_each_new_signal_once() -> None:
+    import json
+    import notify_webhook
+
+    posted: list[dict] = []
+
+    def fake_post(url: str, key: str, payload: dict) -> None:
+        posted.append({"url": url, "key": key, "payload": payload})
+
+    state = {"signals": {"GBPNZD-20261112-BUY": {"sent": True, "seeded": True}}}
+    open_signals = [
+        _webhook_signal("GBPNZD-20261112-BUY", "GBPNZD"),
+        _webhook_signal("EURUSD-20261113-BUY", "EURUSD"),
+        {"id": "empty", "pair": "USDJPY", "direction": "SELL"},
+    ]
+    failures = notify_webhook.deliver(
+        open_signals,
+        state,
+        url="https://hooks.example/signal",
+        key="topsecret",
+        post=fake_post,
+    )
+    if failures != 0 or len(posted) != 1:
+        fail(f"expected one successful post, got {failures} {posted}")
+    call = posted[0]
+    if call["url"] != "https://hooks.example/signal" or call["key"] != "topsecret":
+        fail(f"webhook target {call}")
+    if call["payload"] != {
+        "event": "new_signal",
+        "id": "EURUSD-20261113-BUY",
+        "pair": "EURUSD",
+        "direction": "BUY",
+        "entry": 1.1,
+        "sl": 1.09,
+        "tp": 1.12,
+        "issuedAt": "2026-11-13T08:00:00Z",
+        "url": "https://964fx.com/ar/signals/eurusd/",
+    }:
+        fail(f"payload {call['payload']}")
+    if not state["signals"]["EURUSD-20261113-BUY"].get("sent"):
+        fail("a successful post must be marked sent")
+    if "USDJPY" in json.dumps(posted):
+        fail("the empty placeholder must not be posted")
+    again = notify_webhook.deliver(
+        open_signals,
+        state,
+        url="https://hooks.example/signal",
+        key="topsecret",
+        post=fake_post,
+    )
+    if again != 0 or len(posted) != 1:
+        fail("a sent id must not be posted again")
+
+    def reject_second(url: str, key: str, payload: dict) -> None:
+        posted.append(payload)
+        if payload["id"] == "GBPUSD-20261113-SELL":
+            raise notify_webhook.WebhookError("HTTP 503: down")
+
+    mixed = [
+        _webhook_signal("EURUSD-20261113-BUY", "EURUSD"),
+        {
+            "id": "GBPUSD-20261113-SELL",
+            "pair": "GBPUSD",
+            "direction": "SELL",
+            "entry": 1.3,
+            "sl": 1.31,
+            "tp": 1.28,
+            "issuedAt": "2026-11-13T12:00:00Z",
+        },
+    ]
+    failures = notify_webhook.deliver(
+        mixed,
+        state,
+        url="https://hooks.example/signal",
+        key="topsecret",
+        post=reject_second,
+    )
+    if failures != 1:
+        fail(f"the failed post should be counted, got {failures}")
+    if state["signals"].get("GBPUSD-20261113-SELL", {}).get("sent"):
+        fail("a failed post must stay unmarked for the next run")
+    lowered = notify_webhook.signal_url("GbpJpy")
+    if lowered != "https://964fx.com/ar/signals/gbpjpy/":
+        fail(f"pair url {lowered}")
+
+
+def test_webhook_http_and_deploy_survives_failure() -> None:
+    import io
+    import json
+    import tempfile
+    import urllib.error
+    import urllib.request
+    from pathlib import Path
+
+    import notify_webhook
+
+    seed_path = Path(__file__).resolve().parents[1] / "data" / "webhook_state.json"
+    seeded = json.loads(seed_path.read_text(encoding="utf-8"))
+    seed_entry = seeded.get("signals", {}).get("GBPNZD-20261112-BUY")
+    if not isinstance(seed_entry, dict) or not seed_entry.get("sent"):
+        fail("data/webhook_state.json must seed GBPNZD-20261112-BUY as already sent")
+    if notify_webhook.SEEDED_IDS != ("GBPNZD-20261112-BUY",):
+        fail(f"seed drifted from the open signal: {notify_webhook.SEEDED_IDS}")
+
+    captured: list[dict] = []
+
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return False
+
+        def read(self):
+            return b""
+
+    def ok_urlopen(request, timeout=0):
+        captured.append(
+            {
+                "url": request.full_url,
+                "method": request.get_method(),
+                "auth": request.get_header("Authorization"),
+                "content_type": request.get_header("Content-type"),
+                "body": json.loads(request.data.decode()),
+                "timeout": timeout,
+            }
+        )
+        return Response()
+
+    original_urlopen = urllib.request.urlopen
+    original_signals = notify_webhook.SIGNALS_PATH
+    original_state = notify_webhook.STATE_PATH
+    original_stdout = sys.stdout
+    old_url = os.environ.get("SIGNAL_WEBHOOK_URL")
+    old_key = os.environ.get("SIGNAL_WEBHOOK_KEY")
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            signals_path = root / "signals.json"
+            state_path = root / "webhook_state.json"
+            notify_webhook.SIGNALS_PATH = signals_path
+            notify_webhook.STATE_PATH = state_path
+            signals_path.write_text(
+                json.dumps(
+                    {
+                        "open": [
+                            _webhook_signal("GBPNZD-20261112-BUY", "GBPNZD"),
+                            _webhook_signal("EURUSD-20261113-BUY", "EURUSD"),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            state_path.write_text(seed_path.read_text(encoding="utf-8"), encoding="utf-8")
+            before = state_path.read_bytes()
+
+            os.environ.pop("SIGNAL_WEBHOOK_URL", None)
+            os.environ.pop("SIGNAL_WEBHOOK_KEY", None)
+            urllib.request.urlopen = lambda *args, **kwargs: fail("must not call the webhook when the URL is unset")
+            if notify_webhook.main() != 0:
+                fail("a missing SIGNAL_WEBHOOK_URL must exit 0")
+            if state_path.read_bytes() != before:
+                fail("skipping must not rewrite webhook state")
+
+            os.environ["SIGNAL_WEBHOOK_URL"] = "https://hooks.example/signal"
+            os.environ["SIGNAL_WEBHOOK_KEY"] = "topsecret"
+            urllib.request.urlopen = ok_urlopen
+            signals_path.write_text(
+                json.dumps({"open": [_webhook_signal("GBPNZD-20261112-BUY", "GBPNZD")]}),
+                encoding="utf-8",
+            )
+            if notify_webhook.main() != 0:
+                fail("notifying with only the seeded signal must exit 0")
+            if captured or state_path.read_bytes() != before:
+                fail("an already-sent signal must not be posted and must not rewrite the state file")
+            signals_path.write_text(
+                json.dumps(
+                    {
+                        "open": [
+                            _webhook_signal("GBPNZD-20261112-BUY", "GBPNZD"),
+                            _webhook_signal("EURUSD-20261113-BUY", "EURUSD"),
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            if notify_webhook.main() != 0:
+                fail("a successful notify must exit 0")
+            if len(captured) != 1:
+                fail(f"expected one HTTP post, got {captured}")
+            call = captured[0]
+            if call["method"] != "POST" or call["url"] != "https://hooks.example/signal":
+                fail(f"request line {call}")
+            if call["auth"] != "Bearer topsecret":
+                fail(f"authorization {call['auth']}")
+            if call["content_type"] != "application/json":
+                fail(f"content type {call['content_type']}")
+            if call["timeout"] != notify_webhook.TIMEOUT:
+                fail(f"timeout {call['timeout']}")
+            if call["body"]["event"] != "new_signal" or call["body"]["url"] != "https://964fx.com/ar/signals/eurusd/":
+                fail(f"body {call['body']}")
+            if call["body"]["id"] != "EURUSD-20261113-BUY":
+                fail("posted the seeded signal or the wrong id")
+            saved = json.loads(state_path.read_text(encoding="utf-8"))
+            if not saved["signals"]["GBPNZD-20261112-BUY"].get("sent"):
+                fail("seed must stay marked sent")
+            if not saved["signals"]["EURUSD-20261113-BUY"].get("sent"):
+                fail("state file must record the posted id")
+
+            if notify_webhook.main() != 0 or len(captured) != 1:
+                fail("a second run must not post an id that is already in the state file")
+
+            fresh = _webhook_signal("USDCHF-20261113-BUY", "USDCHF")
+            signals_path.write_text(
+                json.dumps({"open": [_webhook_signal("GBPNZD-20261112-BUY", "GBPNZD"), fresh]}),
+                encoding="utf-8",
+            )
+
+            def fail_urlopen(request, timeout=0):
+                captured.append({"failed": request.get_header("Authorization")})
+                raise urllib.error.HTTPError(
+                    request.full_url,
+                    503,
+                    "unavailable",
+                    hdrs=None,
+                    fp=io.BytesIO(b"topsecret leaked"),
+                )
+
+            urllib.request.urlopen = fail_urlopen
+            logs = io.StringIO()
+            sys.stdout = logs
+            try:
+                code = notify_webhook.main()
+            finally:
+                sys.stdout = original_stdout
+            if code != 0:
+                fail("a webhook HTTP failure must exit 0")
+            text = logs.getvalue()
+            if "topsecret" in text or "[REDACTED]" not in text or "webhook: warning:" not in text:
+                fail(f"failure should warn without the key, got {text!r}")
+            saved = json.loads(state_path.read_text(encoding="utf-8"))
+            if saved["signals"].get("USDCHF-20261113-BUY", {}).get("sent"):
+                fail("failed id must not be marked sent")
+
+            urllib.request.urlopen = ok_urlopen
+            if notify_webhook.main() != 0:
+                fail("retry after a failure must exit 0")
+            posted_ids = [item["body"]["id"] for item in captured if "body" in item]
+            if posted_ids.count("USDCHF-20261113-BUY") != 1:
+                fail(f"the failed id should be posted on the next run, got {posted_ids}")
+            saved = json.loads(state_path.read_text(encoding="utf-8"))
+            if not saved["signals"]["USDCHF-20261113-BUY"].get("sent"):
+                fail("retry must mark the id sent")
+
+            # A missing state file still treats the seeded open signal as sent.
+            state_path.unlink()
+            signals_path.write_text(
+                json.dumps({"open": [_webhook_signal("GBPNZD-20261112-BUY", "GBPNZD")]}),
+                encoding="utf-8",
+            )
+            before_calls = len(captured)
+            if notify_webhook.main() != 0:
+                fail("recreating a missing state file must exit 0")
+            if len(captured) != before_calls:
+                fail("the seeded id must not be posted when the state file is missing")
+            recreated = json.loads(state_path.read_text(encoding="utf-8"))
+            if not recreated["signals"]["GBPNZD-20261112-BUY"].get("sent"):
+                fail("a missing state file must be recreated with the seed marked sent")
+    finally:
+        urllib.request.urlopen = original_urlopen
+        notify_webhook.SIGNALS_PATH = original_signals
+        notify_webhook.STATE_PATH = original_state
+        sys.stdout = original_stdout
+        if old_url is None:
+            os.environ.pop("SIGNAL_WEBHOOK_URL", None)
+        else:
+            os.environ["SIGNAL_WEBHOOK_URL"] = old_url
+        if old_key is None:
+            os.environ.pop("SIGNAL_WEBHOOK_KEY", None)
+        else:
+            os.environ["SIGNAL_WEBHOOK_KEY"] = old_key
+
+
 if __name__ == "__main__":
     test_ema_rsi_macd()
     test_exit_rules()
@@ -764,4 +1059,6 @@ if __name__ == "__main__":
     test_chart_payload()
     test_coinbase_spot_and_price_health()
     test_track_falls_back_to_coinbase_spot()
+    test_webhook_posts_each_new_signal_once()
+    test_webhook_http_and_deploy_survives_failure()
     print("all signal tests passed")
