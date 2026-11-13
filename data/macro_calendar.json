@@ -1,7 +1,7 @@
 {
   "source": "https://economic-calendar.tradingview.com/events",
   "countries": "US,EU,GB,JP,AU,CA,NZ,CH",
-  "updatedAt": "2026-11-12T22:34:44Z",
+  "updatedAt": "2026-11-13T02:54:39Z",
   "note": "High-impact TradingView releases plus central-bank policy-rate decisions. Actual and forecast are numbers, not scaled text.",
   "events": [
     {
@@ -8019,7 +8019,7 @@
       "impact": "High",
       "title": "Balance of Trade",
       "actual": null,
-      "forecast": null,
+      "forecast": -956.0,
       "previous": -556.5,
       "policy": false
     },
