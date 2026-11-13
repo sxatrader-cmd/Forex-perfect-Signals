@@ -148,6 +148,15 @@ jobs:
           path: out
       - id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+      # GitHub's artifact API sometimes reports the just-uploaded artifact as
+      # missing for a short while; wait and try the deploy again.
+      - name: Wait before retrying the deploy
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 45
+      - id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
       - name: Submit URLs to IndexNow
         continue-on-error: true
         run: python3 scripts/indexnow.py
