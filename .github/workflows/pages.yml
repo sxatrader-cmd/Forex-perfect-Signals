@@ -26,6 +26,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  actions: write
 
 concurrency:
   group: pages
@@ -87,7 +88,14 @@ jobs:
               msg="data: update calendar and signals"
             fi
             git commit -m "$msg"
-            git push origin HEAD:main
+            # The Live charts workflow pushes chart files to main on its own;
+            # rebase onto it (our files win on a clash) before pushing.
+            pushed=false
+            for try in 1 2 3; do
+              if git push origin HEAD:main; then pushed=true; break; fi
+              git pull --rebase -X theirs origin main
+            done
+            [ "$pushed" = "true" ]
             changed=true
           fi
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -100,6 +108,15 @@ jobs:
             echo "deploy=true" >> "$GITHUB_OUTPUT"
           else
             echo "deploy=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Start live chart updates while a signal is open
+        if: ${{ github.event.inputs.news_only != 'true' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if python3 -c "import json,sys; o=json.load(open('data/signals.json')).get('open') or []; sys.exit(0 if [s for s in o if s.get('id') not in (None,'empty')] else 1)"; then
+            gh workflow run charts.yml --ref main
           fi
 
   deploy:

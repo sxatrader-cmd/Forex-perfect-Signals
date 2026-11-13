@@ -1,18 +1,24 @@
 name: Live charts
 
 # Refreshes the candle files behind the live signal charts on their own,
-# so they do not wait for the full Pages workflow (which also runs tests,
-# calendar, signals and the site deploy).
+# without waiting for the full Pages workflow.
 #
-# GitHub runs scheduled workflows at most every 5 minutes and often later.
-# So each scheduled run keeps refreshing once a minute for about 5 minutes
-# itself, which gives a chart update roughly every minute whenever a run starts.
+# GitHub's own schedule is unreliable (runs often arrive hours apart), so this
+# workflow keeps itself going: each run refreshes the charts about once a
+# minute for ~11 minutes, then dispatches the next run of itself while a signal
+# is open and the market is open. workflow_dispatch is the one event a
+# GITHUB_TOKEN may trigger, which is what makes the chain possible.
 #
-# Commits use [skip ci] so they do not trigger a site deploy. The chart files
-# are read from raw.githubusercontent.com, not from the deployed site.
+# The chain stops by itself when no signal is open or the market closes.
+# It restarts from: the Pages workflow (when a signal is open), the schedule
+# below as a fallback, or a manual "Run workflow".
 #
-# Shares the "pages" concurrency group with pages.yml so the two never push
-# to main at the same time.
+# Own concurrency group: at most one run plus one queued run, so a restart
+# while the chain is alive never creates a second chain. It is kept apart from
+# the "pages" group so a queued chart run never cancels a queued Pages run.
+#
+# Commits use [skip ci] so they do not trigger a site deploy; the site reads
+# the chart files from raw.githubusercontent.com.
 
 on:
   schedule:
@@ -21,15 +27,16 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
-  group: pages
+  group: live-charts
   cancel-in-progress: false
 
 jobs:
   charts:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 16
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,15 +47,43 @@ jobs:
           set -uo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for i in 1 2 3 4 5; do
+          passes=12
+          for i in $(seq 1 "$passes"); do
+            git pull -q --rebase -X theirs origin main || git rebase --abort || true
             python scripts/update_charts.py || echo "update_charts failed on pass $i"
             git add data/charts
             if ! git diff --cached --quiet -- data/charts; then
               git commit -q -m "data: chart candles [skip ci]"
-              git pull -q --rebase origin main
-              git push -q origin HEAD:main
+              for try in 1 2 3; do
+                if git push -q origin HEAD:main; then break; fi
+                git pull -q --rebase -X theirs origin main || { git rebase --abort; git reset -q --hard origin/main; break; }
+              done
             else
               git reset -q -- data/charts || true
             fi
-            if [ "$i" -lt 5 ]; then sleep 55; fi
+            if [ "$i" -lt "$passes" ]; then sleep 55; fi
           done
+      - name: Start the next run while a signal is open
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          git pull -q origin main || true
+          keep=$(python3 - <<'PY'
+          import json, sys
+          from datetime import datetime, timezone
+          sys.path.insert(0, "scripts")
+          from fps_lib import market_closed
+          try:
+              data = json.load(open("data/signals.json", encoding="utf-8"))
+          except Exception:
+              data = {}
+          open_ids = [s.get("id") for s in data.get("open") or [] if s.get("id") and s.get("id") != "empty"]
+          print("yes" if open_ids and not market_closed(datetime.now(timezone.utc)) else "no")
+          PY
+          )
+          echo "continue chain: $keep"
+          if [ "$keep" = "yes" ]; then
+            gh workflow run charts.yml --ref main || echo "dispatch failed"
+          fi
