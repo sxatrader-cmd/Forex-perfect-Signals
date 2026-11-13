@@ -6,8 +6,8 @@ does not return a current price, the Coinbase public spot endpoint supplies
 the price only. A spot quote is never turned into candles. The economic
 calendar list is Forex Factory's public weekly file. That file has no
 released-actual field, so actuals are matched from TradingView's public
-calendar when the currency and time line up. Headline tone comes from public
-RSS feeds.
+calendar when the country, release time, and indicator agree. Headline tone
+comes from public RSS feeds.
 """
 
 from __future__ import annotations
@@ -725,6 +725,9 @@ def parse_number(value: str | None) -> float | None:
     elif text[-1:] in {"B", "b"}:
         multiplier = 1_000_000_000.0
         text = text[:-1]
+    elif text[-1:] in {"T", "t"}:
+        multiplier = 1_000_000_000_000.0
+        text = text[:-1]
     text = text.replace("%", "").replace("$", "")
     try:
         return float(text) * multiplier
@@ -767,8 +770,14 @@ def format_tv_value(event: dict) -> str:
     actual = event.get("actual")
     if actual is None or actual == "":
         return ""
+    if isinstance(actual, bool):
+        return ""
     if isinstance(actual, float):
-        text = f"{actual:.0f}" if abs(actual) >= 100 else f"{actual:g}"
+        if not math.isfinite(actual):
+            return ""
+        text = str(int(actual)) if actual.is_integer() else f"{actual:.8f}".rstrip("0").rstrip(".")
+    elif isinstance(actual, int):
+        text = str(actual)
     else:
         text = str(actual)
     scale = event.get("scale") or ""
@@ -795,6 +804,135 @@ def jaccard(left: set[str], right: set[str]) -> float:
     return len(left & right) / len(left | right)
 
 
+# National euro releases share a currency, and MoM/YoY prints share a timestamp.
+# Country, period, and the indicator itself have to agree before an actual moves.
+_CURRENCY_COUNTRY = {
+    "USD": "US",
+    "GBP": "GB",
+    "JPY": "JP",
+    "AUD": "AU",
+    "CAD": "CA",
+    "NZD": "NZ",
+    "CHF": "CH",
+    "CNY": "CN",
+    "EUR": "EU",
+}
+_COUNTRY_ALIAS = {"UK": "GB", "EMU": "EU", "EA": "EU"}
+_COUNTRY_PHRASES = (
+    ("euro area", "EU"),
+    ("euro-zone", "EU"),
+    ("eurozone", "EU"),
+    ("german", "DE"),
+    ("germany", "DE"),
+    ("french", "FR"),
+    ("france", "FR"),
+    ("italian", "IT"),
+    ("italy", "IT"),
+    ("spanish", "ES"),
+    ("spain", "ES"),
+    ("swiss", "CH"),
+)
+# Phrases that are the same release under two names. Longer phrases first.
+_SYNONYMS = (
+    (re.compile(r"non[-\s]?farm payrolls?"), " nonfarmpayroll "),
+    (re.compile(r"non[-\s]?farm employment"), " nonfarmpayroll "),
+    (re.compile(r"harmonised inflation(?: rate)?"), " hicp "),
+    (re.compile(r"harmonized inflation(?: rate)?"), " hicp "),
+    (re.compile(r"\bhicp\b"), " hicp "),
+    (re.compile(r"inflation rate"), " cpi "),
+    (re.compile(r"consumer prices?(?: index)?"), " cpi "),
+    (re.compile(r"\bcpi\b"), " cpi "),
+    (re.compile(r"producer\s*(?:&|and|/)\s*import prices?"), " ppi "),
+    (re.compile(r"producer prices?"), " ppi "),
+    (re.compile(r"\bppi\b"), " ppi "),
+    (re.compile(r"wholesale prices?(?: index)?"), " wpi "),
+    (re.compile(r"\bwpi\b"), " wpi "),
+    (re.compile(r"balance of trade"), " tradebalance "),
+    (re.compile(r"trade balances?"), " tradebalance "),
+    (re.compile(r"current accounts?"), " currentaccount "),
+    (re.compile(r"continuing jobless claims?"), " continuingclaims "),
+    (re.compile(r"initial jobless claims?"), " joblessclaims "),
+    (re.compile(r"unemployment claims?"), " joblessclaims "),
+    (re.compile(r"jobless claims?"), " joblessclaims "),
+    (re.compile(r"crude oil inventories"), " crudestocks "),
+    (re.compile(r"crude oil stocks?"), " crudestocks "),
+    (re.compile(r"eco(?:nomy)? watchers"), " economywatchers "),
+    (re.compile(r"household spending"), " householdspending "),
+    (re.compile(r"industrial production"), " industrialproduction "),
+    (re.compile(r"manufacturing production"), " manufacturingproduction "),
+    (re.compile(r"manufacturing sales"), " manufacturingsales "),
+    (re.compile(r"wholesale inventories"), " wholesaleinventories "),
+    (re.compile(r"wholesale sales"), " wholesalesales "),
+    (re.compile(r"retail sales"), " retailsales "),
+    (re.compile(r"construction output"), " constructionoutput "),
+    (re.compile(r"existing home sales"), " existinghomesales "),
+    (re.compile(r"business investment"), " businessinvestment "),
+    (re.compile(r"money supply m2"), " m2supply "),
+    (re.compile(r"m2 money (?:stock|supply)"), " m2supply "),
+    (re.compile(r"bank lending"), " banklending "),
+    (re.compile(r"building permits?"), " buildingpermits "),
+    (re.compile(r"visitor arrivals"), " visitorarrivals "),
+    (re.compile(r"consumer (?:confidence|sentiment)"), " consumersentiment "),
+    (re.compile(r"federal budget"), " federalbudget "),
+    (re.compile(r"budget statement"), " federalbudget "),
+    (re.compile(r"monthly budget"), " federalbudget "),
+    (re.compile(r"\bgdp\b"), " gdp "),
+    (re.compile(r"30[-\s]?years?"), " 30y "),
+    (re.compile(r"30[-\s]?y\b"), " 30y "),
+    (re.compile(r"10[-\s]?years?"), " 10y "),
+    (re.compile(r"10[-\s]?y\b"), " 10y "),
+)
+_STRONG = {
+    "nonfarmpayroll", "hicp", "cpi", "ppi", "wpi", "tradebalance", "currentaccount",
+    "continuingclaims", "joblessclaims", "crudestocks", "economywatchers",
+    "householdspending", "industrialproduction", "manufacturingproduction",
+    "manufacturingsales", "wholesaleinventories", "wholesalesales", "retailsales",
+    "constructionoutput", "existinghomesales", "businessinvestment", "gdp",
+    "m2supply", "banklending", "buildingpermits", "visitorarrivals",
+    "consumersentiment", "federalbudget", "employment", "nfib", "sentix", "nab",
+    "brc", "rics", "adp",
+}
+# Agency names that publish several different numbers at one timestamp.
+_SOURCE = {"api", "eia"}
+_DROP = {
+    "m", "y", "q", "mm", "yy", "qq", "sa", "nsa", "adj", "unadj", "prelim", "flash",
+    "final", "the", "of", "and", "mom", "yoy", "qoq", "change", "preliminary", "prel",
+    "est", "estimate", "index", "prices", "price", "rate", "growth", "output",
+    "monthly", "weekly", "total", "overall", "global", "survey", "poll", "current",
+    "all", "vol", "o", "p", "r", "s", "a", "n", "advanced", "adv", "second", "2nd",
+    "3rd", "initial", "headline", "figures", "figure", "pct", "chg", "percent",
+    "percentage", "adjusted", "seasonally", "german", "french", "italian", "spanish",
+    "swiss", "eurozone", "germany", "france", "italy", "spain", "euro", "area",
+}
+_NARROW = (
+    ("core", re.compile(r"\bcore\b")),
+    ("harmonised", re.compile(r"\bharmoni[sz]ed\b|\bhicp\b")),
+    ("goods", re.compile(r"\bgoods\b")),
+    ("imports", re.compile(r"\bimports\b")),
+    ("exports", re.compile(r"\bexports\b")),
+    ("heating", re.compile(r"\bheating\b")),
+    ("gasoline", re.compile(r"\bgasoline\b")),
+    ("distillate", re.compile(r"\bdistillate\b")),
+    ("cushing", re.compile(r"\bcushing\b")),
+    ("continuing", re.compile(r"\bcontinuing\b|\bcontinued\b")),
+    ("average", re.compile(r"\baverage\b|\bavg\b|\b4wk\b|\b4-wk\b|\b4-week\b")),
+    ("tobacco", re.compile(r"\btobacco\b")),
+    ("ex", re.compile(r"\bex\b")),
+    ("eu", re.compile(r"\beu\b")),
+    ("noneu", re.compile(r"\bnon-?eu\b")),
+    ("usd", re.compile(r"\busd\b")),
+    ("nsa", re.compile(r"\bnsa\b")),
+    ("outlook", re.compile(r"\boutlook\b")),
+)
+_PERIODS = (
+    ("3m", re.compile(r"3\s*m\s*/\s*3\s*m|3m/3m|3-month|3 month")),
+    ("qoq", re.compile(r"\bq\s*/\s*q\b|\bqoq\b|\bqq\b")),
+    ("yoy", re.compile(r"\by\s*/\s*y\b|\byoy\b|\byy\b")),
+    ("mom", re.compile(r"\bm\s*/\s*m\b|\bmom\b|\bmm\b")),
+)
+_MATCH_WINDOW = 90 * 60
+
+
 def fetch_tradingview(now: datetime) -> list[dict]:
     start = (now - timedelta(days=6)).date().isoformat()
     end = (now + timedelta(days=8)).date().isoformat()
@@ -815,14 +953,22 @@ def fetch_tradingview(now: datetime) -> list[dict]:
         currency = (item.get("currency") or "").upper()
         if not currency or not item.get("date"):
             continue
-        label = f"{item.get('title') or ''} {item.get('indicator') or ''}"
+        title = item.get("title") or ""
+        indicator = item.get("indicator") or ""
+        label = f"{title} {indicator}".strip()
         events.append(
             {
+                "id": item.get("id"),
                 "currency": currency,
+                "country": (item.get("country") or "").upper(),
                 "dt": parse_dt(item["date"]),
+                "title": title or indicator,
+                "indicator": indicator,
+                "unit": item.get("unit") or "",
                 "tokens": title_tokens(label),
-                "title": item.get("title") or item.get("indicator") or "",
                 "actual": format_tv_value(item),
+                "forecast": format_tv_value({**item, "actual": item.get("forecast")}),
+                "previous": format_tv_value({**item, "actual": item.get("previous")}),
             }
         )
     return events
@@ -847,55 +993,241 @@ def actual_is_compatible(event: dict, actual: str) -> bool:
     return True
 
 
+def _canonical_country(code: str) -> str:
+    code = (code or "").upper()
+    return _COUNTRY_ALIAS.get(code, code)
+
+
+def expected_country(currency: str, title: str) -> str:
+    """Euro-area members share EUR, so the country has to come from the title."""
+    text = title.lower()
+    for phrase, code in _COUNTRY_PHRASES:
+        if re.search(rf"\b{re.escape(phrase)}\b", text):
+            return code
+    return _CURRENCY_COUNTRY.get(currency.upper(), "")
+
+
+def _candidate_country(candidate: dict) -> str:
+    country = _canonical_country(str(candidate.get("country") or ""))
+    if country:
+        return country
+    return _CURRENCY_COUNTRY.get(str(candidate.get("currency") or "").upper(), "")
+
+
+def _periods_in(text: str) -> set[str]:
+    found = set()
+    for name, pattern in _PERIODS:
+        if pattern.search(text.lower()):
+            found.add(name)
+    return found
+
+
+def _identity_tokens(text: str) -> set[str]:
+    lowered = text.lower().replace("–", "-")
+    for pattern, replacement in _SYNONYMS:
+        lowered = pattern.sub(replacement, lowered)
+    return set(re.findall(r"[a-z0-9]+", lowered)) - _DROP
+
+
+def _flag_hits(text: str) -> set[str]:
+    raw = text.lower()
+    return {name for name, pattern in _NARROW if pattern.search(raw)}
+
+
+def _narrow_flags(title: str, indicator: str, currency: str, unit: str = "") -> set[str]:
+    """Qualifiers that name a different series.
+
+    Goods, NSA, core, and the rest are read from the title. Indicator codes
+    such as "Corp Goods Price" or "CPI MM NSA" describe the same release and
+    must not veto it. Denomination is the exception: China USD vs yuan often
+    appears only in the indicator or the unit.
+    """
+    flags = _flag_hits(title)
+    if "usd" in _flag_hits(indicator):
+        flags.add("usd")
+    if currency.upper() != "USD" and unit == "$":
+        flags.add("usd")
+    if currency.upper() == "USD":
+        flags.discard("usd")
+    return flags
+
+
+def _indicators_correspond(ff_tokens: set[str], tv_title_tokens: set[str], tv_tokens: set[str]) -> bool:
+    shared = ff_tokens & tv_tokens
+    if not (shared - _SOURCE):
+        return False
+    ff_strong = ff_tokens & _STRONG
+    tv_strong = tv_tokens & _STRONG
+    if ff_strong and tv_strong and not (ff_strong & tv_strong):
+        return False
+    # A shared indicator name absorbs vendor wording ("NFIB Business Optimism").
+    # Otherwise the TradingView title itself has to be the Forex Factory title,
+    # so "Bid-to-Cover" or "Allotted at High" cannot inherit the headline print.
+    if shared & _STRONG:
+        return True
+    return bool(tv_title_tokens) and tv_title_tokens <= ff_tokens
+
+
+def _anchor_relation(left: str, right: str) -> str | None:
+    """How close a Forex Factory forecast/previous is to the TradingView figure."""
+    if not left or not right:
+        return None
+    a = parse_number(left)
+    b = parse_number(right)
+    if a is None or b is None:
+        return None
+    diff = abs(a - b)
+    denom = max(abs(a), abs(b), 1e-9)
+    rel = diff / denom
+    if "%" in left or "%" in right:
+        if diff <= 0.25:
+            return "close"
+        if diff >= 1.5:
+            return "extreme"
+        return "neutral"
+    if rel <= 0.08:
+        return "close"
+    if rel >= 0.45 or (a * b < 0 and abs(a) >= 0.5 and abs(b) >= 0.5):
+        return "extreme"
+    return "neutral"
+
+
+def _anchor_closeness(event: dict, candidate: dict) -> float | None:
+    """None when every comparable forecast/previous disagrees hard enough to reject."""
+    relations = []
+    for key in ("forecast", "previous"):
+        relation = _anchor_relation(str(event.get(key) or ""), str(candidate.get(key) or ""))
+        if relation:
+            relations.append(relation)
+    if relations and all(item == "extreme" for item in relations):
+        return None
+    if not relations:
+        return 0.5
+    weights = {"close": 1.0, "neutral": 0.4, "extreme": 0.0}
+    return sum(weights[item] for item in relations) / len(relations)
+
+
+def _tv_moment(candidate: dict) -> datetime:
+    moment = candidate["dt"]
+    if moment.tzinfo is None:
+        return moment.replace(tzinfo=timezone.utc)
+    return moment
+
+
+def match_score(event: dict, candidate: dict) -> float | None:
+    """Score one TradingView row for one Forex Factory event.
+
+    None means the row must not be used. Currency, country, a 90-minute window,
+    the period (m/m, q/q, y/y, 3m/3m), and the indicator all have to correspond.
+    A component (EU trade, goods, imports, core, the 4-week average) does not
+    fill the headline, and a forecast/previous that cannot be the same series
+    is rejected. Missing anchors do not reject: an empty actual is preferable
+    to a wrong one, but a blank previous is not evidence either way.
+    """
+    if str(candidate.get("currency") or "").upper() != str(event.get("currency") or "").upper():
+        return None
+    if not candidate.get("actual"):
+        return None
+    if not actual_is_compatible(event, str(candidate.get("actual") or "")):
+        return None
+    if expected_country(event.get("currency") or "", event.get("title") or "") != _candidate_country(candidate):
+        return None
+    delta = abs((_tv_moment(candidate) - parse_dt(event["time"])).total_seconds())
+    if delta > _MATCH_WINDOW:
+        return None
+    ff_text = str(event.get("title") or "")
+    tv_text = f"{candidate.get('title') or ''} {candidate.get('indicator') or ''}"
+    ff_periods = _periods_in(ff_text)
+    tv_periods = _periods_in(tv_text)
+    if len(ff_periods) > 1 or len(tv_periods) > 1 or (ff_periods and ff_periods != tv_periods):
+        return None
+    tv_title = str(candidate.get("title") or "")
+    if _narrow_flags(ff_text, "", event.get("currency") or "") != _narrow_flags(
+        tv_title,
+        str(candidate.get("indicator") or ""),
+        candidate.get("currency") or "",
+        str(candidate.get("unit") or ""),
+    ):
+        return None
+    ff_tokens = _identity_tokens(ff_text)
+    tv_title_tokens = _identity_tokens(tv_title)
+    tv_tokens = _identity_tokens(tv_text)
+    if not _indicators_correspond(ff_tokens, tv_title_tokens, tv_tokens):
+        return None
+    closeness = _anchor_closeness(event, candidate)
+    if closeness is None:
+        return None
+    time_score = 1 - delta / _MATCH_WINDOW
+    period_penalty = 1.5 if (not ff_periods and tv_periods) else 0.0
+    return 2 * jaccard(ff_tokens, tv_tokens) + 2 * time_score + 6 * closeness - period_penalty
+
+
 def match_actual(event: dict, tv_events: list[dict]) -> dict | None:
+    """Best TradingView row for one event. Does not reserve the row."""
     if not tv_events:
         return None
-    moment = parse_dt(event["time"])
-    tokens = title_tokens(event["title"])
     best = None
-    best_score = 0.0
+    best_score = None
     for candidate in tv_events:
-        if candidate["currency"] != event["currency"] or not candidate["actual"]:
+        score = match_score(event, candidate)
+        if score is None:
             continue
-        delta = abs((candidate["dt"] - moment).total_seconds())
-        if delta > 90 * 60:
-            continue
-        score = jaccard(tokens, candidate["tokens"]) + max(0.0, 0.2 * (1 - delta / (90 * 60)))
-        if score > best_score:
+        if best_score is None or score > best_score:
             best_score = score
             best = candidate
-    if best is not None and best_score >= 0.45 and actual_is_compatible(event, best["actual"]):
-        return best
-    return None
+    return best
+
+
+def assign_tv_actuals(events: list[dict], tv_events: list[dict]) -> int:
+    """Attach each TradingView actual to at most one event. Highest score wins."""
+    pairs = []
+    for event_index, event in enumerate(events):
+        if event.get("actual"):
+            continue
+        for tv_index, candidate in enumerate(tv_events):
+            score = match_score(event, candidate)
+            if score is None:
+                continue
+            delta = abs((_tv_moment(candidate) - parse_dt(event["time"])).total_seconds())
+            pairs.append((score, -delta, event_index, tv_index))
+    pairs.sort(reverse=True)
+    used_events: set[int] = set()
+    used_rows: set[int] = set()
+    matched = 0
+    for _score, _delta, event_index, tv_index in pairs:
+        if event_index in used_events or tv_index in used_rows:
+            continue
+        used_events.add(event_index)
+        used_rows.add(tv_index)
+        events[event_index]["actual"] = tv_events[tv_index]["actual"]
+        events[event_index]["actualSource"] = "TradingView"
+        matched += 1
+    return matched
 
 
 def normalize_ff(raw_events: list[dict], tv_events: list[dict] | None) -> tuple[list[dict], int]:
     normalized = []
-    matched = 0
     for item in raw_events:
         currency = str(item.get("country") or "").upper()
         title = str(item.get("title") or "").strip()
         if not currency or not title or not item.get("date"):
             continue
         moment = iso_z(parse_dt(str(item["date"])))
-        event = {
-            "id": f"{currency}|{re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')}|{moment}",
-            "title": title,
-            "currency": currency,
-            "time": moment,
-            "impact": str(item.get("impact") or "Low"),
-            "forecast": str(item.get("forecast") or "").strip(),
-            "previous": str(item.get("previous") or "").strip(),
-            "actual": str(item.get("actual") or "").strip(),
-            "actualSource": "Forex Factory" if str(item.get("actual") or "").strip() else None,
-        }
-        if not event["actual"] and tv_events:
-            found = match_actual(event, tv_events)
-            if found:
-                event["actual"] = found["actual"]
-                event["actualSource"] = "TradingView"
-                matched += 1
-        normalized.append(event)
+        released = str(item.get("actual") or "").strip()
+        normalized.append(
+            {
+                "id": f"{currency}|{re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')}|{moment}",
+                "title": title,
+                "currency": currency,
+                "time": moment,
+                "impact": str(item.get("impact") or "Low"),
+                "forecast": str(item.get("forecast") or "").strip(),
+                "previous": str(item.get("previous") or "").strip(),
+                "actual": released,
+                "actualSource": "Forex Factory" if released else None,
+            }
+        )
+    matched = assign_tv_actuals(normalized, tv_events or [])
     normalized.sort(key=lambda row: (row["time"], row["currency"], row["title"]))
     return normalized, matched
 
