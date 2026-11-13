@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T13:34:42Z",
+  "updatedAt": "2026-11-13T14:09:17Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 46,
+      "matched": 47,
       "error": null
     }
   },
@@ -189,7 +189,7 @@
       "impact": "Low",
       "forecast": "-3.1%",
       "previous": "-3.1%",
-      "actual": "-2.8%",
+      "actual": "-6.8%",
       "actualSource": "TradingView"
     },
     {
@@ -222,7 +222,7 @@
       "impact": "Low",
       "forecast": "2.81T",
       "previous": "2.98T",
-      "actual": "-188B",
+      "actual": "1817.7B",
       "actualSource": "TradingView"
     },
     {
@@ -255,7 +255,7 @@
       "impact": "Low",
       "forecast": "126.5B",
       "previous": "133.5B",
-      "actual": "105B",
+      "actual": "105.28B",
       "actualSource": "TradingView"
     },
     {
@@ -266,7 +266,7 @@
       "impact": "Low",
       "forecast": "855B",
       "previous": "906B",
-      "actual": "105B",
+      "actual": "712.8B",
       "actualSource": "TradingView"
     },
     {
@@ -365,7 +365,7 @@
       "impact": "Low",
       "forecast": "",
       "previous": "16.8K",
-      "actual": "19750",
+      "actual": "19500",
       "actualSource": "TradingView"
     },
     {
@@ -475,8 +475,8 @@
       "impact": "Low",
       "forecast": "",
       "previous": "",
-      "actual": "0.433M",
-      "actualSource": "TradingView"
+      "actual": "",
+      "actualSource": null
     },
     {
       "id": "USD|fomc-member-bowman-speaks|2026-11-10T23:30:00Z",
@@ -508,8 +508,8 @@
       "impact": "Low",
       "forecast": "2.1%",
       "previous": "2.0%",
-      "actual": "1296T",
-      "actualSource": "TradingView"
+      "actual": "",
+      "actualSource": null
     },
     {
       "id": "JPY|prelim-machine-tool-orders-y-y|2026-11-11T06:00:00Z",
@@ -618,8 +618,8 @@
       "impact": "Low",
       "forecast": "",
       "previous": "2.8%",
-      "actual": "9.8%",
-      "actualSource": "TradingView"
+      "actual": "",
+      "actualSource": null
     },
     {
       "id": "JPY|ppi-y-y|2026-11-11T23:50:00Z",
@@ -629,7 +629,7 @@
       "impact": "Low",
       "forecast": "6.5%",
       "previous": "6.8%",
-      "actual": "0.7%",
+      "actual": "7.1%",
       "actualSource": "TradingView"
     },
     {
@@ -695,8 +695,8 @@
       "impact": "Low",
       "forecast": "0.9%",
       "previous": "0.9%",
-      "actual": "0.2%",
-      "actualSource": "TradingView"
+      "actual": "",
+      "actualSource": null
     },
     {
       "id": "GBP|industrial-production-m-m|2026-11-12T07:00:00Z",
@@ -728,7 +728,7 @@
       "impact": "Low",
       "forecast": "0.4%",
       "previous": "1.7%",
-      "actual": "3%",
+      "actual": "0.4%",
       "actualSource": "TradingView"
     },
     {
@@ -739,7 +739,7 @@
       "impact": "Medium",
       "forecast": "0.7%",
       "previous": "0.5%",
-      "actual": "0.2%",
+      "actual": "0.7%",
       "actualSource": "TradingView"
     },
     {
@@ -783,8 +783,8 @@
       "impact": "Medium",
       "forecast": "194K",
       "previous": "189K",
-      "actual": "",
-      "actualSource": null
+      "actual": "200K",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|existing-home-sales|2026-11-12T15:00:00Z",
@@ -838,7 +838,7 @@
       "impact": "Low",
       "forecast": "-0.6M",
       "previous": "-0.9M",
-      "actual": "0.544M",
+      "actual": "4.657M",
       "actualSource": "TradingView"
     },
     {
@@ -937,8 +937,8 @@
       "impact": "Low",
       "forecast": "0.4%",
       "previous": "1.9%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.4%",
+      "actualSource": "TradingView"
     },
     {
       "id": "CHF|ppi-m-m|2026-11-13T07:30:00Z",
@@ -948,8 +948,8 @@
       "impact": "Low",
       "forecast": "0.2%",
       "previous": "0.3%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.9%",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|french-final-cpi-m-m|2026-11-13T07:45:00Z",
@@ -959,8 +959,8 @@
       "impact": "Low",
       "forecast": "0.4%",
       "previous": "0.4%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.4%",
+      "actualSource": "TradingView"
     },
     {
       "id": "CNY|m2-money-supply-y-y|2026-11-13T09:00:00Z",
@@ -992,7 +992,7 @@
       "impact": "Low",
       "forecast": "2.84B",
       "previous": "1.77B",
-      "actual": "-0.784B",
+      "actual": "2.083B",
       "actualSource": "TradingView"
     },
     {
@@ -1014,8 +1014,8 @@
       "impact": "Low",
       "forecast": "0.4%",
       "previous": "0.4%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.4%",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|trade-balance|2026-11-13T10:00:00Z",
@@ -1025,7 +1025,7 @@
       "impact": "Low",
       "forecast": "-4.5B",
       "previous": "-6.8B",
-      "actual": "-0.784B",
+      "actual": "-8.7B",
       "actualSource": "TradingView"
     },
     {
@@ -1058,7 +1058,7 @@
       "impact": "High",
       "forecast": "0.3%",
       "previous": "0.7%",
-      "actual": "5%",
+      "actual": "0.3%",
       "actualSource": "TradingView"
     },
     {
