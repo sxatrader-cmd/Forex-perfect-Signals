@@ -425,6 +425,133 @@ def test_chart_payload() -> None:
         fail("closed chart should be final and mark the candle that touched the target")
 
 
+def test_coinbase_spot_and_price_health() -> None:
+    from fps_lib import NO_ISSUE_PAIRS, PAIRS, parse_coinbase_spot
+    from update_signals import apply_spot_mark, price_report
+
+    spot = parse_coinbase_spot(
+        "EURUSD",
+        {"data": {"amount": "1.1053", "base": "EUR", "currency": "USD"}},
+    )
+    if spot != 1.1053:
+        fail(f"coinbase spot {spot}")
+    if parse_coinbase_spot("EURUSD", {"data": {"amount": "1.1", "base": "EUR", "currency": "GBP"}}) is not None:
+        fail("mismatched coinbase currency must be rejected")
+    if parse_coinbase_spot("EURUSD", {"data": {"amount": "0", "base": "EUR", "currency": "USD"}}) is not None:
+        fail("non-positive spot")
+    if parse_coinbase_spot("NOSUCH", {"data": {"amount": "1", "base": "NO", "currency": "SUCH"}}) is not None:
+        fail("unknown pair")
+
+    issuing = [pair for pair in PAIRS if pair not in NO_ISSUE_PAIRS]
+    yahoo = {pair: "Yahoo Finance" for pair in issuing}
+    healthy = price_report(issuing, yahoo)
+    if not healthy["ok"] or healthy["fallback"] or "12 of 12" not in healthy["detail"]:
+        fail(f"a quote for every issuing pair, including one that is already open, must be ok: {healthy}")
+    mixed = dict(yahoo)
+    mixed["GBPNZD"] = "Coinbase"
+    fallback = price_report(issuing, mixed)
+    if (
+        not fallback["ok"]
+        or fallback["fallback"] != ["GBPNZD"]
+        or "Coinbase spot fallback for GBPNZD" not in fallback["detail"]
+    ):
+        fail(f"fallback should stay ok and be named: {fallback}")
+    missing = dict(yahoo)
+    del missing["EURCAD"]
+    broken = price_report(issuing, missing)
+    if broken["ok"] or "11 of 12" not in broken["detail"] or "No price for EURCAD" not in broken["detail"]:
+        fail(f"missing price must fail health: {broken}")
+
+    issued = datetime(2026, 11, 13, 8, tzinfo=timezone.utc)
+    signal = {
+        "pair": "GBPNZD",
+        "direction": "BUY",
+        "entry": 2.38000,
+        "sl": 2.37000,
+        "tp": 2.40000,
+        "issuedAt": iso_z(issued),
+        "status": "open",
+        "updates": [],
+        "indicators": {"ema50": 2.37000},
+    }
+    marked = apply_spot_mark(signal, 2.39017, iso_z(issued + timedelta(minutes=30)), issued + timedelta(minutes=30))
+    if marked.get("status") != "open" or marked.get("result") or marked.get("priceSource") != "Coinbase":
+        fail(f"spot mark must not close the trade: {marked}")
+    if marked["currentPrice"] != 2.39017 or marked.get("updates"):
+        fail("spot mark should store the price and wait four hours for a note")
+    later = apply_spot_mark(signal, 2.39017, iso_z(issued + timedelta(hours=4)), issued + timedelta(hours=4))
+    if not later.get("updates") or later["updates"][-1].get("price") != 2.39017:
+        fail("a due spot mark can note the price without a candle RSI")
+    if "RSI" in later["updates"][-1]["comment"]["en"]:
+        fail("spot note must not invent an RSI reading")
+
+
+def test_track_falls_back_to_coinbase_spot() -> None:
+    import update_signals
+    from fps_lib import Bar, FetchError
+
+    now = datetime(2026, 11, 13, 12, tzinfo=timezone.utc)
+    signal = {
+        "id": "EURUSD-20261113-BUY",
+        "pair": "EURUSD",
+        "direction": "BUY",
+        "entry": 1.10000,
+        "sl": 1.09000,
+        "tp": 1.12000,
+        "issuedAt": iso_z(now),
+        "status": "open",
+        "currentPrice": 1.10000,
+        "floatingPips": 0.0,
+        "updates": [],
+        "indicators": {"ema50": 1.09000},
+    }
+
+    def yahoo_down(*_args, **_kwargs):
+        raise FetchError("yahoo down")
+
+    def spot(pair: str) -> float:
+        if pair != "EURUSD":
+            fail(f"unexpected spot pair {pair}")
+        return 1.1053
+
+    original_yahoo = update_signals.fetch_yahoo
+    original_spot = update_signals.fetch_coinbase_spot
+    update_signals.fetch_yahoo = yahoo_down
+    update_signals.fetch_coinbase_spot = spot
+    try:
+        still, closed, changed, quoted = update_signals.track([dict(signal)], now)
+    finally:
+        update_signals.fetch_yahoo = original_yahoo
+        update_signals.fetch_coinbase_spot = original_spot
+    if closed or not changed or quoted != {"EURUSD": "Coinbase"}:
+        fail(f"yahoo failure should price from Coinbase without closing: {closed} {quoted}")
+    marked = still[0]
+    if marked["status"] != "open" or marked.get("result") or marked["priceSource"] != "Coinbase":
+        fail(f"spot fallback must leave the signal open: {marked}")
+    if marked["currentPrice"] != 1.1053:
+        fail(f"spot price not stored: {marked['currentPrice']}")
+
+    def yahoo_bars(*_args, **_kwargs):
+        start = int(now.timestamp()) - 20 * 3600
+        return [Bar(start + index * 3600, 1.1, 1.101, 1.099, 1.1) for index in range(15)]
+
+    called = {"spot": 0}
+
+    def spot_unused(_pair: str) -> float:
+        called["spot"] += 1
+        return 9.0
+
+    update_signals.fetch_yahoo = yahoo_bars
+    update_signals.fetch_coinbase_spot = spot_unused
+    try:
+        _still, closed, _changed, quoted = update_signals.track([dict(signal)], now)
+    finally:
+        update_signals.fetch_yahoo = original_yahoo
+        update_signals.fetch_coinbase_spot = original_spot
+    if closed or quoted != {"EURUSD": "Yahoo Finance"} or called["spot"]:
+        fail(f"yahoo candles must stay the price and skip Coinbase: {quoted} {called} {closed}")
+
+
 if __name__ == "__main__":
     test_ema_rsi_macd()
     test_exit_rules()
@@ -437,4 +564,6 @@ if __name__ == "__main__":
     test_pause_blocks_issue_even_when_forced()
     test_session_scans()
     test_chart_payload()
+    test_coinbase_spot_and_price_health()
+    test_track_falls_back_to_coinbase_spot()
     print("all signal tests passed")
