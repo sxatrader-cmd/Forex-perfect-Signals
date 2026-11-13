@@ -412,10 +412,11 @@
         "atrDaily": 0.013983,
         "swing": 2.38441
       },
-      "entryReadyTs": 1794474000
+      "entryReadyTs": 1794474000,
+      "priceSource": "Yahoo Finance"
     }
   ],
-  "updatedAt": "2026-11-13T14:00:26Z",
+  "updatedAt": "2026-11-13T14:07:19Z",
   "sessionScans": {
     "frankfurt": "2026-11-13",
     "london": "2026-11-13",
