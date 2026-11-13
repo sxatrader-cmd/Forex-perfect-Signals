@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-11-13T14:09:17Z",
+  "updatedAt": "2026-11-13T15:47:32Z",
   "error": null,
   "sources": {
     "forexFactory": {
       "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
       "ok": true,
-      "events": 106
+      "events": 105
     },
     "actuals": {
       "provider": "TradingView",
@@ -1102,17 +1102,6 @@
       "impact": "Low",
       "forecast": "",
       "previous": "",
-      "actual": "",
-      "actualSource": null
-    },
-    {
-      "id": "USD|mortgage-delinquencies|2026-11-13T15:15:00Z",
-      "title": "Mortgage Delinquencies",
-      "currency": "USD",
-      "time": "2026-11-13T15:15:00Z",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "4.37%",
       "actual": "",
       "actualSource": null
     },
