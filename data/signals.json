@@ -1,5 +1,5 @@
 {
-  "lastIssueDate": "2026-11-12",
+  "lastIssueDate": "2026-11-13",
   "sources": {
     "prices": {
       "provider": "Yahoo Finance chart API",
@@ -38,36 +38,36 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.30× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.30× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.22× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.22× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 1.10889,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 1.10644,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "sell",
-      "ema20": 1.11932,
-      "ema50": 1.12872,
-      "ema200": 1.14588,
-      "rsi4h": 34.0,
-      "macdHist4h": -0.000898,
-      "atr4h": 0.00236
+      "ema20": 1.11775,
+      "ema50": 1.1277,
+      "ema200": 1.14544,
+      "rsi4h": 32.3,
+      "macdHist4h": -0.000669,
+      "atr4h": 0.002331
     },
     {
       "pair": "GBPUSD",
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.56× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.56× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.61× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.61× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 1.32652,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 1.32338,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "sell",
-      "ema20": 1.33543,
-      "ema50": 1.33631,
-      "ema200": 1.33888,
-      "rsi4h": 30.3,
-      "macdHist4h": -0.000941,
-      "atr4h": 0.002647
+      "ema20": 1.33397,
+      "ema50": 1.33567,
+      "ema200": 1.33868,
+      "rsi4h": 27.2,
+      "macdHist4h": -0.000648,
+      "atr4h": 0.002565
     },
     {
       "pair": "USDJPY",
@@ -92,36 +92,36 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.45× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.45× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.27× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.27× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.83282,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 0.83508,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "buy",
-      "ema20": 0.82461,
-      "ema50": 0.82242,
-      "ema200": 0.81026,
-      "rsi4h": 67.9,
-      "macdHist4h": 0.000744,
-      "atr4h": 0.002371
+      "ema20": 0.82594,
+      "ema50": 0.82306,
+      "ema200": 0.81055,
+      "rsi4h": 70.2,
+      "macdHist4h": 0.000479,
+      "atr4h": 0.002364
     },
     {
       "pair": "AUDUSD",
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 2.43× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.43× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 2.45× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 2.45× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.68264,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 0.68069,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "sell",
-      "ema20": 0.69484,
-      "ema50": 0.6998,
-      "ema200": 0.69809,
-      "rsi4h": 28.6,
-      "macdHist4h": -0.000211,
-      "atr4h": 0.001934
+      "ema20": 0.69334,
+      "ema50": 0.69898,
+      "ema200": 0.69789,
+      "rsi4h": 26.7,
+      "macdHist4h": -0.00026,
+      "atr4h": 0.001846
     },
     {
       "pair": "USDCAD",
@@ -146,72 +146,72 @@
       "decision": "skip",
       "block": "extension",
       "summary": {
-        "en": "Distance from 4H EMA20 is 1.56× ATR; the allowed band is -0.15–1.50× ATR.",
-        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 1.56× ATR، والنطاق المعتمد -0.15–1.50× ATR."
+        "en": "Distance from 4H EMA20 is 1.75× ATR; the allowed band is -0.15–1.50× ATR.",
+        "ar": "بعد السعر عن متوسط 20 على 4 ساعات يساوي 1.75× ATR، والنطاق المعتمد -0.15–1.50× ATR."
       },
-      "price": 0.55596,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 0.55454,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "sell",
-      "ema20": 0.56193,
-      "ema50": 0.56732,
-      "ema200": 0.57768,
-      "rsi4h": 40.0,
-      "macdHist4h": -0.00048,
-      "atr4h": 0.001715
+      "ema20": 0.56108,
+      "ema50": 0.56676,
+      "ema200": 0.57742,
+      "rsi4h": 35.4,
+      "macdHist4h": -0.000384,
+      "atr4h": 0.00161
     },
     {
       "pair": "GBPJPY",
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 211.323 versus EMA200 211.293, 4H EMA20 212.003 versus EMA50 211.895, MACD histogram -0.009217.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 211.323 مقابل متوسط 200 211.293، ومتوسط 20 على 4 ساعات 212.003 مقابل متوسط 50 211.895، وهيستوغرام MACD -0.009217."
+        "en": "Daily and 4H trends disagree. Daily EMA50 211.319 versus EMA200 211.291, 4H EMA20 211.865 versus EMA50 211.849, MACD histogram -0.04659.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 211.319 مقابل متوسط 200 211.291، ومتوسط 20 على 4 ساعات 211.865 مقابل متوسط 50 211.849، وهيستوغرام MACD -0.04659."
       },
-      "price": 211.895,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 211.602,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 211.4,
-      "ema50": 211.323,
-      "ema200": 211.293,
-      "rsi4h": 48.1,
-      "macdHist4h": -0.009217,
-      "atr4h": 0.481049
+      "ema20": 211.387,
+      "ema50": 211.319,
+      "ema200": 211.291,
+      "rsi4h": 44.5,
+      "macdHist4h": -0.046586,
+      "atr4h": 0.501658
     },
     {
       "pair": "GBPAUD",
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 1.91019 versus EMA200 1.91917, 4H EMA20 1.94035 versus EMA50 1.93297, MACD histogram -0.000737.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.91019 مقابل متوسط 200 1.91917، ومتوسط 20 على 4 ساعات 1.94035 مقابل متوسط 50 1.93297، وهيستوغرام MACD -0.000737."
+        "en": "Daily and 4H trends disagree. Daily EMA50 1.91153 versus EMA200 1.91942, 4H EMA20 1.94163 versus EMA50 1.93463, MACD histogram -0.000205.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.91153 مقابل متوسط 200 1.91942، ومتوسط 20 على 4 ساعات 1.94163 مقابل متوسط 50 1.93463، وهيستوغرام MACD -0.000205."
       },
-      "price": 1.94423,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 1.94492,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 1.92257,
-      "ema50": 1.91019,
-      "ema200": 1.91917,
-      "rsi4h": 57.6,
-      "macdHist4h": -0.000737,
-      "atr4h": 0.005472
+      "ema20": 1.92464,
+      "ema50": 1.91153,
+      "ema200": 1.91942,
+      "rsi4h": 57.5,
+      "macdHist4h": -0.000205,
+      "atr4h": 0.005121
     },
     {
       "pair": "GBPCAD",
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 1.88039 versus EMA200 1.86969, 4H EMA20 1.89137 versus EMA50 1.88669, MACD histogram -0.001041.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.88039 مقابل متوسط 200 1.86969، ومتوسط 20 على 4 ساعات 1.89137 مقابل متوسط 50 1.88669، وهيستوغرام MACD -0.001041."
+        "en": "Daily and 4H trends disagree. Daily EMA50 1.88050 versus EMA200 1.86982, 4H EMA20 1.88996 versus EMA50 1.88675, MACD histogram -0.001268.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.88050 مقابل متوسط 200 1.86982، ومتوسط 20 على 4 ساعات 1.88996 مقابل متوسط 50 1.88675، وهيستوغرام MACD -0.001268."
       },
-      "price": 1.88873,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 1.88655,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 1.88333,
-      "ema50": 1.88039,
-      "ema200": 1.86969,
-      "rsi4h": 51.1,
-      "macdHist4h": -0.001041,
-      "atr4h": 0.003789
+      "ema20": 1.88335,
+      "ema50": 1.8805,
+      "ema200": 1.86982,
+      "rsi4h": 41.6,
+      "macdHist4h": -0.001268,
+      "atr4h": 0.003525
     },
     {
       "pair": "GBPNZD",
@@ -221,8 +221,8 @@
         "en": "Open BUY from 2026-11-12T09:38:27Z stays active until stop 2.38082 or target 2.40429.",
         "ar": "إشارة BUY المفتوحة منذ 2026-11-12T09:38:27Z تبقى حتى الإيقاف 2.38082 أو الهدف 2.40429."
       },
-      "price": 2.38665,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 2.38685,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "buy",
       "ema20": 2.37739,
       "ema50": 2.35649,
@@ -236,54 +236,54 @@
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 0.84441 versus EMA200 0.85567, 4H EMA20 0.83552 versus EMA50 0.83543, MACD histogram -0.000089.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.84441 مقابل متوسط 200 0.85567، ومتوسط 20 على 4 ساعات 0.83552 مقابل متوسط 50 0.83543، وهيستوغرام MACD -0.000089."
+        "en": "Daily and 4H trends disagree. Daily EMA50 0.84405 versus EMA200 0.85546, 4H EMA20 0.83552 versus EMA50 0.83544, MACD histogram -0.000097.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 0.84405 مقابل متوسط 200 0.85546، ومتوسط 20 على 4 ساعات 0.83552 مقابل متوسط 50 0.83544، وهيستوغرام MACD -0.000097."
       },
-      "price": 0.8357,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 0.83589,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 0.83794,
-      "ema50": 0.84441,
-      "ema200": 0.85567,
-      "rsi4h": 53.8,
-      "macdHist4h": -8.9e-05,
-      "atr4h": 0.001053
+      "ema20": 0.83768,
+      "ema50": 0.84405,
+      "ema200": 0.85546,
+      "rsi4h": 53.2,
+      "macdHist4h": -9.7e-05,
+      "atr4h": 0.001036
     },
     {
       "pair": "EURJPY",
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 178.453 versus EMA200 180.812, 4H EMA20 177.141 versus EMA50 177.031, MACD histogram -0.02703.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 178.453 مقابل متوسط 200 180.812، ومتوسط 20 على 4 ساعات 177.141 مقابل متوسط 50 177.031، وهيستوغرام MACD -0.02703."
+        "en": "Daily and 4H trends disagree. Daily EMA50 178.373 versus EMA200 180.766, 4H EMA20 177.026 versus EMA50 176.996, MACD histogram -0.05925.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 178.373 مقابل متوسط 200 180.766، ومتوسط 20 على 4 ساعات 177.026 مقابل متوسط 50 176.996، وهيستوغرام MACD -0.05925."
       },
-      "price": 177.091,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 176.887,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 177.146,
-      "ema50": 178.453,
-      "ema200": 180.812,
-      "rsi4h": 49.7,
-      "macdHist4h": -0.027033,
-      "atr4h": 0.369219
+      "ema20": 177.081,
+      "ema50": 178.373,
+      "ema200": 180.766,
+      "rsi4h": 46.3,
+      "macdHist4h": -0.059247,
+      "atr4h": 0.393678
     },
     {
       "pair": "EURCAD",
       "decision": "skip",
       "block": "no-stack",
       "summary": {
-        "en": "Daily and 4H trends disagree. Daily EMA50 1.58789 versus EMA200 1.59986, 4H EMA20 1.58036 versus EMA50 1.57628, MACD histogram -0.001037.",
-        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.58789 مقابل متوسط 200 1.59986، ومتوسط 20 على 4 ساعات 1.58036 مقابل متوسط 50 1.57628، وهيستوغرام MACD -0.001037."
+        "en": "Daily and 4H trends disagree. Daily EMA50 1.58729 versus EMA200 1.59958, 4H EMA20 1.57918 versus EMA50 1.57635, MACD histogram -0.001244.",
+        "ar": "الاتجاه اليومي واتجاه 4 ساعات غير متفقين. متوسط 50 اليومي 1.58729 مقابل متوسط 200 1.59958، ومتوسط 20 على 4 ساعات 1.57918 مقابل متوسط 50 1.57635، وهيستوغرام MACD -0.001244."
       },
-      "price": 1.57844,
-      "priceAsOf": "2026-11-12T14:00:00Z",
+      "price": 1.57702,
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "dailyTrend": "mixed",
-      "ema20": 1.5782,
-      "ema50": 1.58789,
-      "ema200": 1.59986,
-      "rsi4h": 53.2,
-      "macdHist4h": -0.001037,
-      "atr4h": 0.003017
+      "ema20": 1.57771,
+      "ema50": 1.58729,
+      "ema200": 1.59958,
+      "rsi4h": 45.0,
+      "macdHist4h": -0.001244,
+      "atr4h": 0.002991
     }
   ],
   "open": [
@@ -297,10 +297,10 @@
       "rr": 2.0,
       "atr": 0.00652,
       "issuedAt": "2026-11-12T09:38:27Z",
-      "priceAsOf": "2026-11-13T02:00:00Z",
+      "priceAsOf": "2026-11-13T05:00:00Z",
       "status": "open",
-      "currentPrice": 2.38763,
-      "floatingPips": -10.1,
+      "currentPrice": 2.38685,
+      "floatingPips": -17.9,
       "reasons": [
         {
           "en": "4-hour trend is bullish: EMA20 2.38730 versus EMA50 2.38633, ADX 20.4. Daily bias EMA50 2.35649 is above EMA200 2.31862 and EMA20 2.37739 is above EMA50. Last price 2.38864 is above daily EMA20.",
@@ -391,7 +391,7 @@
       "entryReadyTs": 1794474000
     }
   ],
-  "updatedAt": "2026-11-13T02:54:39Z",
+  "updatedAt": "2026-11-13T05:06:32Z",
   "sessionScans": {
     "frankfurt": "2026-11-12",
     "london": "2026-11-12",
