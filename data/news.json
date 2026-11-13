@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T09:08:07Z",
+  "updatedAt": "2026-11-13T10:07:25Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 41,
+      "matched": 42,
       "error": null
     }
   },
@@ -981,8 +981,8 @@
       "impact": "Low",
       "forecast": "0.2%",
       "previous": "0.1%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0%",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|flash-gdp-q-q|2026-11-13T10:00:00Z",
