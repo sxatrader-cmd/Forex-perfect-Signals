@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-11-13T15:47:32Z",
+  "updatedAt": "2026-11-13T21:43:00Z",
   "error": null,
   "sources": {
     "forexFactory": {
       "url": "https://nfs.faireconomy.media/ff_calendar_thisweek.json",
       "ok": true,
-      "events": 105
+      "events": 106
     },
     "actuals": {
       "provider": "TradingView",
@@ -1143,6 +1143,17 @@
       "title": "FOMC Member Daly Speaks",
       "currency": "USD",
       "time": "2026-11-13T17:00:00Z",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "",
+      "actual": "",
+      "actualSource": null
+    },
+    {
+      "id": "USD|fomc-financial-stability-report|2026-11-13T21:00:00Z",
+      "title": "FOMC Financial Stability Report",
+      "currency": "USD",
+      "time": "2026-11-13T21:00:00Z",
       "impact": "Low",
       "forecast": "",
       "previous": "",
