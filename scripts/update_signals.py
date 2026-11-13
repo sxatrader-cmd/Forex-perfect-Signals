@@ -8,6 +8,10 @@ SESSION_WINDOW_MINUTES of the open. A pair still gets at most one new signal
 per Baghdad day, and none while it has an open signal. Set FORCE_ISSUE=1 to run that pass immediately.
 Set PAUSE_ISSUE=1 to keep tracking and the calendar running without opening
 anything new. A paused run still updates open signals.
+
+Yahoo candles stay the price history. When Yahoo does not return a current
+price, the Coinbase spot is stored instead and the source is recorded. A spot
+quote does not become candles, and it does not open or close a signal.
 """
 
 from __future__ import annotations
@@ -37,8 +41,10 @@ from fps_lib import (
     build_progress_update,
     due_for_update,
     duration_hours,
+    fetch_coinbase_spot,
     fetch_yahoo,
     floating_pips,
+    fmt_px,
     iso_z,
     issuance_block,
     last_valid,
@@ -93,22 +99,98 @@ def quote_from_bars(pair: str, bars: list) -> tuple[float, str]:
     return price, as_of
 
 
-def track(open_signals: list[dict], now: datetime) -> tuple[list[dict], list[dict], bool]:
+def price_report(issuing_pairs: list[str], quotes: dict[str, str]) -> dict:
+    """Health for sources.prices. ok when every issuing pair has a price this run.
+
+    `quotes` maps a pair to "Yahoo Finance" or "Coinbase". A pair left out has
+    no price. Coinbase is a spot fallback and is named in the detail.
+    """
+    fallbacks = [pair for pair in issuing_pairs if quotes.get(pair) == "Coinbase"]
+    missing = [pair for pair in issuing_pairs if pair not in quotes]
+    priced = len(issuing_pairs) - len(missing)
+    parts = [
+        "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. "
+        "This is the endpoint yfinance reads. "
+        f"{priced} of {len(issuing_pairs)} issuing pairs have a price."
+    ]
+    if fallbacks:
+        parts.append(
+            "Coinbase spot fallback for "
+            + ", ".join(fallbacks)
+            + ". Yahoo candles were unavailable for those pairs, so the spot price is recorded and no signal is built from it."
+        )
+    if missing:
+        parts.append("No price for " + ", ".join(missing) + ".")
+    return {
+        "provider": "Yahoo Finance chart API",
+        "ok": not missing,
+        "detail": " ".join(parts),
+        "fallback": fallbacks,
+    }
+
+
+def status_quote(pair: str, now: datetime) -> tuple[str | None, float | None, str | None]:
+    """Latest price for a pair that will not be issued. Yahoo 1h candles, else Coinbase spot."""
+    now_ts = int(now.timestamp())
+    try:
+        bars = completed(fetch_yahoo(f"{pair}=X", "1h", "5d"), 3600, now_ts)
+    except FetchError as exc:
+        print(f"PAIR {pair} Yahoo candles failed: {exc}")
+        bars = []
+    if bars:
+        price, as_of = quote_from_bars(pair, bars)
+        return "Yahoo Finance", price, as_of
+    spot = fetch_coinbase_spot(pair)
+    if spot is None:
+        return None, None, None
+    print(f"PAIR {pair} current price from Coinbase spot")
+    return "Coinbase", round_px(pair, spot), iso_z(now)
+
+
+def apply_spot_mark(signal: dict, price: float, as_of: str, now: datetime) -> dict:
+    """Store a Coinbase spot on an open signal. Does not close the trade or invent candles."""
+    pair = signal["pair"]
+    pips = floating_pips(pair, signal["direction"], signal["entry"], price)
+    refreshed = dict(signal)
+    refreshed["currentPrice"] = price
+    refreshed["floatingPips"] = pips
+    refreshed["priceAsOf"] = as_of
+    refreshed["priceSource"] = "Coinbase"
+    if due_for_update(signal, now):
+        note = build_progress_update(signal, price, now, None, load_events_from_disk())
+        refreshed["updates"] = [*(signal.get("updates") or []), note]
+        print(f"UPDATE {pair} {note['baghdad']} {note['floatingPips']} pips {note['progressToTp']}% to TP (spot)")
+    return refreshed
+
+
+def track(open_signals: list[dict], now: datetime) -> tuple[list[dict], list[dict], bool, dict[str, str]]:
+    """Track open signals. The dict maps each pair priced this run to its source."""
     now_ts = int(now.timestamp())
     still: list[dict] = []
     closed: list[dict] = []
     changed = False
+    quoted: dict[str, str] = {}
     for signal in open_signals:
         pair = signal["pair"]
         try:
             bars = completed(fetch_yahoo(f"{pair}=X", "1h", "3mo"), 3600, now_ts)
         except FetchError as exc:
-            print(f"TRACK {pair} price failed: {exc}")
-            still.append(signal)
-            continue
+            print(f"TRACK {pair} Yahoo candles failed: {exc}")
+            bars = []
         if not bars:
-            still.append(signal)
+            spot = fetch_coinbase_spot(pair)
+            if spot is None:
+                print(f"TRACK {pair} price failed: Yahoo candles missing and Coinbase spot unavailable")
+                still.append(signal)
+                continue
+            price = round_px(pair, spot)
+            quoted[pair] = "Coinbase"
+            refreshed = apply_spot_mark(signal, price, iso_z(now), now)
+            still.append(refreshed)
+            changed = True
+            print(f"MARK {pair} {price} from Coinbase spot (Yahoo candles unavailable) floating {refreshed['floatingPips']} pips")
             continue
+        quoted[pair] = "Yahoo Finance"
         ready = int(signal.get("entryReadyTs") or parse_dt(signal["issuedAt"]).timestamp())
         outcome = resolve_exit(signal["direction"], ready, signal["sl"], signal["tp"], bars)
         price, as_of = quote_from_bars(pair, bars)
@@ -133,6 +215,7 @@ def track(open_signals: list[dict], now: datetime) -> tuple[list[dict], list[dic
             done["closedAt"] = closed_at
             done["currentPrice"] = close_price
             done["priceAsOf"] = closed_at
+            done["priceSource"] = "Yahoo Finance"
             done["pips"] = floating_pips(pair, signal["direction"], signal["entry"], close_price)
             done["floatingPips"] = done["pips"]
             done["durationHours"] = duration_hours(signal["issuedAt"], closed_at)
@@ -146,18 +229,20 @@ def track(open_signals: list[dict], now: datetime) -> tuple[list[dict], list[dic
             signal.get("currentPrice") != price
             or signal.get("floatingPips") != pips
             or signal.get("priceAsOf") != as_of
+            or signal.get("priceSource") != "Yahoo Finance"
         )
         if price_changed or refreshed is not signal and refreshed.get("updates") != signal.get("updates"):
             refreshed["currentPrice"] = price
             refreshed["floatingPips"] = pips
             refreshed["priceAsOf"] = as_of
+            refreshed["priceSource"] = "Yahoo Finance"
             still.append(refreshed)
             changed = True
             print(f"MARK {pair} {price} floating {pips} pips")
         else:
             still.append(signal)
             print(f"MARK {pair} unchanged {price}")
-    return still, closed, changed
+    return still, closed, changed, quoted
 
 
 def build_fundamentals(now: datetime) -> Fundamentals:
@@ -249,14 +334,17 @@ def main() -> int:
         print("idle: no open signals and no session scan is due")
         return 0
 
-    open_signals, newly_closed, tracked = track(open_signals, now)
+    open_signals, newly_closed, tracked, quoted = track(open_signals, now)
     history = merge_closed(history, newly_closed)
 
     if issue:
         fund = build_fundamentals(now)
         analyst = load_analyst_bias()
         decisions: list[Decision] = []
-        priced = 0
+        quotes: dict[str, str] = {}
+        # Candle loads mark the session as scanned. An open pair is priced in track()
+        # and counted in `quotes`, but it is not fetched again here.
+        candle_loads = 0
         for pair in PAIRS:
             if pair in NO_ISSUE_PAIRS:
                 decisions.append(
@@ -272,6 +360,9 @@ def main() -> int:
             block = issuance_block(pair, open_signals, history, now)
             if block == "open":
                 current = next(item for item in open_signals if item["pair"] == pair)
+                source = quoted.get(pair)
+                if source:
+                    quotes[pair] = source
                 decisions.append(
                     skip_decision(
                         pair,
@@ -281,6 +372,7 @@ def main() -> int:
                         {
                             "price": current.get("currentPrice"),
                             "priceAsOf": current.get("priceAsOf"),
+                            "priceSource": source,
                             "dailyTrend": current["direction"].lower(),
                             "ema20": current.get("indicators", {}).get("ema20"),
                             "ema50": current.get("indicators", {}).get("ema50"),
@@ -291,38 +383,69 @@ def main() -> int:
                         },
                     )
                 )
-                print(f"PAIR {pair} SKIP open")
+                print(f"PAIR {pair} SKIP open; price {current.get('currentPrice')} from {source or 'unpriced'}")
                 continue
             if block == "already-today":
+                source, price, as_of = status_quote(pair, now)
+                snapshot: dict = {}
+                if source and price is not None:
+                    quotes[pair] = source
+                    snapshot = {"price": price, "priceAsOf": as_of, "priceSource": source}
                 decisions.append(
                     skip_decision(
                         pair,
                         "already-today",
                         "A signal was already issued for this pair on this Baghdad date. The limit is one new signal per day.",
                         "صدرت إشارة لهذا الزوج في تاريخ بغداد الحالي. الحد هو إشارة جديدة واحدة في اليوم.",
+                        snapshot,
                     )
                 )
-                print(f"PAIR {pair} SKIP already-today")
+                print(f"PAIR {pair} SKIP already-today; price {price} from {source or 'unpriced'}")
                 continue
             try:
                 bars = fetch_pair_bars(pair, int(now.timestamp()))
             except FetchError as exc:
+                spot = fetch_coinbase_spot(pair)
+                if spot is None:
+                    decisions.append(
+                        skip_decision(
+                            pair,
+                            "no-data",
+                            f"Price history could not be loaded ({exc}).",
+                            f"تعذر تحميل تاريخ السعر ({exc}).",
+                        )
+                    )
+                    print(f"PAIR {pair} SKIP no-data {exc}")
+                    continue
+                price = round_px(pair, spot)
+                shown = fmt_px(pair, price)
+                quotes[pair] = "Coinbase"
                 decisions.append(
                     skip_decision(
                         pair,
                         "no-data",
-                        f"Price history could not be loaded ({exc}).",
-                        f"تعذر تحميل تاريخ السعر ({exc}).",
+                        (
+                            f"Price history could not be loaded ({exc}). "
+                            f"Coinbase spot {shown} is recorded as the current price only, so no signal is issued."
+                        ),
+                        (
+                            f"تعذر تحميل تاريخ السعر ({exc}). "
+                            f"سُجّل سعر كوينبيس الفوري {shown} كسعر حالي فقط، لذلك لا تُصدر إشارة."
+                        ),
+                        {"price": price, "priceAsOf": iso_z(now), "priceSource": "Coinbase"},
                     )
                 )
-                print(f"PAIR {pair} SKIP no-data {exc}")
+                print(f"PAIR {pair} SKIP no-data {exc}; Coinbase spot {price}")
                 continue
-            priced += 1
+            candle_loads += 1
+            quotes[pair] = "Yahoo Finance"
             decision = evaluate_pair(pair, bars["1d"], bars["4h"], bars["1h"], fund, now)
+            decision.snapshot["priceSource"] = "Yahoo Finance"
             decision = apply_analyst_gate(decision, analyst, now)
             decisions.append(decision)
             if decision.signal:
                 decision.signal["entryReadyTs"] = int(parse_dt(decision.signal["priceAsOf"]).timestamp())
+                decision.signal["priceSource"] = "Yahoo Finance"
                 open_signals.append(decision.signal)
                 print(
                     f"SIGNAL {pair} {decision.signal['direction']} entry {decision.signal['entry']} "
@@ -330,19 +453,15 @@ def main() -> int:
                 )
             else:
                 print(f"PAIR {pair} SKIP {decision.block}: {decision.summary_en}")
-        if priced:
+        if candle_loads:
             state["lastIssueDate"] = baghdad_date(now)
             mark_session(now, state, session)
+        issuing_pairs = [pair for pair in PAIRS if pair not in NO_ISSUE_PAIRS]
+        prices = price_report(issuing_pairs, quotes)
+        print(f"PRICES ok={prices['ok']} fallback={','.join(prices['fallback']) or 'none'}")
+        print(prices["detail"])
         state["sources"] = {
-            "prices": {
-                "provider": "Yahoo Finance chart API",
-                "ok": priced == len(PAIRS) - len(NO_ISSUE_PAIRS),
-                "detail": (
-                    "Daily, 4h, and 1h candles from query1.finance.yahoo.com with query2 as fallback. "
-                    "This is the endpoint yfinance reads. "
-                    f"{priced} of {len(PAIRS) - len(NO_ISSUE_PAIRS)} issuing pairs loaded."
-                ),
-            },
+            "prices": prices,
             "calendar": {
                 "provider": "Forex Factory",
                 "ok": bool(load_events_from_disk()),

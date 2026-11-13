@@ -1,10 +1,13 @@
 """Shared data and signal logic for Forex Perfect Signal.
 
 Price history comes from the Yahoo Finance chart API (the same source the
-yfinance package wraps), with query2 as a fallback host. The economic calendar
-list is Forex Factory's public weekly file. That file has no released-actual
-field, so actuals are matched from TradingView's public calendar when the
-currency and time line up. Headline tone comes from public RSS feeds.
+yfinance package wraps), with query2 as a fallback host. When that request
+does not return a current price, the Coinbase public spot endpoint supplies
+the price only. A spot quote is never turned into candles. The economic
+calendar list is Forex Factory's public weekly file. That file has no
+released-actual field, so actuals are matched from TradingView's public
+calendar when the currency and time line up. Headline tone comes from public
+RSS feeds.
 """
 
 from __future__ import annotations
@@ -423,6 +426,61 @@ def last_valid(values: list[float | None]) -> float | None:
 def completed(bars: list[Bar], seconds: int, now_ts: int) -> list[Bar]:
     done = [bar for bar in bars if bar.ts + seconds <= now_ts]
     return done or bars
+
+
+# Same Coinbase product codes the browser uses in src/lib/live-price.ts, plus the
+# majors that page reads from Kraken. Coinbase publishes a spot for each of them.
+COINBASE_SPOT = {
+    "EURUSD": "EUR-USD",
+    "GBPUSD": "GBP-USD",
+    "USDJPY": "USD-JPY",
+    "USDCHF": "USD-CHF",
+    "AUDUSD": "AUD-USD",
+    "USDCAD": "USD-CAD",
+    "NZDUSD": "NZD-USD",
+    "GBPJPY": "GBP-JPY",
+    "GBPAUD": "GBP-AUD",
+    "GBPCAD": "GBP-CAD",
+    "GBPNZD": "GBP-NZD",
+    "EURGBP": "EUR-GBP",
+    "EURJPY": "EUR-JPY",
+    "EURCAD": "EUR-CAD",
+}
+PRICE_YAHOO = "Yahoo Finance"
+PRICE_COINBASE = "Coinbase"
+
+
+def parse_coinbase_spot(pair: str, payload: dict) -> float | None:
+    """Read a Coinbase spot amount. Reject a payload whose pair does not match."""
+    code = COINBASE_SPOT.get(pair)
+    if not code or not isinstance(payload, dict):
+        return None
+    data = payload.get("data") or {}
+    if not isinstance(data, dict):
+        return None
+    base, _, quote = code.partition("-")
+    if data.get("base") != base or data.get("currency") != quote:
+        return None
+    try:
+        price = float(data.get("amount"))
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(price) or price <= 0:
+        return None
+    return price
+
+
+def fetch_coinbase_spot(pair: str) -> float | None:
+    """Current Coinbase spot, or None when the pair is missing or the request fails."""
+    code = COINBASE_SPOT.get(pair)
+    if not code:
+        return None
+    url = f"https://api.coinbase.com/v2/prices/{code}/spot"
+    try:
+        payload = json.loads(http_get(url, timeout=15).decode("utf-8"))
+    except (FetchError, json.JSONDecodeError, UnicodeError):
+        return None
+    return parse_coinbase_spot(pair, payload)
 
 
 def fetch_yahoo(symbol: str, interval: str, range_: str | None = None, period1: int | None = None, period2: int | None = None, min_bars: int = 10) -> list[Bar]:
@@ -1675,6 +1733,7 @@ def scan_row(decision: Decision) -> dict:
         "rsi4h": snap.get("rsi4h"),
         "macdHist4h": snap.get("macdHist4h"),
         "atr4h": snap.get("atr4h"),
+        "priceSource": snap.get("priceSource"),
     }
 
 

@@ -30,6 +30,7 @@ export type Signal = {
   reasons: Reason[];
   updates?: SignalUpdate[];
   sources: string[];
+  priceSource?: "Yahoo Finance" | "Coinbase" | null;
   indicators: {
     ema20: number | null;
     ema50: number | null;
@@ -63,13 +64,14 @@ export type ScanRow = {
   rsi4h: number | null;
   macdHist4h: number | null;
   atr4h: number | null;
+  priceSource?: "Yahoo Finance" | "Coinbase" | null;
 };
 
 export type SignalsFile = {
   updatedAt: string;
   lastIssueDate: string | null;
   sources: {
-    prices: { provider: string; ok: boolean; detail: string };
+    prices: { provider: string; ok: boolean; detail: string; fallback?: string[] };
     calendar: { provider: string; ok: boolean; detail: string };
     actuals: { provider: string; ok: boolean; detail: string };
     headlines: { used: string[]; failed: { source: string; error: string }[] };
