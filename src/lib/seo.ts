@@ -10,7 +10,9 @@ import { GUIDE_LANGS, GUIDES_REVIEWED, guidePack, type GuideSlug } from "@/lib/g
 export const PAIRS = ["EURUSD", "GBPUSD", "USDJPY", "USDCHF", "AUDUSD", "USDCAD", "NZDUSD", "GBPJPY", "GBPAUD", "GBPCAD", "GBPNZD", "EURGBP", "EURJPY", "EURCAD"] as const;
 
 const ORG_ID = `${SITE_URL}/#organization`;
-const LOGO_URL = `${SITE_URL}/logo-square.png`;
+const LOGO_URL = `${SITE_URL}/logo-512.webp`;
+const LOGO_WIDTH = 512;
+const LOGO_HEIGHT = 512;
 const OG_IMAGE = { url: `${SITE_URL}/og.png`, width: 1200, height: 630, alt: "964FX" };
 
 export function siteVerification(): Metadata["verification"] {
@@ -145,8 +147,8 @@ export function organizationLd(lang: Lang = "ar") {
         logo: {
           "@type": "ImageObject",
           url: LOGO_URL,
-          width: 759,
-          height: 800,
+          width: LOGO_WIDTH,
+          height: LOGO_HEIGHT,
         },
         image: `${SITE_URL}/og.png`,
         description: orgDescription(lang),
@@ -271,7 +273,7 @@ export function signalArticleLd(lang: Lang, signal: Signal, url: string) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: articleHeadline(signal),
+    headline: articleHeadline(lang, signal),
     description: articleDescription(lang, signal),
     inLanguage: LANG_META[lang].tag,
     datePublished: signal.issuedAt,
@@ -286,12 +288,11 @@ export function signalArticleLd(lang: Lang, signal: Signal, url: string) {
   };
 }
 
-function articleHeadline(signal: Signal) {
+function articleHeadline(lang: Lang, signal: Signal) {
   if (signal.status === "closed") {
-    const result = signal.result ? ` ${signal.result}` : "";
-    return `${signal.pair} ${signal.direction}${result}`.trim();
+    return fill(dict(lang).seo.archiveTitle, { pair: signal.pair, id: signal.id });
   }
-  return `${signal.pair} ${signal.direction}`;
+  return pairH1(lang, signal.pair) || `${signal.pair} ${signal.direction}`;
 }
 
 function archiveHeadline(signal: Signal) {

@@ -11,6 +11,8 @@ export const pt: Dict = {
   viewNews: "Calendário econômico",
   skip: "Pular para o conteúdo",
   langLabel: "Idioma",
+  pairsNav: "Pares",
+  heroH1: "Sinais forex grátis diários",
   heroTitle: "Nenhum sinal sem um setup completo.",
   heroLede:
     "A 964FX é uma mesa educacional de forex do Iraque, conduzida por Saif Altamimi, Introducing Broker da IC Markets. Publicamos um sinal diário em um par principal somente quando o setup está completo.",

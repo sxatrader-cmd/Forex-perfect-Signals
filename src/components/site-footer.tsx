@@ -9,6 +9,7 @@ import { useI18n } from "@/lib/i18n";
 import { GUIDE_SLUGS } from "@/lib/guides/types";
 import { guideNav } from "@/lib/guides/nav";
 import { showShellCta } from "@/lib/broker-cta";
+import { PAIRS, pairLabel } from "@/lib/format";
 
 export function SiteFooter() {
   const { t, lang } = useI18n();
@@ -30,17 +31,24 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-col items-start gap-3">
             <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground">
-              <Link href={`/${lang}`} className="hover:text-foreground">{t.nav.home}</Link>
-              <Link href={`/${lang}/signals`} className="hover:text-foreground">{t.nav.signals}</Link>
-              <Link href={`/${lang}/calendar`} className="hover:text-foreground">{t.nav.news}</Link>
-              <Link href={`/${lang}/archive`} className="hover:text-foreground">{t.nav.archive}</Link>
-              <Link href={`/${lang}/method`} className="hover:text-foreground">{t.nav.method}</Link>
+              <Link href={`/${lang}/`} className="hover:text-foreground">{t.nav.home}</Link>
+              <Link href={`/${lang}/signals/`} className="hover:text-foreground">{t.nav.signals}</Link>
+              <Link href={`/${lang}/calendar/`} className="hover:text-foreground">{t.nav.news}</Link>
+              <Link href={`/${lang}/archive/`} className="hover:text-foreground">{t.nav.archive}</Link>
+              <Link href={`/${lang}/method/`} className="hover:text-foreground">{t.nav.method}</Link>
+            </nav>
+            <nav aria-label={t.pairsNav} className="flex max-w-md flex-wrap gap-x-3 gap-y-1 text-sm">
+              {PAIRS.map((pair) => (
+                <Link key={pair} href={`/${lang}/signals/${pair.toLowerCase()}/`} className="nums text-muted-foreground hover:text-foreground">
+                  {pairLabel(pair)}
+                </Link>
+              ))}
             </nav>
             {guides ? (
               <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted-foreground" aria-label={guides.nav}>
-                <Link href={`/${lang}/guides`} className="font-medium text-foreground hover:text-primary">{guides.nav}</Link>
+                <Link href={`/${lang}/guides/`} className="font-medium text-foreground hover:text-primary">{guides.nav}</Link>
                 {GUIDE_SLUGS.map((slug) => (
-                  <Link key={slug} href={`/${lang}/guides/${slug}`} className="hover:text-foreground">
+                  <Link key={slug} href={`/${lang}/guides/${slug}/`} className="hover:text-foreground">
                     {guides.labels[slug]}
                   </Link>
                 ))}

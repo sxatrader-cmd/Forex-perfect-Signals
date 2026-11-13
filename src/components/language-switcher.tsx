@@ -14,8 +14,8 @@ export function withLang(path: string, lang: Lang) {
   if (parts[0] && isLang(parts[0])) parts[0] = lang;
   else parts.unshift(lang);
   // Guides exist only in some languages; send the rest to their home page.
-  if (parts[1] === "guides" && !hasGuides(lang)) return `/${lang}`;
-  return `/${parts.join("/")}`;
+  if (parts[1] === "guides" && !hasGuides(lang)) return `/${lang}/`;
+  return `/${parts.join("/")}/`;
 }
 
 export function LanguageSwitcher({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {

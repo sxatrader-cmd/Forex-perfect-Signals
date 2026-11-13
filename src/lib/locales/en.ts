@@ -10,6 +10,8 @@ export const en = {
   viewNews: "Economic Calendar",
   skip: "Skip to content",
   langLabel: "Language",
+  pairsNav: "Signal pairs",
+  heroH1: "Free daily forex signals",
   heroTitle: "No signal unless the setup is complete.",
   heroLede:
     "964FX is an educational forex desk from Iraq, run by Saif Altamimi, an Introducing Broker for IC Markets. We publish a daily signal on a major pair only when the setup is complete.",

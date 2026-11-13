@@ -52,7 +52,7 @@ export function ArchiveView() {
         <ul className="grid gap-3">
           {rows.map((signal) => (
             <li key={signal.id}>
-              <Link href={`/${lang}/archive/${signal.id}`} className="block rounded-xl border border-border bg-card/70 p-4 hover:border-primary/50">
+              <Link href={`/${lang}/archive/${signal.id}/`} className="block rounded-xl border border-border bg-card/70 p-4 hover:border-primary/50">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="nums font-semibold">{pairLabel(signal.pair)} · {signal.direction === "BUY" ? t.buy : t.sell}</span>
                   <span className={signal.pips != null && signal.pips >= 0 ? "nums text-buy" : "nums text-sell"}>
@@ -78,7 +78,7 @@ export function ArchiveDetail({ id }: { id: string }) {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-10 sm:px-6">
       <p className="text-sm text-muted-foreground">
-        <Link href={`/${lang}/archive`} className="text-primary">{t.archiveTitle}</Link>
+        <Link href={`/${lang}/archive/`} className="text-primary">{t.archiveTitle}</Link>
       </p>
       <header>
         <h1 className="nums text-3xl font-semibold">{pairLabel(signal.pair)} · {signal.direction}</h1>

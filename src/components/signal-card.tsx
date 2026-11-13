@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ShareSignal } from "@/components/share-signal";
@@ -10,7 +11,7 @@ import { useI18n } from "@/lib/i18n";
 import { pickText, textAttrs } from "@/lib/langs";
 import type { Signal } from "@/lib/types";
 
-export function SignalCard({ signal, compact = false }: { signal: Signal; compact?: boolean }) {
+export function SignalCard({ signal, compact = false, href }: { signal: Signal; compact?: boolean; href?: string }) {
   const { t, lang } = useI18n();
   const buy = signal.direction === "BUY";
   const low = Math.min(signal.sl, signal.tp);
@@ -21,11 +22,21 @@ export function SignalCard({ signal, compact = false }: { signal: Signal; compac
   const entryPct = ((signal.entry - low) / span) * 100;
   const pips = signal.status === "closed" ? signal.pips : signal.floatingPips;
 
+  const name = pairLabel(signal.pair);
   return (
-    <Card className="bg-card/80">
-      <CardHeader>
+    <Card className="relative bg-card/80">
+      {href ? <Link href={href} className="absolute inset-0 z-[1] rounded-xl" aria-label={name} tabIndex={-1} /> : null}
+      <CardHeader className={`relative z-[2] ${href ? "pointer-events-none" : ""}`}>
         <div className="flex items-start justify-between gap-3">
-          <CardTitle className="nums text-xl tracking-tight">{pairLabel(signal.pair)}</CardTitle>
+          <CardTitle className="nums text-xl tracking-tight">
+            {href ? (
+              <Link href={href} className="pointer-events-auto hover:text-primary">
+                {name}
+              </Link>
+            ) : (
+              name
+            )}
+          </CardTitle>
           <Badge className={buy ? "bg-buy text-buy-foreground" : "bg-sell text-sell-foreground"}>
             {buy ? t.buy : t.sell}
           </Badge>
@@ -37,7 +48,7 @@ export function SignalCard({ signal, compact = false }: { signal: Signal; compac
           </span>
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className={`relative z-[2] space-y-4 ${href ? "pointer-events-none" : ""}`}>
         <dl className="grid grid-cols-3 gap-2 text-sm">
           <Level label={t.entry} value={formatPrice(signal.pair, signal.entry)} />
           <Level label={t.sl} value={formatPrice(signal.pair, signal.sl)} />
@@ -69,6 +80,7 @@ export function SignalCard({ signal, compact = false }: { signal: Signal; compac
           <br />
           {t.quoteTime}: {formatWhen(signal.priceAsOf, "Asia/Baghdad", lang)}
         </p>
+        <div className={href ? "pointer-events-auto" : undefined}>
         {signal.status === "closed" ? null : <ShareSignal signal={signal} />}
         {compact ? null : (
           <>
@@ -91,6 +103,7 @@ export function SignalCard({ signal, compact = false }: { signal: Signal; compac
             <UpdatesTimeline updates={signal.updates ?? []} pair={signal.pair} />
           </>
         )}
+        </div>
       </CardContent>
     </Card>
   );

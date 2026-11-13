@@ -11,6 +11,8 @@ export const es: Dict = {
   viewNews: "Calendario económico",
   skip: "Saltar al contenido",
   langLabel: "Idioma",
+  pairsNav: "Pares",
+  heroH1: "Señales forex gratis cada día",
   heroTitle: "Ninguna señal sin un setup completo.",
   heroLede:
     "964FX es una mesa educativa de forex desde Irak, dirigida por Saif Altamimi, Introducing Broker de IC Markets. Publicamos una señal diaria en un par mayor solo cuando el setup está completo.",

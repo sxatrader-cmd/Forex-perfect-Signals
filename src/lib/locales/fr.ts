@@ -11,6 +11,8 @@ export const fr: Dict = {
   viewNews: "Calendrier économique",
   skip: "Aller au contenu",
   langLabel: "Langue",
+  pairsNav: "Paires",
+  heroH1: "Signaux forex gratuits chaque jour",
   heroTitle: "Aucun signal tant que la configuration n'est pas complète.",
   heroLede:
     "964FX est un desk forex éducatif basé en Irak, animé par Saif Altamimi, Introducing Broker d'IC Markets. Nous publions un signal quotidien sur une paire majeure uniquement lorsque toutes les conditions sont réunies.",

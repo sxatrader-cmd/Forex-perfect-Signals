@@ -11,6 +11,8 @@ export const tr: Dict = {
   viewNews: "Ekonomik takvim",
   skip: "İçeriğe geç",
   langLabel: "Dil",
+  pairsNav: "Pariteler",
+  heroH1: "Ücretsiz günlük forex sinyalleri",
   heroTitle: "Kurulum tamamlanmadan sinyal yok.",
   heroLede:
     "964FX, IC Markets Introducing Broker'ı Saif Altamimi tarafından yönetilen, Irak merkezli eğitim amaçlı bir forex masasıdır. Majör paritelerde günlük sinyali yalnızca kurulum tamamlandığında yayınlarız.",

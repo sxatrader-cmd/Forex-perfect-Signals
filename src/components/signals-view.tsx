@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Disclaimer } from "@/components/disclaimer";
 import { PriceWidget } from "@/components/price-widget";
 import { SignalCard } from "@/components/signal-card";
@@ -46,7 +47,7 @@ export function SignalsView({ heading }: { heading?: string } = {}) {
         {signalsData.open.length ? (
           <div className="grid gap-4 xl:grid-cols-2">
             {signalsData.open.map((signal) => (
-              <SignalCard key={signal.id} signal={signal} />
+              <SignalCard key={signal.id} signal={signal} href={`/${lang}/signals/${signal.pair.toLowerCase()}/`} />
             ))}
           </div>
         ) : (
@@ -61,7 +62,11 @@ export function SignalsView({ heading }: { heading?: string } = {}) {
           {signalsData.scan.map((row) => (
             <article key={row.pair} className="rounded-xl border border-border bg-card/70 p-4">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="nums text-lg font-semibold">{pairLabel(row.pair)}</h3>
+                <h3 className="nums text-lg font-semibold">
+                  <Link href={`/${lang}/signals/${row.pair.toLowerCase()}/`} className="hover:text-primary">
+                    {pairLabel(row.pair)}
+                  </Link>
+                </h3>
                 <Badge variant={row.decision === "signal" ? "default" : "outline"}>
                   {t.blocks[row.block ?? ""] ?? row.decision}
                 </Badge>
@@ -128,7 +133,7 @@ export function SignalsView({ heading }: { heading?: string } = {}) {
         {signalsData.sources.headlines.failed.length ? ` ${t.failedFeeds}: ${signalsData.sources.headlines.failed.map((item) => item.source).join(", ")}.` : ""}
       </p>
       <p>
-        <a href={`/${lang}/archive`} className="text-sm text-primary underline-offset-4 hover:underline">{t.archiveTitle}</a>
+        <Link href={`/${lang}/archive/`} className="text-sm text-primary underline-offset-4 hover:underline">{t.archiveTitle}</Link>
       </p>
     </div>
     <aside className="flex flex-col items-center gap-8">

@@ -12,8 +12,7 @@ The site is available in 13 languages. Arabic is the default.
 
 - [الرئيسية](https://964fx.com/ar/): نظرة عامة على مكتب 964FX والإشارات التعليمية
 - [الإشارات](https://964fx.com/ar/signals/): التوصيات اليومية للأزواج الرئيسية مع الإيقاف والهدف وستة أسباب
-- [الأخبار](https://964fx.com/ar/news/): المفكرة الاقتصادية وأخبار Forex Factory بتوقيت بغداد
-- [التقويم الاقتصادي](https://964fx.com/ar/calendar/): التقويم الاقتصادي للأسبوع، مع الأثر والفعلي والتوقع والسابق
+- [التقويم الاقتصادي](https://964fx.com/ar/calendar/): التقويم الاقتصادي للأسبوع، مع الأثر والفعلي والتوقع والسابق. المسار /ar/news/ يحوّل إلى هذه الصفحة.
 - [المنهج](https://964fx.com/ar/method/): قواعد بناء الإشارة، ولماذا يُتخطى الزوج أحياناً
 - [الأرشيف](https://964fx.com/ar/archive/): السجل العلني للإشارات المغلقة مع النتيجة والنقاط
 - [EURUSD](https://964fx.com/ar/signals/eurusd/): صفحة زوج EURUSD
@@ -41,8 +40,7 @@ The site is available in 13 languages. Arabic is the default.
 
 - [Home](https://964fx.com/en/): Overview of the 964FX educational desk
 - [Signals](https://964fx.com/en/signals/): Daily major-pair signals with stop, target, and six reasons
-- [News](https://964fx.com/en/news/): This week's economic calendar and live Forex Factory news
-- [Economic calendar](https://964fx.com/en/calendar/): This week's economic calendar, with impact, actual, forecast, and previous
+- [Economic calendar](https://964fx.com/en/calendar/): This week's economic calendar, with impact, actual, forecast, and previous. /en/news/ redirects here.
 - [Method](https://964fx.com/en/method/): How a signal is built, and when a pair is skipped
 - [Archive](https://964fx.com/en/archive/): Public record of closed signals, with results and pips
 - [EURUSD](https://964fx.com/en/signals/eurusd/): EURUSD signal page

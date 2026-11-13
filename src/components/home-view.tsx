@@ -42,13 +42,14 @@ export function HomeView() {
             <p className="text-sm font-semibold text-primary">{t.ib}</p>
             <p className="mt-1 text-xs text-muted-foreground">{t.ibExact}</p>
             <h1 className="mt-5 max-w-xl text-4xl leading-[1.2] font-semibold tracking-tight sm:text-5xl">
-              {t.heroTitle}
+              {t.heroH1}
             </h1>
+            <h2 className="mt-3 max-w-xl text-xl leading-snug font-medium text-foreground/90 sm:text-2xl">{t.heroTitle}</h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">{t.heroLede}</p>
             <p className="mt-4 max-w-xl text-sm leading-7 text-foreground">{t.heroRule}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <BrokerLink>{t.openAccount}</BrokerLink>
-              <Link href={`/${lang}/signals`} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 px-4")}>
+              <Link href={`/${lang}/signals/`} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 px-4")}>
                 {t.viewSignals}
               </Link>
             </div>
@@ -135,9 +136,11 @@ export function HomeView() {
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               {signalsData.scan.map((row) => (
-                <Badge key={row.pair} variant="outline" className="nums h-7 px-3">
-                  {pairLabel(row.pair)}
-                </Badge>
+                <Link key={row.pair} href={`/${lang}/signals/${row.pair.toLowerCase()}/`}>
+                  <Badge variant="outline" className="nums h-7 px-3 hover:border-primary">
+                    {pairLabel(row.pair)}
+                  </Badge>
+                </Link>
               ))}
             </CardContent>
           </Card>
@@ -188,7 +191,7 @@ export function HomeView() {
               </div>
             </div>
           )}
-          <Link href={`/${lang}/signals`} className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "mt-4 h-11 px-4")}>
+          <Link href={`/${lang}/signals/`} className={cn(buttonVariants({ variant: "secondary", size: "lg" }), "mt-4 h-11 px-4")}>
             {t.viewSignals}
           </Link>
         </section>

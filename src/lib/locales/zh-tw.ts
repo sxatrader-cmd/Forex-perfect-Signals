@@ -11,6 +11,8 @@ export const zhTw: Dict = {
   viewNews: "經濟日曆",
   skip: "跳到正文",
   langLabel: "語言",
+  pairsNav: "貨幣對",
+  heroH1: "免費每日外匯訊號",
   heroTitle: "條件不齊，絕不發訊號。",
   heroLede:
     "964FX 是來自伊拉克的外匯教育交易台，由 IC Markets 介紹經紀人 Saif Altamimi 經營。只有當交易條件全部滿足時，我們才會就一個主要貨幣對發布每日訊號。",

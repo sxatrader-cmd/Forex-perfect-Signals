@@ -1044,6 +1044,95 @@ def test_webhook_http_and_deploy_survives_failure() -> None:
             os.environ["SIGNAL_WEBHOOK_KEY"] = old_key
 
 
+def test_indexnow_submits_growth_and_logs_failures() -> None:
+    import io
+    from urllib.error import HTTPError
+
+    import indexnow
+
+    entries = [
+        ("https://964fx.com/ar/", "2026-11-01"),
+        ("https://964fx.com/en/signals/eurusd/", "2026-11-12"),
+    ]
+    urls, reason = indexnow.select_urls(entries, {"lastFullSubmit": "2026-11-13", "lastCount": 169}, False)
+    if reason != "full-untracked" or urls != [item[0] for item in entries]:
+        fail(f"a state file without per-URL records must submit the whole sitemap, got {reason} {urls}")
+    urls, reason = indexnow.select_urls(entries, {"submitted": {entries[0][0]: entries[0][1]}}, False)
+    if reason != "sitemap-growth" or urls != [entries[1][0]]:
+        fail(f"sitemap growth must submit only the new URL, got {reason} {urls}")
+    urls, reason = indexnow.select_urls(
+        entries,
+        {"submitted": {entries[0][0]: entries[0][1], entries[1][0]: "2026-11-01"}},
+        False,
+    )
+    if reason != "changed" or urls != [entries[1][0]]:
+        fail(f"a changed lastmod must be submitted, got {reason} {urls}")
+    urls, reason = indexnow.select_urls(entries, {"submitted": {item[0]: item[1] for item in entries}}, False)
+    if urls or reason != "none":
+        fail(f"unchanged URLs must be skipped, got {reason} {urls}")
+
+    def reject(req, timeout=60):
+        raise HTTPError(indexnow.ENDPOINT, 422, "Unprocessable Entity", hdrs=None, fp=io.BytesIO(b'{"message":"invalid key"}'))
+
+    original = indexnow.urlopen
+    stderr = io.StringIO()
+    old_stderr = sys.stderr
+    indexnow.urlopen = reject
+    sys.stderr = stderr
+    try:
+        statuses, accepted = indexnow.post_indexnow("964fx.com", "key", "https://964fx.com/key.txt", ["https://964fx.com/ar/"])
+    finally:
+        indexnow.urlopen = original
+        sys.stderr = old_stderr
+    logged = stderr.getvalue()
+    if statuses != [422] or accepted:
+        fail(f"a rejected batch must not be marked accepted, got {statuses} {accepted}")
+    if "FAILED" not in logged or "422" not in logged or "invalid key" not in logged:
+        fail(f"IndexNow failures must be logged clearly, got {logged!r}")
+
+
+def test_sitemap_uses_content_dates_and_skips_news() -> None:
+    import generate_seo
+
+    if "/news/" in generate_seo.paths:
+        fail("sitemap paths must not include /news/")
+    mods = generate_seo.content_lastmod()
+    if any(path.startswith("/news") for path in mods):
+        fail(f"news lastmod should not be tracked, got {mods}")
+    open_items = generate_seo._rows(generate_seo.signals.get("open"))
+    if not open_items:
+        fail("expected an open signal to check pair lastmod")
+    pair = str(open_items[0]["pair"]).lower()
+    issued = str(open_items[0]["issuedAt"])[:10]
+    if mods.get(f"/signals/{pair}/") != issued:
+        fail(f"pair lastmod should be issuedAt {issued}, got {mods.get(f'/signals/{pair}/')}")
+    signal_days = {issued}
+    for item in generate_seo._rows(generate_seo.history.get("closed")):
+        signal_days.add(str(item.get("closedAt") or item.get("issuedAt"))[:10])
+    if mods.get("/") not in signal_days:
+        fail(f"home lastmod {mods.get('/')} is not a signal issuedAt/closedAt date")
+    if "/method/" in mods:
+        fail("method has no content date and must omit lastmod")
+
+
+def test_font_script_classifier() -> None:
+    import stamp_html_lang as fonts
+
+    arabic = fonts.scripts_in("U+0600-06FF, U+0750-077F, U+FB50-FDFF")
+    if "arabic" not in arabic or "latin" in arabic:
+        fail(f"arabic range misclassified as {arabic}")
+    latin = fonts.scripts_in("U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC")
+    if latin != {"latin"}:
+        fail(f"latin range misclassified as {latin}")
+    extended = fonts.scripts_in("U+0100-02AF, U+1E00-1E9F, U+0304")
+    if "latin-ext" not in extended or "latin" in extended:
+        fail(f"latin-ext range misclassified as {extended}")
+    if fonts.scripts_in("U+??,U+131,U+152-153") != {"latin"}:
+        fail("wildcard latin range U+?? was not classified as latin")
+    if "arabic" not in fonts.scripts_in("U+6??,U+750-77F,U+FB50-FDFF"):
+        fail("wildcard arabic range U+6?? was not classified as arabic")
+
+
 if __name__ == "__main__":
     test_ema_rsi_macd()
     test_exit_rules()
@@ -1061,4 +1150,7 @@ if __name__ == "__main__":
     test_track_falls_back_to_coinbase_spot()
     test_webhook_posts_each_new_signal_once()
     test_webhook_http_and_deploy_survives_failure()
+    test_indexnow_submits_growth_and_logs_failures()
+    test_sitemap_uses_content_dates_and_skips_news()
+    test_font_script_classifier()
     print("all signal tests passed")
