@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T22:34:43Z",
+  "updatedAt": "2026-11-13T09:08:07Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 39,
+      "matched": 41,
       "error": null
     }
   },
@@ -970,8 +970,8 @@
       "impact": "Low",
       "forecast": "2.84B",
       "previous": "1.77B",
-      "actual": "",
-      "actualSource": null
+      "actual": "-0.784B",
+      "actualSource": "TradingView"
     },
     {
       "id": "EUR|flash-employment-change-q-q|2026-11-13T10:00:00Z",
@@ -1003,8 +1003,8 @@
       "impact": "Low",
       "forecast": "-4.5B",
       "previous": "-6.8B",
-      "actual": "",
-      "actualSource": null
+      "actual": "-0.784B",
+      "actualSource": "TradingView"
     },
     {
       "id": "CNY|m2-money-supply-y-y|2026-11-13T10:03:00Z",
