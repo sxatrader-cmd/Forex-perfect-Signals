@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T10:44:29Z",
+  "updatedAt": "2026-11-13T13:34:42Z",
   "error": null,
   "sources": {
     "forexFactory": {
@@ -11,7 +11,7 @@
       "provider": "TradingView",
       "url": "https://economic-calendar.tradingview.com/events",
       "ok": true,
-      "matched": 42,
+      "matched": 46,
       "error": null
     }
   },
@@ -1036,8 +1036,8 @@
       "impact": "Low",
       "forecast": "0.1%",
       "previous": "1.5%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0%",
+      "actualSource": "TradingView"
     },
     {
       "id": "CAD|wholesale-sales-m-m|2026-11-13T13:30:00Z",
@@ -1047,8 +1047,8 @@
       "impact": "Low",
       "forecast": "0.5%",
       "previous": "-1.6%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.7%",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|core-ppi-m-m|2026-11-13T13:30:00Z",
@@ -1058,8 +1058,8 @@
       "impact": "High",
       "forecast": "0.3%",
       "previous": "0.7%",
-      "actual": "",
-      "actualSource": null
+      "actual": "5%",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|ppi-m-m|2026-11-13T13:30:00Z",
@@ -1069,8 +1069,8 @@
       "impact": "High",
       "forecast": "0.4%",
       "previous": "1.3%",
-      "actual": "",
-      "actualSource": null
+      "actual": "0.3%",
+      "actualSource": "TradingView"
     },
     {
       "id": "USD|fomc-member-collins-speaks|2026-11-13T14:10:00Z",
