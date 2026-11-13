@@ -6,6 +6,7 @@ import type { CandlestickData, IChartApi, ISeriesApi, SeriesMarker, Time, UTCTim
 import { formatPrice, formatWhen } from "@/lib/format";
 import { useI18n } from "@/lib/i18n";
 import { LANG_META } from "@/lib/langs";
+import { loadTick } from "@/lib/live-price";
 import { BASE_PATH } from "@/lib/site";
 import type { Signal } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -39,7 +40,6 @@ const POLL_MS = 60_000;
 const TICK_MS = 15_000;
 // Display candles in Baghdad time (UTC+3, no daylight saving).
 const SHIFT = 3 * 3600;
-const KRAKEN: Record<string, string> = { EURUSD: "EURUSD", GBPUSD: "GBPUSD", AUDUSD: "AUDUSD", USDCHF: "USDCHF", USDCAD: "USDCAD" };
 const COLORS = { up: "#22c55e", down: "#ef4444", entry: "#e5c07b", text: "#a3acb9", grid: "rgba(148,163,184,0.08)" };
 const TF_ORDER: IntervalKey[] = ["15m", "1h", "4h", "1d"];
 const TF_LABEL: Record<IntervalKey, string> = { "15m": "M15", "1h": "H1", "4h": "H4", "1d": "D1" };
@@ -62,24 +62,6 @@ async function loadChart(id: string): Promise<ChartFile | null> {
     }
   }
   return best;
-}
-
-async function loadTick(pair: string): Promise<number | null> {
-  const code = KRAKEN[pair];
-  if (!code) return null;
-  try {
-    const res = await fetch(`https://api.kraken.com/0/public/Ticker?pair=${code}`, { cache: "no-store" });
-    const data = await res.json();
-    const row = data?.result ? (Object.values(data.result)[0] as { a?: string[]; b?: string[] }) : null;
-    const ask = Number(row?.a?.[0]);
-    const bid = Number(row?.b?.[0]);
-    if (!ask || !bid) return null;
-    const spread = Math.abs(ask - bid);
-    if (spread > 0.0005) return null;
-    return (ask + bid) / 2;
-  } catch {
-    return null;
-  }
 }
 
 function rawCandles(file: ChartFile, tf: IntervalKey): [number, number, number, number, number][] | null {
@@ -181,7 +163,7 @@ export function SignalChart({ signal }: { signal: Signal }) {
   const [tf, setTf] = useState<IntervalKey>("15m");
   const [frames, setFrames] = useState<IntervalKey[]>([]);
   const [state, setState] = useState<"loading" | "ready" | "missing">("loading");
-  const [tick, setTick] = useState<{ price: number; at: Date } | null>(null);
+  const [tick, setTick] = useState<{ price: number; at: Date; source: string } | null>(null);
   const [nativeFs, setNativeFs] = useState(false);
   const [cssFs, setCssFs] = useState(false);
   const fullscreen = nativeFs || cssFs;
@@ -367,10 +349,11 @@ export function SignalChart({ signal }: { signal: Signal }) {
           }
         }, POLL_MS);
         const pull = async () => {
-          const price = await loadTick(signal.pair);
+          const quote = await loadTick(signal.pair);
           const last = lastRef.current;
           const current = fileRef.current;
-          if (!alive || price == null || !last || !current || current.final) return;
+          if (!alive || quote == null || !last || !current || current.final) return;
+          const price = quote.price;
           if (Math.abs(price - last.close) / last.close > 0.005) return;
           const step = TF_SECONDS[tfRef.current];
           const nowUtc = Math.floor(Date.now() / 1000);
@@ -390,7 +373,7 @@ export function SignalChart({ signal }: { signal: Signal }) {
           if (!bar) return;
           seriesRef.current?.update(bar);
           lastRef.current = bar;
-          setTick({ price, at: new Date() });
+          setTick({ price, at: new Date(), source: quote.source });
         };
         pull();
         ticker = setInterval(pull, TICK_MS);
@@ -504,7 +487,7 @@ export function SignalChart({ signal }: { signal: Signal }) {
           {tick ? (
             <>
               <br />
-              {c.livePrice} {formatPrice(signal.pair, tick.price)} (Kraken) · {tick.at.toLocaleTimeString(lang === "ar" ? "ar-IQ" : LANG_META[lang].intl, { timeZone: "Asia/Baghdad", hour: "2-digit", minute: "2-digit", second: "2-digit", numberingSystem: "latn" })}
+              {c.livePrice} {formatPrice(signal.pair, tick.price)} ({tick.source}) · {tick.at.toLocaleTimeString(lang === "ar" ? "ar-IQ" : LANG_META[lang].intl, { timeZone: "Asia/Baghdad", hour: "2-digit", minute: "2-digit", second: "2-digit", numberingSystem: "latn" })}
             </>
           ) : null}
         </p>
