@@ -447,6 +447,18 @@
             "en": "Price 2.39141 is still above the daily EMA50 saved at entry (2.35649). Floating +27.7 pips, 17.7% of the way to the target, 105.9 pips from the stop. 1-hour RSI is 60.4. No high-impact event for these currencies is listed in the current weekly file. The original plan is unchanged: target and stop stay where they were set.",
             "ar": "السعر 2.39141 ما زال فوق متوسط 50 اليومي المحفوظ عند الدخول (2.35649). النقاط العائمة +27.7، أي 17.7% من المسافة إلى الهدف، و105.9 نقطة عن الإيقاف. مؤشر RSI على الساعة 60.4. لا خبر عالي التأثير لعملتي الزوج في ملف الأسبوع الحالي. الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
           }
+        },
+        {
+          "at": "2026-11-14T11:50:33Z",
+          "baghdad": "2026-11-14 14:50",
+          "price": 2.39141,
+          "floatingPips": 27.7,
+          "progressToTp": 17.7,
+          "distanceToSlPips": 105.9,
+          "comment": {
+            "en": "Price 2.39141 is still above the daily EMA50 saved at entry (2.35649). Floating +27.7 pips, 17.7% of the way to the target, 105.9 pips from the stop. 1-hour RSI is 60.4. No high-impact event for these currencies is listed in the current weekly file. The original plan is unchanged: target and stop stay where they were set.",
+            "ar": "السعر 2.39141 ما زال فوق متوسط 50 اليومي المحفوظ عند الدخول (2.35649). النقاط العائمة +27.7، أي 17.7% من المسافة إلى الهدف، و105.9 نقطة عن الإيقاف. مؤشر RSI على الساعة 60.4. لا خبر عالي التأثير لعملتي الزوج في ملف الأسبوع الحالي. الخطة الأصلية ثابتة: الهدف والإيقاف يبقيان كما نُشرا."
+          }
         }
       ],
       "sources": [
@@ -476,7 +488,7 @@
       "priceSource": "Yahoo Finance"
     }
   ],
-  "updatedAt": "2026-11-14T07:43:54Z",
+  "updatedAt": "2026-11-14T11:50:33Z",
   "sessionScans": {
     "frankfurt": "2026-11-13",
     "london": "2026-11-13",
